@@ -9,15 +9,19 @@ Twee varianten zijn met onderstaande prompt gegenereerd in het Higgsfield-accoun
 | A | `5657d9f3-c371-4ed6-b45d-d67b43d4468e` | https://d8j0ntlcm91z4.cloudfront.net/user_3IPQTipuci80tqMBohnShvKQrg2/hf_20260908_213538_5657d9f3-c371-4ed6-b45d-d67b43d4468e.mp4 |
 | B | `eb5001a8-099c-4bd5-ad37-858e83879447` | https://d8j0ntlcm91z4.cloudfront.net/user_3IPQTipuci80tqMBohnShvKQrg2/hf_20260908_213538_eb5001a8-099c-4bd5-ad37-858e83879447.mp4 |
 
-De video's konden vanuit de bouwomgeving niet worden gedownload (netwerkbeleid), dus ze zijn
-**nog niet in de repo geplaatst en nog niet beoordeeld**. Stappen om te plaatsen:
+**Geplaatst: variant B.** Origineel (HEVC 10-bit, 8,2 MB) staat in `assets/originals/hero-higgsfield-variant-b.mp4`.
+Voor de site omgezet naar `public/videos/hero.mp4`: H.264 High, 1920×1080, 24 fps, CRF 29, geen audio,
+±1,6 MB, faststart. De laatste 0,8 s vloeit over in de eerste 0,8 s zodat de loop niet hard springt.
+Poster `public/images/hero/hero-poster.jpg` is het frame op 4,3 s (half vuil, half schoon).
 
-1. Bekijk beide varianten in Higgsfield (Generations) en check op: realistisch water, geen vervormde
-   stenen, geen "explosie"-effect, geen tekst/artefacten. Twijfel → poster gebruiken, geen video.
-2. Comprimeer de gekozen variant (ffmpeg, doel ≤ 2,5 MB):
-   `ffmpeg -i hero.mp4 -an -vf "scale=1920:-2" -c:v libx264 -crf 28 -preset slow -movflags +faststart public/videos/hero.mp4`
-3. Poster uit het eerste frame: `ffmpeg -i public/videos/hero.mp4 -frames:v 1 -q:v 3 public/images/hero/hero-poster.jpg`
-4. `.env`: `NEXT_PUBLIC_HERO_VIDEO_SRC=/videos/hero.mp4` → de hero speelt de video op desktop, poster op mobiel.
+Opnieuw genereren vanuit een nieuw origineel (ffmpeg ≥ 4.0):
+
+```
+ffmpeg -i origineel.mp4 -filter_complex "[0:v]format=yuv420p,split=3[m][t][h];[m]trim=0:7.2,setpts=PTS-STARTPTS[main];[t]trim=7.2:8,setpts=PTS-STARTPTS[tail];[h]trim=0:0.8,setpts=PTS-STARTPTS[head];[tail][head]blend=all_expr='A*(1-min(T/0.8\,1))+B*min(T/0.8\,1)'[x];[main][x]concat=n=2:v=1:a=0[v]" -map "[v]" -an -c:v libx264 -profile:v high -preset slow -crf 29 -movflags +faststart -r 24 public/videos/hero.mp4
+ffmpeg -ss 4.3 -i origineel.mp4 -frames:v 1 -vf "scale=1920:1080" -q:v 3 public/images/hero/hero-poster.jpg
+```
+
+Uitschakelen: `NEXT_PUBLIC_HERO_VIDEO_SRC=""` in Vercel. Variant A is niet gebruikt.
 
 ## Advies: wel of geen video?
 
