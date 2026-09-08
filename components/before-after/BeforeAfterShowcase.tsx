@@ -34,7 +34,7 @@ export function BeforeAfterShowcase({ projects }: { projects: Project[] }) {
             afterSrc={main.afterImage}
             beforeAlt={main.beforeAlt}
             afterAlt={main.afterAlt}
-            aspect="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[21/10]"
+            aspect="aspect-[16/10] sm:aspect-[2/1] lg:aspect-[21/9]"
             rounded="rounded-3xl sm:rounded-4xl"
             sizes="(min-width: 1280px) 1200px, 100vw"
             trackId={main.slug}
@@ -60,6 +60,7 @@ export function BeforeAfterShowcase({ projects }: { projects: Project[] }) {
                   afterSrc={p.afterImage}
                   beforeAlt={p.beforeAlt}
                   afterAlt={p.afterAlt}
+                  aspect="aspect-[16/10]"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   trackId={p.slug}
                 />

@@ -11,6 +11,7 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
         beforeAlt={project.beforeAlt}
         afterAlt={project.afterAlt}
         priority={priority}
+        aspect="aspect-[16/10] sm:aspect-[2/1]"
         rounded="rounded-none"
         className="shadow-none"
         sizes="(min-width: 1024px) 50vw, 100vw"

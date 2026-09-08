@@ -5,9 +5,9 @@
  * projecten uit de database gebruikt (zie lib/projects.ts). Tot die tijd
  * — of als Supabase niet bereikbaar is — worden onderstaande projecten getoond.
  *
- * De drie projecten hieronder zijn gebaseerd op de aangeleverde before/after-
- * foto's (allemaal dakpanreiniging). Plaats de echte foto's op de
- * aangegeven paden in /public en werk `location` bij zodra bekend.
+ * De foto's zijn de aangeleverde VOOR/NA-collages, gesplitst met
+ * scripts/process-photos.mjs (originelen in assets/originals/).
+ * `location` staat op "Regio Enschede" totdat de echte plaats per project bekend is.
  */
 
 export type Project = {
@@ -30,7 +30,25 @@ export type Project = {
 
 export const fallbackProjects: Project[] = [
   {
-    id: "static-1",
+    id: "static-gevel-1",
+    slug: "gevelreiniging-bungalow-gele-baksteen",
+    title: "Gevelreiniging – bungalow met gele baksteen",
+    service: "gevelreiniging",
+    serviceLabel: "Gevelreiniging",
+    location: "Regio Enschede",
+    description:
+      "De gele gevelsteen van deze bungalow was grauw en dof geworden door jarenlange vervuiling en groene aanslag, vooral aan de schaduwzijde.",
+    result: "De oorspronkelijke warme kleur van de baksteen is terug en de voegen zijn weer schoon.",
+    beforeImage: "/images/projects/gevelreiniging-1-voor.jpg",
+    afterImage: "/images/projects/gevelreiniging-1-na.jpg",
+    beforeAlt: "Voor: grauwe, vervuilde gevel van gele baksteen bij een bungalow",
+    afterAlt: "Na: schone gele bakstenen gevel van dezelfde bungalow",
+    featured: true,
+    sortOrder: 1,
+    published: true,
+  },
+  {
+    id: "static-dak-1",
     slug: "dakpanreiniging-woning-met-dakkapel",
     title: "Dakpanreiniging – woning met dakkapel",
     service: "dakpanreiniging",
@@ -42,13 +60,13 @@ export const fallbackProjects: Project[] = [
     beforeImage: "/images/projects/dakpanreiniging-1-voor.jpg",
     afterImage: "/images/projects/dakpanreiniging-1-na.jpg",
     beforeAlt: "Voor: dakpannen bedekt met mos en groene aanslag",
-    afterAlt: "Na: schone dakpannen met de oorspronkelijke kleur weer zichtbaar",
+    afterAlt: "Na: schone dakpannen op een woning met dakkapel",
     featured: true,
-    sortOrder: 1,
+    sortOrder: 2,
     published: true,
   },
   {
-    id: "static-2",
+    id: "static-dak-2",
     slug: "dakpanreiniging-vrijstaande-woning",
     title: "Dakpanreiniging – vrijstaande woning",
     service: "dakpanreiniging",
@@ -59,14 +77,32 @@ export const fallbackProjects: Project[] = [
     result: "Een egaal schoon dak in de oorspronkelijke oranje kleur.",
     beforeImage: "/images/projects/dakpanreiniging-2-voor.jpg",
     afterImage: "/images/projects/dakpanreiniging-2-na.jpg",
-    beforeAlt: "Voor: donker, vervuild pannendak van een vrijstaande woning",
-    afterAlt: "Na: schoon oranje pannendak van dezelfde woning",
+    beforeAlt: "Voor: hoogwerker bij een woning met vervuild pannendak",
+    afterAlt: "Na: schoon oranje pannendak van de vrijstaande woning",
     featured: true,
-    sortOrder: 2,
+    sortOrder: 3,
     published: true,
   },
   {
-    id: "static-3",
+    id: "static-gevel-2",
+    slug: "gevelreiniging-woning-lichte-gevelsteen",
+    title: "Gevelreiniging – woning met lichte gevelsteen",
+    service: "gevelreiniging",
+    serviceLabel: "Gevelreiniging",
+    location: "Regio Enschede",
+    description:
+      "Lichte gevelsteen met donkere vervuiling en aanslag rond de kozijnen. De gevel is met een telescoopsteel zorgvuldig gereinigd, zonder de beplanting te beschadigen.",
+    result: "De gevel is weer licht en egaal van kleur; de aanslag rond de ramen is verdwenen.",
+    beforeImage: "/images/projects/gevelreiniging-2-voor.jpg",
+    afterImage: "/images/projects/gevelreiniging-2-na.jpg",
+    beforeAlt: "Voor: lichte gevelsteen met donkere vervuiling rond de ramen",
+    afterAlt: "Na: medewerker van All in One Cleaning reinigt de gevel, de steen is weer licht",
+    featured: false,
+    sortOrder: 4,
+    published: true,
+  },
+  {
+    id: "static-dak-3",
     slug: "dakpanreiniging-bedrijfspand",
     title: "Dakpanreiniging – bedrijfspand",
     service: "dakpanreiniging",
@@ -77,10 +113,28 @@ export const fallbackProjects: Project[] = [
     result: "Alle dakvlakken schoon en egaal van kleur, het pand oogt weer verzorgd.",
     beforeImage: "/images/projects/dakpanreiniging-3-voor.jpg",
     afterImage: "/images/projects/dakpanreiniging-3-na.jpg",
-    beforeAlt: "Voor: pannendak van een bedrijfspand met groene aanslag",
+    beforeAlt: "Voor: pannendak van een bedrijfspand met groene aanslag en hoogwerker",
     afterAlt: "Na: schoon pannendak van hetzelfde bedrijfspand",
     featured: false,
-    sortOrder: 3,
+    sortOrder: 5,
+    published: true,
+  },
+  {
+    id: "static-dak-4",
+    slug: "dakpanreiniging-woningen-met-puntgevel",
+    title: "Dakpanreiniging – woningen met puntgevel",
+    service: "dakpanreiniging",
+    serviceLabel: "Dakpanreiniging",
+    location: "Regio Enschede",
+    description:
+      "Meerdere aansluitende dakvlakken met donkere vervuiling en mos. De pannen zijn vlak voor vlak gereinigd met een hoogwerker.",
+    result: "Alle dakvlakken weer helder oranje; het verschil met de omliggende daken is duidelijk zichtbaar.",
+    beforeImage: "/images/projects/dakpanreiniging-4-voor.jpg",
+    afterImage: "/images/projects/dakpanreiniging-4-na.jpg",
+    beforeAlt: "Voor: donkere, vervuilde pannendaken met hoogwerker",
+    afterAlt: "Na: schone oranje pannendaken van dezelfde woningen",
+    featured: false,
+    sortOrder: 6,
     published: true,
   },
 ];

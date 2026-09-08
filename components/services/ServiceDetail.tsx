@@ -107,7 +107,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
                 afterSrc={project.afterImage}
                 beforeAlt={project.beforeAlt}
                 afterAlt={project.afterAlt}
-                aspect="aspect-[4/3] sm:aspect-[16/9]"
+                aspect="aspect-[16/10] sm:aspect-[2/1]"
                 sizes="(min-width: 1280px) 1200px, 100vw"
                 trackId={project.slug}
               />

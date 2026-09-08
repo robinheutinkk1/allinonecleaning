@@ -3,29 +3,30 @@
 Alles hieronder is bewust **niet verzonnen**. De site werkt nu met placeholders; vul aan en de
 site past zich automatisch aan.
 
-## A. Foto's (vervang het placeholderbestand, zelfde bestandsnaam)
+## A. Foto's
 
-| # | Bestand in `public/images/` | Wat | Prioriteit |
+De originele uploads staan in `assets/originals/` (niet publiek). `node scripts/process-photos.mjs`
+splitst de VOOR/NA-collages, snijdt de labels weg en zet alles op de juiste paden in `public/images/`.
+
+| # | Bestand in `public/images/` | Status | Prioriteit |
 | --- | --- | --- | --- |
-| 1 | `logo.png` | Het aangeleverde logo, vierkant (bijv. 512×512), witte of transparante achtergrond | **Essentieel** |
-| 2 | `hero/hero-poster.jpg` | Hero-foto 1920×1080: gevel/dak, liefst half schoon–half vuil, of werkfoto met bus. Ook poster voor de video. | **Essentieel** |
-| 3 | `projects/dakpanreiniging-1-voor.jpg` + `-na.jpg` | Aangeleverd: dakpannen close-up met mos → schoon dak woning met dakkapel | **Essentieel** |
-| 4 | `projects/dakpanreiniging-2-voor.jpg` + `-na.jpg` | Aangeleverd: vrijstaande woning met hoogwerker → schoon oranje dak | **Essentieel** |
-| 5 | `projects/dakpanreiniging-3-voor.jpg` + `-na.jpg` | Aangeleverd: bedrijfspand met groene aanslag → schoon dak | **Essentieel** |
-| 6 | `over-ons/bedrijfsbus.jpg` | Aangeleverd: bedrijfsbus voor woning (vierkant werkt het best) | **Essentieel** |
-| 7 | `services/gevelreiniging.jpg` | Werkfoto gevelreiniging (16:11) | Belangrijk |
-| 8 | `services/dakpanreiniging.jpg` | Werkfoto dakpanreiniging (kan een "na"-foto zijn) | Belangrijk |
-| 9 | `services/trespa-reiniging.jpg` | Werkfoto trespa/gevelbekleding | Belangrijk |
-| 10 | `services/zonnepanelen-reiniging.jpg` | Werkfoto zonnepanelen | Belangrijk |
-| 11 | `og-image.jpg` | Social-share afbeelding 1200×630 (mag de placeholder blijven, liever een echte foto met logo) | Optioneel |
-| 12 | Teamfoto / eigenaar | Voor /over-ons (vervang het placeholderblok in `app/over-ons/page.tsx`) | Optioneel |
-| 13 | Extra before/after-projecten van gevel, trespa, zonnepanelen | Voeg toe in `config/projects.ts` of later via Supabase `projects` | Optioneel, sterk aanbevolen |
-| 14 | Apparatuur/werkfoto's | Sfeer, voor diensten en over-ons | Optioneel |
+| 1 | `logo.png` | ✅ Echt logo geplaatst (512×512) | — |
+| 2 | `hero/hero-poster.jpg` | ✅ Werkfoto gevelreiniging (16:9 uitsnede). Liever een scherpere foto van ≥ 1920px breed? Vervang het bestand. | Verbeteren |
+| 3 | `projects/gevelreiniging-1-voor/na.jpg` | ✅ Bungalow gele baksteen | — |
+| 4 | `projects/gevelreiniging-2-voor/na.jpg` | ✅ Woning lichte gevelsteen | — |
+| 5 | `projects/dakpanreiniging-1…4-voor/na.jpg` | ✅ Vier dakprojecten | — |
+| 6 | `over-ons/bedrijfsbus.jpg` | ✅ Bus voor woning | — |
+| 7 | `services/gevelreiniging.jpg` | ✅ Werkfoto (vakman op gevel) | — |
+| 8 | `services/dakpanreiniging.jpg` | ✅ "Na"-foto woning met dakkapel | — |
+| 9 | `services/trespa-reiniging.jpg` | ⬜ Placeholder — werkfoto trespa/gevelbekleding nodig | **Belangrijk** |
+| 10 | `services/zonnepanelen-reiniging.jpg` | ⬜ Placeholder — werkfoto zonnepanelen nodig | **Belangrijk** |
+| 11 | `og-image.jpg` | ⬜ Placeholder (1200×630) — liever een echte foto met logo | Optioneel |
+| 12 | Teamfoto / eigenaar | ⬜ Voor /over-ons (vervang het placeholderblok in `app/over-ons/page.tsx`) | Optioneel |
+| 13 | Before/after van trespa en zonnepanelen | ⬜ Voeg toe in `config/projects.ts` of later via Supabase `projects` | Aanbevolen |
 
-Tips: de before/after-slider werkt het beste als "voor" en "na" vanuit hetzelfde standpunt zijn
-gemaakt (zelfde hoogte, zelfde uitsnede). Minimaal 1600px breed, JPG. De aangeleverde collages
-(VOOR/NA in één afbeelding) moeten worden gesplitst in twee losse bestanden zonder het
-"VOOR/NA"-label — de slider voegt de labels zelf toe.
+Tips voor nieuwe foto's: maak "voor" en "na" vanuit hetzelfde standpunt en zonder VOOR/NA-tekst
+in beeld (de slider voegt de labels zelf toe). Minimaal 1600px breed, JPG. Nieuwe originelen in
+`assets/originals/` zetten, bestandsnaam toevoegen aan `scripts/process-photos.mjs` en het script draaien.
 
 ## B. Bedrijfsinformatie (`config/site.ts`)
 

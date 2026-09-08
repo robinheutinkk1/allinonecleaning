@@ -6,9 +6,9 @@ import { siteConfig } from "@/config/site";
 /**
  * Logo van All in One Cleaning.
  *
- * Verwacht het aangeleverde logo op /public/images/logo.png (vierkant, transparant
- * of witte achtergrond). Vervang het placeholderbestand door het echte logo —
- * er hoeft niets in de code te veranderen.
+ * Gebruikt /public/images/logo-mark.png (alleen het beeldmerk, gegenereerd door
+ * scripts/process-photos.mjs) in de ronde badge; het volledige logo met wordmark
+ * staat op /public/images/logo.png en wordt gebruikt voor OG/JSON-LD.
  *
  * `variant="mark"` toont alleen het beeldmerk (klein), `variant="full"` toont
  * beeldmerk + tekstlogo als toegankelijke tekst voor SEO/screenreaders.
@@ -30,7 +30,7 @@ export function Logo({
   return (
     <Link href="/" aria-label={`${siteConfig.companyName} — naar de homepage`} className={cn("group inline-flex items-center gap-3", className)}>
       <span className="relative block size-11 shrink-0 overflow-hidden rounded-full bg-white shadow-soft ring-1 ring-navy-100 sm:size-12">
-        <Image src="/images/logo.png" alt="" width={96} height={96} priority={priority} className="size-full object-cover" />
+        <Image src="/images/logo-mark.png" alt="" width={96} height={96} priority={priority} className="size-full scale-110 object-cover" />
       </span>
       {variant === "full" && (
         <span className={cn("flex-col leading-none", compactHide ? "hidden min-[480px]:flex" : "flex")}>

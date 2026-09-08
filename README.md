@@ -66,7 +66,9 @@ lib/
   seo.ts        metadata-helper + JSON-LD (LocalBusiness, Service, Breadcrumb, FAQ)
   analytics.ts  events: quote_started, quote_step_completed, quote_photo_uploaded, quote_submitted, contact_submitted
 supabase/migrations/0001_init.sql   tabellen, RLS, storage buckets + policies
-scripts/generate-placeholders.mjs   placeholder-afbeeldingen op de verwachte paden
+assets/originals/                   originele aangeleverde foto's (niet publiek geserveerd)
+scripts/process-photos.mjs          splitst VOOR/NA-collages, snijdt labels weg, vult public/images
+scripts/generate-placeholders.mjs   placeholder-afbeeldingen voor paden waar nog geen foto voor is
 docs/
   DESIGN-SYSTEM.md      kleuren, typografie, componenten, UX-flow
   DEPLOYMENT.md         Supabase + Resend + Vercel stap voor stap, env vars, livegang-checklist
