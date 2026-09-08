@@ -61,9 +61,16 @@ export async function GET(request: Request) {
     checks.serviceConnection = { ok: false, detail: "Geen service-client: URL of service/secret key ontbreekt" };
   }
 
-  checks.resendEnv = process.env.RESEND_API_KEY
-    ? { ok: true, detail: `RESEND_API_KEY aanwezig, notificaties naar ${process.env.QUOTE_NOTIFICATION_EMAIL ? "ingesteld adres" : "GEEN adres (QUOTE_NOTIFICATION_EMAIL ontbreekt)"}` }
-    : { ok: false, detail: "RESEND_API_KEY ontbreekt: aanvragen worden wel opgeslagen, maar er gaan geen mails uit" };
+  const resendKey = (process.env.RESEND_API_KEY ?? "").trim();
+  const notifyTo = (process.env.QUOTE_NOTIFICATION_EMAIL ?? "").trim();
+  const emailFrom = (process.env.EMAIL_FROM ?? "").trim();
+  checks.resendEnv = resendKey
+    ? resendKey.startsWith("re_")
+      ? { ok: true, detail: `RESEND_API_KEY aanwezig${notifyTo ? ", notificaties naar ingesteld adres" : ", maar QUOTE_NOTIFICATION_EMAIL is leeg"}${emailFrom ? "" : ", EMAIL_FROM is leeg"}` }
+      : { ok: false, detail: "RESEND_API_KEY heeft niet het verwachte formaat (begint normaal met re_)" }
+    : "RESEND_API_KEY" in process.env
+      ? { ok: false, detail: "RESEND_API_KEY bestaat in Vercel maar is leeg: vul de waarde in en deploy opnieuw" }
+      : { ok: false, detail: "RESEND_API_KEY ontbreekt: aanvragen worden wel opgeslagen, maar er gaan geen mails uit" };
 
   const ok = Object.values(checks).every((c) => c.ok);
   return Response.json({ ok, checks, checkedAt: new Date().toISOString() }, { status: ok ? 200 : 503, headers: { "Cache-Control": "no-store" } });
