@@ -1,0 +1,8 @@
+/**
+ * Structured data (schema.org) als JSON-LD.
+ * De inhoud wordt met JSON.stringify gemaakt en `<` ge-escaped tegen XSS.
+ */
+export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
+}
