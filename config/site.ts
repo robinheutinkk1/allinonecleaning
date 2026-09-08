@@ -98,6 +98,16 @@ export const siteConfig = {
 
   /** Prefix voor offertenummers, bijv. AIC-2026-0001 */
   quotePrefix: "AIC",
+
+  /**
+   * Hero-video (Higgsfield, 8 s, 1080p, geen audio). Alleen op desktop; mobiel krijgt de poster.
+   * Voorkeur: zelf hosten via NEXT_PUBLIC_HERO_VIDEO_SRC=/videos/hero.mp4 (gecomprimeerd).
+   * Zolang dat niet gebeurd is, wordt variant A rechtstreeks van de Higgsfield-CDN geladen.
+   * Laadt de video niet (URL verlopen, trage verbinding), dan blijft de poster staan.
+   */
+  heroVideo:
+    process.env.NEXT_PUBLIC_HERO_VIDEO_SRC ||
+    "https://d8j0ntlcm91z4.cloudfront.net/user_3IPQTipuci80tqMBohnShvKQrg2/hf_20260908_213538_5657d9f3-c371-4ed6-b45d-d67b43d4468e.mp4",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

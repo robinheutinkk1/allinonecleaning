@@ -26,13 +26,13 @@ export const metadata: Metadata = pageMetadata({
 });
 
 /**
- * Hero-video: zet HERO_VIDEO_SRC in .env (bijv. /videos/hero.mp4) zodra de
- * Higgsfield-video beschikbaar is en goedgekeurd. Zonder video wordt de
- * statische poster gebruikt. Op mobiel altijd de poster.
+ * Hero-video: zie siteConfig.heroVideo. Zet NEXT_PUBLIC_HERO_VIDEO_SRC="" om de
+ * video uit te schakelen (alleen poster), of /videos/hero.mp4 om zelf te hosten.
+ * Op mobiel wordt altijd de poster gebruikt.
  */
 export default async function HomePage() {
   const projects = await getFeaturedProjects(3);
-  const videoSrc = process.env.NEXT_PUBLIC_HERO_VIDEO_SRC ?? null;
+  const videoSrc = siteConfig.heroVideo || null;
 
   return (
     <>
