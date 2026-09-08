@@ -7,6 +7,31 @@
  * in de code te veranderen.
  */
 
+const DEFAULT_SITE_URL = "https://www.allinonecleaning-enschede.nl";
+
+/**
+ * Publieke site-URL bepalen, robuust tegen lege of ongeldige env-waarden.
+ * Volgorde: NEXT_PUBLIC_SITE_URL → Vercel productie-/preview-URL → standaarddomein.
+ * Een lege string of een waarde zonder geldig formaat mag de build nooit breken.
+ */
+function resolveSiteUrl(): string {
+  const candidates = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_URL,
+  ];
+  for (const raw of candidates) {
+    const value = (raw ?? "").trim().replace(/\/+$/, "");
+    if (!value) continue;
+    try {
+      return new URL(/^https?:\/\//i.test(value) ? value : `https://${value}`).origin;
+    } catch {
+      /* ongeldige waarde: volgende kandidaat */
+    }
+  }
+  return DEFAULT_SITE_URL;
+}
+
 export const siteConfig = {
   companyName: "All in One Cleaning",
   legalName: "All in One Cleaning Enschede",
@@ -16,7 +41,7 @@ export const siteConfig = {
   country: "NL",
 
   /** Publieke URL van de site (zonder trailing slash). Wordt gebruikt voor canonical, OG en sitemap. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.allinonecleaning-enschede.nl",
+  url: resolveSiteUrl(),
 
   /**
    * Contactgegevens. `null` = nog niet bekend → wordt niet getoond.
