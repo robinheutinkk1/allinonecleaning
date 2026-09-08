@@ -34,10 +34,10 @@ Contrast: aqua-500 op wit ≥ 3:1 voor grote tekst/knoppen; body-tekst navy-800 
 
 ## 3. Typografie
 
-- **Display**: Plus Jakarta Sans 600–800 (`--font-display`) - koppen, knoppen, stapnummers. Tracking -0.02em.
-- **Body**: Inter (`--font-sans`) - alle lopende tekst, formulieren. 15–18px, leading 1.6.
+- **Display**: Plus Jakarta Sans 600-800 (`--font-display`) - koppen, knoppen, stapnummers. Tracking -0.02em.
+- **Body**: Inter (`--font-sans`) - alle lopende tekst, formulieren. 15-18px, leading 1.6.
 - Beide via `next/font/google`, self-hosted, `display: swap`.
-- Schaal: H1 40/60/72px · H2 30/36/44px · H3 20–24px · body 16–18px · eyebrow 12px uppercase 0.18em.
+- Schaal: H1 40/60/72px · H2 30/36/44px · H3 20-24px · body 16-18px · eyebrow 12px uppercase 0.18em.
 
 ## 4. Vorm & diepte
 

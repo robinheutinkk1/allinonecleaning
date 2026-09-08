@@ -19,9 +19,9 @@ import { faqJsonLd, pageMetadata } from "@/lib/seo";
 export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
-  title: `Gevelreiniging Enschede | ${siteConfig.companyName} – ${siteConfig.tagline}`,
+  title: `Gevelreiniging Enschede | ${siteConfig.companyName} | ${siteConfig.tagline}`,
   description:
-    "All in One Cleaning is uw gevelspecialist in Enschede en omgeving. Professionele reiniging van gevels, dakpannen, trespa en zonnepanelen. Bekijk onze before & after-resultaten en vraag gratis een offerte aan.",
+    "All in One Cleaning is uw gevelspecialist in Enschede en omgeving. Veilige reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen met lage druk, zonder hogedruk of stoom. Bekijk onze before & after-resultaten en vraag gratis een offerte aan.",
   path: "/",
 });
 

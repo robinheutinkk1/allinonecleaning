@@ -21,7 +21,7 @@ De video's konden vanuit de bouwomgeving niet worden gedownload (netwerkbeleid),
 
 ## Advies: wel of geen video?
 
-**Ja, mits goed.** Een 6–8 seconden loop van een vervuilde gevel die schoon wordt is exact de
+**Ja, mits goed.** Een 6-8 seconden loop van een vervuilde gevel die schoon wordt is exact de
 boodschap van de site ("Kijk naar het verschil") en werkt op desktop als rustige achtergrond achter
 de hero-tekst. Voorwaarden:
 
@@ -58,11 +58,11 @@ stream entering from the edge. No text, no logos.
 ```
 
 **Aspect ratio**: 16:9 (1920×1080). Optioneel een 9:16-variant voor social, niet voor de site.
-**Duur**: 6–8 seconden, naadloos te loopen (laatste frame ≈ eerste frame is niet nodig; de site
+**Duur**: 6-8 seconden, naadloos te loopen (laatste frame ≈ eerste frame is niet nodig; de site
 loopt met een zachte overlay, een harde cut valt nauwelijks op achter de donkere overlay).
-**Camera**: static tripod, slow push-in 5–10%, geen pans/tilts, geen handheld.
-**Motion strength**: laag–gemiddeld (rustig water, geen snelle bewegingen).
-**Seed/variaties**: genereer 3–4 varianten, kies degene met het meest realistische water.
+**Camera**: static tripod, slow push-in 5-10%, geen pans/tilts, geen handheld.
+**Motion strength**: laag-gemiddeld (rustig water, geen snelle bewegingen).
+**Seed/variaties**: genereer 3-4 varianten, kies degene met het meest realistische water.
 
 ### Negative prompt / vermijden
 

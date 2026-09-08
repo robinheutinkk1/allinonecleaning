@@ -78,8 +78,8 @@ export function Hero({
           </motion.h1>
 
           <motion.p {...fadeUp(0.2)} className="mt-6 max-w-xl text-lg leading-relaxed text-navy-100 sm:text-xl">
-            Professionele reiniging van gevels, dakpannen, trespa en zonnepanelen in Enschede en omgeving. Wij geven uw
-            gevel en buitenoppervlakken weer een frisse, verzorgde uitstraling.
+            Veilige en milieuvriendelijke reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen in Enschede en
+            omgeving. Met lage druk en biologisch afbreekbare middelen, zonder schade aan uw pand.
           </motion.p>
 
           <motion.div {...fadeUp(0.3)} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -104,7 +104,7 @@ export function Hero({
           </motion.div>
 
           <motion.ul {...fadeUp(0.45)} className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy-200">
-            {["Gevelreiniging", "Dakpanreiniging", "Trespa", "Zonnepanelen"].map((s) => (
+            {["Gevelreiniging", "Dakpanreiniging", "Trespa", "Zonnepanelen", "Bestrating"].map((s) => (
               <li key={s} className="flex items-center gap-2">
                 <span className="size-1.5 rounded-full bg-aqua-400" aria-hidden />
                 {s}

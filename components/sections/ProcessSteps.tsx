@@ -18,13 +18,13 @@ const steps = [
   {
     n: "03",
     title: "Offerte",
-    text: "U ontvangt een duidelijke offerte, afgestemd op uw gevel, dak of oppervlak.",
+    text: "U ontvangt een duidelijke, transparante offerte op maat. Geen verrassingen achteraf.",
     icon: FileText,
   },
   {
     n: "04",
     title: "Reiniging",
-    text: "Na akkoord plannen we de werkzaamheden in en voeren we de reiniging zorgvuldig uit.",
+    text: "Na akkoord plannen we de werkzaamheden in. We reinigen met lage druk en controleren het resultaat samen met u.",
     icon: Sparkles,
   },
 ];

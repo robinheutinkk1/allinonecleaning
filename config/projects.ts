@@ -32,7 +32,7 @@ export const fallbackProjects: Project[] = [
   {
     id: "static-gevel-1",
     slug: "gevelreiniging-bungalow-gele-baksteen",
-    title: "Gevelreiniging – bungalow met gele baksteen",
+    title: "Gevelreiniging: bungalow met gele baksteen",
     service: "gevelreiniging",
     serviceLabel: "Gevelreiniging",
     location: "Regio Enschede",
@@ -50,7 +50,7 @@ export const fallbackProjects: Project[] = [
   {
     id: "static-dak-1",
     slug: "dakpanreiniging-woning-met-dakkapel",
-    title: "Dakpanreiniging – woning met dakkapel",
+    title: "Dakpanreiniging: woning met dakkapel",
     service: "dakpanreiniging",
     serviceLabel: "Dakpanreiniging",
     location: "Regio Enschede",
@@ -68,7 +68,7 @@ export const fallbackProjects: Project[] = [
   {
     id: "static-dak-2",
     slug: "dakpanreiniging-vrijstaande-woning",
-    title: "Dakpanreiniging – vrijstaande woning",
+    title: "Dakpanreiniging: vrijstaande woning",
     service: "dakpanreiniging",
     serviceLabel: "Dakpanreiniging",
     location: "Regio Enschede",
@@ -86,7 +86,7 @@ export const fallbackProjects: Project[] = [
   {
     id: "static-gevel-2",
     slug: "gevelreiniging-woning-lichte-gevelsteen",
-    title: "Gevelreiniging – woning met lichte gevelsteen",
+    title: "Gevelreiniging: woning met lichte gevelsteen",
     service: "gevelreiniging",
     serviceLabel: "Gevelreiniging",
     location: "Regio Enschede",
@@ -104,7 +104,7 @@ export const fallbackProjects: Project[] = [
   {
     id: "static-dak-3",
     slug: "dakpanreiniging-bedrijfspand",
-    title: "Dakpanreiniging – bedrijfspand",
+    title: "Dakpanreiniging: bedrijfspand",
     service: "dakpanreiniging",
     serviceLabel: "Dakpanreiniging",
     location: "Regio Enschede",
@@ -122,7 +122,7 @@ export const fallbackProjects: Project[] = [
   {
     id: "static-dak-4",
     slug: "dakpanreiniging-woningen-met-puntgevel",
-    title: "Dakpanreiniging – woningen met puntgevel",
+    title: "Dakpanreiniging: woningen met puntgevel",
     service: "dakpanreiniging",
     serviceLabel: "Dakpanreiniging",
     location: "Regio Enschede",

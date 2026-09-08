@@ -26,7 +26,7 @@ const crumbs = [
 const values = [
   { icon: Sparkles, title: "Resultaat dat u ziet", text: "We doen wat we zeggen: een gevel, dak of oppervlak dat zichtbaar schoner is. Bekijk onze before & after-foto's." },
   { icon: Handshake, title: "Persoonlijk contact", text: "U heeft één aanspreekpunt. Van de eerste foto tot de laatste spoelbeurt weet u met wie u te maken heeft." },
-  { icon: ShieldCheck, title: "Zorgvuldig te werk", text: "Elke ondergrond vraagt een eigen aanpak. We kijken eerst goed mee voordat we iets beloven of beginnen." },
+  { icon: ShieldCheck, title: "Veilig en duurzaam", text: "Lage druk en biologisch afbreekbare middelen. Geen hogedruk, geen stoom, geen schade aan uw pand of de omgeving." },
   { icon: MapPin, title: "Lokaal uit Enschede", text: "We werken in Enschede en omgeving. Dichtbij, snel ter plaatse en bekend met de huizen en panden in de regio." },
 ];
 
@@ -36,7 +36,7 @@ export default function OverOnsPage() {
       <PageHeader
         eyebrow="Over All in One Cleaning"
         title="Uw gevelspecialist uit Enschede."
-        description="All in One Cleaning is een lokaal reinigingsbedrijf, gespecialiseerd in het reinigen van gevels, dakpannen, trespa en zonnepanelen. Geen grote organisatie, wel korte lijnen en een verzorgd resultaat."
+        description="All in One Cleaning is een lokaal reinigingsbedrijf, gespecialiseerd in het veilig en milieuvriendelijk reinigen van gevels, dakpannen, trespa, bestrating en zonnepanelen. Geen grote organisatie, wel korte lijnen en een verzorgd resultaat."
         breadcrumbs={crumbs}
       />
 
@@ -54,8 +54,9 @@ export default function OverOnsPage() {
               description={
                 <>
                   <p>
-                    Een gevel of dak reinigen is meer dan er water tegenaan spuiten. Metselwerk, dakpannen, trespa en zonnepanelen reageren allemaal anders op
-                    druk en middelen. Daarom bekijken we eerst het materiaal en de vervuiling, en kiezen we daarna de aanpak.
+                    Een gevel of dak reinigen is meer dan er water tegenaan spuiten. Wij werken met lage druk en biologisch afbreekbare
+                    reinigingsmiddelen, nooit met hogedruk of stoom. Zo verwijderen we schimmel, algen, mos en aanslag zonder voegen uit te blazen of
+                    stenen, dakpannen en beplating te beschadigen.
                   </p>
                   <p className="mt-4">
                     We werken vanuit {siteConfig.city} voor particulieren, VvE&apos;s en bedrijven in de regio. U stuurt ons foto&apos;s, wij beoordelen de situatie en
@@ -64,8 +65,18 @@ export default function OverOnsPage() {
                 </>
               }
             />
-            <div className="mt-8 rounded-3xl border border-dashed border-navy-200 bg-navy-50/60 p-5 text-sm text-navy-500">
-              [TEAMFOTO / PERSOONLIJK VERHAAL]: vul hier een korte introductie van de eigenaar of het team in en vervang de foto door een teamfoto.
+            <div className="mt-8 rounded-3xl bg-navy-50 p-6">
+              <h3 className="font-display text-lg font-bold text-navy-900">Voor wie wij werken</h3>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {siteConfig.audiences.map((a) => (
+                  <li key={a} className="rounded-full bg-white px-3.5 py-1.5 text-sm font-medium text-navy-700 ring-1 ring-navy-100">
+                    {a}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm leading-relaxed text-navy-600">
+                Van een rijtjeswoning tot een bedrijfspand, school of appartementencomplex: wij leveren schoon werk tot in de kleinste details.
+              </p>
             </div>
           </Reveal>
         </div>

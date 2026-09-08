@@ -30,14 +30,20 @@ in beeld (de slider voegt de labels zelf toe). Minimaal 1600px breed, JPG. Nieuw
 
 ## B. Bedrijfsinformatie (`config/site.ts`)
 
+Bron voor de ingevulde gegevens: de huidige website allinone-cleaning.nl (via zoekresultaten;
+de site en de gedeelde Google-link waren vanuit de bouwomgeving niet direct bereikbaar).
+Controleer de overgenomen gegevens voor livegang.
+
 | Veld | Nu | Nodig |
 | --- | --- | --- |
-| `phone` | `null` → [TELEFOONNUMMER] verborgen | Telefoonnummer (activeert "Bel direct"-knoppen) |
+| `phone` | ✅ `06 58947413` (bron: allinone-cleaning.nl) | Controleren of dit nummer klopt |
+| `method` | ✅ Lage druk + biologisch afbreekbare middelen, geen hogedruk/stoom | Controleren |
+| `audiences` | ✅ Particulieren, bedrijven, instellingen, VvE's | Controleren |
 | `email` | `null` | E-mailadres |
 | `whatsapp` | `null` | Optioneel WhatsApp-nummer |
 | `address` | alleen "Enschede" | Straat + postcode (mag leeg blijven bij werken vanuit huis) |
 | `kvk`, `btw` | `null` | KvK-nummer (verplicht in footer/privacy voor een bedrijf) |
-| `openingHours` | `null` | Bijv. `[{ days: "Ma–Vr", hours: "08:00-18:00" }]` |
+| `openingHours` | `null` | Bijv. `[{ days: "Ma-Vr", hours: "08:00-18:00" }]` |
 | `workAreas` | Enschede + omgeving | Bevestigde plaatsen (Hengelo, Oldenzaal, Haaksbergen, …) |
 | `socialLinks` | `null` | Instagram / Facebook / Google Business Profile URL |
 | `url` | placeholder-domein | Definitieve domeinnaam |
@@ -46,9 +52,11 @@ in beeld (de slider voegt de labels zelf toe). Minimaal 1600px breed, JPG. Nieuw
 
 ## C. Diensten (`config/services.ts`)
 
-- Bevestig de vier diensten van de bus: **gevelreiniging, dakpanreiniging, trespa, zonnepanelen**.
-- Zijn er méér diensten (bestrating, terras, oprit, houtwerk, dakgoten)? Toevoegen als object in
-  `services` en als optie in `config/quote.ts` → `serviceOptions`.
+- Vijf diensten op de site: **gevelreiniging, dakpanreiniging (incl. dakgoten), trespa, zonnepanelen,
+  bestrating/terras**. De eerste vier staan op de bus; bestrating, terras en dakgoten komen van allinone-cleaning.nl.
+- Op de oude site staan ook glasbewassing en opleveringsschoonmaak. Die zijn bewust niet als dienst
+  opgenomen (focus op gevelspecialist); "Ramen / glasbewassing" is wel kiesbaar onder "Anders" in de wizard.
+- Werkfoto voor bestrating ontbreekt nog: `public/images/services/bestrating-reiniging.jpg` is een placeholder.
 - Controleer de teksten per dienst op juistheid (methodes, wat wel/niet kan).
 
 ## D. Reviews (`config/reviews.ts`)

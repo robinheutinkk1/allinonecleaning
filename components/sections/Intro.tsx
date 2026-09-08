@@ -24,8 +24,9 @@ export function Intro() {
                   metselwerk, dakpannen en gevelbekleding. Vaak valt het pas op als het verschil met de buren groot wordt.
                 </p>
                 <p className="mt-4">
-                  Een professionele reiniging haalt die laag weg en laat zien wat er al die tijd onder zat: de
-                  oorspronkelijke kleur en structuur van uw pand. Geen verbouwing, wel een eerste indruk die weer klopt.
+                  Wij halen die laag weg met lage druk en biologisch afbreekbare reinigingsmiddelen. Geen hogedruk, geen
+                  stoom, dus geen uitgeblazen voegen of beschadigde stenen. Wat overblijft is de oorspronkelijke kleur en
+                  structuur van uw pand. Geen verbouwing, wel een eerste indruk die weer klopt.
                 </p>
               </>
             }

@@ -8,7 +8,7 @@ import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { BeforeAfterSlider } from "@/components/before-after/BeforeAfterSlider";
 import { services, type Service } from "@/config/services";
 import type { Project } from "@/config/projects";
-import { ctaConfig } from "@/config/site";
+import { ctaConfig, siteConfig } from "@/config/site";
 
 /** Gedeelde inhoud van een dienstpagina (gebruikt door /gevelreiniging en /diensten/[slug]). */
 export function ServiceDetail({ service, projects }: { service: Service; projects: Project[] }) {
@@ -30,6 +30,19 @@ export function ServiceDetail({ service, projects }: { service: Service; project
                 Wij werken niet met een standaardaanpak. Voordat we een offerte maken, bekijken we uw foto&apos;s en beoordelen we het materiaal, de mate van
                 vervuiling en de bereikbaarheid. Zo weet u vooraf precies wat u kunt verwachten.
               </p>
+            </div>
+
+            <div className="mt-10 rounded-3xl bg-navy-900 p-6 text-white sm:p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-aqua-300">Onze reinigingsmethode</p>
+              <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">Lage druk, geen hogedruk of stoom.</h3>
+              <p className="mt-3 text-sm leading-relaxed text-navy-200 sm:text-[15px]">{siteConfig.method.long}</p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {siteConfig.method.removes.map((r) => (
+                  <li key={r} className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white ring-1 ring-white/15">
+                    Verwijdert {r.toLowerCase()}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">

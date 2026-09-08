@@ -96,6 +96,7 @@ const files = [
   { file: "images/services/dakpanreiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "DAKPANREINIGING", subtitle: "Vervang door echte werkfoto (public/images/services/dakpanreiniging.jpg)" }), format: "jpeg" },
   { file: "images/services/trespa-reiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "TRESPA REINIGING", subtitle: "Vervang door echte werkfoto (public/images/services/trespa-reiniging.jpg)" }), format: "jpeg" },
   { file: "images/services/zonnepanelen-reiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "ZONNEPANELEN", subtitle: "Vervang door echte werkfoto (public/images/services/zonnepanelen-reiniging.jpg)" }), format: "jpeg" },
+  { file: "images/services/bestrating-reiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "BESTRATING & TERRAS", subtitle: "Vervang door echte werkfoto (public/images/services/bestrating-reiniging.jpg)" }), format: "jpeg" },
   // Projecten - de aangeleverde before/after-foto's horen hier
   { file: "images/projects/dakpanreiniging-1-voor.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "VOOR - PROJECT 1", subtitle: "Aangeleverde foto: dakpannen met mos (close-up)", tone: "dark" }), format: "jpeg" },
   { file: "images/projects/dakpanreiniging-1-na.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "NA - PROJECT 1", subtitle: "Aangeleverde foto: schoon dak, woning met dakkapel" }), format: "jpeg" },

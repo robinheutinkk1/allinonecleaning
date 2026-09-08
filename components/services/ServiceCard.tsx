@@ -30,7 +30,7 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
           src={service.image}
           alt={service.imageAlt}
           fill
-          sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.06]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent" />

@@ -1,10 +1,11 @@
-import { Building2, Home, Layers, Sun, MoreHorizontal, type LucideProps } from "lucide-react";
+import { Building2, Home, Layers, Sun, LayoutGrid, MoreHorizontal, type LucideProps } from "lucide-react";
 
 const icons = {
   building: Building2,
   home: Home,
   layers: Layers,
   sun: Sun,
+  grid: LayoutGrid,
   more: MoreHorizontal,
 } as const;
 

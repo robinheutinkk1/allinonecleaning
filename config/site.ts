@@ -7,7 +7,7 @@
  * in de code te veranderen.
  */
 
-const DEFAULT_SITE_URL = "https://www.allinonecleaning-enschede.nl";
+const DEFAULT_SITE_URL = "https://allinone-cleaning.nl";
 
 /**
  * Publieke site-URL bepalen, robuust tegen lege of ongeldige env-waarden.
@@ -47,7 +47,8 @@ export const siteConfig = {
    * Contactgegevens. `null` = nog niet bekend → wordt niet getoond.
    * Vul in als: phone: "+31 6 12345678", email: "info@…"
    */
-  phone: null as string | null,
+  /** Bron: allinone-cleaning.nl (huidige website). Controleer of dit nummer klopt. */
+  phone: "06 58947413" as string | null,
   email: null as string | null,
   whatsapp: null as string | null,
 
@@ -76,7 +77,21 @@ export const siteConfig = {
 
   /** Korte bedrijfsomschrijving voor footer, meta en structured data. */
   description:
-    "All in One Cleaning is uw gevelspecialist in Enschede en omgeving. Professionele reiniging van gevels, dakpannen, trespa en zonnepanelen, met een persoonlijke aanpak en zichtbaar resultaat.",
+    "All in One Cleaning is uw gevelspecialist in Enschede en omgeving. Veilige en milieuvriendelijke reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen met lage druk en biologisch afbreekbare middelen, zonder hogedruk of stoom.",
+
+  /**
+   * Reinigingsmethode zoals het bedrijf die zelf beschrijft (bron: allinone-cleaning.nl).
+   * Wordt gebruikt in de intro, dienstpagina's en FAQ.
+   */
+  method: {
+    short: "Lage druk en biologisch afbreekbare reinigingsmiddelen, geen hogedruk of stoom.",
+    long:
+      "Wij reinigen met een combinatie van lage druk en biologisch afbreekbare reinigingsmiddelen. Zo verwijderen we schimmel, bacteriën, algen en andere organische vervuiling zonder het oppervlak te beschadigen. Doordat we geen hogedruk of stoom gebruiken, worden voegen niet uitgeblazen en blijft uw gevel, dak of bestrating intact. Na afloop controleren we het resultaat samen met u.",
+    removes: ["Schimmel", "Bacteriën", "Algen en groene aanslag", "Mos", "Organische vlekken en aanslag"],
+  },
+
+  /** Voor wie het bedrijf werkt (bron: allinone-cleaning.nl). */
+  audiences: ["Particulieren", "Bedrijven", "Instellingen en scholen", "VvE's en beheerders"],
 
   /** E-mailadres waar nieuwe offerteaanvragen naartoe gaan (server-side, uit env). */
   notificationEmail: process.env.QUOTE_NOTIFICATION_EMAIL ?? null,
@@ -110,10 +125,10 @@ export const ctaConfig = {
 
 /** Trust-claims onder de hero. Alleen feitelijke, bevestigde claims. */
 export const trustItems = [
-  { label: "Professionele aanpak", description: "Passende reinigingsmethode per oppervlak" },
-  { label: "Persoonlijk contact", description: "Eén aanspreekpunt, korte lijnen" },
-  { label: "Actief in Enschede & omgeving", description: "Lokaal bedrijf, snel ter plaatse" },
-  { label: "Gratis offerte met foto's", description: "Beoordeling op basis van uw situatie" },
+  { label: "Lage druk, geen hogedruk", description: "Veilig voor voegen, dakpannen en beplating" },
+  { label: "Milieuvriendelijke middelen", description: "Biologisch afbreekbare reinigingsmiddelen" },
+  { label: "Transparante offerte", description: "Duidelijke prijs vooraf, geen verrassingen" },
+  { label: "Actief in Enschede & omgeving", description: "Lokaal bedrijf, persoonlijk contact" },
 ] as const;
 
 /**

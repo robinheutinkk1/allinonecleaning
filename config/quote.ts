@@ -12,11 +12,12 @@ export type Option = {
 };
 
 /** Stap 1 - Wat wilt u laten reinigen? Gebaseerd op de bevestigde diensten. */
-export const serviceOptions: (Option & { icon: "building" | "home" | "layers" | "sun" | "more" })[] = [
+export const serviceOptions: (Option & { icon: "building" | "home" | "layers" | "sun" | "grid" | "more" })[] = [
   { value: "gevel", label: "Gevel", description: "Metselwerk, gevelsteen", icon: "building" },
-  { value: "dak", label: "Dakpannen", description: "Mos en aanslag op het dak", icon: "home" },
+  { value: "dak", label: "Dakpannen", description: "Mos en aanslag op het dak, dakgoten", icon: "home" },
   { value: "trespa", label: "Trespa / gevelbekleding", description: "Gevelbeplating, boeidelen", icon: "layers" },
   { value: "zonnepanelen", label: "Zonnepanelen", description: "Vuil en aanslag op panelen", icon: "sun" },
+  { value: "bestrating", label: "Bestrating / terras", description: "Terras, oprit, tuinpad", icon: "grid" },
   { value: "anders", label: "Anders", description: "Iets anders? Vertel het ons", icon: "more" },
 ];
 
@@ -46,6 +47,14 @@ export const surfaceOptionsByService: Record<string, Option[]> = {
     { value: "dakkapel", label: "Dakkapel" },
     { value: "bijgebouw", label: "Garage / bijgebouw" },
     { value: "heel-dak", label: "Hele dak" },
+    { value: "dakgoten", label: "Dakgoten" },
+    { value: "anders", label: "Anders" },
+  ],
+  bestrating: [
+    { value: "terras", label: "Terras" },
+    { value: "oprit", label: "Oprit" },
+    { value: "tuinpad", label: "Tuinpad" },
+    { value: "parkeerplaats", label: "Parkeerplaats / bedrijfsterrein" },
     { value: "anders", label: "Anders" },
   ],
   trespa: [
@@ -61,8 +70,8 @@ export const surfaceOptionsByService: Record<string, Option[]> = {
     { value: "anders", label: "Anders" },
   ],
   anders: [
-    { value: "terras-bestrating", label: "Terras / bestrating" },
-    { value: "oprit", label: "Oprit" },
+    { value: "schutting", label: "Schutting / tuinmuur" },
+    { value: "ramen", label: "Ramen / glasbewassing" },
     { value: "buitenoppervlak", label: "Ander buitenoppervlak" },
     { value: "anders", label: "Anders" },
   ],
@@ -109,6 +118,14 @@ export const contaminationOptionsByService: Record<string, Option[]> = {
     { value: "vogelpoep", label: "Vogelpoep" },
     { value: "groene-aanslag", label: "Groene aanslag / algen" },
     { value: "kalk", label: "Kalkaanslag" },
+    { value: "anders", label: "Anders" },
+  ],
+  bestrating: [
+    { value: "groene-aanslag", label: "Groene aanslag" },
+    { value: "mos", label: "Mos tussen de voegen" },
+    { value: "algen", label: "Algen (glad oppervlak)" },
+    { value: "vuil", label: "Vuil / verkleuring" },
+    { value: "onkruid", label: "Onkruid" },
     { value: "anders", label: "Anders" },
   ],
   anders: [

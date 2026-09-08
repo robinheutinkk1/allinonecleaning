@@ -1,15 +1,15 @@
 /**
  * Diensten van All in One Cleaning.
  *
- * Bron: de belettering op de bedrijfsbus
- * ("Gevelreiniging · Dakpanreiniging · Trespa · Zonnepanelen") en de
- * aangeleverde before/after-foto's (dakpanreiniging).
+ * Bronnen: de belettering op de bedrijfsbus ("Gevelreiniging · Dakpanreiniging ·
+ * Trespa · Zonnepanelen"), de huidige website allinone-cleaning.nl (daar staan
+ * ook bestrating, terras en dakgoten) en de aangeleverde before/after-foto's.
  *
- * Voeg hier een dienst toe of verwijder er een - de dienstenpagina,
- * homepage, offertewizard, sitemap en structured data volgen automatisch.
+ * Voeg hier een dienst toe of verwijder er een: de dienstenpagina, homepage,
+ * offertewizard, sitemap en structured data volgen automatisch.
  */
 
-export type ServiceSlug = "gevelreiniging" | "dakpanreiniging" | "trespa-reiniging" | "zonnepanelen-reiniging";
+export type ServiceSlug = "gevelreiniging" | "dakpanreiniging" | "trespa-reiniging" | "zonnepanelen-reiniging" | "bestrating-reiniging";
 
 export type Service = {
   slug: ServiceSlug;
@@ -18,7 +18,7 @@ export type Service = {
   title: string;
   shortTitle: string;
   /** Icoonnaam uit lucide-react (zie components/ui/ServiceIcon.tsx) */
-  icon: "building" | "home" | "layers" | "sun";
+  icon: "building" | "home" | "layers" | "sun" | "grid";
   image: string;
   imageAlt: string;
   /** Eén zin voor kaarten */
@@ -27,7 +27,7 @@ export type Service = {
   summary: string;
   /** Langere intro voor de dienstpagina */
   intro: string;
-  /** Voordelen - feitelijk en zonder technische beloften */
+  /** Voordelen: feitelijk, gebaseerd op de werkwijze van het bedrijf */
   benefits: string[];
   /** Voor wie / wanneer is dit relevant */
   suitableFor: string[];
@@ -46,22 +46,22 @@ export const services: Service[] = [
     shortTitle: "Gevel",
     icon: "building",
     image: "/images/services/gevelreiniging.jpg",
-    imageAlt: "Gevelreiniging van een woning in Enschede door All in One Cleaning",
+    imageAlt: "Medewerker van All in One Cleaning reinigt een gevel in Enschede",
     tagline: "Een gevel die weer gezien mag worden.",
     summary:
-      "Vervuiling, groene aanslag en verkleuring maken een gevel dof. Wij reinigen metselwerk en gevels zodat uw pand weer een verzorgde uitstraling heeft.",
+      "Groene aanslag, algen en vuil maken een gevel dof. Wij reinigen metselwerk en gevelsteen met lage druk en biologisch afbreekbare middelen, zodat uw pand weer een verzorgde uitstraling heeft.",
     intro:
-      "De gevel is het eerste wat bezoekers van uw woning of bedrijfspand zien. Door weersinvloeden, verkeer en vocht ontstaat er na verloop van tijd een laag vuil, algen en groene aanslag. Wij beoordelen uw gevel en kiezen een reinigingsmethode die past bij het materiaal en de vervuiling.",
+      "De gevel is het eerste wat bezoekers van uw woning of bedrijfspand zien. Door weersinvloeden, verkeer en vocht ontstaat er na verloop van tijd een laag vuil, algen, schimmel en groene aanslag. Wij verwijderen die laag met lage druk en biologisch afbreekbare reinigingsmiddelen. Zo blijven de voegen intact en komt de oorspronkelijke kleur van de steen weer tevoorschijn.",
     benefits: [
-      "Verzorgde eerste indruk van uw pand",
-      "Reinigingsmethode afgestemd op het geveltype",
-      "Beoordeling vooraf op basis van uw foto's",
-      "Duidelijke offerte, geen verrassingen",
+      "Geen hogedruk: voegen worden niet uitgeblazen",
+      "Biologisch afbreekbare reinigingsmiddelen",
+      "Verwijdert algen, schimmel, groene aanslag en vuil",
+      "Eindcontrole samen met u na afloop",
     ],
-    suitableFor: ["Woningen", "Bedrijfspanden", "Appartementencomplexen en VvE's", "Metselwerk en gevelsteen"],
-    seoTitle: "Gevelreiniging Enschede | All in One Cleaning – Uw gevelspecialist",
+    suitableFor: ["Woningen en appartementen", "Bedrijfspanden en winkels", "VvE's en scholen", "Metselwerk en gevelsteen"],
+    seoTitle: "Gevelreiniging Enschede | All in One Cleaning | Uw gevelspecialist",
     seoDescription:
-      "Gevelreiniging in Enschede en omgeving. All in One Cleaning verwijdert vuil, algen en groene aanslag van uw gevel. Vraag gratis een offerte aan en stuur foto's mee.",
+      "Gevelreiniging in Enschede en omgeving zonder hogedruk. All in One Cleaning verwijdert algen, schimmel en groene aanslag met lage druk en milieuvriendelijke middelen. Vraag gratis een offerte aan en stuur foto's mee.",
     quoteKey: "gevel",
   },
   {
@@ -71,22 +71,22 @@ export const services: Service[] = [
     shortTitle: "Dakpannen",
     icon: "home",
     image: "/images/services/dakpanreiniging.jpg",
-    imageAlt: "Dakpanreiniging: dakpannen voor en na reiniging door All in One Cleaning",
+    imageAlt: "Schoon pannendak van een woning na dakpanreiniging door All in One Cleaning",
     tagline: "Mos en aanslag van uw dak, de kleur van uw pannen terug.",
     summary:
-      "Mos, algen en aanslag op dakpannen houden vocht vast en doen afbreuk aan de uitstraling van uw woning. Wij reinigen uw dakpannen zorgvuldig.",
+      "Mos, algen en aanslag op dakpannen houden vocht vast en doen afbreuk aan de uitstraling van uw woning. Wij reinigen uw dakpannen zorgvuldig met lage druk en zonder stoom.",
     intro:
-      "Op dakpannen hecht zich in de loop der jaren mos, groene aanslag en vuil. Dat ziet er niet alleen slordig uit, maar houdt ook vocht vast. Na reiniging is de oorspronkelijke kleur van de dakpannen weer zichtbaar. Bekijk het verschil op onze before & after-pagina.",
+      "Op dakpannen hecht zich in de loop der jaren mos, korstmos, groene aanslag en vuil. Dat ziet er niet alleen slordig uit, maar houdt ook vocht vast. Wij reinigen de pannen met lage druk en biologisch afbreekbare middelen, zodat de pannen en de dakconstructie geen schade oplopen. Na reiniging is de oorspronkelijke kleur weer zichtbaar. Bekijk het verschil op onze before & after-pagina. Ook dakgoten reinigen wij in dezelfde werkgang.",
     benefits: [
-      "Mos en aanslag verwijderd",
+      "Mos, algen en aanslag verwijderd zonder hogedruk",
       "Oorspronkelijke kleur van de dakpannen weer zichtbaar",
-      "Werken op hoogte met passend materieel",
-      "Beoordeling vooraf aan de hand van uw foto's",
+      "Werken op hoogte met hoogwerker of ladder, veilig en netjes",
+      "Dakgoten desgewenst direct meegenomen",
     ],
-    suitableFor: ["Woningen met pannendak", "Bedrijfspanden", "Bijgebouwen en garages"],
-    seoTitle: "Dakpanreiniging Enschede | Mos en aanslag verwijderen – All in One Cleaning",
+    suitableFor: ["Woningen met pannendak", "Bedrijfspanden", "Bijgebouwen en garages", "Dakgoten"],
+    seoTitle: "Dakpanreiniging Enschede | Mos en aanslag verwijderen | All in One Cleaning",
     seoDescription:
-      "Dakpannen reinigen in Enschede en omgeving. All in One Cleaning verwijdert mos, algen en aanslag van uw dak. Bekijk onze before & after-resultaten en vraag een gratis offerte aan.",
+      "Dakpannen reinigen in Enschede en omgeving met lage druk. All in One Cleaning verwijdert mos, algen en aanslag van uw dak zonder schade. Bekijk onze before & after-resultaten en vraag een gratis offerte aan.",
     quoteKey: "dak",
   },
   {
@@ -99,19 +99,19 @@ export const services: Service[] = [
     imageAlt: "Reiniging van trespa gevelbekleding door All in One Cleaning",
     tagline: "Gevelbekleding weer strak en fris.",
     summary:
-      "Trespa en andere gevelbeplating worden dof en vlekkerig door vuil en weersinvloeden. Wij reinigen de beplating zonder het materiaal te beschadigen.",
+      "Trespa en andere gevelbeplating worden dof en vlekkerig door vuil en weersinvloeden. Wij reinigen de beplating grondig en veilig, zodat uw gevel er weer als nieuw uitziet.",
     intro:
-      "Trespa en vergelijkbare HPL-gevelbekleding zijn onderhoudsarm, maar niet onderhoudsvrij. Vuil, aanslag en strepen maken de platen dof. Met een geschikte, materiaalvriendelijke reiniging krijgt de bekleding zijn frisse uitstraling terug.",
+      "Trespa en vergelijkbare HPL-gevelbekleding zijn onderhoudsarm, maar niet onderhoudsvrij. Vuil, aanslag en strepen maken de platen dof. Met lage druk en materiaalvriendelijke, biologisch afbreekbare middelen reinigen wij de beplating zonder krassen of beschadigingen. Het resultaat: strakke, frisse platen en een gevel die er weer verzorgd uitziet.",
     benefits: [
-      "Materiaalvriendelijke reiniging van gevelbeplating",
+      "Materiaalvriendelijke reiniging, geen hogedruk of stoom",
       "Strepen, aanslag en vuil verwijderd",
-      "Geschikt voor woningen en bedrijfspanden",
+      "Geschikt voor woningen, bedrijfspanden en scholen",
       "Duidelijke offerte vooraf",
     ],
-    suitableFor: ["Trespa en HPL-beplating", "Dakranden en boeidelen", "Bedrijfspanden en scholen"],
-    seoTitle: "Trespa reinigen Enschede | Gevelbekleding schoonmaken – All in One Cleaning",
+    suitableFor: ["Trespa en HPL-beplating", "Dakranden en boeidelen", "Bedrijfspanden en scholen", "Dakkapellen"],
+    seoTitle: "Trespa reinigen Enschede | Gevelbekleding schoonmaken | All in One Cleaning",
     seoDescription:
-      "Trespa en gevelbeplating reinigen in Enschede en omgeving. All in One Cleaning maakt uw gevelbekleding weer strak en fris. Gratis offerte, stuur eenvoudig foto's mee.",
+      "Trespa en gevelbeplating reinigen in Enschede en omgeving. All in One Cleaning maakt uw gevelbekleding weer strak en fris, zonder hogedruk. Gratis offerte, stuur eenvoudig foto's mee.",
     quoteKey: "trespa",
   },
   {
@@ -122,22 +122,47 @@ export const services: Service[] = [
     icon: "sun",
     image: "/images/services/zonnepanelen-reiniging.jpg",
     imageAlt: "Reiniging van zonnepanelen op een dak door All in One Cleaning",
-    tagline: "Schone panelen, vrij van vuil en aanslag.",
+    tagline: "Schone panelen, optimaal rendement.",
     summary:
-      "Stof, vogelpoep, pollen en aanslag hopen zich op zonnepanelen op. Wij reinigen uw panelen zorgvuldig met geschikte middelen en materialen.",
+      "Stof, vogelpoep, pollen en aanslag verminderen de opbrengst van zonnepanelen. Wij reinigen uw panelen veilig en milieuvriendelijk, zodat ze weer optimaal kunnen presteren.",
     intro:
-      "Zonnepanelen liggen dag en nacht buiten en vangen stof, pollen, vogelpoep en aanslag op. Wij reinigen de panelen zorgvuldig, zodat het glas weer schoon is en het oppervlak vrij is van vuil.",
+      "Zonnepanelen liggen dag en nacht buiten en vangen stof, pollen, vogelpoep en aanslag op. Een vuile laag op het glas laat minder licht door. Wij reinigen de panelen met zachte middelen en lage druk, zonder krassen en zonder agressieve chemie, zodat het glas weer schoon is en de panelen weer optimaal kunnen renderen.",
     benefits: [
-      "Zorgvuldige reiniging van het paneeloppervlak",
-      "Geschikte middelen en materialen voor zonnepanelen",
+      "Veilige reiniging van het paneeloppervlak, geen krassen",
+      "Milieuvriendelijke, biologisch afbreekbare middelen",
       "Werken op hoogte met passend materieel",
       "Te combineren met dakpanreiniging",
     ],
     suitableFor: ["Woningen", "Bedrijfsdaken", "Panelen op schuine en platte daken"],
     seoTitle: "Zonnepanelen reinigen Enschede | All in One Cleaning",
     seoDescription:
-      "Zonnepanelen laten reinigen in Enschede en omgeving. All in One Cleaning verwijdert vuil en aanslag van uw panelen. Vraag vrijblijvend een offerte aan.",
+      "Zonnepanelen laten reinigen in Enschede en omgeving. All in One Cleaning verwijdert vuil en aanslag veilig en milieuvriendelijk voor een optimaal rendement. Vraag vrijblijvend een offerte aan.",
     quoteKey: "zonnepanelen",
+  },
+  {
+    slug: "bestrating-reiniging",
+    href: "/diensten/bestrating-reiniging",
+    title: "Bestrating en terras",
+    shortTitle: "Bestrating",
+    icon: "grid",
+    image: "/images/services/bestrating-reiniging.jpg",
+    imageAlt: "Reiniging van bestrating en terras door All in One Cleaning",
+    tagline: "Terras, oprit en tuinpad weer schoon en veilig.",
+    summary:
+      "Groene aanslag en mos maken bestrating glad en dof. Wij reinigen terrassen, opritten en tuinpaden met lage druk, zonder de voegen uit te spoelen.",
+    intro:
+      "Op terrassen, opritten en tuinpaden ontstaat door vocht en schaduw al snel groene aanslag, mos en algen. Dat ziet er verwaarloosd uit en is glad bij nat weer. Wij reinigen de bestrating met lage druk en biologisch afbreekbare middelen. Anders dan bij hogedrukreiniging blijft het voegzand op zijn plek en wordt het oppervlak van de stenen niet aangetast.",
+    benefits: [
+      "Groene aanslag, mos en algen verwijderd",
+      "Voegzand blijft op zijn plek, geen uitgespoelde voegen",
+      "Minder glad, veiliger bij nat weer",
+      "Geschikt voor klinkers, tegels en natuursteen",
+    ],
+    suitableFor: ["Terrassen", "Opritten", "Tuinpaden", "Parkeerplaatsen en bedrijfsterreinen"],
+    seoTitle: "Bestrating en terras reinigen Enschede | All in One Cleaning",
+    seoDescription:
+      "Terras, oprit of tuinpad laten reinigen in Enschede en omgeving. All in One Cleaning verwijdert groene aanslag en mos met lage druk, zonder de voegen uit te spoelen. Gratis offerte.",
+    quoteKey: "bestrating",
   },
 ];
 

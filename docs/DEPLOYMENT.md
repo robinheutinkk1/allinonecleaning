@@ -2,7 +2,7 @@
 
 ## 1. Supabase
 
-1. Maak een project aan op https://supabase.com (regio: **EU – Frankfurt** i.v.m. AVG).
+1. Maak een project aan op https://supabase.com (regio: **EU | Frankfurt** i.v.m. AVG).
 2. Open **SQL Editor** → plak de inhoud van `supabase/migrations/0001_init.sql` → Run.
    Dit maakt aan:
    - tabellen `quote_requests`, `contact_messages`, `projects`, `quote_counters`

@@ -33,7 +33,7 @@ export function ServiceGrid({
           </Reveal>
         )}
 
-        <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((service, i) => (
             <StaggerItem key={service.slug} className="flex">
               <ServiceCard service={service} index={i} />
