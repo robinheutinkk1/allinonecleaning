@@ -1,5 +1,24 @@
 # Higgsfield hero-video — kant-en-klare prompt
 
+## Gegenereerde varianten (8 sep 2026, Seedance 2.5, 1080p, 8 s, 16:9, geen audio)
+
+Twee varianten zijn met onderstaande prompt gegenereerd in het Higgsfield-account (72 credits):
+
+| Variant | Job-ID | Download |
+| --- | --- | --- |
+| A | `5657d9f3-c371-4ed6-b45d-d67b43d4468e` | https://d8j0ntlcm91z4.cloudfront.net/user_3IPQTipuci80tqMBohnShvKQrg2/hf_20260908_213538_5657d9f3-c371-4ed6-b45d-d67b43d4468e.mp4 |
+| B | `eb5001a8-099c-4bd5-ad37-858e83879447` | https://d8j0ntlcm91z4.cloudfront.net/user_3IPQTipuci80tqMBohnShvKQrg2/hf_20260908_213538_eb5001a8-099c-4bd5-ad37-858e83879447.mp4 |
+
+De video's konden vanuit de bouwomgeving niet worden gedownload (netwerkbeleid), dus ze zijn
+**nog niet in de repo geplaatst en nog niet beoordeeld**. Stappen om te plaatsen:
+
+1. Bekijk beide varianten in Higgsfield (Generations) en check op: realistisch water, geen vervormde
+   stenen, geen "explosie"-effect, geen tekst/artefacten. Twijfel → poster gebruiken, geen video.
+2. Comprimeer de gekozen variant (ffmpeg, doel ≤ 2,5 MB):
+   `ffmpeg -i hero.mp4 -an -vf "scale=1920:-2" -c:v libx264 -crf 28 -preset slow -movflags +faststart public/videos/hero.mp4`
+3. Poster uit het eerste frame: `ffmpeg -i public/videos/hero.mp4 -frames:v 1 -q:v 3 public/images/hero/hero-poster.jpg`
+4. `.env`: `NEXT_PUBLIC_HERO_VIDEO_SRC=/videos/hero.mp4` → de hero speelt de video op desktop, poster op mobiel.
+
 ## Advies: wel of geen video?
 
 **Ja, mits goed.** Een 6–8 seconden loop van een vervuilde gevel die schoon wordt is exact de
