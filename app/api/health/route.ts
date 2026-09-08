@@ -1,4 +1,5 @@
 import { getServiceClient, isSupabaseConfigured, STORAGE_BUCKETS } from "@/lib/supabase/server";
+import { describeSupabaseEnv } from "@/lib/supabase/env";
 import { getClientIp, rateLimit } from "@/lib/utils/request";
 
 export const runtime = "nodejs";
@@ -15,14 +16,28 @@ export async function GET(request: Request) {
   if (!rl.ok) return Response.json({ ok: false, error: "Te veel verzoeken." }, { status: 429 });
 
   const checks: Record<string, Check> = {};
+  const env = describeSupabaseEnv();
 
-  checks.supabaseEnv = isSupabaseConfigured()
-    ? { ok: true, detail: "NEXT_PUBLIC_SUPABASE_URL en NEXT_PUBLIC_SUPABASE_ANON_KEY aanwezig" }
-    : { ok: false, detail: "NEXT_PUBLIC_SUPABASE_URL of NEXT_PUBLIC_SUPABASE_ANON_KEY ontbreekt" };
+  checks.supabaseUrl = env.url
+    ? { ok: true, detail: `Gevonden als ${env.url}` }
+    : { ok: false, detail: `Ontbreekt. Verwachte naam: ${env.expected.url.join(" of ")}` };
 
-  checks.serviceRoleEnv = process.env.SUPABASE_SERVICE_ROLE_KEY
-    ? { ok: true, detail: "SUPABASE_SERVICE_ROLE_KEY aanwezig" }
-    : { ok: false, detail: "SUPABASE_SERVICE_ROLE_KEY ontbreekt" };
+  checks.supabaseAnonKey = env.anonKey
+    ? { ok: true, detail: `Gevonden als ${env.anonKey}` }
+    : { ok: false, detail: `Ontbreekt. Verwachte naam: ${env.expected.anonKey.join(" of ")}` };
+
+  checks.serviceRoleEnv = env.serviceKey
+    ? { ok: true, detail: `Gevonden als ${env.serviceKey}` }
+    : { ok: false, detail: `Ontbreekt. Verwachte naam: ${env.expected.serviceKey.join(" of ")}` };
+
+  checks.envNames = {
+    ok: true,
+    detail: env.presentNames.length ? `Aanwezige variabelen: ${env.presentNames.join(", ")}` : "Geen Supabase/Resend-variabelen gevonden",
+  };
+
+  if (!isSupabaseConfigured()) {
+    checks.connection = { ok: false, detail: "Geen publieke Supabase-client: URL of anon/publishable key ontbreekt" };
+  }
 
   const client = getServiceClient();
   if (client) {
@@ -43,7 +58,7 @@ export async function GET(request: Request) {
           : { ok: false, detail: "Bucket ontbreekt. Is de migratie uitgevoerd?" };
     }
   } else {
-    checks.connection = { ok: false, detail: "Geen Supabase-client: env-variabelen ontbreken" };
+    checks.serviceConnection = { ok: false, detail: "Geen service-client: URL of service/secret key ontbreekt" };
   }
 
   checks.resendEnv = process.env.RESEND_API_KEY

@@ -1,6 +1,7 @@
 import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "./types";
+import { getSupabaseAnonKey, getSupabaseServiceKey, getSupabaseUrl } from "./env";
 
 /**
  * Server-side Supabase clients.
@@ -17,13 +18,13 @@ let serviceClient: SupabaseClient<Database> | null | undefined;
 let anonClient: SupabaseClient<Database> | null | undefined;
 
 export function isSupabaseConfigured(): boolean {
-  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  return Boolean(getSupabaseUrl() && getSupabaseAnonKey());
 }
 
 export function getServiceClient(): SupabaseClient<Database> | null {
   if (serviceClient !== undefined) return serviceClient;
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const url = getSupabaseUrl();
+  const key = getSupabaseServiceKey();
   if (!url || !key) {
     serviceClient = null;
     return null;
@@ -36,8 +37,8 @@ export function getServiceClient(): SupabaseClient<Database> | null {
 
 export function getAnonServerClient(): SupabaseClient<Database> | null {
   if (anonClient !== undefined) return anonClient;
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = getSupabaseUrl();
+  const key = getSupabaseAnonKey();
   if (!url || !key) {
     anonClient = null;
     return null;
@@ -48,7 +49,7 @@ export function getAnonServerClient(): SupabaseClient<Database> | null {
   return anonClient;
 }
 
-/** Storage bucket-namen - gescheiden: offerte-uploads (privé) vs projectfoto's (publiek). */
+/** Storage bucket-namen, gescheiden: offerte-uploads (privé) vs projectfoto's (publiek). */
 export const STORAGE_BUCKETS = {
   quoteUploads: "quote-uploads",
   projectImages: "project-images",

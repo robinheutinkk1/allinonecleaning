@@ -2,6 +2,7 @@ import "server-only";
 import { fallbackProjects, type Project } from "@/config/projects";
 import { getService } from "@/config/services";
 import { getAnonServerClient, STORAGE_BUCKETS } from "@/lib/supabase/server";
+import { getSupabaseUrl } from "@/lib/supabase/env";
 import type { ProjectRow } from "@/lib/supabase/types";
 
 /**
@@ -11,7 +12,7 @@ import type { ProjectRow } from "@/lib/supabase/types";
 
 function publicImageUrl(pathOrUrl: string): string {
   if (/^https?:\/\//.test(pathOrUrl) || pathOrUrl.startsWith("/")) return pathOrUrl;
-  const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const base = getSupabaseUrl();
   if (!base) return pathOrUrl;
   return `${base}/storage/v1/object/public/${STORAGE_BUCKETS.projectImages}/${pathOrUrl}`;
 }
