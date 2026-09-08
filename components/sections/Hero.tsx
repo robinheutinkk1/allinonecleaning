@@ -1,18 +1,22 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ctaConfig, siteConfig } from "@/config/site";
 import { track } from "@/lib/analytics";
 
+type NetworkInformation = { saveData?: boolean; effectiveType?: string };
+
 /**
  * Hero met optionele achtergrondvideo (Higgsfield).
  *
- * - `videoSrc` aanwezig → op desktop autoplay/muted/loop/playsInline met poster.
- * - Op mobiel (< md) wordt ALTIJD de statische poster gebruikt (performance/data).
- * - Bij prefers-reduced-motion wordt de video niet afgespeeld.
+ * - `videoSrc` aanwezig → autoplay/muted/loop/playsInline met poster, op desktop én mobiel.
+ * - Bij databesparing (Save-Data) of een 2G-verbinding wordt de video niet geladen; de poster blijft.
+ * - Bij prefers-reduced-motion wordt de video verborgen (CSS), de poster blijft.
+ * - Laadt de video niet, dan blijft de poster zichtbaar.
  * - Tekst en CTA's blijven leesbaar door een navy-overlay + gradient.
  */
 export function Hero({
@@ -22,6 +26,15 @@ export function Hero({
   videoSrc?: string | null;
   poster?: string;
 }) {
+  const [allowVideo, setAllowVideo] = useState(true);
+
+  useEffect(() => {
+    const conn = (navigator as Navigator & { connection?: NetworkInformation }).connection;
+    if (conn?.saveData || conn?.effectiveType === "slow-2g" || conn?.effectiveType === "2g") {
+      setAllowVideo(false);
+    }
+  }, []);
+
   // Geen render-branch op reduced motion (hydration!). MotionConfig regelt dat centraal.
   const fadeUp = (delay: number) => ({
     initial: { opacity: 0, y: 24 },
@@ -41,9 +54,9 @@ export function Hero({
           sizes="100vw"
           className="object-cover object-center"
         />
-        {videoSrc && (
+        {videoSrc && allowVideo && (
           <video
-            className="absolute inset-0 hidden size-full object-cover md:block motion-reduce:hidden"
+            className="absolute inset-0 size-full object-cover motion-reduce:hidden"
             autoPlay
             muted
             loop
