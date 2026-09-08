@@ -2,14 +2,14 @@
 
 ## Direct na livegang (kleine moeite, veel effect)
 
-1. **Echte foto's per dienst** — de placeholders op /diensten zijn het zwakste visuele punt.
+1. **Echte foto's per dienst** - de placeholders op /diensten zijn het zwakste visuele punt.
 2. **Meer before/after-projecten** van gevel, trespa en zonnepanelen (nu alleen dak). De galerijfilter
    verschijnt automatisch zodra er projecten van ≥ 2 diensten zijn.
 3. **Google Reviews** invullen in `config/reviews.ts` → reviewsectie verschijnt op home en over-ons.
 4. **Telefoonnummer** invullen → "Bel direct" in navbar, sticky balk, CTA's en succesvenster.
 5. **Vercel Analytics of Plausible** aanzetten → funnel-inzicht: waar haken bezoekers af in de wizard?
 
-## Fase 2 — Dashboard (architectuur is voorbereid)
+## Fase 2 - Dashboard (architectuur is voorbereid)
 
 Alles wat een dashboard nodig heeft staat al in de database:
 `status`, `admin_notes`, `assigned_to`, `photo_paths`, RLS-policies voor `authenticated`.
@@ -22,13 +22,13 @@ Voorstel: route `/admin` (Supabase Auth, e-mail + wachtwoord of magic link), met
 - Reviews en diensten beheren (dan uit config → database)
 - `ADMIN_URL` invullen → "Bekijk aanvraag"-knop in de notificatiemail werkt direct
 
-## Fase 3 — Conversie & marketing
+## Fase 3 - Conversie & marketing
 
 - **WhatsApp-knop** (sticky) zodra het nummer bekend is (`siteConfig.whatsapp`).
 - **Adres-autocomplete** (postcode + huisnummer → straat/plaats) via een Nederlandse postcode-API.
 - **Follow-up mails**: herinnering aan de klant na X dagen zonder reactie (Resend + cron in Vercel).
 - **Seizoenscampagnes**: landingspagina's "Dakreiniging voorjaar" met UTM-tracking (wordt al opgeslagen).
-- **Lokale SEO-pagina's** per plaats — alleen zodra het werkgebied bevestigd is én er per plaats echte
+- **Lokale SEO-pagina's** per plaats - alleen zodra het werkgebied bevestigd is én er per plaats echte
   projecten/foto's zijn om de pagina uniek te maken.
 - **Schema.org `AggregateRating`** toevoegen zodra er echte Google-reviews zijn.
 

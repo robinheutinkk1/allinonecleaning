@@ -26,7 +26,7 @@ export function LocationSection() {
                   woningen en bedrijfspanden in de stad en de directe omgeving.
                 </p>
                 <p className="mt-4">
-                  Woont u iets verder weg in Twente? Vraag gerust een offerte aan — dan laten we u weten of uw locatie
+                  Woont u iets verder weg in Twente? Vraag gerust een offerte aan, dan laten we u weten of uw locatie
                   binnen ons werkgebied valt.
                 </p>
               </>

@@ -11,7 +11,7 @@ export type Option = {
   description?: string;
 };
 
-/** Stap 1 — Wat wilt u laten reinigen? Gebaseerd op de bevestigde diensten. */
+/** Stap 1 - Wat wilt u laten reinigen? Gebaseerd op de bevestigde diensten. */
 export const serviceOptions: (Option & { icon: "building" | "home" | "layers" | "sun" | "more" })[] = [
   { value: "gevel", label: "Gevel", description: "Metselwerk, gevelsteen", icon: "building" },
   { value: "dak", label: "Dakpannen", description: "Mos en aanslag op het dak", icon: "home" },
@@ -20,7 +20,7 @@ export const serviceOptions: (Option & { icon: "building" | "home" | "layers" | 
   { value: "anders", label: "Anders", description: "Iets anders? Vertel het ons", icon: "more" },
 ];
 
-/** Stap 2 — Pandtype */
+/** Stap 2 - Pandtype */
 export const propertyTypeOptions: Option[] = [
   { value: "woning", label: "Woning" },
   { value: "bedrijfspand", label: "Bedrijfspand" },
@@ -29,7 +29,7 @@ export const propertyTypeOptions: Option[] = [
 ];
 
 /**
- * Stap 3 — Oppervlak, conditioneel per gekozen dienst.
+ * Stap 3 - Oppervlak, conditioneel per gekozen dienst.
  * Sleutel = `value` uit serviceOptions.
  */
 export const surfaceOptionsByService: Record<string, Option[]> = {
@@ -68,7 +68,7 @@ export const surfaceOptionsByService: Record<string, Option[]> = {
   ],
 };
 
-/** Stap 4 — Omvang */
+/** Stap 4 - Omvang */
 export const sizeOptions: Option[] = [
   { value: "klein", label: "Klein", description: "Bijv. één gevel of dakvlak" },
   { value: "gemiddeld", label: "Gemiddeld", description: "Bijv. een rijtjeswoning" },
@@ -76,7 +76,7 @@ export const sizeOptions: Option[] = [
   { value: "onbekend", label: "Weet ik niet", description: "Geen probleem, wij beoordelen het" },
 ];
 
-/** Stap 5 — Vervuiling, conditioneel per dienst (multi-select). */
+/** Stap 5 - Vervuiling, conditioneel per dienst (multi-select). */
 export const contaminationOptionsByService: Record<string, Option[]> = {
   gevel: [
     { value: "groene-aanslag", label: "Groene aanslag" },
@@ -122,7 +122,7 @@ export const contaminationOptionsByService: Record<string, Option[]> = {
   ],
 };
 
-/** Stap 8 — Planning */
+/** Stap 8 - Planning */
 export const periodOptions: Option[] = [
   { value: "asap", label: "Zo snel mogelijk" },
   { value: "2-weken", label: "Binnen 2 weken" },
@@ -156,7 +156,7 @@ export type QuoteStepId = (typeof quoteSteps)[number]["id"];
 
 /** Helpers om labels op te zoeken voor samenvatting en e-mails */
 export function labelFor(options: Option[], value: string | null | undefined): string {
-  if (!value) return "—";
+  if (!value) return "-";
   return options.find((o) => o.value === value)?.label ?? value;
 }
 

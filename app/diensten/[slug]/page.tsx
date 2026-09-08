@@ -26,7 +26,7 @@ export default async function ServicePage({ params }: PageProps<"/diensten/[slug
   const { slug } = await params;
   const service = getService(slug);
   if (!service) notFound();
-  // Gevelreiniging heeft een eigen pillar-pagina — voorkom duplicate content.
+  // Gevelreiniging heeft een eigen pillar-pagina - voorkom duplicate content.
   if (!service.href.startsWith("/diensten/")) permanentRedirect(service.href);
 
   const projects = await getProjectsByService(service.slug);

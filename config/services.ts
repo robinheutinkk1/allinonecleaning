@@ -5,7 +5,7 @@
  * ("Gevelreiniging · Dakpanreiniging · Trespa · Zonnepanelen") en de
  * aangeleverde before/after-foto's (dakpanreiniging).
  *
- * Voeg hier een dienst toe of verwijder er een — de dienstenpagina,
+ * Voeg hier een dienst toe of verwijder er een - de dienstenpagina,
  * homepage, offertewizard, sitemap en structured data volgen automatisch.
  */
 
@@ -27,7 +27,7 @@ export type Service = {
   summary: string;
   /** Langere intro voor de dienstpagina */
   intro: string;
-  /** Voordelen — feitelijk en zonder technische beloften */
+  /** Voordelen - feitelijk en zonder technische beloften */
   benefits: string[];
   /** Voor wie / wanneer is dit relevant */
   suitableFor: string[];
@@ -76,7 +76,7 @@ export const services: Service[] = [
     summary:
       "Mos, algen en aanslag op dakpannen houden vocht vast en doen afbreuk aan de uitstraling van uw woning. Wij reinigen uw dakpannen zorgvuldig.",
     intro:
-      "Op dakpannen hecht zich in de loop der jaren mos, groene aanslag en vuil. Dat ziet er niet alleen slordig uit, maar houdt ook vocht vast. Na reiniging is de oorspronkelijke kleur van de dakpannen weer zichtbaar — bekijk het verschil op onze before & after-pagina.",
+      "Op dakpannen hecht zich in de loop der jaren mos, groene aanslag en vuil. Dat ziet er niet alleen slordig uit, maar houdt ook vocht vast. Na reiniging is de oorspronkelijke kleur van de dakpannen weer zichtbaar. Bekijk het verschil op onze before & after-pagina.",
     benefits: [
       "Mos en aanslag verwijderd",
       "Oorspronkelijke kleur van de dakpannen weer zichtbaar",

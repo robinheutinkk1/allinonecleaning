@@ -18,7 +18,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Welke informatie hebben jullie nodig?",
     answer:
-      "Wat u wilt laten reinigen, het type pand, een indicatie van de omvang, hoe de vervuiling eruitziet, de locatie en uw contactgegevens. Weet u iets niet zeker? Kies dan 'Weet ik niet' — wij beoordelen het samen met u.",
+      "Wat u wilt laten reinigen, het type pand, een indicatie van de omvang, hoe de vervuiling eruitziet, de locatie en uw contactgegevens. Weet u iets niet zeker? Kies dan 'Weet ik niet', dan beoordelen wij het samen met u.",
   },
   {
     question: "Krijg ik direct een prijs te zien?",

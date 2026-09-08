@@ -27,7 +27,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Vragen? Wij helpen u graag."
-        description="Voor algemene vragen gebruikt u het formulier hieronder. Wilt u een klus laten uitvoeren? Dan is de offertewizard de snelste route — daar kunt u ook direct foto's meesturen."
+        description="Voor algemene vragen gebruikt u het formulier hieronder. Wilt u een klus laten uitvoeren? Dan is de offertewizard de snelste route. Daar kunt u ook direct foto's meesturen."
         breadcrumbs={crumbs}
       />
 

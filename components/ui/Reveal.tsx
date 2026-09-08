@@ -9,7 +9,7 @@ import type { ReactNode } from "react";
  * Reduced motion wordt centraal afgehandeld via <MotionConfig reducedMotion="user">
  * in components/providers/MotionProvider.tsx: transform-animaties worden dan
  * overgeslagen, alleen de korte opacity-fade blijft. Bewust géén render-branch
- * op useReducedMotion — dat geeft hydration-mismatches (server kent de voorkeur niet).
+ * op useReducedMotion - dat geeft hydration-mismatches (server kent de voorkeur niet).
  */
 export function Reveal({
   children,

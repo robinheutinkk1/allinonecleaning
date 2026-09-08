@@ -106,7 +106,7 @@ export function PhotoUploader({
           file,
         });
       }
-      if (list.length > room) problems.push(`Maximaal ${uploadConfig.maxFiles} foto's — de overige zijn niet toegevoegd.`);
+      if (list.length > room) problems.push(`Maximaal ${uploadConfig.maxFiles} foto's, de overige zijn niet toegevoegd.`);
       if (problems.length) setNotice(problems.join(" "));
       if (accepted.length === 0) return;
 

@@ -1,5 +1,5 @@
 -- ============================================================================
--- ALL IN ONE CLEANING — Supabase schema
+-- ALL IN ONE CLEANING - Supabase schema
 -- Uitvoeren via Supabase SQL Editor of `supabase db push`.
 -- ============================================================================
 
@@ -165,7 +165,7 @@ alter table public.quote_counters   enable row level security;
 
 -- Offerteaanvragen en contactberichten: GEEN publieke toegang.
 -- Schrijven gebeurt uitsluitend server-side via de service role (route handlers).
--- Lezen later via een ingelogd dashboard (authenticated) — voorbeeld:
+-- Lezen later via een ingelogd dashboard (authenticated) - voorbeeld:
 drop policy if exists "quote_requests: authenticated read" on public.quote_requests;
 create policy "quote_requests: authenticated read"
   on public.quote_requests for select

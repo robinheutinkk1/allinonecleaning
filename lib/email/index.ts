@@ -42,7 +42,7 @@ function escapeHtml(s: string | null | undefined): string {
 function row(label: string, value: string | null | undefined) {
   return `<tr>
     <td style="padding:8px 12px;border-bottom:1px solid #e1e8f0;color:#5f7ca3;font-size:13px;white-space:nowrap;vertical-align:top">${escapeHtml(label)}</td>
-    <td style="padding:8px 12px;border-bottom:1px solid #e1e8f0;color:#111c30;font-size:14px">${escapeHtml(value) || "—"}</td>
+    <td style="padding:8px 12px;border-bottom:1px solid #e1e8f0;color:#111c30;font-size:14px">${escapeHtml(value) || "-"}</td>
   </tr>`;
 }
 
@@ -128,8 +128,8 @@ export async function sendQuoteNotification(opts: {
       from: FROM,
       to: NOTIFY_TO,
       replyTo: d.email,
-      subject: `Nieuwe offerteaanvraag — ${opts.quoteNumber}`,
-      html: layout(`Nieuwe offerteaanvraag — ${opts.quoteNumber}`, body),
+      subject: `Nieuwe offerteaanvraag ${opts.quoteNumber}`,
+      html: layout(`Nieuwe offerteaanvraag ${opts.quoteNumber}`, body),
     });
     if (error) return { sent: false, reason: error.message };
     return { sent: true };
@@ -195,7 +195,7 @@ export async function sendContactNotification(data: ContactData): Promise<{ sent
       from: FROM,
       to: NOTIFY_TO,
       replyTo: data.email,
-      subject: `Nieuw bericht via de website — ${data.name}`,
+      subject: `Nieuw bericht via de website van ${data.name}`,
       html: layout("Nieuw contactbericht", body),
     });
     if (error) return { sent: false, reason: error.message };

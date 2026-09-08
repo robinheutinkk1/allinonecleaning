@@ -111,10 +111,10 @@ export function BeforeAfterSlider({
       onPointerCancel={endDrag}
       style={{ touchAction: "pan-y" }}
     >
-      {/* AFTER — volledige onderlaag (rechts zichtbaar) */}
+      {/* AFTER - volledige onderlaag (rechts zichtbaar) */}
       <Image src={afterSrc} alt={afterAlt} fill priority={priority} sizes={sizes} draggable={false} className="object-cover" />
 
-      {/* BEFORE — bovenlaag, geclipt vanaf links tot de sliderpositie */}
+      {/* BEFORE - bovenlaag, geclipt vanaf links tot de sliderpositie */}
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} aria-hidden>
         <Image src={beforeSrc} alt="" fill priority={priority} sizes={sizes} draggable={false} className="object-cover" />
       </div>
@@ -143,7 +143,7 @@ export function BeforeAfterSlider({
       <div
         role="slider"
         tabIndex={0}
-        aria-label="Vergelijk voor en na — sleep of gebruik de pijltjestoetsen"
+        aria-label="Vergelijk voor en na: sleep of gebruik de pijltjestoetsen"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(pos)}

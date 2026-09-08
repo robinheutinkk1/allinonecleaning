@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata({
 });
 
 /**
- * Cookiebeleid — CONCEPT. Werk bij zodra analytics (bijv. GA4/Plausible) wordt
+ * Cookiebeleid - CONCEPT. Werk bij zodra analytics (bijv. GA4/Plausible) wordt
  * toegevoegd; dan is mogelijk een cookiebanner met toestemming nodig.
  */
 export default function CookiesPage() {
@@ -31,7 +31,7 @@ export default function CookiesPage() {
             <div>
               <h2 className="font-display text-2xl font-bold text-navy-900">Statistieken</h2>
               <p className="mt-3 leading-relaxed">
-                [ANALYTICS] — Op dit moment worden geen analytische cookies geplaatst. Als wij in de toekomst bezoekersstatistieken gaan meten, passen wij dit beleid aan en vragen
+                [ANALYTICS]: op dit moment worden geen analytische cookies geplaatst. Als wij in de toekomst bezoekersstatistieken gaan meten, passen wij dit beleid aan en vragen
                 wij waar nodig eerst uw toestemming.
               </p>
             </div>

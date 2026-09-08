@@ -2,7 +2,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { stats } from "@/config/site";
 
 /**
- * Statistieken — rendert ALLEEN als er echte cijfers in config/site.ts staan.
+ * Statistieken - rendert ALLEEN als er echte cijfers in config/site.ts staan.
  * Geen "500+ klanten" zonder bewijs.
  */
 export function StatsSection() {

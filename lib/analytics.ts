@@ -1,5 +1,5 @@
 /**
- * Conversiemeting — provider-agnostisch.
+ * Conversiemeting - provider-agnostisch.
  *
  * Events worden gepusht naar `window.dataLayer` (Google Tag Manager / GA4)
  * en, indien aanwezig, naar Plausible of Vercel Analytics. Koppel later

@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata({
 });
 
 /**
- * Privacyverklaring — CONCEPT.
+ * Privacyverklaring - CONCEPT.
  * Laat deze tekst controleren en aanvullen door het bedrijf (en indien gewenst
  * een jurist). Velden tussen [ ] moeten worden ingevuld.
  */

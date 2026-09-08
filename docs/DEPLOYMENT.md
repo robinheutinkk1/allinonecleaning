@@ -1,4 +1,4 @@
-# Deployment — Supabase, Resend, Vercel
+# Deployment - Supabase, Resend, Vercel
 
 ## 1. Supabase
 
@@ -46,9 +46,9 @@ Wat wordt verstuurd:
 
 | Trigger | Naar | Onderwerp |
 | --- | --- | --- |
-| Nieuwe offerteaanvraag | `QUOTE_NOTIFICATION_EMAIL` | `Nieuwe offerteaanvraag — AIC-2026-0001` |
+| Nieuwe offerteaanvraag | `QUOTE_NOTIFICATION_EMAIL` | `Nieuwe offerteaanvraag AIC-2026-0001` |
 | Nieuwe offerteaanvraag | klant | `Uw offerteaanvraag bij All in One Cleaning` (uit te zetten met `SEND_CUSTOMER_CONFIRMATION=false`) |
-| Contactformulier | `QUOTE_NOTIFICATION_EMAIL` | `Nieuw bericht via de website — <naam>` |
+| Contactformulier | `QUOTE_NOTIFICATION_EMAIL` | `Nieuw bericht via de website van <naam>` |
 
 Mailfouten blokkeren nooit een aanvraag: de aanvraag staat al in Supabase, de fout wordt gelogd.
 
@@ -104,7 +104,7 @@ Zonder keys: wizard en contactformulier werken in "dev-fallback" (log naar conso
 - [ ] Sticky mobiele balk gecontroleerd op een echte telefoon (iOS Safari + Android Chrome)
 - [ ] Foto-upload getest vanaf een telefoon (camera + galerij, HEIC-foto's worden door iOS als JPG aangeleverd bij "Meest compatibel"; anders melding "alleen JPG/PNG/WEBP")
 
-## 6. Beveiliging — samenvatting
+## 6. Beveiliging - samenvatting
 
 - Service-role key alleen in route handlers (`import "server-only"`), nooit in de client.
 - Alle invoer server-side gevalideerd met zod (identieke regels als client).

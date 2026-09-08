@@ -30,7 +30,7 @@ const crumbs = [
 /**
  * Pillar-pagina voor de belangrijkste zoekintentie: "gevelreiniging Enschede".
  * Bevat naast de dienstinformatie extra, unieke inhoud over gevelvervuiling
- * en de lokale context — geen lege SEO-pagina.
+ * en de lokale context - geen lege SEO-pagina.
  */
 export default async function GevelreinigingPage() {
   const projects = await getProjectsByService("gevelreiniging");
@@ -40,7 +40,7 @@ export default async function GevelreinigingPage() {
       <PageHeader
         eyebrow="Gevelreiniging · Enschede en omgeving"
         title="Gevelreiniging in Enschede door uw gevelspecialist."
-        description="Groene aanslag, algen en vuil maken een gevel dof en verouderd. All in One Cleaning reinigt gevels van woningen en bedrijfspanden in Enschede en omgeving — met een aanpak die past bij uw metselwerk."
+        description="Groene aanslag, algen en vuil maken een gevel dof en verouderd. All in One Cleaning reinigt gevels van woningen en bedrijfspanden in Enschede en omgeving, met een aanpak die past bij uw metselwerk."
         breadcrumbs={crumbs}
       />
 

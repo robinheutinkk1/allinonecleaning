@@ -5,7 +5,7 @@ import { getClientIp, hashIp, jsonError, rateLimit } from "@/lib/utils/request";
 
 export const runtime = "nodejs";
 
-/** POST /api/contact — eenvoudig contactformulier. */
+/** POST /api/contact - eenvoudig contactformulier. */
 export async function POST(request: Request) {
   const ip = getClientIp(request);
   const rl = rateLimit(`contact:${ip}`, 5, 15 * 60 * 1000);

@@ -8,7 +8,7 @@ import { getClientIp, hashIp, jsonError, pruneRateLimits, rateLimit } from "@/li
 export const runtime = "nodejs";
 
 /**
- * POST /api/quote — offerteaanvraag opslaan + e-mails versturen.
+ * POST /api/quote - offerteaanvraag opslaan + e-mails versturen.
  *
  * 1. Rate limit per IP
  * 2. Zod-validatie (server-side, identiek aan client-regels)

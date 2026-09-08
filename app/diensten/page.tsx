@@ -19,7 +19,7 @@ export default function DienstenPage() {
       <PageHeader
         eyebrow="Onze diensten"
         title="Reiniging van gevel tot dak."
-        description="Elk oppervlak vraagt om een eigen aanpak. Hieronder ziet u wat wij reinigen en voor wie het geschikt is. Twijfelt u? Stuur ons foto's — wij denken graag mee."
+        description="Elk oppervlak vraagt om een eigen aanpak. Hieronder ziet u wat wij reinigen en voor wie het geschikt is. Twijfelt u? Stuur ons foto's, wij denken graag mee."
         breadcrumbs={[
           { name: "Home", path: "/" },
           { name: "Diensten", path: "/diensten" },

@@ -26,7 +26,7 @@ export function pageMetadata(opts: {
       siteName: siteConfig.companyName,
       locale: "nl_NL",
       type: "website",
-      images: [{ url: image, width: 1200, height: 630, alt: `${siteConfig.companyName} — ${siteConfig.tagline}` }],
+      images: [{ url: image, width: 1200, height: 630, alt: `${siteConfig.companyName} | ${siteConfig.tagline}` }],
     },
     twitter: {
       card: "summary_large_image",
@@ -37,7 +37,7 @@ export function pageMetadata(opts: {
   };
 }
 
-/** LocalBusiness — alleen bekende velden worden opgenomen. */
+/** LocalBusiness - alleen bekende velden worden opgenomen. */
 export function localBusinessJsonLd() {
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",

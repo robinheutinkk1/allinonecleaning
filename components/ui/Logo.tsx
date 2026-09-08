@@ -28,7 +28,7 @@ export function Logo({
   compactHide?: boolean;
 }) {
   return (
-    <Link href="/" aria-label={`${siteConfig.companyName} — naar de homepage`} className={cn("group inline-flex items-center gap-3", className)}>
+    <Link href="/" aria-label={`${siteConfig.companyName}, naar de homepage`} className={cn("group inline-flex items-center gap-3", className)}>
       <span className="relative block size-11 shrink-0 overflow-hidden rounded-full bg-white shadow-soft ring-1 ring-navy-100 sm:size-12">
         <Image src="/images/logo-mark.png" alt="" width={96} height={96} priority={priority} className="size-full scale-110 object-cover" />
       </span>

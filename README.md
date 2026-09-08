@@ -1,4 +1,4 @@
-# All in One Cleaning — website & digitale offerte-intake
+# All in One Cleaning - website & digitale offerte-intake
 
 Productie-ready website voor **All in One Cleaning Enschede** ("Uw gevelspecialist"):
 Next.js 16 · TypeScript · Tailwind CSS 4 · Framer Motion · Supabase · Resend · Vercel.
@@ -59,7 +59,7 @@ config/
   faq.ts  reviews.ts
 lib/
   supabase/     server clients (service role / anon), types
-  validation/   zod-schema's (quote, contact) — client én server
+  validation/   zod-schema's (quote, contact) - client én server
   email/        Resend-templates (notificatie + klantbevestiging)
   utils/        request (rate limit, IP-hash), quote-number, cn
   projects.ts   projecten uit Supabase met fallback

@@ -43,7 +43,7 @@ export function ServiceGrid({
 
         <Reveal className="mt-10 flex flex-col items-center gap-3 rounded-3xl bg-navy-50 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
           <p className="text-navy-700">
-            <span className="font-semibold text-navy-900">Iets anders laten reinigen?</span> Vertel ons wat u wilt laten aanpakken — wij
+            <span className="font-semibold text-navy-900">Iets anders laten reinigen?</span> Vertel ons wat u wilt laten aanpakken, wij
             beoordelen of wij u kunnen helpen.
           </p>
           <Button href={`${ctaConfig.primary.href}?dienst=anders`} variant="secondary" size="sm" className="shrink-0">

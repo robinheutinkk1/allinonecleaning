@@ -285,7 +285,7 @@ export function QuoteWizard() {
   );
 }
 
-/** Welk veld hoort bij welke stap — voor het terugspringen bij serverfouten. */
+/** Welk veld hoort bij welke stap - voor het terugspringen bij serverfouten. */
 const fieldStep: Record<string, QuoteStepId> = {
   service: "service",
   serviceOther: "service",
@@ -413,7 +413,7 @@ function StepContent({
               step={1}
               label="Geschatte oppervlakte in m²"
               optional
-              hint="Weet u het niet? Geen probleem — wij beoordelen het aan de hand van uw foto's."
+              hint="Weet u het niet? Geen probleem, wij beoordelen het aan de hand van uw foto's."
               placeholder="Bijv. 120"
               value={data.estimatedM2 ?? ""}
               onChange={(e) => update("estimatedM2", e.target.value === "" ? null : Number(e.target.value))}
@@ -447,7 +447,7 @@ function StepContent({
       return (
         <div className="space-y-5">
           <p className="-mt-3 text-navy-600">
-            Met een paar foto&apos;s kunnen wij de situatie beter beoordelen. Maak ze gerust met uw telefoon — een overzichtsfoto en
+            Met een paar foto&apos;s kunnen wij de situatie beter beoordelen. Maak ze gerust met uw telefoon. Een overzichtsfoto en
             een close-up van de vervuiling zijn al voldoende.
           </p>
           <PhotoUploader session={session} photos={photos} onChange={setPhotos} />
@@ -531,7 +531,7 @@ function StepContent({
               <div key={r.label} className="flex items-start justify-between gap-4 px-4 py-3.5 sm:px-5">
                 <div className="min-w-0">
                   <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy-400">{r.label}</dt>
-                  <dd className="mt-0.5 break-words text-[15px] font-medium text-navy-900">{r.value || "—"}</dd>
+                  <dd className="mt-0.5 break-words text-[15px] font-medium text-navy-900">{r.value || "-"}</dd>
                 </div>
                 <button
                   type="button"

@@ -38,7 +38,7 @@ export function ProcessSteps() {
           <SectionHeading
             eyebrow="Zo werken wij"
             title="Van aanvraag tot schone gevel in vier stappen."
-            description="Zo verloopt een aanvraag in grote lijnen. Elke situatie is anders — daarom kijken we altijd eerst goed mee voordat we iets beloven."
+            description="Zo verloopt een aanvraag in grote lijnen. Elke situatie is anders. Daarom kijken we altijd eerst goed mee voordat we iets beloven."
             inverted
           />
         </Reveal>

@@ -13,7 +13,7 @@ export const runtime = "nodejs";
  * - Hercodeert de afbeelding met sharp → EXIF (incl. GPS) wordt gestript,
  *   ongeldige bestanden falen hier, en de opslag blijft compact (webp).
  * - Slaat op in de PRIVÉ bucket `quote-uploads/<session>/<uuid>.webp`.
- * - Geeft alleen het pad terug (geen publieke URL — de bucket is niet publiek).
+ * - Geeft alleen het pad terug (geen publieke URL - de bucket is niet publiek).
  */
 
 const SESSION_RE = /^[a-f0-9]{32}$/;

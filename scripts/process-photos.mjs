@@ -1,7 +1,7 @@
 /**
  * Verwerkt de aangeleverde originele foto's naar de paden die de site verwacht.
  *
- * - Collages (VOOR boven, NA onder — of andersom) worden gesplitst op de witte
+ * - Collages (VOOR boven, NA onder - of andersom) worden gesplitst op de witte
  *   randen; de rode/groene VOOR/NA-labels worden weggesneden aan de bovenkant.
  * - Losse foto's worden bijgesneden/geschaald en gecomprimeerd.
  *
@@ -171,7 +171,7 @@ log(await splitCollage(files.gevelCollage2, "projects/gevelreiniging-2-voor.jpg"
 // --- Losse foto's ----------------------------------------------------------
 log(await single(files.bus, "over-ons/bedrijfsbus.jpg", { resize: { width: 1400, withoutEnlargement: true } }));
 log(await single(files.logo, "logo.png", { resize: { width: 512, height: 512, fit: "contain", background: "#ffffff" } }));
-// Beeldmerk (alleen de cirkel met de vakman) voor navbar/footer — het volledige logo is daar te klein leesbaar
+// Beeldmerk (alleen de cirkel met de vakman) voor navbar/footer - het volledige logo is daar te klein leesbaar
 log(await single(files.logo, "logo-mark.png", { extract: { left: 78, top: 4, width: 378, height: 346 }, resize: { width: 512, height: 512, fit: "contain", background: "#ffffff" } }));
 // Hero: werkfoto gevel, 16:9 uitsnede rond de vakman, opgeschaald naar 1920 breed
 log(await single(files.gevelWerk, "hero/hero-poster.jpg", { extract: { left: 0, top: 200, width: 1024, height: 576 }, resize: { width: 1920 } }));

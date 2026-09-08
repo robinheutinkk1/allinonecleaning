@@ -3,7 +3,7 @@
  *
  * Zodra Supabase is gekoppeld en de tabel `projects` gevuld is, worden de
  * projecten uit de database gebruikt (zie lib/projects.ts). Tot die tijd
- * — of als Supabase niet bereikbaar is — worden onderstaande projecten getoond.
+ * - of als Supabase niet bereikbaar is - worden onderstaande projecten getoond.
  *
  * De foto's zijn de aangeleverde VOOR/NA-collages, gesplitst met
  * scripts/process-photos.mjs (originelen in assets/originals/).

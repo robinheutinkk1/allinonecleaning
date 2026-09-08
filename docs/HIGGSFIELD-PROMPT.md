@@ -1,4 +1,4 @@
-# Higgsfield hero-video — kant-en-klare prompt
+# Higgsfield hero-video - kant-en-klare prompt
 
 ## Gegenereerde varianten (8 sep 2026, Seedance 2.5, 1080p, 8 s, 16:9, geen audio)
 
@@ -26,7 +26,7 @@ boodschap van de site ("Kijk naar het verschil") en werkt op desktop als rustige
 de hero-tekst. Voorwaarden:
 
 - Alleen op **desktop** (≥ 768px). Op mobiel wordt automatisch de statische poster gebruikt
-  (`components/sections/Hero.tsx`) — data en batterij.
+  (`components/sections/Hero.tsx`) - data en batterij.
 - **Nooit** als "echt project" presenteren. De video is sfeerbeeld; de before/after-sectie
   toont echte foto's.
 - Bestandsgrootte ≤ 2,5 MB (H.264 MP4, 1920×1080, 24 fps, geen audio). Anders: niet gebruiken.
@@ -50,10 +50,10 @@ revealing clean warm red brick and pale mortar underneath. Realistic water physi
 small droplets running down the brick, subtle reflections on the wet surface, no foam.
 
 In the final seconds the camera slowly pulls back a little to reveal a larger clean section of
-the facade next to the remaining dirty section — a clear, calm before/after contrast.
+the facade next to the remaining dirty section - a clear, calm before/after contrast.
 
 Look: high-end commercial photography, natural colours, shallow depth of field, calm and
-trustworthy, clean and fresh. No people, no hands, no equipment fully in frame — only the water
+trustworthy, clean and fresh. No people, no hands, no equipment fully in frame - only the water
 stream entering from the edge. No text, no logos.
 ```
 
@@ -76,7 +76,7 @@ sudden transformation, explosion, sparkles
 
 ### Eindkaart (optioneel, buiten de video om)
 
-De afsluiting "ALL IN ONE CLEANING — UW GEVELSPECIALIST" wordt **niet** in de video gebakken
+De afsluiting "ALL IN ONE CLEANING / UW GEVELSPECIALIST" wordt **niet** in de video gebakken
 (tekstdistorsie-risico). De hero-tekst en het logo staan al als HTML over de video.
 
 ## Gebruik op desktop

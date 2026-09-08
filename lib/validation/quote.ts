@@ -77,7 +77,7 @@ export const quoteRequestSchema = z
     email: emailSchema,
     message: z.string().trim().max(2000, "Opmerking is te lang (max. 2000 tekens)").optional().nullable(),
     privacyAccepted: z.literal(true, { message: "U moet akkoord gaan met de privacyverklaring" }),
-    /** Honeypot — moet leeg blijven */
+    /** Honeypot - moet leeg blijven */
     website: z.string().max(0).optional(),
     utm: z
       .object({

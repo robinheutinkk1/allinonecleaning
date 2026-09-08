@@ -65,7 +65,7 @@ export default function OverOnsPage() {
               }
             />
             <div className="mt-8 rounded-3xl border border-dashed border-navy-200 bg-navy-50/60 p-5 text-sm text-navy-500">
-              [TEAMFOTO / PERSOONLIJK VERHAAL] — vul hier een korte introductie van de eigenaar of het team in en vervang de foto door een teamfoto.
+              [TEAMFOTO / PERSOONLIJK VERHAAL]: vul hier een korte introductie van de eigenaar of het team in en vervang de foto door een teamfoto.
             </div>
           </Reveal>
         </div>

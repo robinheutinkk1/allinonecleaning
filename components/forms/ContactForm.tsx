@@ -79,7 +79,7 @@ export function ContactForm() {
       <TextInput id="email" name="email" type="email" label="E-mailadres" autoComplete="email" value={values.email} onChange={(e) => set("email", e.target.value)} error={errors.email} required />
       <TextArea id="message" name="message" label="Bericht" placeholder="Waar kunnen wij u mee helpen?" value={values.message} onChange={(e) => set("message", e.target.value)} error={errors.message} required />
 
-      {/* Honeypot — onzichtbaar voor mensen */}
+      {/* Honeypot - onzichtbaar voor mensen */}
       <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden>
         <label htmlFor="website">Website</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={values.website} onChange={(e) => set("website", e.target.value)} />

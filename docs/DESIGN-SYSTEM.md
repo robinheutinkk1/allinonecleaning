@@ -1,4 +1,4 @@
-# Design system — All in One Cleaning
+# Design system - All in One Cleaning
 
 ## 1. Logo-analyse (basis van alles)
 
@@ -34,8 +34,8 @@ Contrast: aqua-500 op wit ≥ 3:1 voor grote tekst/knoppen; body-tekst navy-800 
 
 ## 3. Typografie
 
-- **Display**: Plus Jakarta Sans 600–800 (`--font-display`) — koppen, knoppen, stapnummers. Tracking -0.02em.
-- **Body**: Inter (`--font-sans`) — alle lopende tekst, formulieren. 15–18px, leading 1.6.
+- **Display**: Plus Jakarta Sans 600–800 (`--font-display`) - koppen, knoppen, stapnummers. Tracking -0.02em.
+- **Body**: Inter (`--font-sans`) - alle lopende tekst, formulieren. 15–18px, leading 1.6.
 - Beide via `next/font/google`, self-hosted, `display: swap`.
 - Schaal: H1 40/60/72px · H2 30/36/44px · H3 20–24px · body 16–18px · eyebrow 12px uppercase 0.18em.
 
@@ -80,7 +80,7 @@ Contrast: aqua-500 op wit ≥ 3:1 voor grote tekst/knoppen; body-tekst navy-800 
 /sitemap.xml  /robots.txt
 ```
 
-Bewust géén losse plaatsnaam-pagina's (Hengelo, Oldenzaal, …) zolang het werkgebied niet bevestigd is —
+Bewust géén losse plaatsnaam-pagina's (Hengelo, Oldenzaal, …) zolang het werkgebied niet bevestigd is -
 een SEO-pagina zonder unieke inhoud schaadt meer dan hij oplevert.
 
 ## 7. UX-flow offertewizard
@@ -94,6 +94,6 @@ een SEO-pagina zonder unieke inhoud schaadt meer dan hij oplevert.
 
 - Validatie per stap (client) én volledig (server, zelfde zod-regels).
 - Terugspringen naar de juiste stap bij serverfouten.
-- Concept wordt in sessionStorage bewaard (zonder foto's) — ververst de gebruiker, dan gaat niets verloren.
+- Concept wordt in sessionStorage bewaard (zonder foto's) - ververst de gebruiker, dan gaat niets verloren.
 - Dubbele submissions worden geblokkeerd; verzenden wacht tot alle uploads klaar zijn.
 - Analytics-events op elke stap → funnel-analyse.

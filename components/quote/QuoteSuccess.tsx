@@ -56,7 +56,7 @@ export function QuoteSuccess({ quoteNumber, serviceLabel, photoCount }: { quoteN
         </div>
       </dl>
 
-      <p className="mt-4 text-xs text-navy-400">Bewaar uw aanvraagnummer — handig als u ons belt of mailt over deze aanvraag.</p>
+      <p className="mt-4 text-xs text-navy-400">Bewaar uw aanvraagnummer. Dat is handig als u ons belt of mailt over deze aanvraag.</p>
 
       <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
         <Button href="/" variant="secondary" icon={<Home className="size-4" />} iconPosition="left">

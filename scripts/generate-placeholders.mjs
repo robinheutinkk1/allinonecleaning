@@ -2,7 +2,7 @@
  * Genereert placeholder-afbeeldingen op exact de paden die de site verwacht.
  *
  * Vervang de bestanden in /public/images door de echte foto's (zelfde bestandsnaam)
- * — er hoeft niets in de code te veranderen. Zie docs/CONTENT-CHECKLIST.md.
+ * - er hoeft niets in de code te veranderen. Zie docs/CONTENT-CHECKLIST.md.
  *
  *   node scripts/generate-placeholders.mjs            # maakt alleen ontbrekende bestanden
  *   node scripts/generate-placeholders.mjs --force    # overschrijft alles
@@ -86,7 +86,7 @@ function ogSvg() {
 }
 
 const files = [
-  // Logo — VERVANG door het echte logo (public/images/logo.png, vierkant)
+  // Logo - VERVANG door het echte logo (public/images/logo.png, vierkant)
   { file: "images/logo.png", svg: logoSvg(512), format: "png" },
   { file: "images/og-image.jpg", svg: ogSvg(), format: "jpeg" },
   // Hero poster (ook poster voor de Higgsfield-video)
@@ -96,13 +96,13 @@ const files = [
   { file: "images/services/dakpanreiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "DAKPANREINIGING", subtitle: "Vervang door echte werkfoto (public/images/services/dakpanreiniging.jpg)" }), format: "jpeg" },
   { file: "images/services/trespa-reiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "TRESPA REINIGING", subtitle: "Vervang door echte werkfoto (public/images/services/trespa-reiniging.jpg)" }), format: "jpeg" },
   { file: "images/services/zonnepanelen-reiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "ZONNEPANELEN", subtitle: "Vervang door echte werkfoto (public/images/services/zonnepanelen-reiniging.jpg)" }), format: "jpeg" },
-  // Projecten — de aangeleverde before/after-foto's horen hier
-  { file: "images/projects/dakpanreiniging-1-voor.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "VOOR — PROJECT 1", subtitle: "Aangeleverde foto: dakpannen met mos (close-up)", tone: "dark" }), format: "jpeg" },
-  { file: "images/projects/dakpanreiniging-1-na.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "NA — PROJECT 1", subtitle: "Aangeleverde foto: schoon dak, woning met dakkapel" }), format: "jpeg" },
-  { file: "images/projects/dakpanreiniging-2-voor.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "VOOR — PROJECT 2", subtitle: "Aangeleverde foto: vrijstaande woning, hoogwerker", tone: "dark" }), format: "jpeg" },
-  { file: "images/projects/dakpanreiniging-2-na.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "NA — PROJECT 2", subtitle: "Aangeleverde foto: schoon oranje pannendak" }), format: "jpeg" },
-  { file: "images/projects/dakpanreiniging-3-voor.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "VOOR — PROJECT 3", subtitle: "Aangeleverde foto: bedrijfspand met groene aanslag", tone: "dark" }), format: "jpeg" },
-  { file: "images/projects/dakpanreiniging-3-na.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "NA — PROJECT 3", subtitle: "Aangeleverde foto: schoon dak bedrijfspand" }), format: "jpeg" },
+  // Projecten - de aangeleverde before/after-foto's horen hier
+  { file: "images/projects/dakpanreiniging-1-voor.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "VOOR - PROJECT 1", subtitle: "Aangeleverde foto: dakpannen met mos (close-up)", tone: "dark" }), format: "jpeg" },
+  { file: "images/projects/dakpanreiniging-1-na.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "NA - PROJECT 1", subtitle: "Aangeleverde foto: schoon dak, woning met dakkapel" }), format: "jpeg" },
+  { file: "images/projects/dakpanreiniging-2-voor.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "VOOR - PROJECT 2", subtitle: "Aangeleverde foto: vrijstaande woning, hoogwerker", tone: "dark" }), format: "jpeg" },
+  { file: "images/projects/dakpanreiniging-2-na.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "NA - PROJECT 2", subtitle: "Aangeleverde foto: schoon oranje pannendak" }), format: "jpeg" },
+  { file: "images/projects/dakpanreiniging-3-voor.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "VOOR - PROJECT 3", subtitle: "Aangeleverde foto: bedrijfspand met groene aanslag", tone: "dark" }), format: "jpeg" },
+  { file: "images/projects/dakpanreiniging-3-na.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "NA - PROJECT 3", subtitle: "Aangeleverde foto: schoon dak bedrijfspand" }), format: "jpeg" },
   // Over ons / intro
   { file: "images/over-ons/bedrijfsbus.jpg", svg: placeholderSvg({ w: 1400, h: 1400, title: "BEDRIJFSBUS", subtitle: "Aangeleverde foto: bus voor woning (public/images/over-ons/bedrijfsbus.jpg)" }), format: "jpeg" },
 ];

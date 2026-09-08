@@ -81,7 +81,7 @@ export function ReviewsSection({ showPlaceholder = false }: { showPlaceholder?: 
                 <div key={i} className="rounded-3xl border border-dashed border-navy-200 bg-navy-50/60 p-6" aria-hidden={i > 0}>
                   <Stars rating={5} />
                   <p className="mt-4 text-sm leading-relaxed text-navy-400">
-                    {i === 0 ? "[GOOGLE REVIEWS] — hier verschijnen echte beoordelingen zodra ze zijn toegevoegd in config/reviews.ts." : "Beoordeling volgt"}
+                    {i === 0 ? "[GOOGLE REVIEWS]: hier verschijnen echte beoordelingen zodra ze zijn toegevoegd in config/reviews.ts." : "Beoordeling volgt"}
                   </p>
                 </div>
               ))}

@@ -67,7 +67,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
                 </p>
                 <h3 className="mt-3 font-display text-2xl font-bold">Laat ons meekijken.</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-200">
-                  Stuur een paar foto&apos;s mee en beantwoord een paar korte vragen. Wij beoordelen uw situatie persoonlijk — zonder automatische prijs.
+                  Stuur een paar foto&apos;s mee en beantwoord een paar korte vragen. Wij beoordelen uw situatie persoonlijk, zonder automatische prijs.
                 </p>
                 <Button href={`${ctaConfig.primary.href}?dienst=${service.quoteKey}`} className="mt-6 w-full" size="lg" icon={<ArrowRight className="size-5" />}>
                   Offerte voor {service.shortTitle.toLowerCase()}
@@ -113,7 +113,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
               />
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-navy-700">
-                  <span className="font-semibold text-navy-900">{project.title}</span> — {project.result}
+                  <span className="font-semibold text-navy-900">{project.title}</span>: {project.result}
                 </p>
                 <Link href="/before-after" className="inline-flex items-center gap-1.5 text-sm font-semibold text-aqua-700 hover:text-aqua-800">
                   Alle projecten

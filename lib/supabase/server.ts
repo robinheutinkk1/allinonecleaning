@@ -48,7 +48,7 @@ export function getAnonServerClient(): SupabaseClient<Database> | null {
   return anonClient;
 }
 
-/** Storage bucket-namen — gescheiden: offerte-uploads (privé) vs projectfoto's (publiek). */
+/** Storage bucket-namen - gescheiden: offerte-uploads (privé) vs projectfoto's (publiek). */
 export const STORAGE_BUCKETS = {
   quoteUploads: "quote-uploads",
   projectImages: "project-images",

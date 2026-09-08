@@ -3,7 +3,7 @@
  *
  * Alles wat hier `null` of een [PLACEHOLDER] is, is nog niet bevestigd door
  * All in One Cleaning en wordt op de site verborgen of als placeholder getoond.
- * Vul dit bestand aan zodra de informatie bekend is — er hoeft verder niets
+ * Vul dit bestand aan zodra de informatie bekend is - er hoeft verder niets
  * in de code te veranderen.
  */
 
@@ -60,13 +60,13 @@ export const siteConfig = {
   kvk: null as string | null,
   btw: null as string | null,
 
-  /** Openingstijden — nog niet bevestigd. */
+  /** Openingstijden - nog niet bevestigd. */
   openingHours: null as { days: string; hours: string }[] | null,
 
   /** Bevestigd werkgebied. Voeg pas plaatsen toe als het bedrijf dit bevestigt. */
   workAreas: ["Enschede", "omgeving Enschede"],
 
-  /** Social links — alleen tonen als bekend. */
+  /** Social links - alleen tonen als bekend. */
   socialLinks: {
     instagram: null as string | null,
     facebook: null as string | null,
@@ -76,7 +76,7 @@ export const siteConfig = {
 
   /** Korte bedrijfsomschrijving voor footer, meta en structured data. */
   description:
-    "All in One Cleaning is uw gevelspecialist in Enschede en omgeving. Professionele reiniging van gevels, dakpannen, trespa en zonnepanelen — met een persoonlijke aanpak en zichtbaar resultaat.",
+    "All in One Cleaning is uw gevelspecialist in Enschede en omgeving. Professionele reiniging van gevels, dakpannen, trespa en zonnepanelen, met een persoonlijke aanpak en zichtbaar resultaat.",
 
   /** E-mailadres waar nieuwe offerteaanvragen naartoe gaan (server-side, uit env). */
   notificationEmail: process.env.QUOTE_NOTIFICATION_EMAIL ?? null,
@@ -117,7 +117,7 @@ export const trustItems = [
 ] as const;
 
 /**
- * Statistieken — alleen tonen met ECHTE cijfers. Zolang `value` null is,
+ * Statistieken - alleen tonen met ECHTE cijfers. Zolang `value` null is,
  * wordt de statistiekensectie niet gerenderd.
  */
 export const stats: { label: string; value: string | null }[] = [

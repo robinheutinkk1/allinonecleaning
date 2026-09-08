@@ -23,7 +23,7 @@ export function BeforeAfterShowcase({ projects }: { projects: Project[] }) {
           <SectionHeading
             eyebrow="Before & after"
             title="Kijk naar het verschil."
-            description="Bekijk wat een professionele reiniging kan doen. Sleep de slider en vergelijk zelf — dit zijn echte projecten van All in One Cleaning."
+            description="Bekijk wat een professionele reiniging kan doen. Sleep de slider en vergelijk zelf. Dit zijn echte projecten van All in One Cleaning."
             align="center"
           />
         </Reveal>

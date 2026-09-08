@@ -24,5 +24,5 @@ export type Review = {
 
 export const reviews: Review[] = [];
 
-/** Google-beoordeling — alleen invullen met echte cijfers uit Google Business Profile. */
+/** Google-beoordeling - alleen invullen met echte cijfers uit Google Business Profile. */
 export const googleRating: { rating: number; count: number; url: string } | null = null;

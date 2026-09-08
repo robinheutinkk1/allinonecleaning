@@ -1,4 +1,4 @@
-# Content-checklist — wat nog ingevuld/aangeleverd moet worden
+# Content-checklist - wat nog ingevuld/aangeleverd moet worden
 
 Alles hieronder is bewust **niet verzonnen**. De site werkt nu met placeholders; vul aan en de
 site past zich automatisch aan.
@@ -10,17 +10,17 @@ splitst de VOOR/NA-collages, snijdt de labels weg en zet alles op de juiste pade
 
 | # | Bestand in `public/images/` | Status | Prioriteit |
 | --- | --- | --- | --- |
-| 1 | `logo.png` | ✅ Echt logo geplaatst (512×512) | — |
+| 1 | `logo.png` | ✅ Echt logo geplaatst (512×512) | - |
 | 2 | `hero/hero-poster.jpg` | ✅ Werkfoto gevelreiniging (16:9 uitsnede). Liever een scherpere foto van ≥ 1920px breed? Vervang het bestand. | Verbeteren |
-| 3 | `projects/gevelreiniging-1-voor/na.jpg` | ✅ Bungalow gele baksteen | — |
-| 4 | `projects/gevelreiniging-2-voor/na.jpg` | ✅ Woning lichte gevelsteen | — |
-| 5 | `projects/dakpanreiniging-1…4-voor/na.jpg` | ✅ Vier dakprojecten | — |
-| 6 | `over-ons/bedrijfsbus.jpg` | ✅ Bus voor woning | — |
-| 7 | `services/gevelreiniging.jpg` | ✅ Werkfoto (vakman op gevel) | — |
-| 8 | `services/dakpanreiniging.jpg` | ✅ "Na"-foto woning met dakkapel | — |
-| 9 | `services/trespa-reiniging.jpg` | ⬜ Placeholder — werkfoto trespa/gevelbekleding nodig | **Belangrijk** |
-| 10 | `services/zonnepanelen-reiniging.jpg` | ⬜ Placeholder — werkfoto zonnepanelen nodig | **Belangrijk** |
-| 11 | `og-image.jpg` | ⬜ Placeholder (1200×630) — liever een echte foto met logo | Optioneel |
+| 3 | `projects/gevelreiniging-1-voor/na.jpg` | ✅ Bungalow gele baksteen | - |
+| 4 | `projects/gevelreiniging-2-voor/na.jpg` | ✅ Woning lichte gevelsteen | - |
+| 5 | `projects/dakpanreiniging-1…4-voor/na.jpg` | ✅ Vier dakprojecten | - |
+| 6 | `over-ons/bedrijfsbus.jpg` | ✅ Bus voor woning | - |
+| 7 | `services/gevelreiniging.jpg` | ✅ Werkfoto (vakman op gevel) | - |
+| 8 | `services/dakpanreiniging.jpg` | ✅ "Na"-foto woning met dakkapel | - |
+| 9 | `services/trespa-reiniging.jpg` | ⬜ Placeholder - werkfoto trespa/gevelbekleding nodig | **Belangrijk** |
+| 10 | `services/zonnepanelen-reiniging.jpg` | ⬜ Placeholder - werkfoto zonnepanelen nodig | **Belangrijk** |
+| 11 | `og-image.jpg` | ⬜ Placeholder (1200×630) - liever een echte foto met logo | Optioneel |
 | 12 | Teamfoto / eigenaar | ⬜ Voor /over-ons (vervang het placeholderblok in `app/over-ons/page.tsx`) | Optioneel |
 | 13 | Before/after van trespa en zonnepanelen | ⬜ Voeg toe in `config/projects.ts` of later via Supabase `projects` | Aanbevolen |
 
@@ -58,7 +58,7 @@ in beeld (de slider voegt de labels zelf toe). Minimaal 1600px breed, JPG. Nieuw
 
 ## E. Projecten (`config/projects.ts`)
 
-- `location` staat nu op "Regio Enschede" — vervang door de echte plaats per project (bijv. "Enschede-Zuid", "Hengelo").
+- `location` staat nu op "Regio Enschede" - vervang door de echte plaats per project (bijv. "Enschede-Zuid", "Hengelo").
 - Controleer titels/omschrijvingen van de drie dakprojecten.
 
 ## F. Juridisch

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   ALL IN ONE CLEANING — Design tokens
+   ALL IN ONE CLEANING - Design tokens
    Afgeleid van het logo: donker navy (wordmark), lichtblauw/cyaan
    (tagline + waterdruppels), wit, en een klein geel accent (handschoenen).
    ------------------------------------------------------------------ */
 
 @theme {
-  /* Navy — primaire donkere merkkleur */
+  /* Navy - primaire donkere merkkleur */
   --color-navy-50: #f2f5f9;
   --color-navy-100: #e1e8f0;
   --color-navy-200: #c3d0e0;
@@ -20,7 +20,7 @@
   --color-navy-900: #111c30;
   --color-navy-950: #0a1120;
 
-  /* Aqua — lichtblauw/cyaan uit het logo */
+  /* Aqua - lichtblauw/cyaan uit het logo */
   --color-aqua-50: #eef8fd;
   --color-aqua-100: #d7eefa;
   --color-aqua-200: #b3e0f5;
@@ -33,7 +33,7 @@
   --color-aqua-900: #174562;
   --color-aqua-950: #0f2c41;
 
-  /* Geel accent — handschoenen uit het logo. Spaarzaam gebruiken. */
+  /* Geel accent - handschoenen uit het logo. Spaarzaam gebruiken. */
   --color-sun-400: #f7c948;
   --color-sun-500: #f0b429;
 
