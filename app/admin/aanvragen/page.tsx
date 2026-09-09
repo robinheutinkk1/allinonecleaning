@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Camera, Download } from "lucide-react";
 import { requireAdmin } from "@/lib/admin/auth";
-import { listQuotes } from "@/lib/admin/queries";
+import { getSettingsRow, listQuotes } from "@/lib/admin/queries";
 import { QuoteFilters } from "@/components/admin/QuoteFilters";
 import { Card, EmptyState, Notice, PageTitle, Pagination, StatusBadge, btnSecondary, timeAgo } from "@/components/admin/ui";
 import { getServiceByQuoteKey } from "@/config/services";
@@ -15,15 +15,16 @@ export default async function QuotesPage({ searchParams }: PageProps<"/admin/aan
   await requireAdmin();
   const sp = await searchParams;
   const str = (v: string | string[] | undefined) => (typeof v === "string" ? v : undefined);
-  const filters = { status: str(sp.status), service: str(sp.dienst), q: str(sp.q), page: Number(str(sp.pagina) ?? 1) || 1 };
-  const { rows, total, page, pageSize } = await listQuotes(filters);
+  const filters = { status: str(sp.status), service: str(sp.dienst), assignee: str(sp.toegewezen), q: str(sp.q), page: Number(str(sp.pagina) ?? 1) || 1 };
+  const [{ rows, total, page, pageSize }, settings] = await Promise.all([listQuotes(filters), getSettingsRow()]);
+  const team = (settings?.team ?? []).map((m) => m.name);
   const melding = str(sp.melding);
 
   return (
     <>
       <PageTitle
         title="Aanvragen"
-        description={`${total} aanvra${total === 1 ? "ag" : "gen"}${filters.status || filters.service || filters.q ? " (gefilterd)" : ""}`}
+        description={`${total} aanvra${total === 1 ? "ag" : "gen"}${filters.status || filters.service || filters.assignee || filters.q ? " (gefilterd)" : ""}`}
         action={
           <Link href="/admin/aanvragen/export" prefetch={false} className={btnSecondary}>
             <Download className="size-4" /> Exporteer CSV
@@ -39,7 +40,7 @@ export default async function QuotesPage({ searchParams }: PageProps<"/admin/aan
 
       <Card className="mb-4">
         <Suspense>
-          <QuoteFilters />
+          <QuoteFilters team={team} />
         </Suspense>
       </Card>
 
@@ -100,7 +101,7 @@ export default async function QuotesPage({ searchParams }: PageProps<"/admin/aan
         </div>
       )}
 
-      <Pagination page={page} pageSize={pageSize} total={total} basePath="/admin/aanvragen" params={{ status: filters.status, dienst: filters.service, q: filters.q }} />
+      <Pagination page={page} pageSize={pageSize} total={total} basePath="/admin/aanvragen" params={{ status: filters.status, dienst: filters.service, toegewezen: filters.assignee, q: filters.q }} />
     </>
   );
 }

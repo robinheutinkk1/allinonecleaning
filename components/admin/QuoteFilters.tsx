@@ -7,7 +7,7 @@ import { services } from "@/config/services";
 import { serviceOptions } from "@/config/quote";
 import { inputCls } from "./ui";
 
-export function QuoteFilters() {
+export function QuoteFilters({ team = [] }: { team?: string[] }) {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -25,7 +25,7 @@ export function QuoteFilters() {
         e.preventDefault();
         update("q", String(new FormData(e.currentTarget).get("q") ?? ""));
       }}
-      className="grid gap-3 sm:grid-cols-[1fr_auto_auto]"
+      className={team.length ? "grid gap-3 sm:grid-cols-2 xl:grid-cols-[1fr_auto_auto_auto]" : "grid gap-3 sm:grid-cols-[1fr_auto_auto]"}
     >
       <div className="relative">
         <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-navy-300" aria-hidden />
@@ -47,6 +47,17 @@ export function QuoteFilters() {
           </option>
         ))}
       </select>
+      {team.length > 0 && (
+        <select aria-label="Toegewezen aan" value={params.get("toegewezen") ?? "alle"} onChange={(e) => update("toegewezen", e.target.value)} className={inputCls}>
+          <option value="alle">Iedereen</option>
+          <option value="geen">Niet toegewezen</option>
+          {team.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+      )}
     </form>
   );
 }

@@ -29,7 +29,6 @@ export function LoginForm({ next, reason }: { next: string; reason?: string }) {
         {pending ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <LogIn className="size-4" aria-hidden />}
         {pending ? "Bezig met inloggen…" : "Inloggen"}
       </button>
-      <p className="text-center text-xs text-navy-400">Geen account? Beheerders worden aangemaakt in Supabase onder Authentication, Users.</p>
     </form>
   );
 }

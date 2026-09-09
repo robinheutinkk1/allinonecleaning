@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, LockKeyhole, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { ctaConfig, navigation, siteConfig } from "@/config/site";
 import { services } from "@/config/services";
@@ -124,7 +124,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             {settings.kvk && <span className="ml-2">KvK {settings.kvk}</span>}
             {settings.btw && <span className="ml-2">Btw {settings.btw}</span>}
           </p>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+          <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {navigation.legal.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="transition-colors hover:text-white">
@@ -132,6 +132,12 @@ export function Footer({ settings }: { settings: SiteSettings }) {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/admin/login" rel="nofollow" className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 transition-colors hover:border-aqua-400/60 hover:text-white">
+                <LockKeyhole className="size-3" aria-hidden />
+                Inloggen voor medewerkers
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

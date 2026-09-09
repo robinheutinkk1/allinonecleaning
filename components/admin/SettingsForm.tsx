@@ -119,6 +119,23 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
         </div>
       </section>
 
+      <section className="space-y-4">
+        <h2 className="font-display text-lg font-bold text-navy-900">Team</h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field id="team" label="Collega's" hint="Per regel: Naam | e-mailadres (e-mail mag leeg). Deze namen verschijnen in de keuzelijst 'Toegewezen aan' bij een aanvraag en in het filter op de aanvragenlijst.">
+            <textarea id="team" name="team" rows={5} defaultValue={(s?.team ?? []).map((m) => (m.email ? `${m.name} | ${m.email}` : m.name)).join("\n")} placeholder={"Jan | jan@bedrijf.nl\nPiet"} className={inputCls} />
+          </Field>
+          <div className="rounded-2xl bg-navy-50 p-4 text-sm text-navy-600">
+            <p className="font-semibold text-navy-900">Collega laten inloggen</p>
+            <ol className="mt-2 list-decimal space-y-1 pl-4">
+              <li>Maak in Supabase een gebruiker aan (Authentication, Users, Add user) met e-mail en wachtwoord.</li>
+              <li>Voeg hetzelfde e-mailadres toe aan ADMIN_EMAILS in Vercel (kommagescheiden) en redeploy.</li>
+              <li>Zet de collega hiernaast in de lijst, met hetzelfde e-mailadres, zodat &quot;Aan mij toewijzen&quot; werkt.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
       <div className="border-t border-navy-100 pt-5">
         <button type="submit" disabled={pending} className={btnPrimary}>
           {pending ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}

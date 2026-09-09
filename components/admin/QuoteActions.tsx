@@ -48,21 +48,51 @@ export function StatusForm({ quoteId, status }: { quoteId: string; status: strin
   );
 }
 
-export function AssignForm({ quoteId, assignedTo }: { quoteId: string; assignedTo: string | null }) {
+/**
+ * Toewijzen aan een collega. Met een teamlijst (Instellingen → Team) een keuzelijst,
+ * anders een vrij tekstveld. `me` is de naam van de ingelogde gebruiker als die in het team staat.
+ */
+export function AssignForm({ quoteId, assignedTo, team = [], me = null }: { quoteId: string; assignedTo: string | null; team?: string[]; me?: string | null }) {
   const [value, setValue] = useState(assignedTo ?? "");
   const { pending, result, run } = useAction();
+  const options = assignedTo && !team.includes(assignedTo) ? [assignedTo, ...team] : team;
   return (
     <div className="space-y-3">
       <label htmlFor="assignee" className={labelCls}>
         Toegewezen aan
       </label>
       <div className="flex gap-2">
-        <input id="assignee" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Naam medewerker" className={inputCls} />
-        <button type="button" disabled={pending} onClick={() => run(() => assignQuote(quoteId, value))} className={btnSecondary}>
+        {team.length > 0 ? (
+          <select id="assignee" value={value} onChange={(e) => setValue(e.target.value)} className={inputCls}>
+            <option value="">Niet toegewezen</option>
+            {options.map((name) => (
+              <option key={name} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <input id="assignee" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Naam medewerker" className={inputCls} />
+        )}
+        <button type="button" disabled={pending || value === (assignedTo ?? "")} onClick={() => run(() => assignQuote(quoteId, value))} className={btnSecondary}>
           {pending ? <Loader2 className="size-4 animate-spin" /> : <UserCheck className="size-4" />}
           Toewijzen
         </button>
       </div>
+      {me && me !== assignedTo && (
+        <button
+          type="button"
+          disabled={pending}
+          onClick={() => {
+            setValue(me);
+            run(() => assignQuote(quoteId, me));
+          }}
+          className="text-sm font-semibold text-aqua-700 hover:underline"
+        >
+          Aan mij toewijzen ({me})
+        </button>
+      )}
+      {team.length === 0 && <p className="text-xs text-navy-400">Tip: zet uw collega&apos;s bij Instellingen, Team. Dan wordt dit een keuzelijst.</p>}
       {result && <Notice tone={result.ok ? "success" : "error"}>{result.ok ? result.message : result.error}</Notice>}
     </div>
   );

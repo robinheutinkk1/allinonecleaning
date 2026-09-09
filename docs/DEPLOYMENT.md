@@ -69,6 +69,23 @@ Alles wat je in **Instellingen** invult, neemt de publieke site over (navbar, fo
 CTA's, contactpagina, LocalBusiness-structured data). Lege velden blijven verborgen: de site
 toont nooit verzonnen gegevens.
 
+### Collega's toevoegen
+
+Een collega heeft twee dingen nodig: een loginaccount en een plek in de teamlijst.
+
+1. **Account**: Supabase → Authentication → Users → Add user (e-mail + wachtwoord, Auto Confirm aan).
+2. **Toegang**: voeg het e-mailadres toe aan `ADMIN_EMAILS` in Vercel, kommagescheiden
+   (`jan@bedrijf.nl,piet@bedrijf.nl`). Redeploy. Zonder dit kan het account wel inloggen bij
+   Supabase, maar komt het niet in het dashboard.
+3. **Teamlijst**: Dashboard → Instellingen → Team, per regel `Naam | e-mailadres`. Vanaf dan is
+   "Toegewezen aan" bij een aanvraag een keuzelijst met deze namen, staat er een knop
+   "Aan mij toewijzen" (op basis van het e-mailadres) en kan de aanvragenlijst per collega gefilterd
+   worden. Voer je migratie `0004_team.sql` niet uit, dan blijft toewijzen een vrij tekstveld.
+
+Iedereen in `ADMIN_EMAILS` heeft dezelfde rechten (rollen zijn er nog niet, zie ROADMAP).
+Collega verwijderen: e-mailadres uit `ADMIN_EMAILS` halen en redeployen; het account in Supabase
+mag blijven bestaan of verwijderd worden.
+
 Beveiliging: `/admin` heeft `noindex`, de proxy (`proxy.ts`) stuurt bezoekers zonder sessie naar
 de loginpagina, en elke server action controleert opnieuw of het account in `ADMIN_EMAILS` staat.
 Alle database-acties in het dashboard lopen via de service-role key op de server; de browser krijgt

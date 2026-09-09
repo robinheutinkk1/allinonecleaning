@@ -108,6 +108,8 @@ export type ReviewRow = {
 
 export type OpeningHour = { days: string; hours: string };
 export type StatItem = { label: string; value: string };
+/** Collega in het dashboard (toewijzing). E-mail is optioneel en koppelt aan het loginaccount. */
+export type TeamMember = { name: string; email: string | null };
 
 export type SiteSettingsRow = {
   id: number;
@@ -131,6 +133,7 @@ export type SiteSettingsRow = {
   google_reviews_url: string | null;
   google_synced_at: string | null;
   google_place_name: string | null;
+  team: TeamMember[] | null;
   stats: StatItem[] | null;
   hero_video_enabled: boolean;
   notification_email: string | null;

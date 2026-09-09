@@ -18,6 +18,8 @@ function client() {
 export type QuoteListFilters = {
   status?: string;
   service?: string;
+  /** Naam van de collega, of "geen" voor niet-toegewezen aanvragen. */
+  assignee?: string;
   q?: string;
   page?: number;
   pageSize?: number;
@@ -35,6 +37,9 @@ export async function listQuotes(filters: QuoteListFilters = {}) {
 
   if (filters.status && filters.status !== "alle") query = query.eq("status", filters.status as QuoteStatus);
   if (filters.service && filters.service !== "alle") query = query.eq("service", filters.service);
+  if (filters.assignee && filters.assignee !== "alle") {
+    query = filters.assignee === "geen" ? query.is("assigned_to", null) : query.eq("assigned_to", filters.assignee);
+  }
   if (filters.q) {
     const q = filters.q.replace(/[%,]/g, " ").trim();
     query = query.or(`quote_number.ilike.%${q}%,customer_name.ilike.%${q}%,email.ilike.%${q}%,phone.ilike.%${q}%,city.ilike.%${q}%,postal_code.ilike.%${q}%`);

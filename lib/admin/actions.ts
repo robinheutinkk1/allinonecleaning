@@ -392,7 +392,24 @@ const settingsSchema = z.object({
   work_areas: z.array(z.string().trim().min(1).max(60)).max(30),
   opening_hours: z.array(z.object({ days: z.string().trim().min(1).max(30), hours: z.string().trim().min(1).max(30) })).max(7),
   stats: z.array(z.object({ label: z.string().trim().min(1).max(60), value: z.string().trim().min(1).max(20) })).max(4),
+  team: z
+    .array(
+      z.object({
+        name: z.string().trim().min(1, "Naam van een collega ontbreekt").max(60),
+        email: z.union([z.literal(""), z.string().trim().email("Ongeldig e-mailadres bij een collega")]).transform((v) => (v ? v.toLowerCase() : null)),
+      }),
+    )
+    .max(25),
 });
+
+/** "Naam | e-mail" per regel; e-mail mag ontbreken. */
+function parseTeam(value: FormDataEntryValue | null): { name: string; email: string }[] {
+  return String(value ?? "")
+    .split(/\r?\n/)
+    .map((line) => line.split("|").map((s) => s.trim()))
+    .filter((parts) => parts[0])
+    .map(([name, email]) => ({ name, email: email ?? "" }));
+}
 
 function parseLines(value: FormDataEntryValue | null): string[] {
   return String(value ?? "")
@@ -433,12 +450,19 @@ export async function saveSettings(_prev: ActionResult | null, formData: FormDat
     work_areas: parseLines(formData.get("work_areas")),
     opening_hours: parsePairs(formData.get("opening_hours"), ["days", "hours"]),
     stats: parsePairs(formData.get("stats"), ["label", "value"]),
+    team: parseTeam(formData.get("team")),
   });
   if (!parsed.success) return { ok: false, error: parsed.error.issues[0]?.message ?? "Controleer de invoer." };
 
   const { error } = await svc()
     .from("site_settings")
-    .upsert({ id: 1, ...parsed.data, opening_hours: parsed.data.opening_hours as { days: string; hours: string }[], stats: parsed.data.stats as { label: string; value: string }[] });
+    .upsert({
+      id: 1,
+      ...parsed.data,
+      opening_hours: parsed.data.opening_hours as { days: string; hours: string }[],
+      stats: parsed.data.stats as { label: string; value: string }[],
+      team: parsed.data.team as { name: string; email: string | null }[],
+    });
   if (error) return { ok: false, error: error.message };
   revalidateSite();
   revalidatePath("/admin/instellingen");

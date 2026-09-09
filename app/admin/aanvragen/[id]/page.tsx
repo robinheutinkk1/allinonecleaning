@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ArrowLeft, Mail, MessageCircle, Phone } from "lucide-react";
 import { requireAdmin } from "@/lib/admin/auth";
-import { getQuote, getQuoteByNumber, listQuoteEvents, signedPhotoUrls } from "@/lib/admin/queries";
+import { getQuote, getQuoteByNumber, getSettingsRow, listQuoteEvents, signedPhotoUrls } from "@/lib/admin/queries";
 import { statusLabel } from "@/lib/admin/statuses";
 import { AssignForm, DangerZone, NoteForm, StatusForm } from "@/components/admin/QuoteActions";
 import { PhotoGallery } from "@/components/admin/PhotoGallery";
@@ -23,7 +23,7 @@ function Row({ label, value, stacked = false }: { label: string; value: React.Re
 }
 
 export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanvragen/[id]">) {
-  await requireAdmin();
+  const user = await requireAdmin();
   const { id } = await params;
   // De link in de notificatiemail gebruikt het aanvraagnummer (AIC-2026-0001); zet die om naar het id.
   if (!/^[0-9a-f-]{36}$/i.test(id)) {
@@ -33,7 +33,9 @@ export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanv
   }
   const quote = await getQuote(id);
   if (!quote) notFound();
-  const [photos, events] = await Promise.all([signedPhotoUrls(quote.photo_paths), listQuoteEvents(quote.id)]);
+  const [photos, events, settings] = await Promise.all([signedPhotoUrls(quote.photo_paths), listQuoteEvents(quote.id), getSettingsRow()]);
+  const team = (settings?.team ?? []).map((m) => m.name);
+  const me = (settings?.team ?? []).find((m) => m.email && m.email.toLowerCase() === user.email.toLowerCase())?.name ?? null;
 
   const service = getServiceByQuoteKey(quote.service);
   const serviceLabel = quote.service === "anders" && quote.service_other ? `Anders: ${quote.service_other}` : (service?.title ?? quote.service);
@@ -105,7 +107,7 @@ export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanv
           <Card title="Beheer">
             <div className="space-y-6">
               <StatusForm quoteId={quote.id} status={quote.status} />
-              <AssignForm quoteId={quote.id} assignedTo={quote.assigned_to} />
+              <AssignForm quoteId={quote.id} assignedTo={quote.assigned_to} team={team} me={me} />
             </div>
           </Card>
 
