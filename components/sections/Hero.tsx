@@ -137,10 +137,16 @@ export function Hero({
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-950/30 sm:bg-gradient-to-r sm:from-navy-950/95 sm:via-navy-950/70 sm:to-navy-950/20" aria-hidden />
       <div className="absolute inset-0 -z-10 bg-grid-faint opacity-40 [mask-image:radial-gradient(60%_60%_at_30%_50%,black,transparent)]" aria-hidden />
 
-      {/* Decoratieve waterdruppel-glow */}
-      <div className="pointer-events-none absolute -right-32 top-1/3 -z-10 size-[28rem] rounded-full bg-aqua-500/20 blur-3xl" aria-hidden />
+      {/* Decoratieve waterdruppel-glow, zweeft heel langzaam */}
+      <motion.div
+        className="pointer-events-none absolute -right-32 top-1/3 -z-10 size-[28rem] rounded-full bg-aqua-500/20 blur-3xl"
+        animate={{ y: [0, -28, 0], x: [0, 12, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden
+      />
 
-      <div className="container-x relative pb-24 sm:pb-16 lg:pb-0">
+      {/* Onderaan altijd ruimte houden, ook op desktop: de dienstenlijst mag nooit tegen de rand van het scherm staan. */}
+      <div className="container-x relative pb-24 sm:pb-16 lg:pb-24 lg:pt-8">
         <div className="max-w-2xl lg:max-w-3xl">
           <motion.p {...fadeUp(0)} className="eyebrow text-aqua-300">
             <span className="inline-block h-px w-6 bg-current opacity-70" aria-hidden />
@@ -149,7 +155,7 @@ export function Hero({
 
           <motion.h1
             {...fadeUp(0.1)}
-            className="mt-5 font-display text-[2.6rem] font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl"
+            className="mt-5 font-display text-[2.6rem] font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl lg:[@media(max-height:860px)]:text-6xl"
           >
             Een gevel die weer <span className="bg-gradient-to-r from-aqua-300 to-aqua-100 bg-clip-text text-transparent">gezien mag worden.</span>
           </motion.h1>
@@ -180,24 +186,36 @@ export function Hero({
             </Button>
           </motion.div>
 
-          <motion.ul {...fadeUp(0.45)} className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy-200">
+          <motion.ul
+            initial="hidden"
+            animate="show"
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: 0.5 } } }}
+            className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy-200 lg:[@media(max-height:860px)]:mt-8"
+          >
             {["Gevelreiniging", "Dakpanreiniging", "Trespa", "Zonnepanelen", "Bestrating"].map((s) => (
-              <li key={s} className="flex items-center gap-2">
+              <motion.li
+                key={s}
+                variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}
+                className="flex items-center gap-2"
+              >
                 <span className="size-1.5 rounded-full bg-aqua-400" aria-hidden />
                 {s}
-              </li>
+              </motion.li>
             ))}
           </motion.ul>
         </div>
       </div>
 
+      {/* Scrollhint: alleen op grote, hoge schermen, rechts onderin zodat hij nooit over de tekst valt. */}
       <a
         href="#intro"
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1 text-xs uppercase tracking-[0.2em] text-navy-300 transition-colors hover:text-white lg:flex"
+        className="absolute bottom-7 right-8 hidden flex-col items-center gap-1 text-xs uppercase tracking-[0.2em] text-navy-300 transition-colors hover:text-white lg:[@media(min-height:861px)]:flex xl:right-12"
         aria-label="Scroll naar beneden"
       >
         <span>Ontdek</span>
-        <ChevronDown className="size-5 animate-bounce" aria-hidden />
+        <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }} aria-hidden>
+          <ChevronDown className="size-5" />
+        </motion.span>
       </a>
     </section>
   );

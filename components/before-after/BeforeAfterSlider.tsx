@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { animate, useInView, useReducedMotion } from "framer-motion";
 import { ChevronsLeftRight } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { track } from "@/lib/analytics";
@@ -46,6 +47,7 @@ export function BeforeAfterSlider({
 }) {
   const [pos, setPos] = useState(initial);
   const [dragging, setDragging] = useState(false);
+  const [interacted, setInteracted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const tracked = useRef(false);
 
@@ -60,6 +62,7 @@ export function BeforeAfterSlider({
   const markInteraction = useCallback(() => {
     if (tracked.current) return;
     tracked.current = true;
+    setInteracted(true);
     track({ name: "before_after_interaction", project: trackId });
   }, [trackId]);
 
@@ -92,6 +95,24 @@ export function BeforeAfterSlider({
       markInteraction();
     }
   };
+
+  // Eenmalige "duw" zodra de slider in beeld komt: laat zien dat hij te slepen is.
+  // Alleen als de bezoeker nog niets gedaan heeft en geen reduced motion heeft ingesteld.
+  const inView = useInView(containerRef, { once: true, amount: 0.6 });
+  const reduce = useReducedMotion();
+  useEffect(() => {
+    if (!inView || reduce || tracked.current) return;
+    let cancelled = false;
+    const back = () => {
+      if (cancelled || tracked.current) return;
+      animate(initial - 9, initial, { duration: 0.9, ease: [0.16, 1, 0.3, 1], onUpdate: (v) => !tracked.current && setPos(v) });
+    };
+    const out = animate(initial, initial - 9, { duration: 0.7, delay: 0.6, ease: "easeInOut", onUpdate: (v) => !tracked.current && setPos(v), onComplete: back });
+    return () => {
+      cancelled = true;
+      out.stop();
+    };
+  }, [inView, reduce, initial]);
 
   // Voorkom dat de pagina scrollt tijdens horizontaal slepen op touch (touch-action: none op de handle-zone)
   useEffect(() => {
@@ -170,7 +191,7 @@ export function BeforeAfterSlider({
       <span
         className={cn(
           "pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-navy-950/70 px-3 py-1 text-xs text-white backdrop-blur transition-opacity duration-500",
-          (dragging || pos !== initial) && "opacity-0",
+          (dragging || interacted) && "opacity-0",
         )}
       >
         Sleep om te vergelijken

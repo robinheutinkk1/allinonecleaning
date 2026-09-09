@@ -65,3 +65,18 @@ export function StaggerItem({ children, className }: { children: ReactNode; clas
     </motion.div>
   );
 }
+
+/** Decoratieve lijn die zichzelf van links naar rechts "tekent" zodra hij in beeld komt. */
+export function DrawLine({ className }: { className?: string }) {
+  return (
+    <motion.div
+      className={className}
+      style={{ transformOrigin: "left center" }}
+      initial={{ scaleX: 0, opacity: 0 }}
+      whileInView={{ scaleX: 1, opacity: 1 }}
+      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+      aria-hidden
+    />
+  );
+}

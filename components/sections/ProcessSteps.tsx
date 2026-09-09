@@ -1,5 +1,5 @@
 import { Camera, ClipboardCheck, FileText, Sparkles } from "lucide-react";
-import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
+import { DrawLine, Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const steps = [
@@ -44,7 +44,7 @@ export function ProcessSteps() {
         </Reveal>
 
         <StaggerGroup className="relative mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-aqua-400/50 to-transparent lg:block" aria-hidden />
+          <DrawLine className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-aqua-400/50 to-transparent lg:block" />
           {steps.map((s) => (
             <StaggerItem key={s.n} className="relative">
               <div className="flex items-center gap-4 lg:flex-col lg:items-start">

@@ -76,7 +76,9 @@ export function Navbar() {
                 >
                   {item.label}
                   {active && (
-                    <span
+                    <motion.span
+                      layoutId="nav-active-underline"
+                      transition={{ type: "spring", stiffness: 420, damping: 36 }}
                       aria-hidden
                       className={cn("absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full", solid ? "bg-aqua-500" : "bg-aqua-300")}
                     />
