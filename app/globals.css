@@ -34,8 +34,12 @@
   --color-aqua-950: #0f2c41;
 
   /* Geel accent - handschoenen uit het logo. Spaarzaam gebruiken. */
+  --color-sun-50: #fffaeb;
+  --color-sun-100: #fef3c7;
   --color-sun-400: #f7c948;
   --color-sun-500: #f0b429;
+  --color-sun-600: #c98f0f;
+  --color-sun-700: #9a6b0a;
 
   /* Typografie */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;

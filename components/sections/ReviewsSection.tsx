@@ -1,5 +1,6 @@
 import { Quote, Star } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
+import { ReviewText } from "@/components/sections/ReviewText";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { Review } from "@/config/reviews";
 import { getReviews } from "@/lib/reviews";
@@ -17,10 +18,13 @@ function Stars({ rating }: { rating: number }) {
 
 export function ReviewCard({ review }: { review: Review }) {
   return (
-    <figure className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-soft ring-1 ring-navy-100">
-      <Quote className="size-6 text-aqua-300" aria-hidden />
-      <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-navy-700">{review.text}</blockquote>
-      <figcaption className="mt-5 flex items-center justify-between border-t border-navy-100 pt-4">
+    <figure className="flex h-full flex-col rounded-3xl bg-white p-5 shadow-soft ring-1 ring-navy-100 sm:p-6">
+      <div className="flex items-center justify-between">
+        <Quote className="size-5 text-aqua-300" aria-hidden />
+        <Stars rating={review.rating} />
+      </div>
+      <ReviewText text={review.text} className="mt-3 flex-1" />
+      <figcaption className="mt-4 flex items-center justify-between border-t border-navy-100 pt-4">
         <span className="min-w-0">
           {review.authorUrl ? (
             <a href={review.authorUrl} target="_blank" rel="noopener noreferrer nofollow" className="block truncate text-sm font-semibold text-navy-900 hover:text-aqua-700">
@@ -34,7 +38,6 @@ export function ReviewCard({ review }: { review: Review }) {
             {review.date ? ` · ${review.date}` : ""}
           </span>
         </span>
-        <Stars rating={review.rating} />
       </figcaption>
     </figure>
   );
@@ -66,7 +69,7 @@ export async function ReviewsSection() {
         </Reveal>
 
         {reviews.length > 0 && (
-          <StaggerGroup className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <StaggerGroup className="mt-12 grid items-start gap-5 md:grid-cols-2 lg:grid-cols-3">
             {reviews.slice(0, 6).map((r, i) => (
               <StaggerItem key={`${r.author}-${i}`}>
                 <ReviewCard review={r} />

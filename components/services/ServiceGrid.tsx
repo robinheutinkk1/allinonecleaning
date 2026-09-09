@@ -33,7 +33,8 @@ export function ServiceGrid({
           </Reveal>
         )}
 
-        <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* items-start: een uitgeklapte kaart rekt de buren in dezelfde rij niet mee op. */}
+        <StaggerGroup className="mt-12 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((service, i) => (
             <StaggerItem key={service.slug} className="flex">
               <ServiceCard service={service} index={i} />
