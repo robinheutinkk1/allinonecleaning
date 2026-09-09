@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ChevronDown, MessageCircleQuestion } from "lucide-react";
+import { ChevronDown, Droplets, MessageCircleQuestion } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { faqItems, type FaqItem } from "@/config/faq";
@@ -11,9 +11,8 @@ import { cn } from "@/lib/utils/cn";
 /**
  * Veelgestelde vragen als accordeon.
  * - Alle vragen starten ingeklapt; één tegelijk open.
- * - Elke vraag heeft een "V"-markering en een pijl die omklapt; het antwoord
- *   krijgt een "A"-markering, zodat direct duidelijk is dat er een antwoord
- *   onder zit.
+ * - Elke vraag heeft links een druppel-icoon en rechts het label "Antwoord"
+ *   met een pijl die omklapt, zodat duidelijk is dat er een antwoord onder zit.
  */
 export function FAQ({ items = faqItems, compact = false }: { items?: FaqItem[]; compact?: boolean }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -59,12 +58,12 @@ export function FAQ({ items = faqItems, compact = false }: { items?: FaqItem[]; 
                     >
                       <span
                         className={cn(
-                          "flex size-9 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold transition-colors duration-300",
-                          open ? "bg-aqua-500 text-white" : "bg-navy-50 text-navy-500 group-hover:bg-aqua-50 group-hover:text-aqua-700",
+                          "flex size-9 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
+                          open ? "bg-aqua-500 text-white" : "bg-aqua-50 text-aqua-600 group-hover:bg-aqua-100",
                         )}
                         aria-hidden
                       >
-                        V
+                        <Droplets className="size-4" />
                       </span>
                       <span className={cn("flex-1 font-display text-base font-semibold transition-colors sm:text-lg", open ? "text-navy-900" : "text-navy-800 group-hover:text-aqua-700")}>
                         {item.question}
@@ -94,11 +93,8 @@ export function FAQ({ items = faqItems, compact = false }: { items?: FaqItem[]; 
                         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="flex gap-4 border-t border-navy-100 px-4 pb-5 pt-4 sm:px-5">
-                          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-sun-100 font-display text-sm font-bold text-sun-700" aria-hidden>
-                            A
-                          </span>
-                          <p className="flex-1 pt-1.5 text-[15px] leading-relaxed text-navy-600">{item.answer}</p>
+                        <div className="border-t border-navy-100 px-4 pb-5 pt-4 sm:px-5">
+                          <p className="text-[15px] leading-relaxed text-navy-600 sm:pl-[52px]">{item.answer}</p>
                         </div>
                       </motion.div>
                     )}
