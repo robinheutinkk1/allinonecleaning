@@ -354,7 +354,7 @@ function StepContent({
           {data.service === "anders" && (
             <TextInput
               id="serviceOther"
-              label="Wat wilt u laten reinigen?"
+              label="Wat wilt u laten doen?"
               placeholder="Bijv. terras, oprit, schutting…"
               value={data.serviceOther ?? ""}
               onChange={(e) => update("serviceOther", e.target.value)}
@@ -389,7 +389,7 @@ function StepContent({
           </div>
           {errors.surfaceType && <ErrorText>{errors.surfaceType}</ErrorText>}
           {data.surfaceType === "anders" && (
-            <TextInput id="surfaceOther" label="Omschrijving" placeholder="Wat wilt u precies laten reinigen?" value={data.surfaceOther ?? ""} onChange={(e) => update("surfaceOther", e.target.value)} optional />
+            <TextInput id="surfaceOther" label="Omschrijving" placeholder="Wat wilt u precies laten aanpakken?" value={data.surfaceOther ?? ""} onChange={(e) => update("surfaceOther", e.target.value)} optional />
           )}
         </div>
       );

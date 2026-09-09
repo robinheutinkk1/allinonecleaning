@@ -34,6 +34,10 @@ export const metadata: Metadata = {
     "bestrating reinigen Enschede",
     "vastgoedonderhoud Enschede",
     "gevelreiniging Twente",
+    "schilder Enschede",
+    "houtrot herstellen Enschede",
+    "vloerwerk Enschede",
+    "renovatie Enschede",
   ],
   openGraph: {
     type: "website",

@@ -11,10 +11,10 @@ export function Intro() {
       <div className="container-x grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-6">
           <SectionHeading
-            eyebrow="Schone gevel. Frisse uitstraling."
+            eyebrow="Eén partner voor uw pand"
             title={
               <>
-                Uw gevel is het eerste wat <span className="text-gold-600">mensen zien.</span>
+                Uw pand is het eerste wat <span className="text-gold-600">mensen zien.</span>
               </>
             }
             description={
@@ -25,8 +25,8 @@ export function Intro() {
                 </p>
                 <p className="mt-4">
                   Wij halen die laag weg met lage druk en biologisch afbreekbare reinigingsmiddelen. Geen hogedruk, geen
-                  stoom, dus geen uitgeblazen voegen of beschadigde stenen. Wat overblijft is de oorspronkelijke kleur en
-                  structuur van uw pand. Geen verbouwing, wel een eerste indruk die weer klopt.
+                  stoom, dus geen uitgeblazen voegen of beschadigde stenen. En is er meer nodig? Dan verzorgen wij ook het
+                  schilderwerk binnen en buiten, houtrotherstel, vloerwerk en renovatie. Eén partij, één aanspreekpunt.
                 </p>
               </>
             }

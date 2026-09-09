@@ -1,9 +1,9 @@
 /**
- * Veelgestelde vragen. Antwoorden zijn gebaseerd op de werkwijze van de site
- * en op wat All in One Vastgoedonderhoud zelf over de reinigingsmethode communiceert
- * (allinone-cleaning.nl): lage druk, biologisch afbreekbare middelen, geen
- * hogedruk of stoom. Geen prijzen, doorlooptijden of garanties die niet
- * bevestigd zijn.
+ * Veelgestelde vragen. Antwoorden zijn gebaseerd op de werkwijze van de site,
+ * de reinigingsmethode zoals het bedrijf die communiceert (lage druk, biologisch
+ * afbreekbaar, geen hogedruk of stoom), het dienstenaanbod van het Trustoo-profiel
+ * en de door het bedrijf bevestigde reiskostenregeling. Geen doorlooptijden of
+ * garanties die niet bevestigd zijn.
  *
  * Wordt ook gebruikt voor de FAQ-structured data op de homepage.
  */
@@ -11,9 +11,9 @@ export type FaqItem = { question: string; answer: string };
 
 export const faqItems: FaqItem[] = [
   {
-    question: "Wat kunnen jullie voor mij reinigen?",
+    question: "Wat kunnen jullie allemaal voor mij doen?",
     answer:
-      "Gevels (baksteen, metselwerk en gevelbeplating), dakpannen en dakgoten, trespa en andere gevelpanelen, zonnepanelen en bestrating zoals terrassen, opritten en paden. Twijfelt u of uw oppervlak erbij hoort? Kies in de offerteaanvraag voor 'Anders' en omschrijf het kort, of bel ons.",
+      "Reiniging van gevels, dakpannen en dakgoten, trespa, zonnepanelen en bestrating. Daarnaast schilderwerk binnen en buiten, houtrotherstel, vloerwerk, renovatie en diverse onderhoudswerkzaamheden aan woningen en bedrijfspanden. Kortom: totaalonderhoud van gevel tot dak. Twijfelt u of uw klus erbij hoort? Kies in de offerteaanvraag voor 'Anders' en omschrijf het kort, of bel ons.",
   },
   {
     question: "Is reinigen veilig voor mijn gevel of dak?",
@@ -23,7 +23,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Hoe vraag ik een offerte aan?",
     answer:
-      "Klik op 'Gratis offerte aanvragen'. In ongeveer twee minuten beantwoordt u een paar korte vragen: wat u wilt laten reinigen, om wat voor pand het gaat, hoe de vervuiling eruitziet en waar de klus is. U ontvangt direct een aanvraagnummer en wij nemen daarna contact met u op. Liever bellen? Dat kan natuurlijk ook.",
+      "Klik op 'Gratis offerte aanvragen'. In ongeveer twee minuten beantwoordt u een paar korte vragen: wat u wilt laten doen, om wat voor pand het gaat, wat de huidige situatie is en waar de klus is. U ontvangt direct een aanvraagnummer en wij nemen daarna contact met u op. Liever bellen? Dat kan natuurlijk ook.",
   },
   {
     question: "Krijg ik direct een prijs te zien?",

@@ -27,23 +27,38 @@ export function ServiceDetail({ service, projects }: { service: Service; project
               <h2 className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">Waarom {service.title.toLowerCase()}?</h2>
               <p className="mt-4 text-lg leading-relaxed text-navy-600">{service.intro}</p>
               <p className="mt-4 leading-relaxed text-navy-600">
-                Wij werken niet met een standaardaanpak. Voordat we een offerte maken, bekijken we uw foto&apos;s en beoordelen we het materiaal, de mate van
-                vervuiling en de bereikbaarheid. Zo weet u vooraf precies wat u kunt verwachten.
+                Wij werken niet met een standaardaanpak. Voordat we een offerte maken, bekijken we uw foto&apos;s en beoordelen we het materiaal, de huidige
+                staat en de bereikbaarheid. Zo weet u vooraf precies wat u kunt verwachten.
               </p>
             </div>
 
-            <div className="mt-10 rounded-3xl bg-navy-900 p-6 text-white sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-gold-300">Onze reinigingsmethode</p>
-              <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">Lage druk, geen hogedruk of stoom.</h3>
-              <p className="mt-3 text-sm leading-relaxed text-navy-200 sm:text-[15px]">{siteConfig.method.long}</p>
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {siteConfig.method.removes.map((r) => (
-                  <li key={r} className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white ring-1 ring-white/15">
-                    Verwijdert {r.toLowerCase()}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {service.category === "reiniging" ? (
+              <div className="mt-10 rounded-3xl bg-navy-900 p-6 text-white sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-gold-300">Onze reinigingsmethode</p>
+                <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">Lage druk, geen hogedruk of stoom.</h3>
+                <p className="mt-3 text-sm leading-relaxed text-navy-200 sm:text-[15px]">{siteConfig.method.long}</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {siteConfig.method.removes.map((r) => (
+                    <li key={r} className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white ring-1 ring-white/15">
+                      Verwijdert {r.toLowerCase()}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <div className="mt-10 rounded-3xl bg-navy-900 p-6 text-white sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-gold-300">Onze werkwijze</p>
+                <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">Professioneel, veilig en met oog voor detail.</h3>
+                <p className="mt-3 text-sm leading-relaxed text-navy-200 sm:text-[15px]">{siteConfig.workStyle.long}</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {siteConfig.workStyle.promises.map((r) => (
+                    <li key={r} className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white ring-1 ring-white/15">
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               <div className="rounded-3xl bg-navy-50 p-6">

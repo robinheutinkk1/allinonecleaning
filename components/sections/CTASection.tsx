@@ -6,7 +6,7 @@ import { getSiteSettings, telHref } from "@/lib/settings";
 
 export async function CTASection({
   title = "Dit resultaat ook voor uw gevel?",
-  text = "Stuur een paar foto's mee en vertel ons wat u wilt laten reinigen. Wij beoordelen uw situatie en nemen contact met u op, geheel vrijblijvend.",
+  text = "Stuur een paar foto's mee en vertel ons wat u wilt laten doen. Wij beoordelen uw situatie en nemen contact met u op, geheel vrijblijvend.",
   serviceKey,
 }: {
   title?: string;

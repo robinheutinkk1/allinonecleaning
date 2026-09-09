@@ -14,10 +14,10 @@ import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Over ons: vastgoedonderhoud uit Enschede",
   description:
-    "All in One Vastgoedonderhoud is een lokaal bedrijf voor vastgoedonderhoud uit Enschede, gespecialiseerd in het reinigen van gevels, dakpannen, trespa en zonnepanelen. Persoonlijk contact en zichtbaar resultaat.",
+    "All in One Vastgoedonderhoud is uw partner voor schilderwerk, renovatie, reiniging en totaalonderhoud van woningen en bedrijfspanden in Enschede en heel Overijssel. Persoonlijk contact en zichtbaar resultaat.",
   path: "/over-ons",
   ogTitle: "Over ons",
-  ogSubtitle: "Lokaal bedrijf voor vastgoedonderhoud uit Enschede. Persoonlijk contact en zichtbaar resultaat.",
+  ogSubtitle: "Schilderwerk, renovatie, reiniging en totaalonderhoud. Persoonlijk contact en zichtbaar resultaat.",
 });
 
 const crumbs = [
@@ -52,17 +52,18 @@ export default function OverOnsPage() {
           <Reveal delay={0.1} className="lg:col-span-6">
             <SectionHeading
               eyebrow="Wie wij zijn"
-              title="Schoonmaken met oog voor het gebouw."
+              title="Onderhoud met oog voor het gebouw."
               description={
                 <>
                   <p>
-                    Een gevel of dak reinigen is meer dan er water tegenaan spuiten. Wij werken met lage druk en biologisch afbreekbare
-                    reinigingsmiddelen, nooit met hogedruk of stoom. Zo verwijderen we schimmel, algen, mos en aanslag zonder voegen uit te blazen of
-                    stenen, dakpannen en beplating te beschadigen.
+                    All in One Vastgoedonderhoud is uw partner voor professioneel schilderwerk, renovatie en totaalonderhoud van woningen en
+                    bedrijfspanden. Wij verzorgen binnen- en buitenschilderwerk, houtrotherstel, vloerwerk en diverse onderhoudswerkzaamheden, en
+                    reinigen gevels, daken, trespa, zonnepanelen en bestrating met lage druk en biologisch afbreekbare middelen.
                   </p>
                   <p className="mt-4">
-                    We werken vanuit {siteConfig.city} voor particulieren, VvE&apos;s en bedrijven in de regio. U stuurt ons foto&apos;s, wij beoordelen de situatie en
-                    doen een duidelijk voorstel. Zo simpel mag het zijn.
+                    Wij werken professioneel, veilig en met oog voor detail, zodat u verzekerd bent van een duurzaam en strak eindresultaat. U kunt
+                    rekenen op eerlijk advies, snelle service en duidelijke communicatie. Vanuit {siteConfig.city} werken we in heel Overijssel voor
+                    particulieren, VvE&apos;s en bedrijven.
                   </p>
                 </>
               }
@@ -77,7 +78,7 @@ export default function OverOnsPage() {
                 ))}
               </ul>
               <p className="mt-4 text-sm leading-relaxed text-navy-600">
-                Van een rijtjeswoning tot een bedrijfspand, school of appartementencomplex: wij leveren schoon werk tot in de kleinste details.
+                Van een rijtjeswoning tot een bedrijfspand, school of appartementencomplex: wij leveren strak werk tot in de kleinste details. Vrijblijvende offerte? Wij staan voor u klaar.
               </p>
             </div>
           </Reveal>
@@ -107,7 +108,7 @@ export default function OverOnsPage() {
 
       <ProcessSteps />
       <ReviewsSection />
-      <CTASection title="Kennismaken? Stuur ons uw foto's." text="Vertel ons wat u wilt laten reinigen en voeg een paar foto's toe. U hoort van ons." />
+      <CTASection title="Kennismaken? Stuur ons uw foto's." text="Vertel ons wat u wilt laten doen en voeg een paar foto's toe. U hoort van ons." />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
     </>
   );

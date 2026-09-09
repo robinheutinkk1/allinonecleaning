@@ -35,7 +35,7 @@ app/
   layout.tsx                 root layout: fonts en metadata
   (site)/layout.tsx          publieke site: instellingen-provider, navbar, footer, sticky CTA, LocalBusiness JSON-LD
   (site)/page.tsx            homepage
-  (site)/diensten/           overzicht + [slug] (dakpanreiniging, trespa, zonnepanelen, bestrating)
+  (site)/diensten/           overzicht + [slug] (reiniging, schilderwerk, houtrotherstel, vloerwerk, renovatie)
   (site)/gevelreiniging/     pillar-pagina "gevelreiniging Enschede"
   (site)/before-after/       projectgalerij met sliders
   (site)/over-ons/  contact/  offerte-aanvragen/  privacy/  cookies/  not-found.tsx

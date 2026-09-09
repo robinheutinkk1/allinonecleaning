@@ -2,23 +2,38 @@
  * Diensten van All in One Vastgoedonderhoud.
  *
  * Bronnen: de belettering op de bedrijfsbus ("Gevelreiniging · Dakpanreiniging ·
- * Trespa · Zonnepanelen"), de huidige website allinone-cleaning.nl (daar staan
- * ook bestrating, terras en dakgoten) en de aangeleverde before/after-foto's.
+ * Trespa · Zonnepanelen"), de website allinone-cleaning.nl (bestrating, terras,
+ * dakgoten), de aangeleverde before/after-foto's en het Trustoo-profiel van
+ * All in One Vastgoedonderhoud B.V. (schilderwerk binnen en buiten, houtrotherstel,
+ * vloerwerk, renovatie en totaalonderhoud).
  *
  * Voeg hier een dienst toe of verwijder er een: de dienstenpagina, homepage,
  * offertewizard, sitemap en structured data volgen automatisch.
  */
 
-export type ServiceSlug = "gevelreiniging" | "dakpanreiniging" | "trespa-reiniging" | "zonnepanelen-reiniging" | "bestrating-reiniging";
+export type ServiceSlug =
+  | "gevelreiniging"
+  | "dakpanreiniging"
+  | "trespa-reiniging"
+  | "zonnepanelen-reiniging"
+  | "bestrating-reiniging"
+  | "schilderwerk"
+  | "houtrotherstel"
+  | "vloerwerk"
+  | "renovatie-onderhoud";
+
+/** Reiniging (lage druk, biologisch afbreekbaar) of onderhoud (schilderwerk, herstel, renovatie). */
+export type ServiceCategory = "reiniging" | "onderhoud";
 
 export type Service = {
   slug: ServiceSlug;
+  category: ServiceCategory;
   /** Pagina-URL. Gevelreiniging heeft een eigen pillar-pagina. */
   href: string;
   title: string;
   shortTitle: string;
   /** Icoonnaam uit lucide-react (zie components/ui/ServiceIcon.tsx) */
-  icon: "building" | "home" | "layers" | "sun" | "grid";
+  icon: "building" | "home" | "layers" | "sun" | "grid" | "paintbrush" | "hammer" | "ruler" | "hardhat";
   image: string;
   imageAlt: string;
   /** Eén zin voor kaarten */
@@ -41,6 +56,7 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "gevelreiniging",
+    category: "reiniging",
     href: "/gevelreiniging",
     title: "Gevelreiniging",
     shortTitle: "Gevel",
@@ -66,6 +82,7 @@ export const services: Service[] = [
   },
   {
     slug: "dakpanreiniging",
+    category: "reiniging",
     href: "/diensten/dakpanreiniging",
     title: "Dakpanreiniging",
     shortTitle: "Dakpannen",
@@ -91,6 +108,7 @@ export const services: Service[] = [
   },
   {
     slug: "trespa-reiniging",
+    category: "reiniging",
     href: "/diensten/trespa-reiniging",
     title: "Trespa reiniging",
     shortTitle: "Trespa",
@@ -116,6 +134,7 @@ export const services: Service[] = [
   },
   {
     slug: "zonnepanelen-reiniging",
+    category: "reiniging",
     href: "/diensten/zonnepanelen-reiniging",
     title: "Zonnepanelen reiniging",
     shortTitle: "Zonnepanelen",
@@ -141,6 +160,7 @@ export const services: Service[] = [
   },
   {
     slug: "bestrating-reiniging",
+    category: "reiniging",
     href: "/diensten/bestrating-reiniging",
     title: "Bestrating en terras",
     shortTitle: "Bestrating",
@@ -163,6 +183,110 @@ export const services: Service[] = [
     seoDescription:
       "Terras, oprit of tuinpad laten reinigen in Enschede en heel Overijssel. All in One Vastgoedonderhoud verwijdert groene aanslag en mos met lage druk, zonder de voegen uit te spoelen. Gratis offerte.",
     quoteKey: "bestrating",
+  },
+  {
+    slug: "schilderwerk",
+    category: "onderhoud",
+    href: "/diensten/schilderwerk",
+    title: "Schilderwerk binnen en buiten",
+    shortTitle: "Schilderwerk",
+    icon: "paintbrush",
+    image: "/images/services/schilderwerk.jpg",
+    imageAlt: "Buitenschilderwerk aan kozijnen door All in One Vastgoedonderhoud",
+    tagline: "Strak schilderwerk dat jaren meegaat.",
+    summary:
+      "Professioneel binnen- en buitenschilderwerk voor woningen en bedrijfspanden. Van kozijnen, deuren en boeidelen tot wanden en plafonds, met oog voor detail en een duurzaam, strak eindresultaat.",
+    intro:
+      "Goed schilderwerk beschermt uw pand tegen weer en wind en bepaalt voor een groot deel de uitstraling. Wij verzorgen buitenschilderwerk van kozijnen, deuren, boeidelen en gevelbetimmering, en binnenschilderwerk van wanden, plafonds, kozijnen en deuren. Het ondergrondwerk doen we zorgvuldig: schoonmaken, schuren, herstellen en gronden, zodat de afwerking lang mooi blijft.",
+    benefits: [
+      "Binnen- en buitenschilderwerk door één partij",
+      "Zorgvuldige voorbereiding van de ondergrond",
+      "Duurzaam en strak eindresultaat",
+      "Eerlijk advies over kleur, verfsysteem en onderhoudsinterval",
+    ],
+    suitableFor: ["Kozijnen, deuren en boeidelen", "Wanden en plafonds", "Woningen en appartementen", "Bedrijfspanden en VvE's"],
+    seoTitle: "Schilder Enschede | Binnen- en buitenschilderwerk | All in One Vastgoedonderhoud",
+    seoDescription:
+      "Schilderwerk binnen en buiten in Enschede en heel Overijssel. All in One Vastgoedonderhoud schildert kozijnen, deuren, boeidelen, wanden en plafonds met een strak en duurzaam resultaat. Vraag een vrijblijvende offerte aan.",
+    quoteKey: "schilderwerk",
+  },
+  {
+    slug: "houtrotherstel",
+    category: "onderhoud",
+    href: "/diensten/houtrotherstel",
+    title: "Houtrotherstel",
+    shortTitle: "Houtrot",
+    icon: "hammer",
+    image: "/images/services/houtrotherstel.jpg",
+    imageAlt: "Herstel van houtrot in een kozijn door All in One Vastgoedonderhoud",
+    tagline: "Houtrot vakkundig hersteld, voordat het erger wordt.",
+    summary:
+      "Zachte plekken in kozijnen, deuren of boeidelen? Wij verwijderen het aangetaste hout, herstellen het met een duurzaam reparatiesysteem en werken het strak af, zodat vervangen vaak niet nodig is.",
+    intro:
+      "Houtrot begint klein: een zachte plek onderin een kozijn of een naad waar water in trekt. Wordt het niet aangepakt, dan breidt het zich uit en wordt vervangen op den duur de enige optie. Wij halen het aangetaste hout weg, behandelen de plek, vullen en herstellen het met een duurzaam reparatiesysteem en schilderen het weer strak af. Zo gaat uw kozijn of deur weer jaren mee.",
+    benefits: [
+      "Herstel in plaats van vervangen, vaak een stuk voordeliger",
+      "Duurzaam reparatiesysteem, strak afgewerkt",
+      "Direct gecombineerd met het schilderwerk",
+      "Eerlijk advies als vervangen toch de betere keuze is",
+    ],
+    suitableFor: ["Kozijnen en ramen", "Deuren en deurposten", "Boeidelen en dakranden", "Gevelbetimmering"],
+    seoTitle: "Houtrot herstellen Enschede | All in One Vastgoedonderhoud",
+    seoDescription:
+      "Houtrotherstel in Enschede en heel Overijssel. All in One Vastgoedonderhoud herstelt aangetaste kozijnen, deuren en boeidelen met een duurzaam reparatiesysteem en werkt ze strak af. Vraag een vrijblijvende offerte aan.",
+    quoteKey: "houtrot",
+  },
+  {
+    slug: "vloerwerk",
+    category: "onderhoud",
+    href: "/diensten/vloerwerk",
+    title: "Vloerwerk",
+    shortTitle: "Vloerwerk",
+    icon: "ruler",
+    image: "/images/services/vloerwerk.jpg",
+    imageAlt: "Vloerwerk in een woning door All in One Vastgoedonderhoud",
+    tagline: "Een vloer die strak ligt en lang meegaat.",
+    summary:
+      "Vloerwerk voor woningen en bedrijfspanden: leggen, vervangen en herstellen. Netjes voorbereid, strak afgewerkt en met duidelijke afspraken vooraf.",
+    intro:
+      "Een goede vloer begint bij een goede voorbereiding. Wij verzorgen vloerwerk in woningen en bedrijfspanden: het leggen van een nieuwe vloer, het vervangen van een bestaande vloer en het herstellen van beschadigingen. We adviseren eerlijk over wat past bij de ruimte en het gebruik, en werken netjes en volgens afspraak.",
+    benefits: [
+      "Leggen, vervangen en herstellen door één partij",
+      "Zorgvuldige voorbereiding van de ondervloer",
+      "Strakke afwerking tot in de hoeken",
+      "Duidelijke planning en communicatie",
+    ],
+    suitableFor: ["Woonkamers en verdiepingen", "Bedrijfsruimtes en kantoren", "Renovatieprojecten", "Verhuur- en VvE-panden"],
+    seoTitle: "Vloerwerk Enschede | Vloer leggen of vervangen | All in One Vastgoedonderhoud",
+    seoDescription:
+      "Vloerwerk in Enschede en heel Overijssel: vloeren leggen, vervangen en herstellen in woningen en bedrijfspanden. All in One Vastgoedonderhoud werkt netjes, strak en volgens afspraak. Vraag een vrijblijvende offerte aan.",
+    quoteKey: "vloerwerk",
+  },
+  {
+    slug: "renovatie-onderhoud",
+    category: "onderhoud",
+    href: "/diensten/renovatie-onderhoud",
+    title: "Renovatie en totaalonderhoud",
+    shortTitle: "Renovatie",
+    icon: "hardhat",
+    image: "/images/services/renovatie-onderhoud.jpg",
+    imageAlt: "Renovatie en onderhoud van een woning door All in One Vastgoedonderhoud",
+    tagline: "Eén partner voor het complete onderhoud van uw pand.",
+    summary:
+      "Renovatie en totaalonderhoud van woningen en bedrijfspanden. Van periodiek onderhoud tot een complete opknapbeurt: één aanspreekpunt, één planning, één strak eindresultaat.",
+    intro:
+      "Wilt u uw pand in één keer goed laten aanpakken, of het onderhoud structureel uit handen geven? Wij combineren reiniging, schilderwerk, houtrotherstel, vloerwerk en diverse onderhoudswerkzaamheden tot één plan. U heeft één aanspreekpunt, één planning en één partij die verantwoordelijk is voor het eindresultaat. Voor particulieren, bedrijven, verhuurders en VvE's.",
+    benefits: [
+      "Eén aanspreekpunt voor alle werkzaamheden",
+      "Renovatie, herstel en periodiek onderhoud",
+      "Professioneel, veilig en met oog voor detail",
+      "Eerlijk advies, snelle service en duidelijke communicatie",
+    ],
+    suitableFor: ["Woningen en appartementen", "Bedrijfspanden en winkels", "Verhuurders en VvE's", "Meerjarig onderhoud"],
+    seoTitle: "Renovatie en totaalonderhoud Enschede | All in One Vastgoedonderhoud",
+    seoDescription:
+      "Renovatie en totaalonderhoud van woningen en bedrijfspanden in Enschede en heel Overijssel. Reiniging, schilderwerk, houtrotherstel en vloerwerk door één partij. Vraag een vrijblijvende offerte aan.",
+    quoteKey: "renovatie",
   },
 ];
 

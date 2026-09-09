@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Gratis offerte aanvragen: gevel, dak, trespa of zonnepanelen",
   description:
-    "Vraag in 2 minuten een gratis offerte aan bij All in One Vastgoedonderhoud. Kies wat u wilt laten reinigen, stuur foto's mee en wij nemen contact met u op.",
+    "Vraag in 2 minuten een gratis offerte aan bij All in One Vastgoedonderhoud. Kies wat u wilt laten doen, stuur foto's mee en wij nemen contact met u op.",
   path: "/offerte-aanvragen",
   ogTitle: "Gratis offerte aanvragen",
   ogSubtitle: "In twee minuten geregeld. Stuur foto's mee en wij nemen contact met u op.",

@@ -95,7 +95,7 @@ export const siteConfig = {
 
   /** Korte bedrijfsomschrijving voor footer, meta en structured data. */
   description:
-    "All in One Vastgoedonderhoud verzorgt het onderhoud van gevel tot dak in Enschede en heel Overijssel. Veilige en milieuvriendelijke reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen met lage druk en biologisch afbreekbare middelen, zonder hogedruk of stoom.",
+    "All in One Vastgoedonderhoud is uw partner voor totaalonderhoud van woningen en bedrijfspanden in Enschede en heel Overijssel: reiniging van gevels, daken, trespa, zonnepanelen en bestrating, schilderwerk binnen en buiten, houtrotherstel, vloerwerk en renovatie. Professioneel, veilig en met oog voor detail.",
 
   /**
    * Reinigingsmethode zoals het bedrijf die zelf beschrijft (bron: allinone-cleaning.nl).
@@ -106,6 +106,17 @@ export const siteConfig = {
     long:
       "Wij reinigen met een combinatie van lage druk en biologisch afbreekbare reinigingsmiddelen. Zo verwijderen we schimmel, bacteriën, algen en andere organische vervuiling zonder het oppervlak te beschadigen. Doordat we geen hogedruk of stoom gebruiken, worden voegen niet uitgeblazen en blijft uw gevel, dak of bestrating intact. Na afloop controleren we het resultaat samen met u.",
     removes: ["Schimmel", "Bacteriën", "Algen en groene aanslag", "Mos", "Organische vlekken en aanslag"],
+  },
+
+  /**
+   * Werkwijze bij schilderwerk, herstel en renovatie, zoals het bedrijf het zelf omschrijft
+   * (bron: Trustoo-profiel All in One Vastgoedonderhoud B.V.).
+   */
+  workStyle: {
+    short: "Professioneel, veilig en met oog voor detail, voor een duurzaam en strak eindresultaat.",
+    long:
+      "Wij werken professioneel, veilig en met oog voor detail, zodat u verzekerd bent van een duurzaam en strak eindresultaat. U kunt rekenen op eerlijk advies, snelle service en duidelijke communicatie: u weet vooraf wat we doen, wanneer we komen en wat het kost.",
+    promises: ["Eerlijk advies", "Snelle service", "Duidelijke communicatie", "Vrijblijvende offerte"],
   },
 
   /** Voor wie het bedrijf werkt (bron: allinone-cleaning.nl). */

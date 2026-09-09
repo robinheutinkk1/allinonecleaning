@@ -20,12 +20,12 @@ import { getSiteSettings } from "@/lib/settings";
 export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
-  title: `Gevelreiniging Enschede | ${siteConfig.companyName} | ${siteConfig.tagline}`,
+  title: `Vastgoedonderhoud Enschede | ${siteConfig.companyName} | ${siteConfig.tagline}`,
   description:
-    "All in One Vastgoedonderhoud verzorgt het onderhoud van gevel tot dak in Enschede en heel Overijssel. Veilige reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen met lage druk, zonder hogedruk of stoom. Bekijk onze before & after-resultaten en vraag gratis een offerte aan.",
+    "All in One Vastgoedonderhoud in Enschede: reiniging van gevels, daken, trespa, zonnepanelen en bestrating, schilderwerk binnen en buiten, houtrotherstel, vloerwerk en renovatie. Professioneel, veilig en met oog voor detail, in heel Overijssel. Vraag een vrijblijvende offerte aan.",
   path: "/",
-  ogTitle: "Een gevel die weer gezien mag worden.",
-  ogSubtitle: "Veilige reiniging van gevels, dakpannen, trespa, zonnepanelen en bestrating in Enschede en heel Overijssel.",
+  ogTitle: "Eén partner voor het onderhoud van uw pand.",
+  ogSubtitle: "Reiniging, schilderwerk, houtrotherstel, vloerwerk en renovatie in Enschede en heel Overijssel.",
 });
 
 /**

@@ -1,4 +1,4 @@
-import { Building2, Home, Layers, Sun, LayoutGrid, MoreHorizontal, type LucideProps } from "lucide-react";
+import { Building2, Hammer, HardHat, Home, Layers, LayoutGrid, MoreHorizontal, Paintbrush, Ruler, Sun, type LucideProps } from "lucide-react";
 
 const icons = {
   building: Building2,
@@ -6,6 +6,10 @@ const icons = {
   layers: Layers,
   sun: Sun,
   grid: LayoutGrid,
+  paintbrush: Paintbrush,
+  hammer: Hammer,
+  ruler: Ruler,
+  hardhat: HardHat,
   more: MoreHorizontal,
 } as const;
 

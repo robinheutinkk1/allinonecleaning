@@ -16,8 +16,8 @@ const root = path.resolve(process.cwd(), "public");
 
 const NAVY = "#111c30";
 const NAVY2 = "#213453";
-const AQUA = "#229bd2";
-const AQUA_LIGHT = "#7fcbee";
+const AQUA = "#d9a23a";
+const AQUA_LIGHT = "#ecc76a";
 
 function esc(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
@@ -97,6 +97,10 @@ const files = [
   { file: "images/services/trespa-reiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "TRESPA REINIGING", subtitle: "Vervang door echte werkfoto (public/images/services/trespa-reiniging.jpg)" }), format: "jpeg" },
   { file: "images/services/zonnepanelen-reiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "ZONNEPANELEN", subtitle: "Vervang door echte werkfoto (public/images/services/zonnepanelen-reiniging.jpg)" }), format: "jpeg" },
   { file: "images/services/bestrating-reiniging.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "BESTRATING & TERRAS", subtitle: "Vervang door echte werkfoto (public/images/services/bestrating-reiniging.jpg)" }), format: "jpeg" },
+  { file: "images/services/schilderwerk.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "SCHILDERWERK", subtitle: "Vervang door echte werkfoto (public/images/services/schilderwerk.jpg)" }), format: "jpeg" },
+  { file: "images/services/houtrotherstel.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "HOUTROTHERSTEL", subtitle: "Vervang door echte werkfoto (public/images/services/houtrotherstel.jpg)" }), format: "jpeg" },
+  { file: "images/services/vloerwerk.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "VLOERWERK", subtitle: "Vervang door echte werkfoto (public/images/services/vloerwerk.jpg)" }), format: "jpeg" },
+  { file: "images/services/renovatie-onderhoud.jpg", svg: placeholderSvg({ w: 1600, h: 1100, title: "RENOVATIE & ONDERHOUD", subtitle: "Vervang door echte werkfoto (public/images/services/renovatie-onderhoud.jpg)" }), format: "jpeg" },
   // Projecten - de aangeleverde before/after-foto's horen hier
   { file: "images/projects/dakpanreiniging-1-voor.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "VOOR - PROJECT 1", subtitle: "Aangeleverde foto: dakpannen met mos (close-up)", tone: "dark" }), format: "jpeg" },
   { file: "images/projects/dakpanreiniging-1-na.jpg", svg: placeholderSvg({ w: 1600, h: 1200, title: "NA - PROJECT 1", subtitle: "Aangeleverde foto: schoon dak, woning met dakkapel" }), format: "jpeg" },

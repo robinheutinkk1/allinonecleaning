@@ -25,7 +25,7 @@ const clamp = (v: string | null, max: number, fallback = "") => {
   const cut = s.slice(0, max);
   return `${cut.slice(0, Math.max(cut.lastIndexOf(" "), 40))}…`;
 };
-const DEFAULT_SUBTITLE = "Veilige reiniging van gevels, dakpannen, trespa, zonnepanelen en bestrating in Enschede en heel Overijssel.";
+const DEFAULT_SUBTITLE = "Reiniging, schilderwerk, houtrotherstel, vloerwerk en renovatie van woningen en bedrijfspanden in Enschede en heel Overijssel.";
 
 const cache: { fonts?: { name: string; data: Buffer; weight: 400 | 500 | 800 }[]; logo?: string } = {};
 
@@ -119,7 +119,7 @@ export async function GET(request: Request) {
     ) : (
       (() => {
         const kicker = clamp(searchParams.get("k"), 60, `${siteConfig.tagline} · ${siteConfig.city}`);
-        const title = clamp(searchParams.get("t"), 90, "Een gevel die weer gezien mag worden.");
+        const title = clamp(searchParams.get("t"), 90, "Eén partner voor het onderhoud van uw pand.");
         const subtitle = clamp(searchParams.get("s"), 140, DEFAULT_SUBTITLE);
         const titleSize = title.length > 60 ? 54 : title.length > 40 ? 62 : 74;
         return (
@@ -132,7 +132,7 @@ export async function GET(request: Request) {
               {subtitle && <span style={{ fontSize: 27, lineHeight: 1.4, color: "#c3d0e0", marginTop: 22, maxWidth: 960 }}>{subtitle}</span>}
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 21, color: "#94a9c4" }}>
-              {["Gevelreiniging", "Dakpanreiniging", "Trespa", "Zonnepanelen", "Bestrating"].map((s, i) => (
+              {["Reiniging", "Schilderwerk", "Houtrotherstel", "Vloerwerk", "Renovatie"].map((s, i) => (
                 <span key={s} style={{ display: "flex", alignItems: "center", gap: 14 }}>
                   {i > 0 && <span style={{ width: 6, height: 6, borderRadius: 9999, background: aqua }} />}
                   {s}

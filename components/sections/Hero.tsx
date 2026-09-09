@@ -157,12 +157,12 @@ export function Hero({
             {...fadeUp(0.1)}
             className="mt-5 font-display text-[2.6rem] font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl lg:[@media(max-height:860px)]:text-6xl"
           >
-            Een gevel die weer <span className="bg-gradient-to-r from-gold-300 to-gold-100 bg-clip-text text-transparent">gezien mag worden.</span>
+            Eén partner voor <span className="bg-gradient-to-r from-gold-300 to-gold-100 bg-clip-text text-transparent">het onderhoud van uw pand.</span>
           </motion.h1>
 
           <motion.p {...fadeUp(0.2)} className="mt-6 max-w-xl text-lg leading-relaxed text-navy-100 sm:text-xl">
-            Veilige en milieuvriendelijke reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen in Enschede en
-            omgeving. Met lage druk en biologisch afbreekbare middelen, zonder schade aan uw pand.
+            Reiniging van gevel, dak en zonnepanelen, schilderwerk binnen en buiten, houtrotherstel, vloerwerk en renovatie.
+            Professioneel, veilig en met oog voor detail, in Enschede en heel Overijssel.
           </motion.p>
 
           <motion.div {...fadeUp(0.3)} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -193,7 +193,7 @@ export function Hero({
             className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy-200 lg:[@media(max-height:860px)]:mt-8"
             aria-label="Onze diensten"
           >
-            {["Gevelreiniging", "Dakpanreiniging", "Trespa", "Zonnepanelen", "Bestrating"].map((s) => (
+            {["Gevelreiniging", "Dakpanreiniging", "Zonnepanelen", "Schilderwerk", "Houtrotherstel", "Renovatie"].map((s) => (
               <motion.li
                 key={s}
                 variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}

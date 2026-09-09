@@ -43,7 +43,7 @@ export const photoPathSchema = z
 
 export const quoteRequestSchema = z
   .object({
-    service: z.enum(values(serviceOptions), { message: "Kies wat u wilt laten reinigen" }),
+    service: z.enum(values(serviceOptions), { message: "Kies wat u wilt laten doen" }),
     serviceOther: z.string().trim().max(200).optional().nullable(),
     propertyType: z.enum(values(propertyTypeOptions), { message: "Kies een pandtype" }),
     surfaceType: z.string().trim().min(1, "Kies een oppervlak").max(60),
@@ -100,7 +100,7 @@ export const quoteRequestSchema = z
       }
     }
     if (data.service === "anders" && !data.serviceOther) {
-      ctx.addIssue({ code: "custom", path: ["serviceOther"], message: "Omschrijf kort wat u wilt laten reinigen" });
+      ctx.addIssue({ code: "custom", path: ["serviceOther"], message: "Omschrijf kort wat u wilt laten doen" });
     }
   });
 
@@ -120,9 +120,9 @@ export function validateStep(stepId: string, data: Partial<QuoteRequestInput>): 
 
   switch (stepId) {
     case "service":
-      pick(z.enum(values(serviceOptions), { message: "Kies wat u wilt laten reinigen" }), "service", data.service);
+      pick(z.enum(values(serviceOptions), { message: "Kies wat u wilt laten doen" }), "service", data.service);
       if (data.service === "anders" && !data.serviceOther?.trim()) {
-        errors.serviceOther = "Omschrijf kort wat u wilt laten reinigen";
+        errors.serviceOther = "Omschrijf kort wat u wilt laten doen";
       }
       break;
     case "property":
