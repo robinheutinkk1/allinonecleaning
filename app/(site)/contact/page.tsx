@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { FAQ } from "@/components/sections/FAQ";
 import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { ctaConfig } from "@/config/site";
+import { ctaConfig, siteConfig as config } from "@/config/site";
 import { getSiteSettings, telHref } from "@/lib/settings";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
@@ -111,8 +111,8 @@ export default async function ContactPage() {
                 </li>
               </ul>
               <p className="mt-5 text-xs text-navy-400">
-                Werkgebied: {siteConfig.workAreas.join(", ")}. Geen reiskosten binnen {siteConfig.travel.freeRadiusKm} km van {siteConfig.travel.from}, daarbuiten €{" "}
-                {siteConfig.travel.ratePerKm.toFixed(2).replace(".", ",")} per km.
+                Werkgebied: {siteConfig.workAreas.join(", ")}. Geen reiskosten binnen {config.travel.freeRadiusKm} km van {config.travel.from}, daarbuiten €{" "}
+                {config.travel.ratePerKm.toFixed(2).replace(".", ",")} per km.
               </p>
             </div>
           </Reveal>
