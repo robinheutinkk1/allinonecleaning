@@ -38,7 +38,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
           <Field id="email" label="E-mailadres (zichtbaar op de site)">
             <input id="email" name="email" type="email" defaultValue={s?.email ?? ""} placeholder="info@…" className={inputCls} />
           </Field>
-          <Field id="notification_email" label="Notificatie-adres" hint="Alleen ter informatie; het echte notificatieadres staat in Vercel (QUOTE_NOTIFICATION_EMAIL).">
+          <Field id="notification_email" label="Notificatie-adres" hint="Alleen ter informatie; het adres waar de meldingen echt naartoe gaan staat in de serverinstellingen (QUOTE_NOTIFICATION_EMAIL).">
             <input id="notification_email" name="notification_email" type="email" defaultValue={s?.notification_email ?? ""} className={inputCls} />
           </Field>
         </div>
@@ -128,8 +128,8 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
           <div className="rounded-2xl bg-navy-50 p-4 text-sm text-navy-600">
             <p className="font-semibold text-navy-900">Collega laten inloggen</p>
             <ol className="mt-2 list-decimal space-y-1 pl-4">
-              <li>Maak in Supabase een gebruiker aan (Authentication, Users, Add user) met e-mail en wachtwoord.</li>
-              <li>Voeg hetzelfde e-mailadres toe aan ADMIN_EMAILS in Vercel (kommagescheiden) en redeploy.</li>
+              <li>Maak een loginaccount aan in het gebruikersbeheer van de database (e-mail en wachtwoord).</li>
+              <li>Voeg hetzelfde e-mailadres toe aan ADMIN_EMAILS in de serverinstellingen (kommagescheiden) en publiceer opnieuw.</li>
               <li>Zet de collega hiernaast in de lijst, met hetzelfde e-mailadres, zodat &quot;Aan mij toewijzen&quot; werkt.</li>
             </ol>
           </div>

@@ -79,9 +79,9 @@ export default function PrivacyPage() {
               <h2 className="font-display text-2xl font-bold text-navy-900">6. Met wie wij gegevens delen</h2>
               <p className="mt-3 leading-relaxed">Wij maken gebruik van de volgende verwerkers, die uw gegevens uitsluitend namens ons verwerken:</p>
               <ul className="mt-3 list-disc space-y-1.5 pl-6">
-                <li>Supabase (database en bestandsopslag, EU-regio)</li>
-                <li>Vercel (hosting van de website)</li>
-                <li>Resend (versturen van e-mailnotificaties)</li>
+                <li>Onze database- en opslagleverancier (opslag van aanvragen en foto&apos;s op servers in de EU)</li>
+                <li>Onze hostingleverancier (het draaien van de website)</li>
+                <li>Onze e-maildienst (versturen van bevestigingen en meldingen)</li>
               </ul>
               <p className="mt-3 leading-relaxed">Met deze partijen zijn verwerkersovereenkomsten gesloten of zij hanteren standaardvoorwaarden die aan de AVG voldoen.</p>
             </div>

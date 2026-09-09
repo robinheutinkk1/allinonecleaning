@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { redirect } from "next/navigation";
 import { createSessionClient } from "@/lib/supabase/ssr";
 
@@ -18,16 +19,24 @@ export function isAllowedEmail(email: string | undefined | null): boolean {
   return allowed.length === 0 || allowed.includes(email.toLowerCase());
 }
 
-/** Huidige ingelogde beheerder, of null. */
-export async function getAdminUser(): Promise<AdminUser | null> {
+/**
+ * Huidige ingelogde beheerder, of null.
+ *
+ * - `getClaims()` controleert de JWT lokaal (met gecachte publieke sleutels) en valt
+ *   alleen terug op een netwerkverzoek als het project nog symmetrische sleutels gebruikt.
+ * - `cache()` zorgt dat layout, pagina en server actions binnen één request maar
+ *   één keer controleren.
+ */
+export const getAdminUser = cache(async (): Promise<AdminUser | null> => {
   const supabase = await createSessionClient();
   if (!supabase) return null;
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user?.email || !isAllowedEmail(user.email)) return null;
-  return { id: user.id, email: user.email };
-}
+  const { data } = await supabase.auth.getClaims();
+  const claims = data?.claims;
+  const email = typeof claims?.email === "string" ? claims.email : null;
+  const id = typeof claims?.sub === "string" ? claims.sub : null;
+  if (!id || !email || !isAllowedEmail(email)) return null;
+  return { id, email };
+});
 
 /** Voor pagina's en server actions: redirect naar login als er geen geldige beheerder is. */
 export async function requireAdmin(): Promise<AdminUser> {

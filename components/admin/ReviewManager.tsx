@@ -5,7 +5,7 @@ import { Eye, EyeOff, Loader2, Pencil, Plus, Save, Star, Trash2, X } from "lucid
 import { deleteReview, saveReview, toggleReviewPublished, type ActionResult } from "@/lib/admin/actions";
 import type { ReviewRow } from "@/lib/supabase/types";
 import { cn } from "@/lib/utils/cn";
-import { btnDanger, btnPrimary, btnSecondary, inputCls, labelCls, Notice, formatDate } from "./ui";
+import { btnDanger, btnPrimary, btnSecondary, btnSmall, inputCls, labelCls, Notice, formatDate } from "./ui";
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -132,7 +132,7 @@ export function ReviewManager({ reviews }: { reviews: ReviewRow[] }) {
                 <p className="mt-2 text-sm text-navy-700">{r.text}</p>
               </div>
               <div className="flex shrink-0 gap-2">
-                <button type="button" onClick={() => setEditing(r.id)} className={`${btnSecondary} h-9 px-3 text-xs`}>
+                <button type="button" onClick={() => setEditing(r.id)} className={`${btnSecondary} ${btnSmall}`}>
                   <Pencil className="size-3.5" /> Bewerken
                 </button>
                 {r.google_review_id ? (
@@ -141,7 +141,7 @@ export function ReviewManager({ reviews }: { reviews: ReviewRow[] }) {
                     disabled={pending}
                     title={r.published ? "Verbergen op de site" : "Tonen op de site"}
                     onClick={() => start(() => toggleReviewPublished(r.id, !r.published).then(() => undefined))}
-                    className={`${btnSecondary} h-9 px-3 text-xs`}
+                    className={`${btnSecondary} ${btnSmall}`}
                   >
                     {r.published ? <EyeOff className="size-3.5" /> : <Eye className="size-3.5" />}
                   </button>
@@ -152,7 +152,7 @@ export function ReviewManager({ reviews }: { reviews: ReviewRow[] }) {
                     onClick={() => {
                       if (window.confirm("Deze review verwijderen?")) start(() => deleteReview(r.id).then(() => undefined));
                     }}
-                    className={`${btnDanger} h-9 px-3 text-xs`}
+                    className={`${btnDanger} ${btnSmall}`}
                   >
                     <Trash2 className="size-3.5" />
                   </button>

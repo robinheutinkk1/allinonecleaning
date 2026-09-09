@@ -25,12 +25,15 @@ export default async function MessagesPage({ searchParams }: PageProps<"/admin/b
   return (
     <>
       <PageTitle title="Berichten" description="Berichten via het contactformulier." />
-      <div className="mb-4 flex flex-wrap gap-2">
+      <div className="-mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 [scrollbar-width:none]">
         {tabs.map((t) => (
           <Link
             key={t.value}
             href={t.value === "alle" ? "/admin/berichten" : `/admin/berichten?status=${t.value}`}
-            className={cn("rounded-full px-4 py-1.5 text-sm font-semibold", status === t.value ? "bg-navy-900 text-white" : "bg-white text-navy-700 ring-1 ring-navy-200 hover:bg-navy-50")}
+            className={cn(
+              "inline-flex min-h-10 shrink-0 items-center rounded-full px-4 text-sm font-semibold transition sm:min-h-9",
+              status === t.value ? "bg-navy-900 text-white shadow-soft" : "bg-white text-navy-700 ring-1 ring-navy-200 hover:bg-navy-50 active:bg-navy-100",
+            )}
           >
             {t.label}
           </Link>

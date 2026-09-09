@@ -120,7 +120,7 @@ export async function sendQuoteNotification(opts: {
     ${
       opts.adminLink
         ? `<p style="margin:20px 0 0"><a href="${escapeHtml(opts.adminLink)}" style="display:inline-block;background:#229bd2;color:#fff;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:600">Bekijk aanvraag</a></p>`
-        : `<p style="color:#94a9c4;font-size:12px;margin:16px 0 0">Foto's zijn opgeslagen in de beveiligde bucket <code>quote-uploads</code> (Supabase → Storage).</p>`
+        : `<p style="color:#94a9c4;font-size:12px;margin:16px 0 0">Foto's staan in de beveiligde opslag en zijn te bekijken via het dashboard.</p>`
     }`;
 
   try {

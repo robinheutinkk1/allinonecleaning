@@ -50,12 +50,12 @@ export function GoogleReviewsCard({ configured, missing, cronConfigured, rating,
           {state && (state.ok ? <Notice>{state.message}</Notice> : <Notice tone="error">{state.error}</Notice>)}
           <p className="text-xs text-navy-500">
             Google geeft maximaal 5 reviews vrij. Nieuwe reviews worden direct gepubliceerd; u kunt ze hieronder verbergen of uitlichten.{" "}
-            {cronConfigured ? "Elke nacht wordt automatisch ververst." : "Automatisch verversen staat uit: zet CRON_SECRET in Vercel voor de dagelijkse verversing."}
+            {cronConfigured ? "Elke nacht wordt automatisch ververst." : "Automatisch verversen staat uit: zet CRON_SECRET in de serverinstellingen voor de dagelijkse verversing."}
           </p>
         </form>
       ) : (
         <Notice tone="info">
-          Google-koppeling nog niet actief. Zet {missing.join(" en ")} in Vercel en deploy opnieuw. Tot die tijd kunt u reviews handmatig toevoegen en het gemiddelde bij Instellingen invullen.
+          Google-koppeling nog niet actief. Zet {missing.join(" en ")} in de serverinstellingen en publiceer opnieuw. Tot die tijd kunt u reviews handmatig toevoegen en het gemiddelde bij Instellingen invullen.
         </Notice>
       )}
     </div>

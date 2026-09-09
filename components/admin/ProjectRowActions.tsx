@@ -14,7 +14,7 @@ export function FlagToggle({ id, field, value, label }: { id: string; field: "pu
       disabled={pending}
       onClick={() => start(() => toggleProjectFlag(id, field, !value).then(() => undefined))}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset transition disabled:opacity-50",
+        "inline-flex min-h-9 items-center gap-2 rounded-full px-3 text-xs font-semibold ring-1 ring-inset transition active:scale-[0.98] disabled:opacity-50 sm:min-h-8",
         value ? "bg-emerald-100 text-emerald-800 ring-emerald-200" : "bg-navy-50 text-navy-500 ring-navy-200",
       )}
     >

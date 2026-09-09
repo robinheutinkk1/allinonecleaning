@@ -7,7 +7,7 @@ import { getQuote, getQuoteByNumber, getSettingsRow, listQuoteEvents, signedPhot
 import { statusLabel } from "@/lib/admin/statuses";
 import { AssignForm, DangerZone, NoteForm, StatusForm } from "@/components/admin/QuoteActions";
 import { PhotoGallery } from "@/components/admin/PhotoGallery";
-import { Card, PageTitle, StatusBadge, formatDateTime } from "@/components/admin/ui";
+import { Card, PageTitle, StatusBadge, btnPrimary, btnSecondary, formatDateTime } from "@/components/admin/ui";
 import { getServiceByQuoteKey } from "@/config/services";
 import { contaminationOptionsFor, labelFor, periodOptions, propertyTypeOptions, sizeOptions, surfaceOptionsFor } from "@/config/quote";
 
@@ -54,17 +54,17 @@ export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanv
         title={`${quote.quote_number}`}
         description={`${quote.customer_name} · ontvangen ${formatDateTime(quote.created_at)}`}
         action={
-          <div className="flex flex-wrap gap-2">
-            <a href={`tel:${phoneDigits}`} className="inline-flex h-10 items-center gap-2 rounded-full bg-navy-900 px-4 text-sm font-semibold text-white hover:bg-navy-800">
-              <Phone className="size-4" /> Bellen
+          <>
+            <a href={`tel:${phoneDigits}`} className={btnPrimary}>
+              <Phone /> Bellen
             </a>
-            <a href={`https://wa.me/${waNumber}`} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center gap-2 rounded-full border border-navy-200 bg-white px-4 text-sm font-semibold text-navy-800 hover:bg-navy-50">
-              <MessageCircle className="size-4" /> WhatsApp
+            <a href={`https://wa.me/${waNumber}`} target="_blank" rel="noopener noreferrer" className={btnSecondary}>
+              <MessageCircle /> WhatsApp
             </a>
-            <a href={`mailto:${quote.email}?subject=${mailSubject}`} className="inline-flex h-10 items-center gap-2 rounded-full border border-navy-200 bg-white px-4 text-sm font-semibold text-navy-800 hover:bg-navy-50">
-              <Mail className="size-4" /> E-mail
+            <a href={`mailto:${quote.email}?subject=${mailSubject}`} className={btnSecondary}>
+              <Mail /> E-mail
             </a>
-          </div>
+          </>
         }
       />
 

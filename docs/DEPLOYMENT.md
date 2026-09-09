@@ -134,6 +134,8 @@ Mailfouten blokkeren nooit een aanvraag: de aanvraag staat al in Supabase, de fo
 | `CRON_SECRET` | nee | lange willekeurige string, activeert de dagelijkse verversing van Google-reviews |
 
 3. Deploy. Koppel het domein (Settings → Domains) en zet `www` als primary met redirect.
+   `vercel.json` zet de serverregio op Frankfurt (`fra1`), dicht bij Supabase (EU) en de bezoekers;
+   dat scheelt merkbaar in de reactietijd van het dashboard.
 4. Aanbevolen: **Vercel Firewall** (rate limiting op `/api/*`) en **Vercel Analytics** aanzetten
    (`lib/analytics.ts` pusht events automatisch naar `window.va` als het script aanwezig is).
 

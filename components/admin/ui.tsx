@@ -71,12 +71,12 @@ export function Card({ children, className, title, action }: { children: ReactNo
 
 export function PageTitle({ title, description, action }: { title: string; description?: string; action?: ReactNode }) {
   return (
-    <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-      <div>
+    <div className="mb-5 flex flex-col gap-3 sm:mb-6 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+      <div className="min-w-0">
         <h1 className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">{title}</h1>
         {description && <p className="mt-1 text-sm text-navy-500">{description}</p>}
       </div>
-      {action}
+      {action && <div className="flex flex-wrap gap-2 [&>a]:flex-1 [&>button]:flex-1 sm:[&>a]:flex-none sm:[&>button]:flex-none">{action}</div>}
     </div>
   );
 }
@@ -120,32 +120,37 @@ export function Pagination({ page, pageSize, total, basePath, params }: { page: 
     return `${basePath}?${sp.toString()}`;
   };
   return (
-    <nav className="mt-4 flex items-center justify-between text-sm text-navy-600" aria-label="Paginering">
+    <nav className="mt-4 flex flex-col gap-3 text-sm text-navy-600 sm:flex-row sm:items-center sm:justify-between" aria-label="Paginering">
       <span>
         Pagina {page} van {pages} · {total} resultaten
       </span>
-      <div className="flex gap-2">
-        {page > 1 && (
-          <Link href={href(page - 1)} className="rounded-full border border-navy-200 px-3 py-1.5 font-semibold hover:bg-navy-50">
-            Vorige
-          </Link>
-        )}
-        {page < pages && (
-          <Link href={href(page + 1)} className="rounded-full border border-navy-200 px-3 py-1.5 font-semibold hover:bg-navy-50">
-            Volgende
-          </Link>
-        )}
+      <div className="grid grid-cols-2 gap-2 sm:flex">
+        <Link href={href(Math.max(1, page - 1))} aria-disabled={page <= 1} className={cn(btnSecondary, btnSmall, page <= 1 && "pointer-events-none opacity-40")}>
+          Vorige
+        </Link>
+        <Link href={href(Math.min(pages, page + 1))} aria-disabled={page >= pages} className={cn(btnSecondary, btnSmall, page >= pages && "pointer-events-none opacity-40")}>
+          Volgende
+        </Link>
       </div>
     </nav>
   );
 }
 
 export const inputCls =
-  "block w-full rounded-xl border border-navy-200 bg-white px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-navy-300 focus:border-aqua-500 focus:outline-none focus:ring-4 focus:ring-aqua-100";
+  "block min-h-11 w-full rounded-xl border border-navy-200 bg-white px-3.5 py-2.5 text-base text-navy-900 placeholder:text-navy-300 focus:border-aqua-500 focus:outline-none focus:ring-4 focus:ring-aqua-100 sm:min-h-10 sm:text-sm";
 export const labelCls = "mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-navy-500";
-export const btnPrimary =
-  "inline-flex h-10 items-center justify-center gap-2 rounded-full bg-aqua-500 px-4 text-sm font-semibold text-white transition hover:bg-aqua-600 disabled:opacity-50";
-export const btnSecondary =
-  "inline-flex h-10 items-center justify-center gap-2 rounded-full border border-navy-200 bg-white px-4 text-sm font-semibold text-navy-800 transition hover:bg-navy-50 disabled:opacity-50";
-export const btnDanger =
-  "inline-flex h-10 items-center justify-center gap-2 rounded-full border border-red-200 bg-white px-4 text-sm font-semibold text-red-700 transition hover:bg-red-50 disabled:opacity-50";
+
+/**
+ * Knoppen: minimaal 44px hoog op telefoon (touch), 40px op desktop; duidelijke
+ * focus-ring, lichte "indruk" bij klikken en een nette uitgeschakelde staat.
+ */
+const btnBase =
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full px-4 text-sm font-semibold transition-all duration-200 select-none " +
+  "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-aqua-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 sm:min-h-10 " +
+  "[&>svg]:size-4 [&>svg]:shrink-0";
+export const btnPrimary = `${btnBase} bg-aqua-500 text-white shadow-[0_6px_16px_-8px_rgb(34_155_210_/_0.8)] hover:bg-aqua-600 hover:shadow-[0_8px_20px_-8px_rgb(34_155_210_/_0.9)]`;
+export const btnSecondary = `${btnBase} border border-navy-200 bg-white text-navy-800 shadow-[0_1px_2px_rgb(16_28_48_/_0.04)] hover:border-navy-300 hover:bg-navy-50`;
+export const btnDanger = `${btnBase} border border-red-200 bg-white text-red-700 hover:border-red-300 hover:bg-red-50`;
+export const btnGhost = `${btnBase} text-navy-700 hover:bg-navy-100/70`;
+/** Kleine variant (in lijsten en kaarten): iets lager en compacter, blijft goed aan te tikken. */
+export const btnSmall = "min-h-10 px-3.5 text-[13px] sm:min-h-9 [&>svg]:size-3.5";

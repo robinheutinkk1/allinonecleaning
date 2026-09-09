@@ -47,7 +47,38 @@ export default async function QuotesPage({ searchParams }: PageProps<"/admin/aan
       {rows.length === 0 ? (
         <EmptyState title="Geen aanvragen gevonden" text="Pas de filters aan of wacht op de eerste aanvraag via de website." />
       ) : (
-        <div className="overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-navy-100">
+        <>
+          {/* Telefoon: kaarten (hele kaart aantikbaar) */}
+          <ul className="space-y-3 md:hidden">
+            {rows.map((q) => (
+              <li key={q.id}>
+                <Link href={`/admin/aanvragen/${q.id}`} className="block rounded-3xl bg-white p-4 shadow-soft ring-1 ring-navy-100 transition active:bg-navy-50">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="truncate font-semibold text-navy-900">{q.customer_name}</p>
+                      <p className="mt-0.5 truncate text-sm text-navy-500">
+                        {getServiceByQuoteKey(q.service)?.title ?? q.service} · {q.city}
+                      </p>
+                    </div>
+                    <StatusBadge status={q.status} />
+                  </div>
+                  <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-navy-400">
+                    <span className="font-mono text-aqua-700">{q.quote_number}</span>
+                    <span>{timeAgo(q.created_at)}</span>
+                    {q.photo_paths.length > 0 && (
+                      <span className="inline-flex items-center gap-1">
+                        <Camera className="size-3" /> {q.photo_paths.length}
+                      </span>
+                    )}
+                    {q.assigned_to && <span>{q.assigned_to}</span>}
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Tablet en desktop: tabel */}
+          <div className="hidden overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-navy-100 md:block">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[760px] text-sm">
               <thead className="bg-navy-50 text-left text-xs font-semibold uppercase tracking-[0.12em] text-navy-500">
@@ -99,6 +130,7 @@ export default async function QuotesPage({ searchParams }: PageProps<"/admin/aan
             </table>
           </div>
         </div>
+        </>
       )}
 
       <Pagination page={page} pageSize={pageSize} total={total} basePath="/admin/aanvragen" params={{ status: filters.status, dienst: filters.service, toegewezen: filters.assignee, q: filters.q }} />

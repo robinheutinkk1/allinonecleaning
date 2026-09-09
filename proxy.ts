@@ -40,9 +40,9 @@ export async function proxy(request: NextRequest) {
     },
   });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // Lokale JWT-controle (snel); valt automatisch terug op de Auth-server als dat nodig is.
+  const { data } = await supabase.auth.getClaims();
+  const user = data?.claims?.sub ? data.claims : null;
 
   if (!user && !isLogin) {
     const login = new URL("/login", request.url);

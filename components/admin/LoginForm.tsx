@@ -11,7 +11,7 @@ export function LoginForm({ next, reason }: { next: string; reason?: string }) {
   return (
     <form action={action} className="space-y-4">
       <input type="hidden" name="volgende" value={next} />
-      {reason === "config" && <Notice tone="error">Supabase is nog niet geconfigureerd. Vul de sleutels in bij Vercel.</Notice>}
+      {reason === "config" && <Notice tone="error">De koppeling met de database is nog niet ingesteld. Neem contact op met de beheerder van de website.</Notice>}
       {state && !state.ok && <Notice tone="error">{state.error}</Notice>}
       <div>
         <label htmlFor="email" className={labelCls}>

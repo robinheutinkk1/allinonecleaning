@@ -120,17 +120,17 @@ export async function getDashboardStats() {
   const since7 = new Date(Date.now() - 7 * 86400000).toISOString();
   const since30 = new Date(Date.now() - 30 * 86400000).toISOString();
 
-  const [all, newOnes, week, month, won, openMessages] = await Promise.all([
+  // Alles parallel: één rondreis naar Supabase in plaats van acht.
+  const [all, newOnes, week, month, won, openMessages, { data: byStatus }, { data: byService }] = await Promise.all([
     c.from("quote_requests").select("id", { count: "exact", head: true }),
     c.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "new"),
     c.from("quote_requests").select("id", { count: "exact", head: true }).gte("created_at", since7),
     c.from("quote_requests").select("id", { count: "exact", head: true }).gte("created_at", since30),
     c.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "won"),
     c.from("contact_messages").select("id", { count: "exact", head: true }).eq("status", "new"),
+    c.from("quote_requests").select("status"),
+    c.from("quote_requests").select("service").gte("created_at", since30),
   ]);
-
-  const { data: byStatus } = await c.from("quote_requests").select("status");
-  const { data: byService } = await c.from("quote_requests").select("service").gte("created_at", since30);
 
   const statusCounts: Record<string, number> = {};
   for (const r of byStatus ?? []) statusCounts[r.status] = (statusCounts[r.status] ?? 0) + 1;
