@@ -69,7 +69,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
         <h2 className="font-display text-lg font-bold text-navy-900">Werkgebied en openingstijden</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field id="work_areas" label="Werkgebied" hint="Eén plaats per regel. De eerste is de vestigingsplaats.">
-            <textarea id="work_areas" name="work_areas" rows={5} defaultValue={(s?.work_areas ?? ["Enschede", "omgeving Enschede"]).join("\n")} className={inputCls} />
+            <textarea id="work_areas" name="work_areas" rows={5} defaultValue={(s?.work_areas ?? ["Enschede", "Twente", "Heel Overijssel"]).join("\n")} className={inputCls} />
           </Field>
           <Field id="opening_hours" label="Openingstijden" hint="Per regel: dagen | tijden. Bijv. Ma-Vr | 08:00-18:00">
             <textarea id="opening_hours" name="opening_hours" rows={5} defaultValue={(s?.opening_hours ?? []).map((o) => `${o.days} | ${o.hours}`).join("\n")} placeholder={"Ma-Vr | 08:00-18:00\nZa | 09:00-13:00"} className={inputCls} />

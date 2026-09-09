@@ -61,7 +61,7 @@ export const services: Service[] = [
     suitableFor: ["Woningen en appartementen", "Bedrijfspanden en winkels", "VvE's en scholen", "Metselwerk en gevelsteen"],
     seoTitle: "Gevelreiniging Enschede | All in One Vastgoedonderhoud",
     seoDescription:
-      "Gevelreiniging in Enschede en omgeving zonder hogedruk. All in One Vastgoedonderhoud verwijdert algen, schimmel en groene aanslag met lage druk en milieuvriendelijke middelen. Vraag gratis een offerte aan en stuur foto's mee.",
+      "Gevelreiniging in Enschede en heel Overijssel zonder hogedruk. All in One Vastgoedonderhoud verwijdert algen, schimmel en groene aanslag met lage druk en milieuvriendelijke middelen. Vraag gratis een offerte aan en stuur foto's mee.",
     quoteKey: "gevel",
   },
   {
@@ -86,7 +86,7 @@ export const services: Service[] = [
     suitableFor: ["Woningen met pannendak", "Bedrijfspanden", "Bijgebouwen en garages", "Dakgoten"],
     seoTitle: "Dakpanreiniging Enschede | Mos en aanslag verwijderen | All in One Vastgoedonderhoud",
     seoDescription:
-      "Dakpannen reinigen in Enschede en omgeving met lage druk. All in One Vastgoedonderhoud verwijdert mos, algen en aanslag van uw dak zonder schade. Bekijk onze before & after-resultaten en vraag een gratis offerte aan.",
+      "Dakpannen reinigen in Enschede en heel Overijssel met lage druk. All in One Vastgoedonderhoud verwijdert mos, algen en aanslag van uw dak zonder schade. Bekijk onze before & after-resultaten en vraag een gratis offerte aan.",
     quoteKey: "dak",
   },
   {
@@ -111,7 +111,7 @@ export const services: Service[] = [
     suitableFor: ["Trespa en HPL-beplating", "Dakranden en boeidelen", "Bedrijfspanden en scholen", "Dakkapellen"],
     seoTitle: "Trespa reinigen Enschede | Gevelbekleding schoonmaken | All in One Vastgoedonderhoud",
     seoDescription:
-      "Trespa en gevelbeplating reinigen in Enschede en omgeving. All in One Vastgoedonderhoud maakt uw gevelbekleding weer strak en fris, zonder hogedruk. Gratis offerte, stuur eenvoudig foto's mee.",
+      "Trespa en gevelbeplating reinigen in Enschede en heel Overijssel. All in One Vastgoedonderhoud maakt uw gevelbekleding weer strak en fris, zonder hogedruk. Gratis offerte, stuur eenvoudig foto's mee.",
     quoteKey: "trespa",
   },
   {
@@ -136,7 +136,7 @@ export const services: Service[] = [
     suitableFor: ["Woningen", "Bedrijfsdaken", "Panelen op schuine en platte daken"],
     seoTitle: "Zonnepanelen reinigen Enschede | All in One Vastgoedonderhoud",
     seoDescription:
-      "Zonnepanelen laten reinigen in Enschede en omgeving. All in One Vastgoedonderhoud verwijdert vuil en aanslag veilig en milieuvriendelijk voor een optimaal rendement. Vraag vrijblijvend een offerte aan.",
+      "Zonnepanelen laten reinigen in Enschede en heel Overijssel. All in One Vastgoedonderhoud verwijdert vuil en aanslag veilig en milieuvriendelijk voor een optimaal rendement. Vraag vrijblijvend een offerte aan.",
     quoteKey: "zonnepanelen",
   },
   {
@@ -161,7 +161,7 @@ export const services: Service[] = [
     suitableFor: ["Terrassen", "Opritten", "Tuinpaden", "Parkeerplaatsen en bedrijfsterreinen"],
     seoTitle: "Bestrating en terras reinigen Enschede | All in One Vastgoedonderhoud",
     seoDescription:
-      "Terras, oprit of tuinpad laten reinigen in Enschede en omgeving. All in One Vastgoedonderhoud verwijdert groene aanslag en mos met lage druk, zonder de voegen uit te spoelen. Gratis offerte.",
+      "Terras, oprit of tuinpad laten reinigen in Enschede en heel Overijssel. All in One Vastgoedonderhoud verwijdert groene aanslag en mos met lage druk, zonder de voegen uit te spoelen. Gratis offerte.",
     quoteKey: "bestrating",
   },
 ];

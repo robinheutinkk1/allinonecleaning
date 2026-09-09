@@ -38,7 +38,7 @@ export default async function ServicePage({ params }: PageProps<"/diensten/[slug
 
   return (
     <>
-      <PageHeader eyebrow={`${service.title} · Enschede en omgeving`} title={service.tagline} description={service.summary} breadcrumbs={crumbs} />
+      <PageHeader eyebrow={`${service.title} · Enschede en heel Overijssel`} title={service.tagline} description={service.summary} breadcrumbs={crumbs} />
       <ServiceDetail service={service} projects={projects} />
       <FAQ />
       <CTASection title={`${service.title} laten uitvoeren?`} serviceKey={service.quoteKey} />

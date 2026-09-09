@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { Review } from "@/config/reviews";
 import { getReviews } from "@/lib/reviews";
 import { getSiteSettings } from "@/lib/settings";
+import { siteConfig } from "@/config/site";
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -50,22 +51,34 @@ export function ReviewCard({ review }: { review: Review }) {
 export async function ReviewsSection() {
   const [reviews, settings] = await Promise.all([getReviews(), getSiteSettings()]);
   const googleRating = settings.googleRating;
-  if (reviews.length === 0 && !googleRating) return null;
+  const trustoo = siteConfig.trustoo;
+  if (reviews.length === 0 && !googleRating && !trustoo) return null;
 
   return (
     <section className="section-y bg-white">
       <div className="container-x">
         <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading eyebrow="Ervaringen" title="Wat klanten zeggen." description="Beoordelingen van klanten die ons voor zijn gegaan." />
-          {googleRating && (
-            <a href={googleRating.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-2xl bg-navy-50 px-5 py-3 transition-colors hover:bg-navy-100">
-              <span className="font-display text-2xl font-bold text-navy-900">{googleRating.rating.toFixed(1)}</span>
-              <span className="flex flex-col">
-                <Stars rating={Math.round(googleRating.rating)} />
-                <span className="text-xs text-navy-500">{googleRating.count} Google reviews</span>
-              </span>
-            </a>
-          )}
+          <div className="flex flex-wrap gap-3">
+            {googleRating && (
+              <a href={googleRating.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-2xl bg-navy-50 px-5 py-3 transition-colors hover:bg-navy-100">
+                <span className="font-display text-2xl font-bold text-navy-900">{googleRating.rating.toFixed(1)}</span>
+                <span className="flex flex-col">
+                  <Stars rating={Math.round(googleRating.rating)} />
+                  <span className="text-xs text-navy-500">{googleRating.count} Google reviews</span>
+                </span>
+              </a>
+            )}
+            {trustoo && (
+              <a href={trustoo.url} target="_blank" rel="noopener noreferrer nofollow" className="inline-flex items-center gap-3 rounded-2xl bg-navy-50 px-5 py-3 transition-colors hover:bg-navy-100">
+                <span className="font-display text-2xl font-bold text-navy-900">{trustoo.score.toFixed(1).replace(".", ",")}</span>
+                <span className="flex flex-col">
+                  <span className="text-sm font-semibold text-navy-900">Trustoo-score</span>
+                  <span className="text-xs text-navy-500">{trustoo.label}</span>
+                </span>
+              </a>
+            )}
+          </div>)
         </Reveal>
 
         {reviews.length > 0 && (

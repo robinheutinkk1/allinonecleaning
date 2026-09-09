@@ -53,7 +53,12 @@ export const faqItems: FaqItem[] = [
   {
     question: "Waar zijn jullie actief?",
     answer:
-      "Wij werken vanuit Enschede en zijn actief in Enschede en de omliggende regio. Twijfelt u of uw locatie binnen ons werkgebied valt? Vraag gerust een offerte aan of neem contact op, dan laten we het u direct weten.",
+      "Wij werken vanuit Enschede en zijn actief in heel Overijssel: van Twente tot Zwolle en van Deventer tot Hardenberg. Binnen 10 kilometer van Enschede rekenen wij geen reiskosten. Daarbuiten geldt een kilometervergoeding van 0,23 euro per kilometer, die wij vooraf duidelijk in de offerte opnemen.",
+  },
+  {
+    question: "Rekenen jullie voorrijkosten?",
+    answer:
+      "Binnen 10 kilometer van Enschede niet. Ligt uw pand verder weg in Overijssel, dan rekenen wij 0,23 euro per gereden kilometer. Dat bedrag staat altijd apart en vooraf in de offerte, zodat u nooit voor verrassingen komt te staan.",
   },
   {
     question: "Wat gebeurt er met mijn foto's en gegevens?",

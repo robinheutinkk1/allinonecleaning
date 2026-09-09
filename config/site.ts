@@ -66,8 +66,24 @@ export const siteConfig = {
   /** Openingstijden - nog niet bevestigd. */
   openingHours: null as { days: string; hours: string }[] | null,
 
-  /** Bevestigd werkgebied. Voeg pas plaatsen toe als het bedrijf dit bevestigt. */
-  workAreas: ["Enschede", "omgeving Enschede"],
+  /** Bevestigd werkgebied: heel Overijssel, vanuit Enschede. */
+  workAreas: ["Enschede", "Twente", "Heel Overijssel"],
+
+  /**
+   * Reiskosten (bevestigd door het bedrijf): binnen 10 km van Enschede geen reiskosten,
+   * daarbuiten 0,23 euro per kilometer. Wordt getoond in FAQ, werkgebied, contact en wizard.
+   */
+  travel: { freeRadiusKm: 10, ratePerKm: 0.23, from: "Enschede" },
+
+  /**
+   * Trustoo-profiel (bron: zoekresultaten van trustoo.nl, september 2026). Score en
+   * vermelding "Top 10 gevelreinigers in Enschede". Zet op null om de badge te verbergen.
+   */
+  trustoo: {
+    score: 8.7,
+    url: "https://trustoo.nl/overijssel/enschede/gevelreiniging/all-in-one-vastgoedonderhoud-bv/",
+    label: "Top 10 gevelreinigers in Enschede",
+  } as { score: number; url: string; label: string } | null,
 
   /** Social links - alleen tonen als bekend. */
   socialLinks: {
@@ -79,7 +95,7 @@ export const siteConfig = {
 
   /** Korte bedrijfsomschrijving voor footer, meta en structured data. */
   description:
-    "All in One Vastgoedonderhoud verzorgt het onderhoud van gevel tot dak in Enschede en omgeving. Veilige en milieuvriendelijke reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen met lage druk en biologisch afbreekbare middelen, zonder hogedruk of stoom.",
+    "All in One Vastgoedonderhoud verzorgt het onderhoud van gevel tot dak in Enschede en heel Overijssel. Veilige en milieuvriendelijke reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen met lage druk en biologisch afbreekbare middelen, zonder hogedruk of stoom.",
 
   /**
    * Reinigingsmethode zoals het bedrijf die zelf beschrijft (bron: allinone-cleaning.nl).
@@ -137,8 +153,8 @@ export const ctaConfig = {
 export const trustItems = [
   { label: "Lage druk, geen hogedruk", description: "Veilig voor voegen, dakpannen en beplating" },
   { label: "Milieuvriendelijke middelen", description: "Biologisch afbreekbare reinigingsmiddelen" },
-  { label: "Transparante offerte", description: "Duidelijke prijs vooraf, geen verrassingen" },
-  { label: "Actief in Enschede & omgeving", description: "Lokaal bedrijf, persoonlijk contact" },
+  { label: "Gratis advies en offerte", description: "Vrijblijvend adviesgesprek, duidelijke prijs vooraf" },
+  { label: "Actief in heel Overijssel", description: "Vanuit Enschede, persoonlijk contact" },
 ] as const;
 
 /**

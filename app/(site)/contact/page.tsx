@@ -110,7 +110,10 @@ export default async function ContactPage() {
                   )}
                 </li>
               </ul>
-              <p className="mt-5 text-xs text-navy-400">Werkgebied: {siteConfig.workAreas.join(", ")}.</p>
+              <p className="mt-5 text-xs text-navy-400">
+                Werkgebied: {siteConfig.workAreas.join(", ")}. Geen reiskosten binnen {siteConfig.travel.freeRadiusKm} km van {siteConfig.travel.from}, daarbuiten €{" "}
+                {siteConfig.travel.ratePerKm.toFixed(2).replace(".", ",")} per km.
+              </p>
             </div>
           </Reveal>
         </div>

@@ -472,6 +472,10 @@ function StepContent({
               </button>
             )}
           </div>
+          <p className="rounded-2xl bg-navy-50 px-4 py-3 text-xs leading-relaxed text-navy-500">
+            Wij werken in heel Overijssel. Binnen {siteConfig.travel.freeRadiusKm} km van {siteConfig.travel.from} rekenen wij geen reiskosten; daarbuiten geldt €{" "}
+            {siteConfig.travel.ratePerKm.toFixed(2).replace(".", ",")} per kilometer, altijd vooraf in de offerte vermeld.
+          </p>
         </div>
       );
 

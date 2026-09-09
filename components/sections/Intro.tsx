@@ -58,7 +58,7 @@ export function Intro() {
               </span>
               <span>
                 <span className="block font-display text-sm font-bold text-navy-900">Lokaal & persoonlijk</span>
-                <span className="block text-xs text-navy-400">Vanuit Enschede, voor Enschede en omgeving</span>
+                <span className="block text-xs text-navy-400">Vanuit Enschede, voor heel Overijssel</span>
               </span>
             </div>
           </div>

@@ -29,7 +29,7 @@ const values = [
   { icon: Sparkles, title: "Resultaat dat u ziet", text: "We doen wat we zeggen: een gevel, dak of oppervlak dat zichtbaar schoner is. Bekijk onze before & after-foto's." },
   { icon: Handshake, title: "Persoonlijk contact", text: "U heeft één aanspreekpunt. Van de eerste foto tot de laatste spoelbeurt weet u met wie u te maken heeft." },
   { icon: ShieldCheck, title: "Veilig en duurzaam", text: "Lage druk en biologisch afbreekbare middelen. Geen hogedruk, geen stoom, geen schade aan uw pand of de omgeving." },
-  { icon: MapPin, title: "Lokaal uit Enschede", text: "We werken in Enschede en omgeving. Dichtbij, snel ter plaatse en bekend met de huizen en panden in de regio." },
+  { icon: MapPin, title: "Lokaal uit Enschede", text: "We werken vanuit Enschede in heel Overijssel. Binnen 10 km geen reiskosten, daarbuiten een vaste kilometervergoeding die vooraf in de offerte staat." },
 ];
 
 export default function OverOnsPage() {

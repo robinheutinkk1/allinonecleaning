@@ -2,6 +2,9 @@ import { MapPin, Navigation } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getSiteSettings } from "@/lib/settings";
+import { siteConfig } from "@/config/site";
+
+const euro = (v: number) => `€ ${v.toFixed(2).replace(".", ",")}`;
 
 /**
  * Lokale SEO-sectie. Toont het werkgebied uit de instellingen (dashboard) of config/site.ts.
@@ -19,18 +22,18 @@ export async function LocationSection() {
             eyebrow="Werkgebied"
             title={
               <>
-                Actief in {city} <span className="text-gold-600">en omgeving.</span>
+                Vanuit {city}, <span className="text-gold-600">actief in heel Overijssel.</span>
               </>
             }
             description={
               <>
                 <p>
                   All in One Vastgoedonderhoud werkt vanuit {city}. Wij reinigen gevels, dakpannen, trespa, bestrating en zonnepanelen bij woningen en
-                  bedrijfspanden in de stad en de directe omgeving.
+                  bedrijfspanden in Twente en de rest van Overijssel.
                 </p>
                 <p className="mt-4">
-                  Woont u iets verder weg in Twente? Vraag gerust een offerte aan, dan laten we u weten of uw locatie binnen ons werkgebied
-                  valt.
+                  Binnen {siteConfig.travel.freeRadiusKm} kilometer van {siteConfig.travel.from} rekenen wij geen reiskosten. Daarbuiten geldt een
+                  kilometervergoeding van {euro(siteConfig.travel.ratePerKm)} per kilometer, altijd vooraf in de offerte vermeld.
                 </p>
               </>
             }
@@ -61,7 +64,9 @@ export async function LocationSection() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-8 max-w-sm text-sm text-navy-300">Vestigingsplaats: {city}. Andere plaatsen op aanvraag.</p>
+              <p className="mt-8 max-w-sm text-sm text-navy-300">
+                Vestigingsplaats: {city}. Geen reiskosten binnen {siteConfig.travel.freeRadiusKm} km, daarbuiten {euro(siteConfig.travel.ratePerKm)} per km.
+              </p>
             </div>
           </div>
         </Reveal>

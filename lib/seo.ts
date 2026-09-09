@@ -71,7 +71,7 @@ export function localBusinessJsonLd(settings: SiteSettings) {
     url: siteConfig.url,
     image: `${siteConfig.url}/og`,
     logo: `${siteConfig.url}/images/logo.png`,
-    areaServed: settings.workAreas.map((name) => ({ "@type": "City", name })),
+    areaServed: areaServed(settings.workAreas),
     address: {
       "@type": "PostalAddress",
       addressLocality: settings.address.city,
@@ -112,8 +112,17 @@ export function serviceJsonLd(service: { title: string; seoDescription: string; 
     image: `${siteConfig.url}${service.image}`,
     serviceType: service.title,
     provider: { "@id": `${siteConfig.url}/#business` },
-    areaServed: siteConfig.workAreas.map((name) => ({ "@type": "City", name })),
+    areaServed: areaServed(siteConfig.workAreas),
   };
+}
+
+/** Werkgebied als schema.org-gebieden: provincies/regio's als AdministrativeArea, de rest als City. */
+function areaServed(names: readonly string[]) {
+  return names.map((raw) => {
+    const name = raw.replace(/^heel\s+/i, "").trim();
+    const region = /^(overijssel|twente|gelderland|drenthe|achterhoek|salland)$/i.test(name);
+    return { "@type": region ? "AdministrativeArea" : "City", name };
+  });
 }
 
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {

@@ -25,7 +25,7 @@ const clamp = (v: string | null, max: number, fallback = "") => {
   const cut = s.slice(0, max);
   return `${cut.slice(0, Math.max(cut.lastIndexOf(" "), 40))}…`;
 };
-const DEFAULT_SUBTITLE = "Veilige reiniging van gevels, dakpannen, trespa, zonnepanelen en bestrating in Enschede en omgeving.";
+const DEFAULT_SUBTITLE = "Veilige reiniging van gevels, dakpannen, trespa, zonnepanelen en bestrating in Enschede en heel Overijssel.";
 
 const cache: { fonts?: { name: string; data: Buffer; weight: 400 | 500 | 800 }[]; logo?: string } = {};
 
