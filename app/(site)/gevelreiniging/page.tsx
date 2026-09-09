@@ -19,7 +19,8 @@ export const metadata: Metadata = pageMetadata({
   title: service.seoTitle,
   description: service.seoDescription,
   path: "/gevelreiniging",
-  image: service.image,
+  ogTitle: "Gevelreiniging Enschede",
+  ogSubtitle: service.tagline,
 });
 
 const crumbs = [

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import { ogImageUrl } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,10 +39,11 @@ export const metadata: Metadata = {
     type: "website",
     locale: "nl_NL",
     siteName: siteConfig.companyName,
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+    images: [{ url: ogImageUrl(), width: 1200, height: 630 }],
   },
+  twitter: { card: "summary_large_image", images: [ogImageUrl()] },
   robots: { index: true, follow: true },
-  icons: { icon: "/favicon.ico", apple: "/images/logo.png" },
+  // Icons via bestandsconventie: app/favicon.ico, app/icon.png, app/apple-icon.png
 };
 
 export const viewport: Viewport = {

@@ -3,16 +3,36 @@ import { siteConfig } from "@/config/site";
 import { services } from "@/config/services";
 import type { SiteSettings } from "@/lib/settings";
 
+/**
+ * Dynamische deelafbeelding (app/og/route.tsx). Titel en ondertitel per pagina;
+ * variant "login" voor de loginpagina.
+ */
+export function ogImageUrl(opts: { title?: string; subtitle?: string; kicker?: string; variant?: "default" | "login" } = {}): string {
+  const sp = new URLSearchParams();
+  if (opts.variant === "login") sp.set("v", "login");
+  if (opts.title) sp.set("t", opts.title);
+  if (opts.subtitle) sp.set("s", opts.subtitle);
+  if (opts.kicker) sp.set("k", opts.kicker);
+  const qs = sp.toString();
+  return `/og${qs ? `?${qs}` : ""}`;
+}
+
 /** Bouwt consistente metadata per pagina (title, description, canonical, OG). */
 export function pageMetadata(opts: {
   title: string;
   description: string;
   path: string;
+  /** Eigen afbeelding i.p.v. de dynamisch gegenereerde. */
   image?: string;
+  /** Titel op de deelafbeelding (standaard de paginatitel zonder bedrijfsnaam). */
+  ogTitle?: string;
+  /** Ondertitel op de deelafbeelding (standaard de description). */
+  ogSubtitle?: string;
   noIndex?: boolean;
 }): Metadata {
   const url = `${siteConfig.url}${opts.path === "/" ? "" : opts.path}`;
-  const image = opts.image ?? "/images/og-image.jpg";
+  const cleanTitle = opts.title.replace(new RegExp(`\\s*[|·-]\\s*${siteConfig.companyName}.*$`, "i"), "").trim();
+  const image = opts.image ?? ogImageUrl({ title: opts.ogTitle ?? cleanTitle, subtitle: opts.ogSubtitle ?? opts.description });
   // Titels die de bedrijfsnaam al bevatten niet nogmaals door de template laten voorzien.
   const hasBrand = opts.title.toLowerCase().includes(siteConfig.companyName.toLowerCase());
   return {

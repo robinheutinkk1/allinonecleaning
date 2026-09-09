@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps<"/diensten/[slug]">
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
-  return pageMetadata({ title: service.seoTitle, description: service.seoDescription, path: service.href, image: service.image });
+  return pageMetadata({ title: service.seoTitle, description: service.seoDescription, path: service.href, ogTitle: service.title, ogSubtitle: service.tagline });
 }
 
 export default async function ServicePage({ params }: PageProps<"/diensten/[slug]">) {

@@ -13,6 +13,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Bekijk echte voor-en-na-foto's van projecten van All in One Cleaning in Enschede en omgeving. Sleep de slider en zie het verschil van professionele gevel- en dakpanreiniging.",
   path: "/before-after",
+  ogTitle: "Before & After",
+  ogSubtitle: "Echte voor-en-na-resultaten van gevel- en dakreiniging in Enschede en omgeving.",
 });
 
 const crumbs = [

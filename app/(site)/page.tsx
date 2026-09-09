@@ -24,6 +24,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "All in One Cleaning is uw gevelspecialist in Enschede en omgeving. Veilige reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen met lage druk, zonder hogedruk of stoom. Bekijk onze before & after-resultaten en vraag gratis een offerte aan.",
   path: "/",
+  ogTitle: "Een gevel die weer gezien mag worden.",
+  ogSubtitle: "Veilige reiniging van gevels, dakpannen, trespa, zonnepanelen en bestrating in Enschede en omgeving.",
 });
 
 /**

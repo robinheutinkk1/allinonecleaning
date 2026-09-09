@@ -11,6 +11,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Vraag in 2 minuten een gratis offerte aan bij All in One Cleaning Enschede. Kies wat u wilt laten reinigen, stuur foto's mee en wij nemen contact met u op.",
   path: "/offerte-aanvragen",
+  ogTitle: "Gratis offerte aanvragen",
+  ogSubtitle: "In twee minuten geregeld. Stuur foto's mee en wij nemen contact met u op.",
 });
 
 const reassurance = [

@@ -11,6 +11,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Overzicht van de reinigingsdiensten van All in One Cleaning Enschede: gevelreiniging, dakpanreiniging, trespa reiniging en zonnepanelen reiniging. Vraag gratis een offerte aan.",
   path: "/diensten",
+  ogTitle: "Onze diensten",
+  ogSubtitle: "Gevelreiniging, dakpanreiniging, trespa, zonnepanelen en bestrating. Met lage druk, zonder schade.",
 });
 
 export default function DienstenPage() {

@@ -15,6 +15,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Neem contact op met All in One Cleaning in Enschede voor vragen over gevelreiniging, dakpanreiniging, trespa of zonnepanelen. Of vraag direct een gratis offerte aan.",
   path: "/contact",
+  ogTitle: "Contact",
+  ogSubtitle: "Vragen over gevel, dak, trespa of zonnepanelen? Bel, mail of vraag direct een offerte aan.",
 });
 
 const crumbs = [

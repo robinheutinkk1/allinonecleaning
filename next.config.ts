@@ -12,6 +12,8 @@ const supabaseHost = (() => {
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Fonts en logo voor de dynamische deelafbeelding meenemen in de serverless bundle
+  outputFileTracingIncludes: { "/og": ["./assets/fonts/*", "./public/images/logo-mark.png"] },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [360, 414, 640, 768, 1024, 1280, 1536, 1920],

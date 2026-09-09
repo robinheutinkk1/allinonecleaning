@@ -16,6 +16,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "All in One Cleaning is een lokaal reinigingsbedrijf uit Enschede, gespecialiseerd in gevels, dakpannen, trespa en zonnepanelen. Persoonlijk contact en zichtbaar resultaat.",
   path: "/over-ons",
+  ogTitle: "Over ons",
+  ogSubtitle: "Lokaal reinigingsbedrijf uit Enschede. Persoonlijk contact en zichtbaar resultaat.",
 });
 
 const crumbs = [
