@@ -80,7 +80,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
       <section className="space-y-4">
         <h2 className="font-display text-lg font-bold text-navy-900">Google en social media</h2>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field id="google_rating" label="Google-beoordeling (gemiddelde)" hint="Alleen echte cijfers uit Google Business Profile.">
+          <Field id="google_rating" label="Google-beoordeling (gemiddelde)" hint="Alleen echte cijfers uit Google Business Profile. Met de Google-koppeling (pagina Reviews) wordt dit automatisch bijgewerkt.">
             <input id="google_rating" name="google_rating" type="number" step="0.1" min={1} max={5} defaultValue={s?.google_rating ?? ""} className={inputCls} />
           </Field>
           <Field id="google_review_count" label="Aantal Google-reviews">

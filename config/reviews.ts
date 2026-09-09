@@ -20,6 +20,8 @@ export type Review = {
   text: string;
   source: "Google" | "Facebook" | "Website" | string;
   date?: string;
+  /** Link naar het profiel van de schrijver (Google vereist naamsvermelding bij opgehaalde reviews). */
+  authorUrl?: string;
 };
 
 export const reviews: Review[] = [];

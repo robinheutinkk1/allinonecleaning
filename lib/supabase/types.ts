@@ -100,6 +100,10 @@ export type ReviewRow = {
   published: boolean;
   featured: boolean;
   sort_order: number;
+  /** Vaste id van Google bij automatisch opgehaalde reviews, anders null. */
+  google_review_id: string | null;
+  /** Link naar het Google-profiel van de schrijver (naamsvermelding). */
+  author_url: string | null;
 };
 
 export type OpeningHour = { days: string; hours: string };
@@ -125,6 +129,8 @@ export type SiteSettingsRow = {
   google_rating: number | null;
   google_review_count: number | null;
   google_reviews_url: string | null;
+  google_synced_at: string | null;
+  google_place_name: string | null;
   stats: StatItem[] | null;
   hero_video_enabled: boolean;
   notification_email: string | null;
@@ -165,7 +171,7 @@ export type Database = {
       };
       reviews: {
         Row: ReviewRow;
-        Insert: Omit<ReviewRow, "id" | "created_at" | "updated_at"> & Partial<Pick<ReviewRow, "id">>;
+        Insert: Omit<ReviewRow, "id" | "created_at" | "updated_at" | "google_review_id" | "author_url"> & Partial<Pick<ReviewRow, "id" | "google_review_id" | "author_url">>;
         Update: Partial<ReviewRow>;
         Relationships: [];
       };

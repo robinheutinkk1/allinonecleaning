@@ -21,8 +21,14 @@ export function ReviewCard({ review }: { review: Review }) {
       <Quote className="size-6 text-aqua-300" aria-hidden />
       <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-navy-700">{review.text}</blockquote>
       <figcaption className="mt-5 flex items-center justify-between border-t border-navy-100 pt-4">
-        <span>
-          <span className="block text-sm font-semibold text-navy-900">{review.author}</span>
+        <span className="min-w-0">
+          {review.authorUrl ? (
+            <a href={review.authorUrl} target="_blank" rel="noopener noreferrer nofollow" className="block truncate text-sm font-semibold text-navy-900 hover:text-aqua-700">
+              {review.author}
+            </a>
+          ) : (
+            <span className="block truncate text-sm font-semibold text-navy-900">{review.author}</span>
+          )}
           <span className="block text-xs text-navy-400">
             via {review.source}
             {review.date ? ` · ${review.date}` : ""}

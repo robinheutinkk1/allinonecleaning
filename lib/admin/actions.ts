@@ -9,6 +9,7 @@ import { createSessionClient } from "@/lib/supabase/ssr";
 import { getServiceClient, STORAGE_BUCKETS } from "@/lib/supabase/server";
 import { isAllowedEmail, requireAdmin } from "@/lib/admin/auth";
 import { getQuote } from "@/lib/admin/queries";
+import { syncGoogleReviews } from "@/lib/google/sync";
 import { QUOTE_STATUSES } from "@/lib/admin/statuses";
 import type { QuoteStatus } from "@/lib/supabase/types";
 
@@ -289,6 +290,22 @@ const reviewSchema = z.object({
 export async function saveReview(_prev: ActionResult | null, formData: FormData): Promise<ActionResult> {
   await requireAdmin();
   const id = String(formData.get("id") ?? "");
+
+  // Google-reviews: inhoud komt van Google, alleen zichtbaarheid en volgorde zijn aanpasbaar.
+  if (id) {
+    const { data: existing } = await svc().from("reviews").select("google_review_id").eq("id", id).maybeSingle();
+    if (existing?.google_review_id) {
+      const { error } = await svc()
+        .from("reviews")
+        .update({ published: formData.get("published") === "on", featured: formData.get("featured") === "on", sort_order: Number(formData.get("sort_order") ?? 0) || 0 })
+        .eq("id", id);
+      if (error) return { ok: false, error: error.message };
+      revalidateSite();
+      revalidatePath("/admin/reviews");
+      return { ok: true, message: "Review opgeslagen." };
+    }
+  }
+
   const parsed = reviewSchema.safeParse({
     author: formData.get("author"),
     rating: Number(formData.get("rating")),
@@ -306,6 +323,30 @@ export async function saveReview(_prev: ActionResult | null, formData: FormData)
   revalidateSite();
   revalidatePath("/admin/reviews");
   return { ok: true, message: "Review opgeslagen." };
+}
+
+/** Google-reviews kunnen niet verwijderd worden (komen bij verversing terug), wel verborgen. */
+export async function toggleReviewPublished(id: string, published: boolean): Promise<ActionResult> {
+  await requireAdmin();
+  const { error } = await svc().from("reviews").update({ published }).eq("id", id);
+  if (error) return { ok: false, error: error.message };
+  revalidateSite();
+  revalidatePath("/admin/reviews");
+  return { ok: true };
+}
+
+/** Knop "Google-reviews ophalen" in het dashboard. */
+export async function syncGoogleReviewsAction(): Promise<ActionResult> {
+  await requireAdmin();
+  try {
+    const r = await syncGoogleReviews();
+    const parts = [`${r.received} reviews ontvangen van Google`, `${r.imported} nieuw`, `${r.updated} bijgewerkt`];
+    if (r.skipped) parts.push(`${r.skipped} zonder tekst overgeslagen`);
+    const score = r.rating !== null && r.reviewCount !== null ? ` Gemiddelde ${r.rating.toFixed(1)} op basis van ${r.reviewCount} reviews.` : "";
+    return { ok: true, message: `${parts.join(", ")}.${score}` };
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : "Ophalen mislukt." };
+  }
 }
 
 export async function deleteReview(id: string): Promise<ActionResult> {

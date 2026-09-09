@@ -5,7 +5,8 @@
 1. **Echte foto's per dienst** - de placeholders op /diensten zijn het zwakste visuele punt.
 2. **Meer before/after-projecten** van gevel, trespa en zonnepanelen (nu alleen dak). De galerijfilter
    verschijnt automatisch zodra er projecten van ≥ 2 diensten zijn.
-3. **Google Reviews** toevoegen via `/admin/reviews` → reviewsectie verschijnt op home en over-ons.
+3. **Google Reviews** koppelen (sleutel + Place ID, `docs/DEPLOYMENT.md` 3b) of handmatig toevoegen
+   via `/admin/reviews` → reviewsectie verschijnt op home en over-ons.
 4. **Contactgegevens** invullen via `/admin/instellingen` (telefoon, e-mail, adres, KvK, openingstijden).
 5. **Vercel Analytics of Plausible** aanzetten → funnel-inzicht: waar haken bezoekers af in de wizard?
 

@@ -44,7 +44,8 @@ app/
   api/quote                  POST: offerteaanvraag → Supabase + mails
   api/contact                POST: contactbericht → Supabase + mail
   api/upload                 POST/DELETE: foto-upload naar privé-bucket (sharp: EXIF strip, webp)
-  api/health                 GET: controleert Supabase/Resend-configuratie zonder geheimen te tonen
+  api/health                 GET: controleert Supabase/Resend/Google-configuratie zonder geheimen te tonen
+  api/cron/google-reviews    GET (Vercel Cron, CRON_SECRET): dagelijkse verversing van Google-reviews
   sitemap.ts  robots.ts
 proxy.ts                     beschermt /admin (sessie verversen, redirect naar login, noindex)
 components/
@@ -65,6 +66,7 @@ config/
   faq.ts  reviews.ts
 lib/
   admin/        auth (ADMIN_EMAILS), queries, server actions, statussen
+  google/       Places API (New): beoordeling + reviews ophalen, synchronisatie naar Supabase
   supabase/     server clients (service role / anon), ssr (cookie-sessie), env, types
   validation/   zod-schema's (quote, contact) - client én server
   email/        Resend-templates (notificatie + klantbevestiging)
@@ -76,6 +78,8 @@ lib/
   analytics.ts  events: quote_started, quote_step_completed, quote_photo_uploaded, quote_submitted, contact_submitted
 supabase/migrations/0001_init.sql   tabellen, RLS, storage buckets + policies
 supabase/migrations/0002_admin.sql  reviews, site_settings, quote_events + beheerder-policies (dashboard)
+supabase/migrations/0003_google_reviews.sql  Google-id en profiel-link per review, laatste verversing
+vercel.json                         dagelijkse cron: /api/cron/google-reviews
 assets/originals/                   originele aangeleverde foto's (niet publiek geserveerd)
 scripts/process-photos.mjs          splitst VOOR/NA-collages, snijdt labels weg, vult public/images
 scripts/generate-placeholders.mjs   placeholder-afbeeldingen voor paden waar nog geen foto voor is

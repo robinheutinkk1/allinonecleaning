@@ -10,7 +10,7 @@ async function loadReviews(): Promise<Review[]> {
   try {
     const { data, error } = await client
       .from("reviews")
-      .select("author, rating, text, source, review_date, featured, sort_order")
+      .select("author, author_url, rating, text, source, review_date, featured, sort_order")
       .eq("published", true)
       .order("featured", { ascending: false })
       .order("sort_order", { ascending: true })
@@ -23,6 +23,7 @@ async function loadReviews(): Promise<Review[]> {
       text: r.text,
       source: r.source,
       date: r.review_date ? new Date(r.review_date).toLocaleDateString("nl-NL", { month: "long", year: "numeric" }) : undefined,
+      authorUrl: r.author_url ?? undefined,
     }));
   } catch {
     return configReviews;
