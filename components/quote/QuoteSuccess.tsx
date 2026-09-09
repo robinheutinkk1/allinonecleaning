@@ -4,11 +4,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Check, Copy, Home, Phone } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { siteConfig } from "@/config/site";
+import { telHref, useSiteSettings } from "@/components/providers/SiteSettingsProvider";
 
 export function QuoteSuccess({ quoteNumber, serviceLabel, photoCount }: { quoteNumber: string; serviceLabel: string; photoCount: number }) {
   const reduce = useReducedMotion();
   const [copied, setCopied] = useState(false);
+  const { phone } = useSiteSettings();
 
   const copy = async () => {
     try {
@@ -62,8 +63,8 @@ export function QuoteSuccess({ quoteNumber, serviceLabel, photoCount }: { quoteN
         <Button href="/" variant="secondary" icon={<Home className="size-4" />} iconPosition="left">
           Terug naar home
         </Button>
-        {siteConfig.phone && (
-          <Button href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} variant="ghost" icon={<Phone className="size-4" />} iconPosition="left">
+        {phone && (
+          <Button href={telHref(phone)} variant="ghost" icon={<Phone className="size-4" />} iconPosition="left">
             Bel ons direct
           </Button>
         )}

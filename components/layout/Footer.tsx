@@ -3,10 +3,12 @@ import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { ctaConfig, navigation, siteConfig } from "@/config/site";
 import { services } from "@/config/services";
+import type { SiteSettings } from "@/lib/settings";
+import { telHref } from "@/lib/settings";
 
-export function Footer() {
+export function Footer({ settings }: { settings: SiteSettings }) {
   const year = new Date().getFullYear();
-  const socials = Object.entries(siteConfig.socialLinks).filter(([, url]) => Boolean(url)) as [string, string][];
+  const socials = Object.entries(settings.socialLinks).filter(([, url]) => Boolean(url)) as [string, string][];
 
   return (
     <footer className="relative mt-auto bg-navy-950 text-navy-200">
@@ -60,45 +62,44 @@ export function Footer() {
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 size-4 shrink-0 text-aqua-400" aria-hidden />
               <span>
-                {siteConfig.address.street ? (
+                {settings.address.street ? (
                   <>
-                    {siteConfig.address.street}
+                    {settings.address.street}
                     <br />
-                    {siteConfig.address.postalCode} {siteConfig.address.city}
+                    {settings.address.postalCode} {settings.address.city}
                   </>
                 ) : (
                   <>
-                    {siteConfig.address.city}
+                    {settings.address.city}
                     <br />
-                    <span className="text-navy-400">Werkgebied: {siteConfig.workAreas.join(", ")}</span>
+                    <span className="text-navy-400">Werkgebied: {settings.workAreas.join(", ")}</span>
                   </>
                 )}
               </span>
             </li>
-            {siteConfig.phone ? (
+            {settings.phone && (
               <li className="flex items-center gap-3">
                 <Phone className="size-4 shrink-0 text-aqua-400" aria-hidden />
-                <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-white">
-                  {siteConfig.phone}
+                <a href={telHref(settings.phone)} className="transition-colors hover:text-white">
+                  {settings.phone}
                 </a>
-              </li>
-            ) : (
-              <li className="flex items-center gap-3 text-navy-400">
-                <Phone className="size-4 shrink-0 text-aqua-400" aria-hidden />
-                <span>[TELEFOONNUMMER]</span>
               </li>
             )}
-            {siteConfig.email ? (
+            {settings.email && (
               <li className="flex items-center gap-3">
                 <Mail className="size-4 shrink-0 text-aqua-400" aria-hidden />
-                <a href={`mailto:${siteConfig.email}`} className="transition-colors hover:text-white">
-                  {siteConfig.email}
+                <a href={`mailto:${settings.email}`} className="transition-colors hover:text-white">
+                  {settings.email}
                 </a>
               </li>
-            ) : (
-              <li className="flex items-center gap-3 text-navy-400">
-                <Mail className="size-4 shrink-0 text-aqua-400" aria-hidden />
-                <span>[E-MAILADRES]</span>
+            )}
+            {settings.openingHours && settings.openingHours.length > 0 && (
+              <li className="pt-1 text-navy-300">
+                {settings.openingHours.map((o) => (
+                  <span key={o.days} className="block">
+                    {o.days}: {o.hours}
+                  </span>
+                ))}
               </li>
             )}
           </ul>
@@ -107,7 +108,7 @@ export function Footer() {
               {socials.map(([name, url]) => (
                 <li key={name}>
                   <a href={url} target="_blank" rel="noopener noreferrer" className="capitalize transition-colors hover:text-white">
-                    {name}
+                    {name === "google" ? "Google" : name}
                   </a>
                 </li>
               ))}
@@ -120,7 +121,8 @@ export function Footer() {
         <div className="container-x flex flex-col gap-4 py-6 text-xs text-navy-400 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {siteConfig.legalName}. {siteConfig.tagline}.
-            {siteConfig.kvk && <span className="ml-2">KvK {siteConfig.kvk}</span>}
+            {settings.kvk && <span className="ml-2">KvK {settings.kvk}</span>}
+            {settings.btw && <span className="ml-2">Btw {settings.btw}</span>}
           </p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {navigation.legal.map((item) => (

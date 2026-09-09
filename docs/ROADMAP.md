@@ -5,22 +5,22 @@
 1. **Echte foto's per dienst** - de placeholders op /diensten zijn het zwakste visuele punt.
 2. **Meer before/after-projecten** van gevel, trespa en zonnepanelen (nu alleen dak). De galerijfilter
    verschijnt automatisch zodra er projecten van ≥ 2 diensten zijn.
-3. **Google Reviews** invullen in `config/reviews.ts` → reviewsectie verschijnt op home en over-ons.
-4. **Telefoonnummer** invullen → "Bel direct" in navbar, sticky balk, CTA's en succesvenster.
+3. **Google Reviews** toevoegen via `/admin/reviews` → reviewsectie verschijnt op home en over-ons.
+4. **Contactgegevens** invullen via `/admin/instellingen` (telefoon, e-mail, adres, KvK, openingstijden).
 5. **Vercel Analytics of Plausible** aanzetten → funnel-inzicht: waar haken bezoekers af in de wizard?
 
-## Fase 2 - Dashboard (architectuur is voorbereid)
+## Fase 2 - Dashboard (gereed)
 
-Alles wat een dashboard nodig heeft staat al in de database:
-`status`, `admin_notes`, `assigned_to`, `photo_paths`, RLS-policies voor `authenticated`.
+Beschikbaar op `/admin`: aanvragen (filters, detail met foto's via signed URLs, status, notities,
+toewijzen, activiteitenlog, CSV-export), berichten, projecten (upload naar `project-images`),
+reviews en site-instellingen. Zie `docs/DEPLOYMENT.md` 1b.
 
-Voorstel: route `/admin` (Supabase Auth, e-mail + wachtwoord of magic link), met:
+Mogelijke uitbreidingen:
 
-- Lijst aanvragen (filter op status, dienst, datum), kaartweergave zoals in de master-prompt
-- Detail: alle velden, foto's via **signed URLs** (`storage.from('quote-uploads').createSignedUrl(path, 3600)`), status wijzigen, notities, toewijzen
-- Projectenbeheer: before/after uploaden naar `project-images`, publiceren/uitlichten, sorteren
-- Reviews en diensten beheren (dan uit config → database)
-- `ADMIN_URL` invullen → "Bekijk aanvraag"-knop in de notificatiemail werkt direct
+- Diensten en FAQ beheren vanuit het dashboard (nu nog in `config/`)
+- Offerte-pdf en "offerte verstuurd"-mail rechtstreeks vanuit de aanvraag
+- Magic-link login of 2FA via Supabase Auth
+- Meerdere gebruikers met rollen (nu: iedereen in `ADMIN_EMAILS` is beheerder)
 
 ## Fase 3 - Conversie & marketing
 
@@ -30,7 +30,7 @@ Voorstel: route `/admin` (Supabase Auth, e-mail + wachtwoord of magic link), met
 - **Seizoenscampagnes**: landingspagina's "Dakreiniging voorjaar" met UTM-tracking (wordt al opgeslagen).
 - **Lokale SEO-pagina's** per plaats - alleen zodra het werkgebied bevestigd is én er per plaats echte
   projecten/foto's zijn om de pagina uniek te maken.
-- **Schema.org `AggregateRating`** toevoegen zodra er echte Google-reviews zijn.
+- **Schema.org `AggregateRating`** staat klaar: vul Google-beoordeling en aantal in bij `/admin/instellingen`.
 
 ## Technische verbeterpunten
 

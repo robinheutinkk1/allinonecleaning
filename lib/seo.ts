@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { services } from "@/config/services";
+import type { SiteSettings } from "@/lib/settings";
 
 /** Bouwt consistente metadata per pagina (title, description, canonical, OG). */
 export function pageMetadata(opts: {
@@ -38,7 +39,7 @@ export function pageMetadata(opts: {
 }
 
 /** LocalBusiness - alleen bekende velden worden opgenomen. */
-export function localBusinessJsonLd() {
+export function localBusinessJsonLd(settings: SiteSettings) {
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -50,25 +51,28 @@ export function localBusinessJsonLd() {
     url: siteConfig.url,
     image: `${siteConfig.url}/images/og-image.jpg`,
     logo: `${siteConfig.url}/images/logo.png`,
-    areaServed: siteConfig.workAreas.map((name) => ({ "@type": "City", name })),
+    areaServed: settings.workAreas.map((name) => ({ "@type": "City", name })),
     address: {
       "@type": "PostalAddress",
-      addressLocality: siteConfig.address.city,
+      addressLocality: settings.address.city,
       addressCountry: siteConfig.country,
-      ...(siteConfig.address.street ? { streetAddress: siteConfig.address.street } : {}),
-      ...(siteConfig.address.postalCode ? { postalCode: siteConfig.address.postalCode } : {}),
+      ...(settings.address.street ? { streetAddress: settings.address.street } : {}),
+      ...(settings.address.postalCode ? { postalCode: settings.address.postalCode } : {}),
     },
     makesOffer: services.map((s) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name: s.title, url: `${siteConfig.url}${s.href}` },
     })),
   };
-  if (siteConfig.phone) data.telephone = siteConfig.phone;
-  if (siteConfig.email) data.email = siteConfig.email;
-  const sameAs = Object.values(siteConfig.socialLinks).filter(Boolean);
+  if (settings.phone) data.telephone = settings.phone;
+  if (settings.email) data.email = settings.email;
+  const sameAs = Object.values(settings.socialLinks).filter(Boolean);
   if (sameAs.length) data.sameAs = sameAs;
-  if (siteConfig.openingHours) {
-    data.openingHoursSpecification = siteConfig.openingHours.map((o) => ({
+  if (settings.googleRating) {
+    data.aggregateRating = { "@type": "AggregateRating", ratingValue: settings.googleRating.rating, reviewCount: settings.googleRating.count, bestRating: 5 };
+  }
+  if (settings.openingHours) {
+    data.openingHoursSpecification = settings.openingHours.map((o) => ({
       "@type": "OpeningHoursSpecification",
       dayOfWeek: o.days,
       opens: o.hours.split("-")[0]?.trim(),

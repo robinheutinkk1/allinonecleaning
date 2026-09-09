@@ -107,9 +107,10 @@ export async function POST(request: Request) {
   }
 
   // E-mails: fouten loggen, aanvraag is al veilig opgeslagen.
-  const adminBase = process.env.ADMIN_URL ?? null;
+  // Dashboard-link: ADMIN_URL of standaard <site>/admin. De detailpagina accepteert ook het aanvraagnummer.
+  const adminBase = (process.env.ADMIN_URL?.trim() || `${siteConfig.url}/admin`).replace(/\/+$/, "");
   const [notify, confirm] = await Promise.all([
-    sendQuoteNotification({ quoteNumber, data, adminLink: adminBase ? `${adminBase}/aanvragen/${quoteNumber}` : null }),
+    sendQuoteNotification({ quoteNumber, data, adminLink: `${adminBase}/aanvragen/${quoteNumber}` }),
     sendQuoteConfirmation({ quoteNumber, data }),
   ]);
   if (!notify.sent) console.warn("[quote] notificatiemail niet verstuurd:", notify.reason);

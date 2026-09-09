@@ -10,7 +10,12 @@
    - functie `next_quote_number('AIC')` → `AIC-2026-0001` (atomische teller per jaar)
    - RLS: geen publieke toegang tot aanvragen; gepubliceerde projecten publiek leesbaar
    - storage buckets `quote-uploads` (**privé**, 10 MB, jpg/png/webp) en `project-images` (**publiek**)
-3. **Project Settings → API**: kopieer `Project URL`, `anon public` key en `service_role` key.
+3. Open opnieuw **SQL Editor** → plak de inhoud van `supabase/migrations/0002_admin.sql` → Run.
+   Dit maakt aan (nodig voor het dashboard):
+   - tabellen `reviews`, `site_settings` (één rij met contactgegevens, openingstijden, werkgebied, statistieken)
+     en `quote_events` (activiteitenlog per aanvraag)
+   - extra RLS-policies voor ingelogde beheerders (berichten bijwerken, aanvragen en foto's verwijderen)
+4. **Project Settings → API**: kopieer `Project URL`, `anon public` key en `service_role` key.
 
 ### Storage-structuur
 
@@ -22,17 +27,52 @@ project-images/<slug>/voor.jpg, na.jpg               ← publieke before/after-f
 Deze twee lopen nooit door elkaar: de site schrijft uitsluitend naar `quote-uploads`; de galerij
 leest uitsluitend `project-images` (of `/public/images/projects` als fallback).
 
-### Foto's van een aanvraag bekijken (zolang er geen dashboard is)
+### Foto's van een aanvraag bekijken
 
-Supabase Dashboard → Storage → `quote-uploads` → map met de sessie-hash. De paden staan in de
-kolom `photo_paths` van de aanvraag (`Table Editor → quote_requests`).
+Via het dashboard: `/admin/aanvragen/<nummer>` toont de foto's met tijdelijke (1 uur geldige)
+signed URLs. Zonder dashboard: Supabase → Storage → `quote-uploads` → map met de sessie-hash;
+de paden staan in de kolom `photo_paths` van de aanvraag.
 
-### Projecten beheren
+### Projecten en reviews beheren
 
-`Table Editor → projects`: nieuwe rij met `title`, `slug`, `service` (`gevelreiniging` /
-`dakpanreiniging` / `trespa-reiniging` / `zonnepanelen-reiniging`), `location`, `description`,
-`result`, `before_image` en `after_image` (pad in bucket `project-images`, bijv. `gevel-1/voor.jpg`,
-of een volledige URL), `published = true`. Binnen een uur (ISR) verschijnt het project op de site.
+Via het dashboard (`/admin/projecten`, `/admin/reviews`): voor/na-foto's uploaden (worden
+automatisch verkleind en naar `project-images/<slug>/` geschreven), publiceren, uitlichten,
+sorteren. Wijzigingen staan direct op de site. Handmatig kan het ook via `Table Editor → projects`
+(`before_image`/`after_image` = pad in bucket `project-images` of volledige URL, `published = true`).
+
+## 1b. Dashboard (`/admin`)
+
+Het dashboard draait op dezelfde site, onder `/admin`, en gebruikt Supabase Auth
+(e-mail + wachtwoord). Alleen adressen in `ADMIN_EMAILS` mogen inloggen.
+
+1. Supabase → **Authentication → Users → Add user → Create new user**: e-mailadres + wachtwoord,
+   vink **Auto Confirm User** aan.
+2. Supabase → **Authentication → Sign In / Providers → Email**: zet **Allow new users to sign up** uit
+   (anders kan iedereen een account maken; ze komen zonder `ADMIN_EMAILS` overigens niet binnen).
+3. Vercel → **Environment Variables**: `ADMIN_EMAILS=<het e-mailadres uit stap 1>` (meerdere adressen
+   scheiden met een komma). Redeploy.
+4. Log in op `https://<domein>/admin/login`.
+
+Onderdelen:
+
+| Pagina | Wat kun je er doen |
+| --- | --- |
+| `/admin` | KPI's (nieuwe aanvragen, laatste 7/30 dagen, gewonnen, open berichten), laatste aanvragen, verdeling per status en dienst |
+| `/admin/aanvragen` | zoeken, filteren op status/dienst, paginering, **Exporteer CSV** (Excel, `;`-gescheiden) |
+| `/admin/aanvragen/<id>` | alle wizard-antwoorden, foto's (signed URLs, klik = groot), status wijzigen, toewijzen, notities, activiteitenlog, bellen/WhatsApp/e-mail-knoppen, foto's of aanvraag verwijderen |
+| `/admin/berichten` | contactberichten: nieuw → gelezen → beantwoord → archief, verwijderen |
+| `/admin/projecten` | before/after-projecten: aanmaken, uploaden, publiceren, uitlichten, sorteren, verwijderen |
+| `/admin/reviews` | reviews toevoegen/bewerken (naam, sterren, tekst, bron, datum), publiceren, uitlichten |
+| `/admin/instellingen` | telefoon, e-mail, WhatsApp, adres, KvK/btw, openingstijden, werkgebied, social links, Google-beoordeling, statistieken, hero-video aan/uit, notificatie-adres |
+
+Alles wat je in **Instellingen** invult, neemt de publieke site over (navbar, footer, sticky balk,
+CTA's, contactpagina, LocalBusiness-structured data). Lege velden blijven verborgen: de site
+toont nooit verzonnen gegevens.
+
+Beveiliging: `/admin` heeft `noindex`, de proxy (`proxy.ts`) stuurt bezoekers zonder sessie naar
+de loginpagina, en elke server action controleert opnieuw of het account in `ADMIN_EMAILS` staat.
+Alle database-acties in het dashboard lopen via de service-role key op de server; de browser krijgt
+nooit een geheime sleutel.
 
 ## 2. Resend (e-mail)
 
@@ -68,7 +108,8 @@ Mailfouten blokkeren nooit een aanvraag: de aanvraag staat al in Supabase, de fo
 | `QUOTE_NOTIFICATION_EMAIL` | ja | mailbox van het bedrijf |
 | `SEND_CUSTOMER_CONFIRMATION` | nee | `true`/`false` |
 | `IP_HASH_SALT` | aanbevolen | lange willekeurige string |
-| `ADMIN_URL` | nee | later: dashboard-URL voor "Bekijk aanvraag"-link |
+| `ADMIN_EMAILS` | ja (dashboard) | e-mailadressen die op `/admin` mogen inloggen, kommagescheiden |
+| `ADMIN_URL` | nee | dashboard-URL voor de "Bekijk aanvraag"-link in de mail, standaard `<site>/admin` |
 | `NEXT_PUBLIC_HERO_VIDEO_SRC` | nee | `/videos/hero.mp4` zodra de video goedgekeurd is |
 
 3. Deploy. Koppel het domein (Settings → Domains) en zet `www` als primary met redirect.
@@ -91,7 +132,9 @@ Zonder keys: wizard en contactformulier werken in "dev-fallback" (log naar conso
 - [ ] Echte logo en foto's geplaatst (`docs/CONTENT-CHECKLIST.md` A)
 - [ ] `config/site.ts` ingevuld: telefoon, e-mail, KvK, werkgebied, domein
 - [ ] Diensten en teksten gecontroleerd door All in One Cleaning
-- [ ] Supabase-migratie uitgevoerd, buckets aanwezig, `quote-uploads` staat op **niet publiek**
+- [ ] Supabase-migraties `0001_init.sql` én `0002_admin.sql` uitgevoerd, buckets aanwezig, `quote-uploads` staat op **niet publiek**
+- [ ] Dashboard: beheerder aangemaakt in Supabase Auth, `ADMIN_EMAILS` in Vercel, publieke sign-up uit, ingelogd op `/admin`
+- [ ] Instellingen in het dashboard ingevuld (telefoon, e-mail, adres, KvK, openingstijden, werkgebied)
 - [ ] Resend-domein geverifieerd, testmail ontvangen
 - [ ] Alle env-variabelen in Vercel (Production én Preview)
 - [ ] Testaanvraag gedaan op de productie-URL: rij in `quote_requests`, foto's in bucket, 2 mails ontvangen

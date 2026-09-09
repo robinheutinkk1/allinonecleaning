@@ -3,7 +3,8 @@
 import { usePathname } from "next/navigation";
 import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { ctaConfig, siteConfig } from "@/config/site";
+import { ctaConfig } from "@/config/site";
+import { telHref, useSiteSettings } from "@/components/providers/SiteSettingsProvider";
 import { track } from "@/lib/analytics";
 
 /**
@@ -13,9 +14,8 @@ import { track } from "@/lib/analytics";
  */
 export function StickyMobileCTA() {
   const pathname = usePathname();
+  const { phone } = useSiteSettings();
   if (pathname.startsWith("/offerte-aanvragen") || pathname.startsWith("/contact")) return null;
-
-  const phone = siteConfig.phone;
 
   return (
     <>
@@ -28,29 +28,11 @@ export function StickyMobileCTA() {
       >
         <div className="mx-auto flex max-w-md gap-2">
           {phone && (
-            <Button
-              href={`tel:${phone.replace(/\s/g, "")}`}
-              variant="ghost"
-              className="flex-1"
-              icon={<Phone className="size-4" />}
-              iconPosition="left"
-              onClick={() => track({ name: "phone_click", location: "sticky_mobile" })}
-            >
+            <Button href={telHref(phone)} variant="ghost" className="flex-1" icon={<Phone className="size-4" />} iconPosition="left" onClick={() => track({ name: "phone_click", location: "sticky_mobile" })}>
               Bel direct
             </Button>
           )}
-          <Button
-            href={ctaConfig.primary.href}
-            className="flex-[1.4]"
-            icon={<ArrowRight className="size-4" />}
-            onClick={() =>
-              track({
-                name: "cta_click",
-                label: "offerte",
-                location: "sticky_mobile",
-              })
-            }
-          >
+          <Button href={ctaConfig.primary.href} className="flex-[1.4]" icon={<ArrowRight className="size-4" />} onClick={() => track({ name: "cta_click", label: "offerte", location: "sticky_mobile" })}>
             Offerte aanvragen
           </Button>
         </div>

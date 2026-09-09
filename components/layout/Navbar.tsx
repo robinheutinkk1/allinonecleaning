@@ -8,6 +8,7 @@ import { ArrowRight, Menu, Phone, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { ctaConfig, navigation, siteConfig } from "@/config/site";
+import { telHref, useSiteSettings } from "@/components/providers/SiteSettingsProvider";
 import { cn } from "@/lib/utils/cn";
 
 /**
@@ -23,6 +24,8 @@ export function Navbar() {
   const pathname = usePathname();
   const reduce = useReducedMotion();
   const transparentOnTop = DARK_HERO_PATHS.has(pathname);
+  const settings = useSiteSettings();
+  const phone = settings.phone;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -85,16 +88,16 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          {siteConfig.phone && (
+          {phone && (
             <a
-              href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
+              href={telHref(phone)}
               className={cn(
                 "hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors md:inline-flex",
                 solid ? "text-navy-800 hover:bg-navy-50" : "text-white hover:bg-white/10",
               )}
             >
               <Phone className="size-4" aria-hidden />
-              {siteConfig.phone}
+              {phone}
             </a>
           )}
           <Button href={ctaConfig.primary.href} size="sm" className="hidden sm:inline-flex" icon={<ArrowRight className="size-4" />}>
@@ -156,9 +159,9 @@ export function Navbar() {
                 <Button href={ctaConfig.primary.href} size="lg" icon={<ArrowRight className="size-5" />}>
                   {ctaConfig.primary.label}
                 </Button>
-                {siteConfig.phone ? (
-                  <Button href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} variant="ghost" size="lg" icon={<Phone className="size-5" />} iconPosition="left">
-                    {siteConfig.phone}
+                {phone ? (
+                  <Button href={telHref(phone)} variant="ghost" size="lg" icon={<Phone className="size-5" />} iconPosition="left">
+                    {phone}
                   </Button>
                 ) : (
                   <Button href={ctaConfig.contact.href} variant="ghost" size="lg">

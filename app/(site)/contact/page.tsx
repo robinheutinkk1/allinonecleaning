@@ -6,7 +6,8 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { FAQ } from "@/components/sections/FAQ";
 import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { ctaConfig, siteConfig } from "@/config/site";
+import { ctaConfig } from "@/config/site";
+import { getSiteSettings, telHref } from "@/lib/settings";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -21,7 +22,8 @@ const crumbs = [
   { name: "Contact", path: "/contact" },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const siteConfig = await getSiteSettings();
   return (
     <>
       <PageHeader
@@ -60,7 +62,7 @@ export default function ContactPage() {
                 <li className="flex items-start gap-3">
                   <Phone className="mt-0.5 size-4 shrink-0 text-aqua-600" aria-hidden />
                   {siteConfig.phone ? (
-                    <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className="font-medium text-navy-900 hover:text-aqua-700">
+                    <a href={telHref(siteConfig.phone)} className="font-medium text-navy-900 hover:text-aqua-700">
                       {siteConfig.phone}
                     </a>
                   ) : (

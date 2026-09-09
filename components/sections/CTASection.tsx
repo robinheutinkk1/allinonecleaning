@@ -1,9 +1,10 @@
 import { ArrowRight, Camera, Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { ctaConfig, siteConfig } from "@/config/site";
+import { ctaConfig } from "@/config/site";
+import { getSiteSettings, telHref } from "@/lib/settings";
 
-export function CTASection({
+export async function CTASection({
   title = "Dit resultaat ook voor uw gevel?",
   text = "Stuur een paar foto's mee en vertel ons wat u wilt laten reinigen. Wij beoordelen uw situatie en nemen contact met u op, geheel vrijblijvend.",
   serviceKey,
@@ -12,6 +13,7 @@ export function CTASection({
   text?: string;
   serviceKey?: string;
 }) {
+  const settings = await getSiteSettings();
   const href = serviceKey ? `${ctaConfig.primary.href}?dienst=${serviceKey}` : ctaConfig.primary.href;
 
   return (
@@ -36,9 +38,9 @@ export function CTASection({
                 <Button href={href} size="lg" className="w-full sm:w-auto" icon={<ArrowRight className="size-5" />}>
                   {ctaConfig.primary.label}
                 </Button>
-                {siteConfig.phone ? (
-                  <Button href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} variant="outline-white" size="lg" className="w-full sm:w-auto" icon={<Phone className="size-4" />} iconPosition="left">
-                    {siteConfig.phone}
+                {settings.phone ? (
+                  <Button href={telHref(settings.phone)} variant="outline-white" size="lg" className="w-full sm:w-auto" icon={<Phone className="size-4" />} iconPosition="left">
+                    {settings.phone}
                   </Button>
                 ) : (
                   <Button href={ctaConfig.contact.href} variant="outline-white" size="lg" className="w-full sm:w-auto">

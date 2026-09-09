@@ -1,7 +1,9 @@
 import { Quote, Star } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { googleRating, reviews, type Review } from "@/config/reviews";
+import type { Review } from "@/config/reviews";
+import { getReviews } from "@/lib/reviews";
+import { getSiteSettings } from "@/lib/settings";
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -33,30 +35,21 @@ export function ReviewCard({ review }: { review: Review }) {
 }
 
 /**
- * Social proof. Zolang er geen echte reviews in config/reviews.ts staan,
- * wordt een eerlijke placeholder getoond in plaats van verzonnen testimonials.
+ * Social proof: reviews uit het dashboard (Supabase) of config/reviews.ts.
+ * Zonder echte reviews en zonder Google-score wordt de sectie niet getoond.
  */
-export function ReviewsSection({ showPlaceholder = false }: { showPlaceholder?: boolean }) {
-  const hasReviews = reviews.length > 0;
-  // Geen echte reviews én geen placeholder gewenst → sectie niet renderen (geen fake social proof).
-  if (!hasReviews && !googleRating && !showPlaceholder) return null;
+export async function ReviewsSection() {
+  const [reviews, settings] = await Promise.all([getReviews(), getSiteSettings()]);
+  const googleRating = settings.googleRating;
+  if (reviews.length === 0 && !googleRating) return null;
 
   return (
     <section className="section-y bg-white">
       <div className="container-x">
         <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <SectionHeading
-            eyebrow="Ervaringen"
-            title="Wat klanten zeggen."
-            description={hasReviews ? "Beoordelingen van klanten die ons voor zijn gegaan." : "Wij verzamelen beoordelingen van klanten via Google. Zodra die er zijn, vindt u ze hier."}
-          />
+          <SectionHeading eyebrow="Ervaringen" title="Wat klanten zeggen." description="Beoordelingen van klanten die ons voor zijn gegaan." />
           {googleRating && (
-            <a
-              href={googleRating.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 rounded-2xl bg-navy-50 px-5 py-3 transition-colors hover:bg-navy-100"
-            >
+            <a href={googleRating.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-2xl bg-navy-50 px-5 py-3 transition-colors hover:bg-navy-100">
               <span className="font-display text-2xl font-bold text-navy-900">{googleRating.rating.toFixed(1)}</span>
               <span className="flex flex-col">
                 <Stars rating={Math.round(googleRating.rating)} />
@@ -66,7 +59,7 @@ export function ReviewsSection({ showPlaceholder = false }: { showPlaceholder?: 
           )}
         </Reveal>
 
-        {hasReviews ? (
+        {reviews.length > 0 && (
           <StaggerGroup className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {reviews.slice(0, 6).map((r, i) => (
               <StaggerItem key={`${r.author}-${i}`}>
@@ -74,19 +67,6 @@ export function ReviewsSection({ showPlaceholder = false }: { showPlaceholder?: 
               </StaggerItem>
             ))}
           </StaggerGroup>
-        ) : (
-          <Reveal className="mt-12">
-            <div className="grid gap-6 md:grid-cols-3">
-              {[0, 1, 2].map((i) => (
-                <div key={i} className="rounded-3xl border border-dashed border-navy-200 bg-navy-50/60 p-6" aria-hidden={i > 0}>
-                  <Stars rating={5} />
-                  <p className="mt-4 text-sm leading-relaxed text-navy-400">
-                    {i === 0 ? "[GOOGLE REVIEWS]: hier verschijnen echte beoordelingen zodra ze zijn toegevoegd in config/reviews.ts." : "Beoordeling volgt"}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         )}
       </div>
     </section>

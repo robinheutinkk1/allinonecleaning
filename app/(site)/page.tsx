@@ -15,6 +15,7 @@ import { siteConfig } from "@/config/site";
 import { faqItems } from "@/config/faq";
 import { getFeaturedProjects } from "@/lib/projects";
 import { faqJsonLd, pageMetadata } from "@/lib/seo";
+import { getSiteSettings } from "@/lib/settings";
 
 export const revalidate = 3600;
 
@@ -31,8 +32,8 @@ export const metadata: Metadata = pageMetadata({
  * Op mobiel wordt altijd de poster gebruikt.
  */
 export default async function HomePage() {
-  const projects = await getFeaturedProjects(3);
-  const videoSrc = siteConfig.heroVideo || null;
+  const [projects, settings] = await Promise.all([getFeaturedProjects(3), getSiteSettings()]);
+  const videoSrc = settings.heroVideoEnabled ? siteConfig.heroVideo || null : null;
 
   return (
     <>

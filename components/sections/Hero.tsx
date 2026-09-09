@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -9,6 +9,12 @@ import { ctaConfig, siteConfig } from "@/config/site";
 import { track } from "@/lib/analytics";
 
 type NetworkInformation = { saveData?: boolean; effectiveType?: string };
+
+const subscribeNoop = () => () => {};
+function getAllowVideo(): boolean {
+  const conn = (navigator as Navigator & { connection?: NetworkInformation }).connection;
+  return !(conn?.saveData || conn?.effectiveType === "slow-2g" || conn?.effectiveType === "2g");
+}
 
 /**
  * Hero met optionele achtergrondvideo (Higgsfield).
@@ -26,14 +32,8 @@ export function Hero({
   videoSrc?: string | null;
   poster?: string;
 }) {
-  const [allowVideo, setAllowVideo] = useState(true);
-
-  useEffect(() => {
-    const conn = (navigator as Navigator & { connection?: NetworkInformation }).connection;
-    if (conn?.saveData || conn?.effectiveType === "slow-2g" || conn?.effectiveType === "2g") {
-      setAllowVideo(false);
-    }
-  }, []);
+  // Server: altijd toestaan; client: uit bij databesparing of 2G (na hydratie, zonder mismatch).
+  const allowVideo = useSyncExternalStore(subscribeNoop, getAllowVideo, () => true);
 
   // Geen render-branch op reduced motion (hydration!). MotionConfig regelt dat centraal.
   const fadeUp = (delay: number) => ({

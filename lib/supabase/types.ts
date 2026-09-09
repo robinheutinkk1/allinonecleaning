@@ -88,6 +88,59 @@ export type ContactMessageRow = {
 
 export type ContactMessageInsert = Omit<ContactMessageRow, "id" | "created_at" | "status">;
 
+export type ReviewRow = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  author: string;
+  rating: number;
+  text: string;
+  source: string;
+  review_date: string | null;
+  published: boolean;
+  featured: boolean;
+  sort_order: number;
+};
+
+export type OpeningHour = { days: string; hours: string };
+export type StatItem = { label: string; value: string };
+
+export type SiteSettingsRow = {
+  id: number;
+  updated_at: string;
+  phone: string | null;
+  email: string | null;
+  whatsapp: string | null;
+  street: string | null;
+  postal_code: string | null;
+  city: string | null;
+  kvk: string | null;
+  btw: string | null;
+  opening_hours: OpeningHour[] | null;
+  work_areas: string[] | null;
+  social_instagram: string | null;
+  social_facebook: string | null;
+  social_linkedin: string | null;
+  social_google: string | null;
+  google_rating: number | null;
+  google_review_count: number | null;
+  google_reviews_url: string | null;
+  stats: StatItem[] | null;
+  hero_video_enabled: boolean;
+  notification_email: string | null;
+};
+
+export type QuoteEventType = "created" | "status_change" | "note" | "assign" | "email" | "deleted_photos";
+
+export type QuoteEventRow = {
+  id: string;
+  created_at: string;
+  quote_id: string;
+  type: QuoteEventType | string;
+  actor: string | null;
+  payload: Record<string, unknown>;
+};
+
 /** Minimale Database-typing zodat supabase-js query's getypeerd zijn. */
 export type Database = {
   public: {
@@ -108,6 +161,24 @@ export type Database = {
         Row: ContactMessageRow;
         Insert: ContactMessageInsert;
         Update: Partial<ContactMessageRow>;
+        Relationships: [];
+      };
+      reviews: {
+        Row: ReviewRow;
+        Insert: Omit<ReviewRow, "id" | "created_at" | "updated_at"> & Partial<Pick<ReviewRow, "id">>;
+        Update: Partial<ReviewRow>;
+        Relationships: [];
+      };
+      site_settings: {
+        Row: SiteSettingsRow;
+        Insert: Partial<SiteSettingsRow> & { id: number };
+        Update: Partial<SiteSettingsRow>;
+        Relationships: [];
+      };
+      quote_events: {
+        Row: QuoteEventRow;
+        Insert: Omit<QuoteEventRow, "id" | "created_at">;
+        Update: Partial<QuoteEventRow>;
         Relationships: [];
       };
     };
