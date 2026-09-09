@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -17,11 +17,88 @@ function getAllowVideo(): boolean {
 }
 
 /**
+ * Achtergrondvideo die altijd doorloopt.
+ *
+ * Browsers blokkeren autoplay soms (iPhone in energiebesparingsmodus, Safari zonder
+ * interactie) of pauzeren de video (tabwissel, buiten beeld op mobiel). Daarom:
+ * - play() opnieuw proberen bij canplay, bij terugkeer naar het tabblad en bij de
+ *   eerste aanraking/klik/scroll van de bezoeker;
+ * - bij een pauze die niet door ons komt meteen weer starten;
+ * - bij 'ended' (als loop niet werkt) terug naar 0 en opnieuw spelen;
+ * - geen controls, geen picture-in-picture, geen AirPlay, dus niet te pauzeren.
+ * Mislukt afspelen definitief, dan blijft de poster (eronder) zichtbaar.
+ */
+function LoopingVideo({ src, poster }: { src: string; poster: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    let disposed = false;
+
+    const tryPlay = () => {
+      if (disposed || !video.paused) return;
+      video.muted = true;
+      video.play().catch(() => {
+        /* geblokkeerd: poster blijft, volgende trigger probeert opnieuw */
+      });
+    };
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") tryPlay();
+    };
+
+    tryPlay();
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("focus", tryPlay);
+    const gestures: (keyof WindowEventMap)[] = ["touchstart", "touchend", "click", "keydown", "scroll"];
+    gestures.forEach((g) => window.addEventListener(g, tryPlay, { passive: true }));
+
+    return () => {
+      disposed = true;
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("focus", tryPlay);
+      gestures.forEach((g) => window.removeEventListener(g, tryPlay));
+    };
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      className="absolute inset-0 size-full object-cover"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      poster={poster}
+      controls={false}
+      disablePictureInPicture
+      disableRemotePlayback
+      aria-hidden
+      tabIndex={-1}
+      onCanPlay={(e) => {
+        if (e.currentTarget.paused) e.currentTarget.play().catch(() => {});
+      }}
+      onPause={(e) => {
+        const v = e.currentTarget;
+        if (!v.ended && document.visibilityState === "visible") v.play().catch(() => {});
+      }}
+      onEnded={(e) => {
+        const v = e.currentTarget;
+        v.currentTime = 0;
+        v.play().catch(() => {});
+      }}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+}
+
+/**
  * Hero met optionele achtergrondvideo (Higgsfield).
  *
- * - `videoSrc` aanwezig → autoplay/muted/loop/playsInline met poster, op desktop én mobiel.
+ * - `videoSrc` aanwezig → doorlopende, gedempte achtergrondvideo met poster, op desktop én mobiel.
  * - Bij databesparing (Save-Data) of een 2G-verbinding wordt de video niet geladen; de poster blijft.
- * - Bij prefers-reduced-motion wordt de video verborgen (CSS), de poster blijft.
  * - Laadt de video niet, dan blijft de poster zichtbaar.
  * - Tekst en CTA's blijven leesbaar door een navy-overlay + gradient.
  */
@@ -44,7 +121,7 @@ export function Hero({
 
   return (
     <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-navy-950 pt-24 text-white sm:items-center">
-      {/* Achtergrond: poster (altijd) + video (desktop, geen reduced motion) */}
+      {/* Achtergrond: poster (altijd) + doorlopende video (desktop én mobiel) */}
       <div className="absolute inset-0 -z-20">
         <Image
           src={poster}
@@ -54,20 +131,7 @@ export function Hero({
           sizes="100vw"
           className="object-cover object-center"
         />
-        {videoSrc && allowVideo && (
-          <video
-            className="absolute inset-0 size-full object-cover motion-reduce:hidden"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={poster}
-            aria-hidden
-          >
-            <source src={videoSrc} type="video/mp4" />
-          </video>
-        )}
+        {videoSrc && allowVideo && <LoopingVideo src={videoSrc} poster={poster} />}
       </div>
       {/* Overlay voor leesbaarheid */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-950/30 sm:bg-gradient-to-r sm:from-navy-950/95 sm:via-navy-950/70 sm:to-navy-950/20" aria-hidden />

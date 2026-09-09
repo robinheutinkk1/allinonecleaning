@@ -57,7 +57,7 @@ Contrast: aqua-500 op wit ≥ 3:1 voor grote tekst/knoppen; body-tekst navy-800 
 | Reveal/StaggerGroup/StaggerItem | `components/ui/Reveal.tsx` | Scroll-animaties |
 | Navbar | `components/layout/Navbar.tsx` | Transparant op home → solid na 24px scroll; mobiel fullscreen menu |
 | StickyMobileCTA | `components/layout/StickyMobileCTA.tsx` | [Bel direct] alleen bij bekend nummer |
-| Hero | `components/sections/Hero.tsx` | Poster + optionele video (desktop, geen reduced motion) |
+| Hero | `components/sections/Hero.tsx` | Poster + doorlopende achtergrondvideo (desktop én mobiel, herstart zichzelf na blokkade of pauze) |
 | BeforeAfterSlider | `components/before-after/BeforeAfterSlider.tsx` | Pointer + touch + keyboard, `role="slider"`, clip-path |
 | ServiceCard | `components/services/ServiceCard.tsx` | Hover-lift, uitklapbare voordelen |
 | QuoteWizard | `components/quote/QuoteWizard.tsx` | 10 stappen, conditioneel, concept in sessionStorage, client-only |
