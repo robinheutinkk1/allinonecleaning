@@ -190,14 +190,14 @@ export function Hero({
             initial="hidden"
             animate="show"
             variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: 0.5 } } }}
-            className="mt-10 flex flex-wrap gap-2 lg:[@media(max-height:860px)]:mt-8"
+            className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy-200 lg:[@media(max-height:860px)]:mt-8"
             aria-label="Onze diensten"
           >
             {["Gevelreiniging", "Dakpanreiniging", "Trespa", "Zonnepanelen", "Bestrating"].map((s) => (
               <motion.li
                 key={s}
                 variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}
-                className="flex items-center gap-2 rounded-full border border-white/15 bg-navy-950/45 px-3.5 py-1.5 text-sm font-medium text-white shadow-[0_2px_12px_rgb(0_0_0_/_0.25)] backdrop-blur-md"
+                className="flex items-center gap-2"
               >
                 <span className="size-1.5 rounded-full bg-aqua-400" aria-hidden />
                 {s}
