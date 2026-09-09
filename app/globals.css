@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   ALL IN ONE CLEANING - Design tokens
-   Afgeleid van het logo: donker navy (wordmark), lichtblauw/cyaan
-   (tagline + waterdruppels), wit, en een klein geel accent (handschoenen).
+   ALL IN ONE VASTGOEDONDERHOUD - Design tokens
+   Afgeleid van het logo: donker navy (dak en wordmark) en goud
+   (swoosh, "IN", raam en "VASTGOEDONDERHOUD"), op wit.
    ------------------------------------------------------------------ */
 
 @theme {
@@ -20,20 +20,20 @@
   --color-navy-900: #111c30;
   --color-navy-950: #0a1120;
 
-  /* Aqua - lichtblauw/cyaan uit het logo */
-  --color-aqua-50: #eef8fd;
-  --color-aqua-100: #d7eefa;
-  --color-aqua-200: #b3e0f5;
-  --color-aqua-300: #7fcbee;
-  --color-aqua-400: #48b3e3;
-  --color-aqua-500: #229bd2;
-  --color-aqua-600: #157cb0;
-  --color-aqua-700: #14638e;
-  --color-aqua-800: #165375;
-  --color-aqua-900: #174562;
-  --color-aqua-950: #0f2c41;
+  /* Goud - accentkleur uit het logo (#d9a23a). Knoppen: goud met navy tekst. */
+  --color-gold-50: #fdf8ec;
+  --color-gold-100: #faefcf;
+  --color-gold-200: #f4dd9f;
+  --color-gold-300: #ecc76a;
+  --color-gold-400: #e2b24a;
+  --color-gold-500: #d9a23a;
+  --color-gold-600: #b9862a;
+  --color-gold-700: #946a20;
+  --color-gold-800: #74531b;
+  --color-gold-900: #5c4318;
+  --color-gold-950: #33240b;
 
-  /* Geel accent - handschoenen uit het logo. Spaarzaam gebruiken. */
+  /* Zon - warm geel voor sterren en kleine accenten. */
   --color-sun-50: #fffaeb;
   --color-sun-100: #fef3c7;
   --color-sun-400: #f7c948;
@@ -86,7 +86,7 @@
     overflow-x: clip;
   }
   ::selection {
-    background: var(--color-aqua-200);
+    background: var(--color-gold-200);
     color: var(--color-navy-900);
   }
   h1, h2, h3, h4 {
@@ -97,7 +97,7 @@
     text-wrap: pretty;
   }
   :focus-visible {
-    outline: 3px solid var(--color-aqua-400);
+    outline: 3px solid var(--color-gold-400);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -120,26 +120,26 @@
 }
 
 @utility eyebrow {
-  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-aqua-600;
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-600;
 }
 
 @utility text-balance {
   text-wrap: balance;
 }
 
-/* Subtiel "water"-thema: zachte lichtblauwe verloop-achtergronden */
+/* Subtiele warme verloop-achtergronden (goud op wit / goud op navy) */
 @utility bg-water {
   background-image:
-    radial-gradient(60% 50% at 10% 0%, rgb(183 224 245 / 0.55), transparent 70%),
-    radial-gradient(50% 45% at 95% 15%, rgb(215 238 250 / 0.7), transparent 70%),
-    linear-gradient(180deg, #ffffff 0%, #f5fafd 100%);
+    radial-gradient(60% 50% at 10% 0%, rgb(244 221 159 / 0.45), transparent 70%),
+    radial-gradient(50% 45% at 95% 15%, rgb(250 239 207 / 0.7), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #fdf9f0 100%);
 }
 
 @utility bg-navy-water {
   background-color: var(--color-navy-900);
   background-image:
-    radial-gradient(70% 60% at 0% 0%, rgb(34 155 210 / 0.35), transparent 65%),
-    radial-gradient(50% 50% at 100% 100%, rgb(34 155 210 / 0.18), transparent 60%);
+    radial-gradient(70% 60% at 0% 0%, rgb(217 162 58 / 0.28), transparent 65%),
+    radial-gradient(50% 50% at 100% 100%, rgb(217 162 58 / 0.14), transparent 60%);
 }
 
 /* Fijne rasterlijn voor premium gevoel op donkere secties */

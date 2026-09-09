@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "trespa reinigen",
     "zonnepanelen reinigen Enschede",
     "bestrating reinigen Enschede",
-    "gevelspecialist Enschede",
+    "vastgoedonderhoud Enschede",
     "gevelreiniging Twente",
   ],
   openGraph: {

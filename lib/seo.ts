@@ -69,7 +69,7 @@ export function localBusinessJsonLd(settings: SiteSettings) {
     slogan: siteConfig.tagline,
     description: siteConfig.description,
     url: siteConfig.url,
-    image: `${siteConfig.url}/images/og-image.jpg`,
+    image: `${siteConfig.url}/og`,
     logo: `${siteConfig.url}/images/logo.png`,
     areaServed: settings.workAreas.map((name) => ({ "@type": "City", name })),
     address: {

@@ -19,13 +19,13 @@ export async function LocationSection() {
             eyebrow="Werkgebied"
             title={
               <>
-                Actief in {city} <span className="text-aqua-600">en omgeving.</span>
+                Actief in {city} <span className="text-gold-600">en omgeving.</span>
               </>
             }
             description={
               <>
                 <p>
-                  All in One Cleaning werkt vanuit {city}. Wij reinigen gevels, dakpannen, trespa, bestrating en zonnepanelen bij woningen en
+                  All in One Vastgoedonderhoud werkt vanuit {city}. Wij reinigen gevels, dakpannen, trespa, bestrating en zonnepanelen bij woningen en
                   bedrijfspanden in de stad en de directe omgeving.
                 </p>
                 <p className="mt-4">
@@ -43,20 +43,20 @@ export async function LocationSection() {
             <div className="absolute inset-0 bg-grid-faint opacity-60 [mask-image:radial-gradient(80%_80%_at_50%_50%,black,transparent)]" aria-hidden />
             <div className="pointer-events-none absolute right-8 top-8 size-64 sm:size-80" aria-hidden>
               {[1, 0.7, 0.4].map((s) => (
-                <span key={s} className="absolute inset-0 rounded-full border border-aqua-400/25" style={{ transform: `scale(${s})` }} />
+                <span key={s} className="absolute inset-0 rounded-full border border-gold-400/25" style={{ transform: `scale(${s})` }} />
               ))}
-              <span className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-aqua-400 shadow-[0_0_0_8px_rgb(72_179_227_/_0.25)]" />
+              <span className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-400 shadow-[0_0_0_8px_rgb(72_179_227_/_0.25)]" />
             </div>
 
             <div className="relative">
-              <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-aqua-300">
+              <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-gold-300">
                 <Navigation className="size-4" aria-hidden />
                 Werkgebied
               </p>
               <ul className="mt-6 grid gap-2 sm:grid-cols-2">
                 {areas.map((area, i) => (
                   <li key={area} className="flex items-center gap-3 text-lg font-medium">
-                    <MapPin className={i === 0 ? "size-5 text-aqua-300" : "size-5 text-navy-300"} aria-hidden />
+                    <MapPin className={i === 0 ? "size-5 text-gold-300" : "size-5 text-navy-300"} aria-hidden />
                     <span className={i === 0 ? "text-white" : "text-navy-200"}>{area}</span>
                   </li>
                 ))}

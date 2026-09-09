@@ -80,7 +80,7 @@ sudden transformation, explosion, sparkles
 
 ### Eindkaart (optioneel, buiten de video om)
 
-De afsluiting "ALL IN ONE CLEANING / UW GEVELSPECIALIST" wordt **niet** in de video gebakken
+De afsluiting "ALL IN ONE / VASTGOEDONDERHOUD" wordt **niet** in de video gebakken
 (tekstdistorsie-risico). De hero-tekst en het logo staan al als HTML over de video.
 
 ## Gebruik op desktop

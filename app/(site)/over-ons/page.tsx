@@ -12,12 +12,12 @@ import { siteConfig } from "@/config/site";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Over ons: uw gevelspecialist in Enschede",
+  title: "Over ons: vastgoedonderhoud uit Enschede",
   description:
-    "All in One Cleaning is een lokaal reinigingsbedrijf uit Enschede, gespecialiseerd in gevels, dakpannen, trespa en zonnepanelen. Persoonlijk contact en zichtbaar resultaat.",
+    "All in One Vastgoedonderhoud is een lokaal bedrijf voor vastgoedonderhoud uit Enschede, gespecialiseerd in het reinigen van gevels, dakpannen, trespa en zonnepanelen. Persoonlijk contact en zichtbaar resultaat.",
   path: "/over-ons",
   ogTitle: "Over ons",
-  ogSubtitle: "Lokaal reinigingsbedrijf uit Enschede. Persoonlijk contact en zichtbaar resultaat.",
+  ogSubtitle: "Lokaal bedrijf voor vastgoedonderhoud uit Enschede. Persoonlijk contact en zichtbaar resultaat.",
 });
 
 const crumbs = [
@@ -36,9 +36,9 @@ export default function OverOnsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Over All in One Cleaning"
-        title="Uw gevelspecialist uit Enschede."
-        description="All in One Cleaning is een lokaal reinigingsbedrijf, gespecialiseerd in het veilig en milieuvriendelijk reinigen van gevels, dakpannen, trespa, bestrating en zonnepanelen. Geen grote organisatie, wel korte lijnen en een verzorgd resultaat."
+        eyebrow="Over All in One Vastgoedonderhoud"
+        title="Onderhoud van gevel tot dak, uit Enschede."
+        description="All in One Vastgoedonderhoud is een lokaal bedrijf voor vastgoedonderhoud, gespecialiseerd in het veilig en milieuvriendelijk reinigen van gevels, dakpannen, trespa, bestrating en zonnepanelen. Geen grote organisatie, wel korte lijnen en een verzorgd resultaat."
         breadcrumbs={crumbs}
       />
 
@@ -46,7 +46,7 @@ export default function OverOnsPage() {
         <div className="container-x grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-6">
             <div className="relative aspect-[4/5] overflow-hidden rounded-4xl shadow-lift sm:aspect-[4/3] lg:aspect-[4/5]">
-              <Image src="/images/over-ons/bedrijfsbus.jpg" alt="Bedrijfsbus van All in One Cleaning voor een woning tijdens werkzaamheden" fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+              <Image src="/images/over-ons/bedrijfsbus.jpg" alt="Bedrijfsbus van All in One Vastgoedonderhoud voor een woning tijdens werkzaamheden" fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             </div>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-6">
@@ -93,7 +93,7 @@ export default function OverOnsPage() {
             {values.map((v) => (
               <StaggerItem key={v.title}>
                 <div className="h-full rounded-3xl bg-white p-6 shadow-soft ring-1 ring-navy-100">
-                  <span className="flex size-12 items-center justify-center rounded-xl bg-aqua-100 text-aqua-700">
+                  <span className="flex size-12 items-center justify-center rounded-xl bg-gold-100 text-gold-700">
                     <v.icon className="size-6" aria-hidden />
                   </span>
                   <h3 className="mt-5 font-display text-lg font-bold text-navy-900">{v.title}</h3>

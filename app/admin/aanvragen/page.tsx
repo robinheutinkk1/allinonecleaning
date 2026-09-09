@@ -63,7 +63,7 @@ export default async function QuotesPage({ searchParams }: PageProps<"/admin/aan
                     <StatusBadge status={q.status} />
                   </div>
                   <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-navy-400">
-                    <span className="font-mono text-aqua-700">{q.quote_number}</span>
+                    <span className="font-mono text-gold-700">{q.quote_number}</span>
                     <span>{timeAgo(q.created_at)}</span>
                     {q.photo_paths.length > 0 && (
                       <span className="inline-flex items-center gap-1">
@@ -96,7 +96,7 @@ export default async function QuotesPage({ searchParams }: PageProps<"/admin/aan
                 {rows.map((q) => (
                   <tr key={q.id} className="transition hover:bg-navy-50/60">
                     <td className="px-4 py-3 font-mono text-xs">
-                      <Link href={`/admin/aanvragen/${q.id}`} className="font-semibold text-aqua-700 hover:underline">
+                      <Link href={`/admin/aanvragen/${q.id}`} className="font-semibold text-gold-700 hover:underline">
                         {q.quote_number}
                       </Link>
                     </td>

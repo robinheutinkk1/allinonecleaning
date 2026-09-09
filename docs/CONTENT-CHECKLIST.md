@@ -55,7 +55,7 @@ Controleer de overgenomen gegevens voor livegang.
 - Vijf diensten op de site: **gevelreiniging, dakpanreiniging (incl. dakgoten), trespa, zonnepanelen,
   bestrating/terras**. De eerste vier staan op de bus; bestrating, terras en dakgoten komen van allinone-cleaning.nl.
 - Op de oude site staan ook glasbewassing en opleveringsschoonmaak. Die zijn bewust niet als dienst
-  opgenomen (focus op gevelspecialist); "Ramen / glasbewassing" is wel kiesbaar onder "Anders" in de wizard.
+  opgenomen (focus op gevel en dak); "Ramen / glasbewassing" is wel kiesbaar onder "Anders" in de wizard.
 - Werkfoto voor bestrating ontbreekt nog: `public/images/services/bestrating-reiniging.jpg` is een placeholder.
 - Controleer de teksten per dienst op juistheid (methodes, wat wel/niet kan).
 

@@ -15,7 +15,7 @@ export default async function AdminOverviewPage() {
 
   return (
     <>
-      <PageTitle title="Overzicht" description="Wat er speelt bij All in One Cleaning." />
+      <PageTitle title="Overzicht" description="Wat er speelt bij All in One Vastgoedonderhoud." />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Nieuwe aanvragen" value={stats.newCount} hint="Nog niet opgepakt" tone="accent" />
@@ -29,7 +29,7 @@ export default async function AdminOverviewPage() {
           className="lg:col-span-2"
           title="Laatste aanvragen"
           action={
-            <Link href="/admin/aanvragen" className="inline-flex items-center gap-1 text-sm font-semibold text-aqua-700 hover:text-aqua-800">
+            <Link href="/admin/aanvragen" className="inline-flex items-center gap-1 text-sm font-semibold text-gold-700 hover:text-gold-800">
               Alle aanvragen <ArrowRight className="size-4" />
             </Link>
           }
@@ -89,7 +89,7 @@ export default async function AdminOverviewPage() {
                       <span className="font-semibold text-navy-900">{n}</span>
                     </div>
                     <div className="mt-1 h-1.5 rounded-full bg-navy-100">
-                      <div className="h-full rounded-full bg-aqua-500" style={{ width: `${Math.round((n / maxService) * 100)}%` }} />
+                      <div className="h-full rounded-full bg-gold-500" style={{ width: `${Math.round((n / maxService) * 100)}%` }} />
                     </div>
                   </li>
                 ))}

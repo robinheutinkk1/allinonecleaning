@@ -43,7 +43,7 @@ export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanv
   const contamination = quote.contamination_types.map((c) => labelFor(contaminationOptionsFor(quote.service), c)).join(", ");
   const phoneDigits = quote.phone.replace(/[\s()-]/g, "");
   const waNumber = phoneDigits.replace(/^0/, "31").replace(/^\+/, "");
-  const mailSubject = encodeURIComponent(`Uw offerteaanvraag ${quote.quote_number} bij All in One Cleaning`);
+  const mailSubject = encodeURIComponent(`Uw offerteaanvraag ${quote.quote_number} bij All in One Vastgoedonderhoud`);
 
   return (
     <>
@@ -98,8 +98,8 @@ export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanv
           <Card title="Contact">
             <dl className="divide-y divide-navy-100">
               <Row stacked label="Naam" value={<span className="font-semibold">{quote.customer_name}</span>} />
-              <Row stacked label="Telefoon" value={<a href={`tel:${phoneDigits}`} className="whitespace-nowrap text-aqua-700 hover:underline">{quote.phone}</a>} />
-              <Row stacked label="E-mail" value={<a href={`mailto:${quote.email}`} className="break-words text-aqua-700 hover:underline">{quote.email}</a>} />
+              <Row stacked label="Telefoon" value={<a href={`tel:${phoneDigits}`} className="whitespace-nowrap text-gold-700 hover:underline">{quote.phone}</a>} />
+              <Row stacked label="E-mail" value={<a href={`mailto:${quote.email}`} className="break-words text-gold-700 hover:underline">{quote.email}</a>} />
               <Row stacked label="Adres" value={`${quote.postal_code} ${quote.house_number}, ${quote.city}`} />
             </dl>
           </Card>

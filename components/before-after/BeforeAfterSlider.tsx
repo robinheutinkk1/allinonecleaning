@@ -153,7 +153,7 @@ export function BeforeAfterSlider({
       </span>
       <span
         className={cn(
-          "pointer-events-none absolute right-4 top-4 rounded-full bg-aqua-500 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-soft transition-opacity duration-300",
+          "pointer-events-none absolute right-4 top-4 rounded-full bg-gold-500 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-navy-950 shadow-soft transition-opacity duration-300",
           pos > 85 && "opacity-0",
         )}
       >
@@ -178,7 +178,7 @@ export function BeforeAfterSlider({
         <span
           className={cn(
             "absolute left-1/2 top-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-navy-900 shadow-lift ring-1 ring-navy-100 transition-transform duration-300",
-            "group-focus-within:ring-4 group-focus-within:ring-aqua-300",
+            "group-focus-within:ring-4 group-focus-within:ring-gold-300",
             dragging ? "scale-110" : "group-hover:scale-105",
           )}
           aria-hidden

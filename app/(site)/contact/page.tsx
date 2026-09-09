@@ -11,9 +11,9 @@ import { getSiteSettings, telHref } from "@/lib/settings";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact: All in One Cleaning Enschede",
+  title: "Contact: All in One Vastgoedonderhoud",
   description:
-    "Neem contact op met All in One Cleaning in Enschede voor vragen over gevelreiniging, dakpanreiniging, trespa of zonnepanelen. Of vraag direct een gratis offerte aan.",
+    "Neem contact op met All in One Vastgoedonderhoud in Enschede voor vragen over gevelreiniging, dakpanreiniging, trespa of zonnepanelen. Of vraag direct een gratis offerte aan.",
   path: "/contact",
   ogTitle: "Contact",
   ogSubtitle: "Vragen over gevel, dak, trespa of zonnepanelen? Bel, mail of vraag direct een offerte aan.",
@@ -49,10 +49,10 @@ export default async function ContactPage() {
 
           <Reveal delay={0.1} className="space-y-6 lg:col-span-5">
             <div className="rounded-3xl bg-navy-900 p-7 text-white shadow-lift">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-aqua-300">Klus aanvragen?</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-gold-300">Klus aanvragen?</p>
               <h2 className="mt-3 font-display text-2xl font-bold">Gratis offerte met foto&apos;s.</h2>
               <p className="mt-2 text-sm leading-relaxed text-navy-200">In twee minuten ingevuld. Wij beoordelen uw situatie en nemen contact op.</p>
-              <Link href={ctaConfig.primary.href} className="mt-6 inline-flex h-12 items-center gap-2 rounded-full bg-aqua-500 px-6 font-semibold text-white transition-colors hover:bg-aqua-600">
+              <Link href={ctaConfig.primary.href} className="mt-6 inline-flex h-12 items-center gap-2 rounded-full bg-gold-500 px-6 font-semibold text-navy-950 transition-colors hover:bg-gold-400">
                 {ctaConfig.primary.label}
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
@@ -62,9 +62,9 @@ export default async function ContactPage() {
               <h2 className="font-display text-lg font-bold text-navy-900">Contactgegevens</h2>
               <ul className="mt-5 space-y-4 text-sm">
                 <li className="flex items-start gap-3">
-                  <Phone className="mt-0.5 size-4 shrink-0 text-aqua-600" aria-hidden />
+                  <Phone className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
                   {siteConfig.phone ? (
-                    <a href={telHref(siteConfig.phone)} className="font-medium text-navy-900 hover:text-aqua-700">
+                    <a href={telHref(siteConfig.phone)} className="font-medium text-navy-900 hover:text-gold-700">
                       {siteConfig.phone}
                     </a>
                   ) : (
@@ -72,9 +72,9 @@ export default async function ContactPage() {
                   )}
                 </li>
                 <li className="flex items-start gap-3">
-                  <Mail className="mt-0.5 size-4 shrink-0 text-aqua-600" aria-hidden />
+                  <Mail className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
                   {siteConfig.email ? (
-                    <a href={`mailto:${siteConfig.email}`} className="font-medium text-navy-900 hover:text-aqua-700">
+                    <a href={`mailto:${siteConfig.email}`} className="font-medium text-navy-900 hover:text-gold-700">
                       {siteConfig.email}
                     </a>
                   ) : (
@@ -82,7 +82,7 @@ export default async function ContactPage() {
                   )}
                 </li>
                 <li className="flex items-start gap-3">
-                  <MapPin className="mt-0.5 size-4 shrink-0 text-aqua-600" aria-hidden />
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
                   <span className="text-navy-800">
                     {siteConfig.address.street ? (
                       <>
@@ -96,7 +96,7 @@ export default async function ContactPage() {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Clock className="mt-0.5 size-4 shrink-0 text-aqua-600" aria-hidden />
+                  <Clock className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
                   {siteConfig.openingHours ? (
                     <ul className="space-y-0.5 text-navy-800">
                       {siteConfig.openingHours.map((o) => (

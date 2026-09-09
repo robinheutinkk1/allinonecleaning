@@ -2,12 +2,12 @@
  * Centrale bedrijfsconfiguratie.
  *
  * Alles wat hier `null` of een [PLACEHOLDER] is, is nog niet bevestigd door
- * All in One Cleaning en wordt op de site verborgen of als placeholder getoond.
+ * All in One Vastgoedonderhoud en wordt op de site verborgen of als placeholder getoond.
  * Vul dit bestand aan zodra de informatie bekend is - er hoeft verder niets
  * in de code te veranderen.
  */
 
-const DEFAULT_SITE_URL = "https://allinone-cleaning.nl";
+const DEFAULT_SITE_URL = "https://allinone.tagpoint.nl";
 
 /**
  * Publieke site-URL bepalen, robuust tegen lege of ongeldige env-waarden.
@@ -33,9 +33,11 @@ function resolveSiteUrl(): string {
 }
 
 export const siteConfig = {
-  companyName: "All in One Cleaning",
-  legalName: "All in One Cleaning Enschede",
-  tagline: "Uw gevelspecialist",
+  companyName: "All in One Vastgoedonderhoud",
+  /** Korte merknaam, zoals groot in het logo. */
+  shortName: "All in One",
+  legalName: "All in One Vastgoedonderhoud",
+  tagline: "Onderhoud van gevel tot dak",
   city: "Enschede",
   region: "Twente",
   country: "NL",
@@ -77,7 +79,7 @@ export const siteConfig = {
 
   /** Korte bedrijfsomschrijving voor footer, meta en structured data. */
   description:
-    "All in One Cleaning is uw gevelspecialist in Enschede en omgeving. Veilige en milieuvriendelijke reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen met lage druk en biologisch afbreekbare middelen, zonder hogedruk of stoom.",
+    "All in One Vastgoedonderhoud verzorgt het onderhoud van gevel tot dak in Enschede en omgeving. Veilige en milieuvriendelijke reiniging van gevels, dakpannen, trespa, bestrating en zonnepanelen met lage druk en biologisch afbreekbare middelen, zonder hogedruk of stoom.",
 
   /**
    * Reinigingsmethode zoals het bedrijf die zelf beschrijft (bron: allinone-cleaning.nl).
@@ -96,8 +98,8 @@ export const siteConfig = {
   /** E-mailadres waar nieuwe offerteaanvragen naartoe gaan (server-side, uit env). */
   notificationEmail: process.env.QUOTE_NOTIFICATION_EMAIL ?? null,
 
-  /** Prefix voor offertenummers, bijv. AIC-2026-0001 */
-  quotePrefix: "AIC",
+  /** Prefix voor offertenummers, bijv. AIO-2026-0001 (zie migratie 0005) */
+  quotePrefix: "AIO",
 
   /**
    * Hero-video: Higgsfield variant B, zelf gehost als H.264 (1080p, 8 s, ±1,6 MB, geen audio,

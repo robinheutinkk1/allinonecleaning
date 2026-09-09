@@ -22,12 +22,12 @@ export async function CTASection({
         <Reveal>
           <div className="relative overflow-hidden rounded-4xl bg-navy-900 px-6 py-14 text-white shadow-lift sm:px-12 lg:px-16 lg:py-20">
             <div className="absolute inset-0 bg-navy-water" aria-hidden />
-            <div className="absolute -right-24 -top-24 size-96 rounded-full bg-aqua-500/25 blur-3xl" aria-hidden />
-            <div className="absolute -bottom-32 left-1/4 size-80 rounded-full bg-aqua-400/10 blur-3xl" aria-hidden />
+            <div className="absolute -right-24 -top-24 size-96 rounded-full bg-gold-500/25 blur-3xl" aria-hidden />
+            <div className="absolute -bottom-32 left-1/4 size-80 rounded-full bg-gold-400/10 blur-3xl" aria-hidden />
 
             <div className="relative grid items-center gap-10 lg:grid-cols-12">
               <div className="lg:col-span-7">
-                <p className="eyebrow text-aqua-300">
+                <p className="eyebrow text-gold-300">
                   <Camera className="size-4" aria-hidden />
                   Gratis offerte met foto&apos;s
                 </p>

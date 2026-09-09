@@ -1,13 +1,13 @@
-# All in One Cleaning - website & digitale offerte-intake
+# All in One Vastgoedonderhoud - website & digitale offerte-intake
 
-Productie-ready website voor **All in One Cleaning Enschede** ("Uw gevelspecialist"):
+Productie-ready website voor **All in One Vastgoedonderhoud** ("Onderhoud van gevel tot dak"):
 Next.js 16 · TypeScript · Tailwind CSS 4 · Framer Motion · Supabase · Resend · Vercel.
 
 De site is gebouwd rond één conversieflow:
 
 ```
 Landing → Vertrouwen → Before/After → "Dit wilt u ook?" → Offertewizard (10 stappen, met foto-upload)
-→ Aanvraag in Supabase + e-mail naar All in One Cleaning → Aanvraagnummer voor de klant
+→ Aanvraag in Supabase + e-mail naar All in One Vastgoedonderhoud → Aanvraagnummer voor de klant
 ```
 
 ## Snel starten
@@ -20,7 +20,7 @@ npm run dev                    # http://localhost:3000
 
 Zonder Supabase/Resend werkt de site volledig met statische fallback-data; de
 offertewizard en het contactformulier loggen dan naar de console en geven een
-test-aanvraagnummer (`AIC-2026-T1234`) terug. In productie zijn de env-variabelen verplicht.
+test-aanvraagnummer (`AIO-2026-T1234`) terug. In productie zijn de env-variabelen verplicht.
 
 ```bash
 npm run lint       # ESLint
@@ -95,7 +95,7 @@ docs/
 
 - **Geen verzonnen content.** Telefoon, e-mail, adres, reviews, statistieken en certificaten zijn
   `null`/placeholders in `config/site.ts` en `config/reviews.ts`; de UI verbergt of markeert ze.
-- **Geen automatische prijs.** De wizard verzamelt informatie; All in One Cleaning beoordeelt en belt.
+- **Geen automatische prijs.** De wizard verzamelt informatie; All in One Vastgoedonderhoud beoordeelt en belt.
 - **Privacy by design.** Offertefoto's gaan naar een privé-bucket, EXIF wordt gestript, IP's worden
   gehasht, alles wordt server-side gevalideerd (zod), rate limiting en honeypot op alle formulieren.
 - **Foto's vervangen = bestand vervangen.** Alle afbeeldingen staan op vaste paden in `public/images`

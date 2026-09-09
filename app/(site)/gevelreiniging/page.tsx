@@ -40,8 +40,8 @@ export default async function GevelreinigingPage() {
     <>
       <PageHeader
         eyebrow="Gevelreiniging · Enschede en omgeving"
-        title="Gevelreiniging in Enschede door uw gevelspecialist."
-        description="Groene aanslag, algen en vuil maken een gevel dof en verouderd. All in One Cleaning reinigt gevels van woningen en bedrijfspanden in Enschede en omgeving, met een aanpak die past bij uw metselwerk."
+        title="Gevelreiniging in Enschede, veilig en zonder hogedruk."
+        description="Groene aanslag, algen en vuil maken een gevel dof en verouderd. All in One Vastgoedonderhoud reinigt gevels van woningen en bedrijfspanden in Enschede en omgeving, met een aanpak die past bij uw metselwerk."
         breadcrumbs={crumbs}
       />
 

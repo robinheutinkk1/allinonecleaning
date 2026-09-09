@@ -112,7 +112,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
           </Field>
           <div className="flex items-start pt-6">
             <label className="flex items-center gap-2 text-sm font-medium text-navy-800">
-              <input type="checkbox" name="hero_video_enabled" defaultChecked={s?.hero_video_enabled ?? true} className="size-4 accent-aqua-500" />
+              <input type="checkbox" name="hero_video_enabled" defaultChecked={s?.hero_video_enabled ?? true} className="size-4 accent-gold-500" />
               Hero-video afspelen op de homepage
             </label>
           </div>

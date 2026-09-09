@@ -1,5 +1,5 @@
 -- ============================================================================
--- ALL IN ONE CLEANING - Supabase schema
+-- ALL IN ONE VASTGOEDONDERHOUD - Supabase schema
 -- Uitvoeren via Supabase SQL Editor of `supabase db push`.
 -- ============================================================================
 

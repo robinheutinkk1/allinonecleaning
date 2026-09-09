@@ -45,7 +45,7 @@ export default async function MessagesPage({ searchParams }: PageProps<"/admin/b
       ) : (
         <ul className="space-y-3">
           {messages.map((m) => (
-            <li key={m.id} className={cn("rounded-3xl bg-white p-5 shadow-soft ring-1", m.status === "new" ? "ring-aqua-300" : "ring-navy-100")}>
+            <li key={m.id} className={cn("rounded-3xl bg-white p-5 shadow-soft ring-1", m.status === "new" ? "ring-gold-300" : "ring-navy-100")}>
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
@@ -53,13 +53,13 @@ export default async function MessagesPage({ searchParams }: PageProps<"/admin/b
                     <MessageStatusBadge status={m.status} />
                   </div>
                   <p className="mt-0.5 text-sm text-navy-500">
-                    <a href={`mailto:${m.email}`} className="text-aqua-700 hover:underline">
+                    <a href={`mailto:${m.email}`} className="text-gold-700 hover:underline">
                       {m.email}
                     </a>
                     {m.phone && (
                       <>
                         {" · "}
-                        <a href={`tel:${m.phone.replace(/[\s()-]/g, "")}`} className="text-aqua-700 hover:underline">
+                        <a href={`tel:${m.phone.replace(/[\s()-]/g, "")}`} className="text-gold-700 hover:underline">
                           {m.phone}
                         </a>
                       </>

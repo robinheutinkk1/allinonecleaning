@@ -1,6 +1,6 @@
 /**
  * Veelgestelde vragen. Antwoorden zijn gebaseerd op de werkwijze van de site
- * en op wat All in One Cleaning zelf over de reinigingsmethode communiceert
+ * en op wat All in One Vastgoedonderhoud zelf over de reinigingsmethode communiceert
  * (allinone-cleaning.nl): lage druk, biologisch afbreekbare middelen, geen
  * hogedruk of stoom. Geen prijzen, doorlooptijden of garanties die niet
  * bevestigd zijn.

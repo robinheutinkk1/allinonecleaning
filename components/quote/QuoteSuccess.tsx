@@ -27,7 +27,7 @@ export function QuoteSuccess({ quoteNumber, serviceLabel, photoCount }: { quoteN
         initial={reduce ? false : { scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 18 }}
-        className="mx-auto flex size-20 items-center justify-center rounded-full bg-aqua-500 text-white shadow-glow"
+        className="mx-auto flex size-20 items-center justify-center rounded-full bg-gold-500 text-navy-950 shadow-glow"
       >
         <Check className="size-10" strokeWidth={3} aria-hidden />
       </motion.span>
@@ -43,7 +43,7 @@ export function QuoteSuccess({ quoteNumber, serviceLabel, photoCount }: { quoteN
           <dd className="flex items-center gap-2 font-display text-lg font-bold text-navy-900">
             {quoteNumber}
             <button type="button" onClick={copy} aria-label="Aanvraagnummer kopiëren" className="rounded-full p-1.5 text-navy-500 transition-colors hover:bg-white hover:text-navy-900">
-              {copied ? <Check className="size-4 text-aqua-600" /> : <Copy className="size-4" />}
+              {copied ? <Check className="size-4 text-gold-600" /> : <Copy className="size-4" />}
             </button>
           </dd>
         </div>

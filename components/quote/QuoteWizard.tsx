@@ -467,7 +467,7 @@ function StepContent({
           <div>
             <TextInput id="city" label="Plaats" autoComplete="address-level2" placeholder="Bijv. Enschede" value={data.city ?? ""} onChange={(e) => update("city", e.target.value)} error={errors.city} required />
             {!data.city && (
-              <button type="button" onClick={() => update("city", siteConfig.city)} className="mt-2 rounded-full bg-navy-50 px-3 py-1 text-xs font-semibold text-navy-700 hover:bg-aqua-100 hover:text-aqua-800">
+              <button type="button" onClick={() => update("city", siteConfig.city)} className="mt-2 rounded-full bg-navy-50 px-3 py-1 text-xs font-semibold text-navy-700 hover:bg-gold-100 hover:text-gold-800">
                 + {siteConfig.city}
               </button>
             )}
@@ -536,7 +536,7 @@ function StepContent({
                 <button
                   type="button"
                   onClick={() => goTo(quoteSteps.findIndex((s) => s.id === r.step))}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold text-aqua-700 transition-colors hover:bg-white"
+                  className="inline-flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold text-gold-700 transition-colors hover:bg-white"
                 >
                   <Pencil className="size-3" aria-hidden />
                   Aanpassen
@@ -558,7 +558,7 @@ function StepContent({
             label={
               <>
                 Ik ga akkoord met de{" "}
-                <Link href="/privacy" target="_blank" className="font-semibold text-aqua-700 underline-offset-2 hover:underline">
+                <Link href="/privacy" target="_blank" className="font-semibold text-gold-700 underline-offset-2 hover:underline">
                   privacyverklaring
                 </Link>
                 . Mijn gegevens en foto&apos;s worden alleen gebruikt om deze aanvraag te beoordelen.
@@ -566,7 +566,7 @@ function StepContent({
             }
           />
           <p className="text-xs text-navy-400">
-            Wij berekenen geen automatische prijs. All in One Cleaning beoordeelt uw aanvraag persoonlijk en neemt daarna contact met u op.
+            Wij berekenen geen automatische prijs. All in One Vastgoedonderhoud beoordeelt uw aanvraag persoonlijk en neemt daarna contact met u op.
           </p>
         </div>
       );

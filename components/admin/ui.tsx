@@ -26,7 +26,7 @@ export function timeAgo(iso: string): string {
 }
 
 const tones: Record<string, string> = {
-  blue: "bg-aqua-100 text-aqua-800 ring-aqua-200",
+  blue: "bg-gold-100 text-gold-800 ring-gold-200",
   amber: "bg-amber-100 text-amber-800 ring-amber-200",
   violet: "bg-violet-100 text-violet-800 ring-violet-200",
   sky: "bg-sky-100 text-sky-800 ring-sky-200",
@@ -84,7 +84,7 @@ export function PageTitle({ title, description, action }: { title: string; descr
 export function StatCard({ label, value, hint, tone = "default" }: { label: string; value: ReactNode; hint?: string; tone?: "default" | "accent" }) {
   return (
     <div className={cn("rounded-3xl p-5 ring-1", tone === "accent" ? "bg-navy-900 text-white ring-navy-900" : "bg-white ring-navy-100 shadow-soft")}>
-      <p className={cn("text-xs font-semibold uppercase tracking-[0.14em]", tone === "accent" ? "text-aqua-300" : "text-navy-400")}>{label}</p>
+      <p className={cn("text-xs font-semibold uppercase tracking-[0.14em]", tone === "accent" ? "text-gold-300" : "text-navy-400")}>{label}</p>
       <p className="mt-2 font-display text-3xl font-bold">{value}</p>
       {hint && <p className={cn("mt-1 text-xs", tone === "accent" ? "text-navy-200" : "text-navy-400")}>{hint}</p>}
     </div>
@@ -102,7 +102,7 @@ export function EmptyState({ title, text, action }: { title: string; text?: stri
 }
 
 export function Notice({ children, tone = "success" }: { children: ReactNode; tone?: "success" | "error" | "info" }) {
-  const cls = { success: "bg-emerald-50 text-emerald-800 ring-emerald-200", error: "bg-red-50 text-red-800 ring-red-200", info: "bg-aqua-50 text-aqua-900 ring-aqua-200" }[tone];
+  const cls = { success: "bg-emerald-50 text-emerald-800 ring-emerald-200", error: "bg-red-50 text-red-800 ring-red-200", info: "bg-gold-50 text-gold-900 ring-gold-200" }[tone];
   return (
     <div role={tone === "error" ? "alert" : "status"} className={cn("rounded-2xl px-4 py-3 text-sm ring-1", cls)}>
       {children}
@@ -137,7 +137,7 @@ export function Pagination({ page, pageSize, total, basePath, params }: { page: 
 }
 
 export const inputCls =
-  "block min-h-11 w-full rounded-xl border border-navy-200 bg-white px-3.5 py-2.5 text-base text-navy-900 placeholder:text-navy-300 focus:border-aqua-500 focus:outline-none focus:ring-4 focus:ring-aqua-100 sm:min-h-10 sm:text-sm";
+  "block min-h-11 w-full rounded-xl border border-navy-200 bg-white px-3.5 py-2.5 text-base text-navy-900 placeholder:text-navy-300 focus:border-gold-500 focus:outline-none focus:ring-4 focus:ring-gold-100 sm:min-h-10 sm:text-sm";
 export const labelCls = "mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-navy-500";
 
 /**
@@ -146,9 +146,9 @@ export const labelCls = "mb-1.5 block text-xs font-semibold uppercase tracking-[
  */
 const btnBase =
   "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full px-4 text-sm font-semibold transition-all duration-200 select-none " +
-  "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-aqua-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 sm:min-h-10 " +
+  "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gold-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 sm:min-h-10 " +
   "[&>svg]:size-4 [&>svg]:shrink-0";
-export const btnPrimary = `${btnBase} bg-aqua-500 text-white shadow-[0_6px_16px_-8px_rgb(34_155_210_/_0.8)] hover:bg-aqua-600 hover:shadow-[0_8px_20px_-8px_rgb(34_155_210_/_0.9)]`;
+export const btnPrimary = `${btnBase} bg-gold-500 text-navy-950 shadow-[0_6px_16px_-8px_rgb(217_162_58_/_0.8)] hover:bg-gold-400 hover:shadow-[0_8px_20px_-8px_rgb(217_162_58_/_0.9)]`;
 export const btnSecondary = `${btnBase} border border-navy-200 bg-white text-navy-800 shadow-[0_1px_2px_rgb(16_28_48_/_0.04)] hover:border-navy-300 hover:bg-navy-50`;
 export const btnDanger = `${btnBase} border border-red-200 bg-white text-red-700 hover:border-red-300 hover:bg-red-50`;
 export const btnGhost = `${btnBase} text-navy-700 hover:bg-navy-100/70`;

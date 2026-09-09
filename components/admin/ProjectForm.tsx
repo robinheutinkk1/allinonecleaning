@@ -142,11 +142,11 @@ export function ProjectForm({ project, imageBase }: { project: ProjectRow | null
 
       <div className="flex flex-wrap items-center gap-6">
         <label className="flex items-center gap-2 text-sm font-medium text-navy-800">
-          <input type="checkbox" name="published" defaultChecked={project?.published ?? true} className="size-4 rounded border-navy-300 accent-aqua-500" />
+          <input type="checkbox" name="published" defaultChecked={project?.published ?? true} className="size-4 rounded border-navy-300 accent-gold-500" />
           Gepubliceerd op de site
         </label>
         <label className="flex items-center gap-2 text-sm font-medium text-navy-800">
-          <input type="checkbox" name="featured" defaultChecked={project?.featured ?? false} className="size-4 rounded border-navy-300 accent-aqua-500" />
+          <input type="checkbox" name="featured" defaultChecked={project?.featured ?? false} className="size-4 rounded border-navy-300 accent-gold-500" />
           Uitgelicht op de homepage
         </label>
       </div>

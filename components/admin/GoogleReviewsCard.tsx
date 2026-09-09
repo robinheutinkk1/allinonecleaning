@@ -36,7 +36,7 @@ export function GoogleReviewsCard({ configured, missing, cronConfigured, rating,
           <p className="text-xs text-navy-400">{syncedAt ? `Laatst ververst ${formatDateTime(syncedAt)}` : "Nog nooit ververst"}</p>
         </div>
         {url && (
-          <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-semibold text-aqua-700 hover:underline">
+          <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-semibold text-gold-700 hover:underline">
             Bekijk op Google <ExternalLink className="size-3.5" />
           </a>
         )}

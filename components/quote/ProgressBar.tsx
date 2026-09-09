@@ -23,7 +23,7 @@ export function ProgressBar({ current, total, label }: { current: number; total:
         aria-label={`Voortgang: stap ${current} van ${total}`}
       >
         <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-aqua-500 to-aqua-400"
+          className="h-full rounded-full bg-gradient-to-r from-gold-500 to-gold-400"
           initial={false}
           animate={{ width: `${pct}%` }}
           transition={reduce ? { duration: 0 } : { duration: 0.5, ease: [0.16, 1, 0.3, 1] }}

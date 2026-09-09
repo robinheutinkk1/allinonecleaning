@@ -7,7 +7,7 @@
    Dit maakt aan:
    - tabellen `quote_requests`, `contact_messages`, `projects`, `quote_counters`
    - enum `quote_status` (`new, reviewing, contacted, quoted, won, lost, cancelled`)
-   - functie `next_quote_number('AIC')` → `AIC-2026-0001` (atomische teller per jaar)
+   - functie `next_quote_number('AIO')` → `AIO-2026-0001` (atomische teller per jaar)
    - RLS: geen publieke toegang tot aanvragen; gepubliceerde projecten publiek leesbaar
    - storage buckets `quote-uploads` (**privé**, 10 MB, jpg/png/webp) en `project-images` (**publiek**)
 3. Open opnieuw **SQL Editor** → plak de inhoud van `supabase/migrations/0002_admin.sql` → Run.
@@ -83,6 +83,13 @@ Een collega heeft twee dingen nodig: een loginaccount en een plek in de teamlijs
    "Aan mij toewijzen" (op basis van het e-mailadres) en kan de aanvragenlijst per collega gefilterd
    worden. Voer je migratie `0004_team.sql` niet uit, dan blijft toewijzen een vrij tekstveld.
 
+### Merkomzetting (migratie 5)
+
+`supabase/migrations/0005_rebrand.sql` zet het voorvoegsel van nieuwe aanvraagnummers op `AIO`
+(All in One). De jaarteller loopt door; bestaande nummers veranderen niet. Het logo en alle
+teksten op site, dashboard en in e-mails gebruiken "All in One Vastgoedonderhoud". Het logo wordt
+gegenereerd met `node scripts/process-logo.mjs` uit `assets/originals/all in one.webp`.
+
 Iedereen in `ADMIN_EMAILS` heeft dezelfde rechten (rollen zijn er nog niet, zie ROADMAP).
 Collega verwijderen: e-mailadres uit `ADMIN_EMAILS` halen en redeployen; het account in Supabase
 mag blijven bestaan of verwijderd worden.
@@ -104,8 +111,8 @@ Wat wordt verstuurd:
 
 | Trigger | Naar | Onderwerp |
 | --- | --- | --- |
-| Nieuwe offerteaanvraag | `QUOTE_NOTIFICATION_EMAIL` | `Nieuwe offerteaanvraag AIC-2026-0001` |
-| Nieuwe offerteaanvraag | klant | `Uw offerteaanvraag bij All in One Cleaning` (uit te zetten met `SEND_CUSTOMER_CONFIRMATION=false`) |
+| Nieuwe offerteaanvraag | `QUOTE_NOTIFICATION_EMAIL` | `Nieuwe offerteaanvraag AIO-2026-0001` |
+| Nieuwe offerteaanvraag | klant | `Uw offerteaanvraag bij All in One Vastgoedonderhoud` (uit te zetten met `SEND_CUSTOMER_CONFIRMATION=false`) |
 | Contactformulier | `QUOTE_NOTIFICATION_EMAIL` | `Nieuw bericht via de website van <naam>` |
 
 Mailfouten blokkeren nooit een aanvraag: de aanvraag staat al in Supabase, de fout wordt gelogd.
@@ -117,12 +124,12 @@ Mailfouten blokkeren nooit een aanvraag: de aanvraag staat al in Supabase, de fo
 
 | Variabele | Verplicht | Waar |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | ja | definitieve domeinnaam, bijv. `https://www.allinonecleaning-enschede.nl` |
+| `NEXT_PUBLIC_SITE_URL` | ja | definitieve domeinnaam, bijv. `https://www.uw-domein.nl` |
 | `NEXT_PUBLIC_SUPABASE_URL` | ja | Supabase → API |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | ja | Supabase → API |
 | `SUPABASE_SERVICE_ROLE_KEY` | ja (server-only) | Supabase → API |
 | `RESEND_API_KEY` | ja | Resend |
-| `EMAIL_FROM` | ja | `All in One Cleaning <offerte@…>` |
+| `EMAIL_FROM` | ja | `All in One Vastgoedonderhoud <offerte@…>` |
 | `QUOTE_NOTIFICATION_EMAIL` | ja | mailbox van het bedrijf |
 | `SEND_CUSTOMER_CONFIRMATION` | nee | `true`/`false` |
 | `IP_HASH_SALT` | aanbevolen | lange willekeurige string |
@@ -152,7 +159,7 @@ reviews die Google vrijgeeft (maximaal 5, Google bepaalt welke) rechtstreeks uit
 3. **APIs & Services → Credentials → Create credentials → API key**. Klik daarna op de sleutel →
    **API restrictions → Restrict key → Places API (New)**. Dit is `GOOGLE_PLACES_API_KEY`.
 4. Place ID opzoeken: https://developers.google.com/maps/documentation/places/web-service/place-id
-   (Place ID Finder), zoek op "All in One Cleaning Enschede". De code begint met `ChIJ`.
+   (Place ID Finder), zoek op "All in One Vastgoedonderhoud". De code begint met `ChIJ`.
    Dit is `GOOGLE_PLACE_ID`.
 5. Vercel → Environment Variables: `GOOGLE_PLACES_API_KEY`, `GOOGLE_PLACE_ID` en (voor de
    dagelijkse verversing) `CRON_SECRET` met een lange willekeurige string. Redeploy.
@@ -183,14 +190,14 @@ npm run dev
 ```
 
 Zonder keys: wizard en contactformulier werken in "dev-fallback" (log naar console, testnummer
-`AIC-2026-Txxxx`, uploads worden niet opgeslagen). In productie geven de API's dan een nette
+`AIO-2026-Txxxx`, uploads worden niet opgeslagen). In productie geven de API's dan een nette
 503-melding aan de bezoeker.
 
 ## 5. Livegang-checklist
 
 - [ ] Echte logo en foto's geplaatst (`docs/CONTENT-CHECKLIST.md` A)
 - [ ] `config/site.ts` ingevuld: telefoon, e-mail, KvK, werkgebied, domein
-- [ ] Diensten en teksten gecontroleerd door All in One Cleaning
+- [ ] Diensten en teksten gecontroleerd door All in One Vastgoedonderhoud
 - [ ] Supabase-migraties `0001_init.sql` én `0002_admin.sql` uitgevoerd, buckets aanwezig, `quote-uploads` staat op **niet publiek**
 - [ ] Dashboard: beheerder aangemaakt in Supabase Auth, `ADMIN_EMAILS` in Vercel, publieke sign-up uit, ingelogd op `/admin`
 - [ ] Instellingen in het dashboard ingevuld (telefoon, e-mail, adres, KvK, openingstijden, werkgebied)

@@ -26,7 +26,7 @@ export function ReviewText({ text, className }: { text: string; className?: stri
           onClick={() => setExpanded((v) => !v)}
           aria-expanded={expanded}
           aria-controls={id}
-          className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-aqua-700 transition-colors hover:text-aqua-800"
+          className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-gold-700 transition-colors hover:text-gold-800"
         >
           {expanded ? "Minder weergeven" : "Meer weergeven"}
           <ChevronDown className={cn("size-4 transition-transform duration-300", expanded && "rotate-180")} aria-hidden />

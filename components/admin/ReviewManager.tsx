@@ -25,7 +25,7 @@ function ReviewForm({ review, onDone }: { review: ReviewRow | null; onDone: () =
     return r;
   }, null);
   return (
-    <form action={action} className="space-y-4 rounded-2xl border border-aqua-200 bg-aqua-50/40 p-5">
+    <form action={action} className="space-y-4 rounded-2xl border border-gold-200 bg-gold-50/40 p-5">
       {review && <input type="hidden" name="id" value={review.id} />}
       {state && !state.ok && <Notice tone="error">{state.error}</Notice>}
       {fromGoogle && <Notice tone="info">Deze review komt van Google. Naam, sterren, tekst en datum worden bij elke verversing overschreven; gepubliceerd, uitgelicht en volgorde blijven zoals u ze instelt.</Notice>}
@@ -74,10 +74,10 @@ function ReviewForm({ review, onDone }: { review: ReviewRow | null; onDone: () =
         </div>
         <div className="flex flex-wrap items-end gap-5">
           <label className="flex items-center gap-2 text-sm font-medium text-navy-800">
-            <input type="checkbox" name="published" defaultChecked={review?.published ?? true} className="size-4 accent-aqua-500" /> Gepubliceerd
+            <input type="checkbox" name="published" defaultChecked={review?.published ?? true} className="size-4 accent-gold-500" /> Gepubliceerd
           </label>
           <label className="flex items-center gap-2 text-sm font-medium text-navy-800">
-            <input type="checkbox" name="featured" defaultChecked={review?.featured ?? false} className="size-4 accent-aqua-500" /> Uitgelicht
+            <input type="checkbox" name="featured" defaultChecked={review?.featured ?? false} className="size-4 accent-gold-500" /> Uitgelicht
           </label>
         </div>
       </div>
@@ -127,7 +127,7 @@ export function ReviewManager({ reviews }: { reviews: ReviewRow[] }) {
                   </span>
                   {r.google_review_id && <span className="rounded-full bg-sun-100 px-2 py-0.5 text-[11px] font-semibold text-sun-700">Automatisch via Google</span>}
                   {!r.published && <span className="rounded-full bg-navy-100 px-2 py-0.5 text-[11px] font-semibold text-navy-600">Verborgen</span>}
-                  {r.featured && <span className="rounded-full bg-aqua-100 px-2 py-0.5 text-[11px] font-semibold text-aqua-800">Uitgelicht</span>}
+                  {r.featured && <span className="rounded-full bg-gold-100 px-2 py-0.5 text-[11px] font-semibold text-gold-800">Uitgelicht</span>}
                 </div>
                 <p className="mt-2 text-sm text-navy-700">{r.text}</p>
               </div>

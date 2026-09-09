@@ -1,5 +1,5 @@
 -- ============================================================================
--- ALL IN ONE CLEANING - Dashboard (migratie 2)
+-- ALL IN ONE VASTGOEDONDERHOUD - Dashboard (migratie 2)
 -- Uitvoeren na 0001_init.sql via de Supabase SQL Editor.
 -- ============================================================================
 

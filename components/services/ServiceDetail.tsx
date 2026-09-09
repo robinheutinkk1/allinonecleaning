@@ -33,7 +33,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
             </div>
 
             <div className="mt-10 rounded-3xl bg-navy-900 p-6 text-white sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-aqua-300">Onze reinigingsmethode</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-gold-300">Onze reinigingsmethode</p>
               <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">Lage druk, geen hogedruk of stoom.</h3>
               <p className="mt-3 text-sm leading-relaxed text-navy-200 sm:text-[15px]">{siteConfig.method.long}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
@@ -51,18 +51,18 @@ export function ServiceDetail({ service, projects }: { service: Service; project
                 <ul className="mt-4 space-y-3">
                   {service.benefits.map((b) => (
                     <li key={b} className="flex items-start gap-2.5 text-sm text-navy-700">
-                      <Check className="mt-0.5 size-4 shrink-0 text-aqua-600" strokeWidth={2.5} aria-hidden />
+                      <Check className="mt-0.5 size-4 shrink-0 text-gold-600" strokeWidth={2.5} aria-hidden />
                       {b}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="rounded-3xl bg-aqua-50 p-6">
+              <div className="rounded-3xl bg-gold-50 p-6">
                 <h3 className="font-display text-lg font-bold text-navy-900">Geschikt voor</h3>
                 <ul className="mt-4 space-y-3">
                   {service.suitableFor.map((b) => (
                     <li key={b} className="flex items-start gap-2.5 text-sm text-navy-700">
-                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-aqua-500" aria-hidden />
+                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold-500" aria-hidden />
                       {b}
                     </li>
                   ))}
@@ -74,7 +74,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
           <aside className="lg:col-span-5">
             <Reveal delay={0.1} className="sticky top-28 space-y-6">
               <div className="rounded-3xl bg-navy-900 p-7 text-white shadow-lift">
-                <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-aqua-300">
+                <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-gold-300">
                   <Camera className="size-4" aria-hidden />
                   Gratis offerte
                 </p>
@@ -92,8 +92,8 @@ export function ServiceDetail({ service, projects }: { service: Service; project
                 <ul className="mt-4 divide-y divide-navy-100">
                   {others.map((s) => (
                     <li key={s.slug}>
-                      <Link href={s.href} className="group flex items-center gap-3 py-3 text-navy-800 transition-colors hover:text-aqua-700">
-                        <span className="flex size-9 items-center justify-center rounded-lg bg-navy-50 text-navy-600 group-hover:bg-aqua-100 group-hover:text-aqua-700">
+                      <Link href={s.href} className="group flex items-center gap-3 py-3 text-navy-800 transition-colors hover:text-gold-700">
+                        <span className="flex size-9 items-center justify-center rounded-lg bg-navy-50 text-navy-600 group-hover:bg-gold-100 group-hover:text-gold-700">
                           <ServiceIcon name={s.icon} className="size-4" />
                         </span>
                         <span className="flex-1 font-medium">{s.title}</span>
@@ -112,7 +112,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
         <section className="section-y bg-navy-50">
           <div className="container-x">
             <Reveal>
-              <SectionHeading eyebrow="Resultaat" title={`Kijk naar het verschil: ${service.title.toLowerCase()}.`} description="Sleep de slider en vergelijk voor en na. Dit is een echt project van All in One Cleaning." />
+              <SectionHeading eyebrow="Resultaat" title={`Kijk naar het verschil: ${service.title.toLowerCase()}.`} description="Sleep de slider en vergelijk voor en na. Dit is een echt project van All in One Vastgoedonderhoud." />
             </Reveal>
             <Reveal delay={0.1} className="mt-10">
               <BeforeAfterSlider
@@ -128,7 +128,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
                 <p className="text-navy-700">
                   <span className="font-semibold text-navy-900">{project.title}</span>: {project.result}
                 </p>
-                <Link href="/before-after" className="inline-flex items-center gap-1.5 text-sm font-semibold text-aqua-700 hover:text-aqua-800">
+                <Link href="/before-after" className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-700 hover:text-gold-800">
                   Alle projecten
                   <ArrowRight className="size-4" aria-hidden />
                 </Link>

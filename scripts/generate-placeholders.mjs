@@ -63,7 +63,7 @@ function logoSvg(size) {
   <defs><radialGradient id="sh" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#ffffff" stop-opacity="0.35"/><stop offset="1" stop-color="${AQUA}" stop-opacity="0.25"/></radialGradient></defs>
   <path d="M256 110 C 300 170, 330 200, 330 240 A 74 74 0 0 1 182 240 C 182 200, 212 170, 256 110 Z" fill="${NAVY}"/>
   <path d="M232 235 a 16 16 0 0 1 16 -16" stroke="#ffffff" stroke-width="10" stroke-linecap="round" fill="none"/>
-  <text x="256" y="415" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="46" fill="${NAVY}" letter-spacing="1">ALL IN ONE CLEANING</text>
+  <text x="256" y="415" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="46" fill="${NAVY}" letter-spacing="1">ALL IN ONE VASTGOEDONDERHOUD</text>
   <text x="256" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="${AQUA}" letter-spacing="4">UW GEVELSPECIALIST</text>
 </svg>`;
 }
@@ -81,7 +81,7 @@ function ogSvg() {
   <text x="80" y="300" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="72" fill="#ffffff">Een gevel die weer</text>
   <text x="80" y="385" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="72" fill="${AQUA_LIGHT}">gezien mag worden.</text>
   <text x="80" y="470" font-family="Arial, sans-serif" font-size="28" fill="#c3d0e0">Gevelreiniging · Dakpanreiniging · Trespa · Zonnepanelen</text>
-  <text x="80" y="560" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="30" fill="#ffffff" letter-spacing="2">ALL IN ONE CLEANING</text>
+  <text x="80" y="560" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="30" fill="#ffffff" letter-spacing="2">ALL IN ONE VASTGOEDONDERHOUD</text>
 </svg>`;
 }
 

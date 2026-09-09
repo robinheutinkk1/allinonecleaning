@@ -139,7 +139,7 @@ export function Hero({
 
       {/* Decoratieve waterdruppel-glow, zweeft heel langzaam */}
       <motion.div
-        className="pointer-events-none absolute -right-32 top-1/3 -z-10 size-[28rem] rounded-full bg-aqua-500/20 blur-3xl"
+        className="pointer-events-none absolute -right-32 top-1/3 -z-10 size-[28rem] rounded-full bg-gold-500/20 blur-3xl"
         animate={{ y: [0, -28, 0], x: [0, 12, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden
@@ -148,7 +148,7 @@ export function Hero({
       {/* Onderaan altijd ruimte houden, ook op desktop: de dienstenlijst mag nooit tegen de rand van het scherm staan. */}
       <div className="container-x relative pb-24 sm:pb-16 lg:pb-24 lg:pt-8">
         <div className="max-w-2xl lg:max-w-3xl">
-          <motion.p {...fadeUp(0)} className="eyebrow text-aqua-300">
+          <motion.p {...fadeUp(0)} className="eyebrow text-gold-300">
             <span className="inline-block h-px w-6 bg-current opacity-70" aria-hidden />
             {siteConfig.tagline} · {siteConfig.city}
           </motion.p>
@@ -157,7 +157,7 @@ export function Hero({
             {...fadeUp(0.1)}
             className="mt-5 font-display text-[2.6rem] font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl lg:[@media(max-height:860px)]:text-6xl"
           >
-            Een gevel die weer <span className="bg-gradient-to-r from-aqua-300 to-aqua-100 bg-clip-text text-transparent">gezien mag worden.</span>
+            Een gevel die weer <span className="bg-gradient-to-r from-gold-300 to-gold-100 bg-clip-text text-transparent">gezien mag worden.</span>
           </motion.h1>
 
           <motion.p {...fadeUp(0.2)} className="mt-6 max-w-xl text-lg leading-relaxed text-navy-100 sm:text-xl">
@@ -199,7 +199,7 @@ export function Hero({
                 variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}
                 className="flex items-center gap-2"
               >
-                <span className="size-1.5 rounded-full bg-aqua-400" aria-hidden />
+                <span className="size-1.5 rounded-full bg-gold-400" aria-hidden />
                 {s}
               </motion.li>
             ))}

@@ -24,7 +24,7 @@ import type { ContactData } from "@/lib/validation/contact";
  * WEL opgeslagen. Mailfouten blokkeren nooit een succesvolle aanvraag.
  */
 
-const FROM = process.env.EMAIL_FROM ?? "All in One Cleaning <onboarding@resend.dev>";
+const FROM = process.env.EMAIL_FROM ?? "All in One Vastgoedonderhoud <onboarding@resend.dev>";
 const NOTIFY_TO = process.env.QUOTE_NOTIFICATION_EMAIL ?? null;
 const SEND_CUSTOMER_CONFIRMATION = process.env.SEND_CUSTOMER_CONFIRMATION !== "false";
 
@@ -50,8 +50,8 @@ function layout(title: string, body: string) {
   return `<!doctype html><html lang="nl"><body style="margin:0;background:#f2f5f9;font-family:Inter,Arial,sans-serif">
   <div style="max-width:640px;margin:0 auto;padding:32px 16px">
     <div style="background:#111c30;border-radius:16px 16px 0 0;padding:20px 24px;color:#fff">
-      <div style="font-weight:800;letter-spacing:.04em;font-size:16px">ALL IN ONE CLEANING</div>
-      <div style="color:#7fcbee;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:2px">Uw gevelspecialist</div>
+      <img src="${siteConfig.url}/images/logo-inverted.png" alt="${escapeHtml(siteConfig.companyName)}" width="120" height="74" style="display:block;height:74px;width:auto" />
+      <div style="color:#ecc76a;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:10px">${escapeHtml(siteConfig.tagline)}</div>
     </div>
     <div style="background:#fff;border-radius:0 0 16px 16px;padding:24px">
       <h1 style="font-size:20px;margin:0 0 16px;color:#111c30">${escapeHtml(title)}</h1>
@@ -119,7 +119,7 @@ export async function sendQuoteNotification(opts: {
     </table>
     ${
       opts.adminLink
-        ? `<p style="margin:20px 0 0"><a href="${escapeHtml(opts.adminLink)}" style="display:inline-block;background:#229bd2;color:#fff;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:600">Bekijk aanvraag</a></p>`
+        ? `<p style="margin:20px 0 0"><a href="${escapeHtml(opts.adminLink)}" style="display:inline-block;background:#d9a23a;color:#0a1120;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:600">Bekijk aanvraag</a></p>`
         : `<p style="color:#94a9c4;font-size:12px;margin:16px 0 0">Foto's staan in de beveiligde opslag en zijn te bekijken via het dashboard.</p>`
     }`;
 
@@ -161,14 +161,14 @@ export async function sendQuoteConfirmation(opts: {
       ${row("Foto's", `${s.photoCount} toegevoegd`)}
     </table>
     <p style="color:#3d5a84;font-size:15px;line-height:1.6;margin:20px 0 0">Heeft u nog vragen of wilt u iets aanvullen? Beantwoord dan deze e-mail en vermeld uw aanvraagnummer.</p>
-    <p style="color:#3d5a84;font-size:15px;line-height:1.6;margin:16px 0 0">Met vriendelijke groet,<br><strong>All in One Cleaning</strong><br><span style="color:#94a9c4">Uw gevelspecialist · Enschede</span></p>`;
+    <p style="color:#3d5a84;font-size:15px;line-height:1.6;margin:16px 0 0">Met vriendelijke groet,<br><strong>${escapeHtml(siteConfig.companyName)}</strong><br><span style="color:#94a9c4">${escapeHtml(siteConfig.tagline)} · ${escapeHtml(siteConfig.city)}</span></p>`;
 
   try {
     const { error } = await resend.emails.send({
       from: FROM,
       to: d.email,
       ...(NOTIFY_TO ? { replyTo: NOTIFY_TO } : {}),
-      subject: "Uw offerteaanvraag bij All in One Cleaning",
+      subject: "Uw offerteaanvraag bij All in One Vastgoedonderhoud",
       html: layout("Uw offerteaanvraag is ontvangen", body),
     });
     if (error) return { sent: false, reason: error.message };

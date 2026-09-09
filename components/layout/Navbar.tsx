@@ -58,7 +58,13 @@ export function Navbar() {
       )}
     >
       <nav aria-label="Hoofdnavigatie" className="container-x flex h-[72px] items-center justify-between gap-4 sm:h-20">
-        <Logo inverted={!solid} priority compactHide />
+        {/* Beide varianten vooraf laden en wisselen via CSS: geen flits bij het scrollen. */}
+        <span className={solid ? "hidden" : "contents"}>
+          <Logo inverted priority className="h-12 sm:h-14" />
+        </span>
+        <span className={solid ? "contents" : "hidden"}>
+          <Logo priority className="h-12 sm:h-14" />
+        </span>
 
         <ul className="hidden items-center gap-1 lg:flex">
           {navigation.main.map((item) => {
@@ -71,7 +77,7 @@ export function Navbar() {
                   className={cn(
                     "relative rounded-full px-4 py-2 text-[15px] font-medium transition-colors",
                     solid ? "text-navy-700 hover:text-navy-900 hover:bg-navy-50" : "text-white/85 hover:text-white hover:bg-white/10",
-                    active && (solid ? "text-aqua-700" : "text-white"),
+                    active && (solid ? "text-gold-700" : "text-white"),
                   )}
                 >
                   {item.label}
@@ -80,7 +86,7 @@ export function Navbar() {
                       layoutId="nav-active-underline"
                       transition={{ type: "spring", stiffness: 420, damping: 36 }}
                       aria-hidden
-                      className={cn("absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full", solid ? "bg-aqua-500" : "bg-aqua-300")}
+                      className={cn("absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full", solid ? "bg-gold-500" : "bg-gold-300")}
                     />
                   )}
                 </Link>
@@ -155,7 +161,7 @@ export function Navbar() {
                         aria-current={active ? "page" : undefined}
                         className={cn(
                           "flex items-center justify-between rounded-2xl px-4 py-4 font-display text-xl font-semibold text-navy-900 hover:bg-navy-50",
-                          active && "text-aqua-700",
+                          active && "text-gold-700",
                         )}
                       >
                         {item.label}

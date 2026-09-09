@@ -14,7 +14,7 @@ export function Intro() {
             eyebrow="Schone gevel. Frisse uitstraling."
             title={
               <>
-                Uw gevel is het eerste wat <span className="text-aqua-600">mensen zien.</span>
+                Uw gevel is het eerste wat <span className="text-gold-600">mensen zien.</span>
               </>
             }
             description={
@@ -46,14 +46,14 @@ export function Intro() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-4xl shadow-lift">
               <Image
                 src="/images/over-ons/bedrijfsbus.jpg"
-                alt="De bedrijfsbus van All in One Cleaning bij een woning in Enschede tijdens een dakreiniging"
+                alt="De bedrijfsbus van All in One Vastgoedonderhoud bij een woning in Enschede tijdens een dakreiniging"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
             </div>
             <div className="absolute -bottom-6 -left-4 flex items-center gap-3 rounded-2xl bg-white p-4 shadow-lift sm:-left-8">
-              <span className="flex size-11 items-center justify-center rounded-xl bg-aqua-100 text-aqua-700">
+              <span className="flex size-11 items-center justify-center rounded-xl bg-gold-100 text-gold-700">
                 <Droplets className="size-5" aria-hidden />
               </span>
               <span>

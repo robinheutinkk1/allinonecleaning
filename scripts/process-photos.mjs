@@ -170,11 +170,6 @@ log(await splitCollage(files.gevelCollage2, "projects/gevelreiniging-2-voor.jpg"
 
 // --- Losse foto's ----------------------------------------------------------
 log(await single(files.bus, "over-ons/bedrijfsbus.jpg", { resize: { width: 1400, withoutEnlargement: true } }));
-log(await single(files.logo, "logo.png", { resize: { width: 512, height: 512, fit: "contain", background: "#ffffff" } }));
-// Beeldmerk (alleen de cirkel met de vakman) voor navbar/footer - het volledige logo is daar te klein leesbaar
-// Uitsnede = bounding box van de figuur (incl. borstel en druppels) + 10px marge, boven de tekstregel.
-// Daarna "contain" op 512x512 zodat de figuur exact gecentreerd staat in de ronde badge.
-log(await single(files.logo, "logo-mark.png", { extract: { left: 144, top: 112, width: 244, height: 224 }, resize: { width: 512, height: 512, fit: "contain", background: "#ffffff" } }));
 // Hero: werkfoto gevel, 16:9 uitsnede rond de vakman, opgeschaald naar 1920 breed
 log(await single(files.gevelWerk, "hero/hero-poster.jpg", { extract: { left: 0, top: 200, width: 1024, height: 576 }, resize: { width: 1920 } }));
 log(await single(files.gevelWerk, "services/gevelreiniging.jpg", { extract: { left: 0, top: 120, width: 1024, height: 704 }, resize: { width: 1600 } }));

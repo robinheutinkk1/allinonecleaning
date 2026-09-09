@@ -87,7 +87,7 @@ export function AssignForm({ quoteId, assignedTo, team = [], me = null }: { quot
             setValue(me);
             run(() => assignQuote(quoteId, me));
           }}
-          className="text-sm font-semibold text-aqua-700 hover:underline"
+          className="text-sm font-semibold text-gold-700 hover:underline"
         >
           Aan mij toewijzen ({me})
         </button>

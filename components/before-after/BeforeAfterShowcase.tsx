@@ -17,13 +17,13 @@ export function BeforeAfterShowcase({ projects }: { projects: Project[] }) {
 
   return (
     <section id="before-after" className="section-y relative overflow-hidden bg-navy-50">
-      <div className="pointer-events-none absolute -left-40 top-20 size-[30rem] rounded-full bg-aqua-200/40 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -left-40 top-20 size-[30rem] rounded-full bg-gold-200/40 blur-3xl" aria-hidden />
       <div className="container-x relative">
         <Reveal>
           <SectionHeading
             eyebrow="Before & after"
             title="Kijk naar het verschil."
-            description="Bekijk wat een professionele reiniging kan doen. Sleep de slider en vergelijk zelf. Dit zijn echte projecten van All in One Cleaning."
+            description="Bekijk wat een professionele reiniging kan doen. Sleep de slider en vergelijk zelf. Dit zijn echte projecten van All in One Vastgoedonderhoud."
             align="center"
           />
         </Reveal>
@@ -45,7 +45,7 @@ export function BeforeAfterShowcase({ projects }: { projects: Project[] }) {
               <p className="text-sm text-navy-500">{main.result}</p>
             </div>
             <span className="inline-flex items-center gap-1.5 text-sm text-navy-500">
-              <MapPin className="size-4 text-aqua-600" aria-hidden />
+              <MapPin className="size-4 text-gold-600" aria-hidden />
               {main.location}
             </span>
           </div>

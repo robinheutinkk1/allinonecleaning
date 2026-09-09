@@ -1,4 +1,4 @@
-# Design system - All in One Cleaning
+# Design system - All in One Vastgoedonderhoud
 
 ## 1. Logo-analyse (basis van alles)
 
@@ -6,9 +6,9 @@ Het aangeleverde logo bevat:
 
 | Element | Wat het uitstraalt | Vertaling naar de site |
 | --- | --- | --- |
-| Wordmark **ALL IN ONE CLEANING** in zware, donker-navy sans | Betrouwbaar, stevig, no-nonsense | Koppen in Plus Jakarta Sans 700/800, navy-900, strakke tracking |
-| Tagline **UW GEVELSPECIALIST** in lichtblauw, uppercase, gespatieerd | Specialisme, helderheid | Eyebrow-stijl: uppercase, tracking 0.18em, aqua-600 |
-| Lichtblauwe cirkel met sterretjes/glans | Schoon, fris, water | Aqua-tinten, zachte radiale gradients (`bg-water`), glow-shadow |
+| Wordmark **ALL IN ONE VASTGOEDONDERHOUD** in zware, donker-navy sans | Betrouwbaar, stevig, no-nonsense | Koppen in Plus Jakarta Sans 700/800, navy-900, strakke tracking |
+| Tagline **VASTGOEDONDERHOUD** in goud, uppercase, gespatieerd | Specialisme, helderheid | Eyebrow-stijl: uppercase, tracking 0.18em, gold-600 |
+| Lichtblauwe cirkel met sterretjes/glans | Schoon, fris, water | Goud-tinten, zachte radiale gradients (`bg-water`), glow-shadow |
 | Waterdruppels bij de borstel | Reiniging, beweging | Druppel-motief in placeholders, slider-handle, subtiele highlights |
 | Gele handschoenen | Vakmanschap, klein warm accent | `sun-400` alleen voor sterren in reviews (spaarzaam) |
 | Vriendelijke, geïllustreerde vakman | Persoonlijk, toegankelijk, lokaal | Menselijke copy ("Laat ons meekijken"), ronde vormen, geen corporate toon |
@@ -22,15 +22,15 @@ Het aangeleverde logo bevat:
 | `navy-800` | #182741 | Body-tekst |
 | `navy-500` | #3d5a84 | Secundaire tekst |
 | `navy-100/50` | #e1e8f0 / #f2f5f9 | Randen, lichte achtergronden |
-| `aqua-500` | #229bd2 | **Primaire CTA**, links, actieve states |
-| `aqua-600` | #157cb0 | Hover van CTA, eyebrow-tekst |
-| `aqua-300` | #7fcbee | Accent op donker (tagline in navbar/footer, gradient in hero-kop) |
-| `aqua-100/50` | #d7eefa / #eef8fd | Zachte highlights, iconachtergronden, water-gradients |
+| `goud-500` | #229bd2 | **Primaire CTA**, links, actieve states |
+| `gold-600` | #157cb0 | Hover van CTA, eyebrow-tekst |
+| `goud-300` | #7fcbee | Accent op donker (tagline in navbar/footer, gradient in hero-kop) |
+| `goud-100/50` | #d7eefa / #eef8fd | Zachte highlights, iconachtergronden, water-gradients |
 | `sun-400` | #f7c948 | Sterren (reviews). Verder niet gebruiken. |
 | wit | #ffffff | Basis |
 
-Vaste combinaties: **wit + navy-900 + aqua-500** met navy-50/aqua-50 als rustvlakken.
-Contrast: aqua-500 op wit ≥ 3:1 voor grote tekst/knoppen; body-tekst navy-800 op wit > 12:1.
+Vaste combinaties: **wit + navy-900 + goud-500** met navy-50/goud-50 als rustvlakken.
+Contrast: goud-500 op wit ≥ 3:1 voor grote tekst/knoppen; body-tekst navy-800 op wit > 12:1.
 
 ## 3. Typografie
 
@@ -42,15 +42,15 @@ Contrast: aqua-500 op wit ≥ 3:1 voor grote tekst/knoppen; body-tekst navy-800 
 ## 4. Vorm & diepte
 
 - Radii: cards `rounded-3xl` (28px), grote panelen `rounded-4xl` (36px), knoppen/pills `rounded-full`.
-- Schaduwen: `shadow-soft` (rust), `shadow-lift` (hover/prominent), `shadow-glow` (aqua, succes-state).
-- Water-thema: `bg-water` (lichte radiale blauwtinten), `bg-navy-water` (donker met aqua-glow), `bg-grid-faint` (fijn raster op donker).
+- Schaduwen: `shadow-soft` (rust), `shadow-lift` (hover/prominent), `shadow-glow` (goud, succes-state).
+- Water-thema: `bg-water` (lichte radiale blauwtinten), `bg-navy-water` (donker met goud-glow), `bg-grid-faint` (fijn raster op donker).
 - Beweging: fade-up bij scrollen (Framer `whileInView`), hover-lift op cards (-4px), image-zoom 1.06, icon-tilt. Alles via `--ease-out-expo`. `prefers-reduced-motion` → alleen korte opacity-fades (MotionConfig).
 
 ## 5. Componenten
 
 | Component | Bestand | Notities |
 | --- | --- | --- |
-| Button | `components/ui/Button.tsx` | primary (aqua), secondary (navy), ghost, white, outline-white; werkt als `<a>` bij `href` |
+| Button | `components/ui/Button.tsx` | primary (goud), secondary (navy), ghost, white, outline-white; werkt als `<a>` bij `href` |
 | Logo | `components/ui/Logo.tsx` | Leest `/images/logo.png`; tekstdeel verbergt op < 480px |
 | SectionHeading | `components/ui/SectionHeading.tsx` | eyebrow + titel + beschrijving, light/inverted |
 | Field/TextInput/TextArea/Checkbox | `components/ui/Field.tsx` | Fout- en hint-states, aria-describedby |

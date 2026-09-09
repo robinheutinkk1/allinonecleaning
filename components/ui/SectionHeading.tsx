@@ -21,7 +21,7 @@ export function SectionHeading({
   return (
     <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && (
-        <p className={cn("eyebrow mb-4", inverted && "text-aqua-300")}>
+        <p className={cn("eyebrow mb-4", inverted && "text-gold-300")}>
           <span className="inline-block h-px w-6 bg-current opacity-60" aria-hidden />
           {eyebrow}
         </p>

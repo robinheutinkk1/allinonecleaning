@@ -21,7 +21,7 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
     <article
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-navy-100 transition-all duration-500 ease-out-expo",
-        "hover:-translate-y-1 hover:shadow-lift hover:ring-aqua-200",
+        "hover:-translate-y-1 hover:shadow-lift hover:ring-gold-200",
       )}
       style={{ transitionDelay: `${index * 30}ms` }}
     >
@@ -34,7 +34,7 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
           className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.06]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent" />
-        <span className="absolute left-4 top-4 flex size-11 items-center justify-center rounded-xl bg-white/95 text-aqua-600 shadow-soft backdrop-blur transition-all duration-500 group-hover:bg-aqua-500 group-hover:text-white group-hover:[transform:rotate(-6deg)_scale(1.06)]">
+        <span className="absolute left-4 top-4 flex size-11 items-center justify-center rounded-xl bg-white/95 text-gold-600 shadow-soft backdrop-blur transition-all duration-500 group-hover:bg-gold-500 group-hover:text-navy-950 group-hover:[transform:rotate(-6deg)_scale(1.06)]">
           <ServiceIcon name={service.icon} className="size-5" />
         </span>
       </Link>
@@ -45,7 +45,7 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
             {service.title}
           </Link>
         </h3>
-        <p className="mt-2 text-sm font-medium text-aqua-700">{service.tagline}</p>
+        <p className="mt-2 text-sm font-medium text-gold-700">{service.tagline}</p>
         <p className="mt-3 text-sm leading-relaxed text-navy-500">{service.summary}</p>
 
         <div className="relative z-10 mt-5">
@@ -54,7 +54,7 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls={`service-benefits-${service.slug}`}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-700 transition-colors hover:text-aqua-700"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-700 transition-colors hover:text-gold-700"
           >
             Voordelen
             <ChevronDown className={cn("size-4 transition-transform duration-300", open && "rotate-180")} aria-hidden />
@@ -71,7 +71,7 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
               >
                 {service.benefits.map((b) => (
                   <li key={b} className="flex items-start gap-2 pt-2.5 text-sm text-navy-700">
-                    <Check className="mt-0.5 size-4 shrink-0 text-aqua-600" strokeWidth={2.5} aria-hidden />
+                    <Check className="mt-0.5 size-4 shrink-0 text-gold-600" strokeWidth={2.5} aria-hidden />
                     {b}
                   </li>
                 ))}
@@ -81,13 +81,13 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
         </div>
 
         <div className="mt-auto flex items-center justify-between border-t border-navy-100 pt-5">
-          <Link href={service.href} className="relative z-10 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 transition-colors hover:text-aqua-700 group-hover:text-aqua-700">
+          <Link href={service.href} className="relative z-10 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 transition-colors hover:text-gold-700 group-hover:text-gold-700">
             Meer informatie
             <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
           </Link>
           <Link
             href={`/offerte-aanvragen?dienst=${service.quoteKey}`}
-            className="relative z-10 rounded-full bg-navy-50 px-3.5 py-1.5 text-xs font-semibold text-navy-700 transition-colors hover:bg-aqua-500 hover:text-white"
+            className="relative z-10 rounded-full bg-navy-50 px-3.5 py-1.5 text-xs font-semibold text-navy-700 transition-colors hover:bg-gold-500 hover:text-navy-950"
           >
             Offerte
           </Link>

@@ -59,8 +59,8 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-3xl bg-aqua-50 p-8 text-center ring-1 ring-aqua-100" role="status">
-        <CheckCircle2 className="mx-auto size-12 text-aqua-600" aria-hidden />
+      <div className="rounded-3xl bg-gold-50 p-8 text-center ring-1 ring-gold-100" role="status">
+        <CheckCircle2 className="mx-auto size-12 text-gold-600" aria-hidden />
         <h3 className="mt-4 font-display text-2xl font-bold text-navy-900">Bedankt voor uw bericht!</h3>
         <p className="mt-2 text-navy-600">Wij hebben uw bericht ontvangen en nemen contact met u op.</p>
         <Button href="/" variant="secondary" className="mt-6">
@@ -94,7 +94,7 @@ export function ContactForm() {
         label={
           <>
             Ik ga akkoord met de{" "}
-            <Link href="/privacy" className="font-semibold text-aqua-700 underline-offset-2 hover:underline" target="_blank">
+            <Link href="/privacy" className="font-semibold text-gold-700 underline-offset-2 hover:underline" target="_blank">
               privacyverklaring
             </Link>
             .

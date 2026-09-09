@@ -9,7 +9,7 @@ import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Diensten: gevel, dak, trespa & zonnepanelen reinigen in Enschede",
   description:
-    "Overzicht van de reinigingsdiensten van All in One Cleaning Enschede: gevelreiniging, dakpanreiniging, trespa reiniging en zonnepanelen reiniging. Vraag gratis een offerte aan.",
+    "Overzicht van de reinigingsdiensten van All in One Vastgoedonderhoud: gevelreiniging, dakpanreiniging, trespa reiniging en zonnepanelen reiniging. Vraag gratis een offerte aan.",
   path: "/diensten",
   ogTitle: "Onze diensten",
   ogSubtitle: "Gevelreiniging, dakpanreiniging, trespa, zonnepanelen en bestrating. Met lage druk, zonder schade.",

@@ -36,15 +36,15 @@ export function OptionCard({
         "group relative flex w-full items-center gap-4 rounded-2xl border-2 bg-white text-left transition-all duration-200 ease-out-expo",
         size === "md" ? "p-4 sm:p-5" : "px-4 py-3",
         selected
-          ? "border-aqua-500 bg-aqua-50/60 shadow-[0_0_0_4px_rgb(34_155_210_/_0.12)]"
-          : "border-navy-100 hover:border-aqua-300 hover:bg-navy-50/50 hover:shadow-soft",
+          ? "border-gold-500 bg-gold-50/60 shadow-[0_0_0_4px_rgb(217_162_58_/_0.12)]"
+          : "border-navy-100 hover:border-gold-300 hover:bg-navy-50/50 hover:shadow-soft",
       )}
     >
       {icon && (
         <span
           className={cn(
             "flex size-12 shrink-0 items-center justify-center rounded-xl transition-colors",
-            selected ? "bg-aqua-500 text-white" : "bg-navy-50 text-navy-600 group-hover:bg-aqua-100 group-hover:text-aqua-700",
+            selected ? "bg-gold-500 text-navy-950" : "bg-navy-50 text-navy-600 group-hover:bg-gold-100 group-hover:text-gold-700",
           )}
         >
           {icon}
@@ -58,7 +58,7 @@ export function OptionCard({
         className={cn(
           "flex size-6 shrink-0 items-center justify-center border-2 transition-all",
           multi ? "rounded-md" : "rounded-full",
-          selected ? "border-aqua-500 bg-aqua-500 text-white" : "border-navy-200 bg-white text-transparent",
+          selected ? "border-gold-500 bg-gold-500 text-navy-950" : "border-navy-200 bg-white text-transparent",
         )}
         aria-hidden
       >

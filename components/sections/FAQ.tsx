@@ -29,7 +29,7 @@ export function FAQ({ items = faqItems, compact = false }: { items?: FaqItem[]; 
               description="Klik op een vraag om het antwoord te lezen. Staat uw vraag er niet bij? Neem gerust contact op, we helpen u graag verder."
             />
             <p className="mt-6 hidden items-center gap-2 text-sm text-navy-400 lg:flex">
-              <MessageCircleQuestion className="size-4 text-aqua-500" aria-hidden />
+              <MessageCircleQuestion className="size-4 text-gold-500" aria-hidden />
               {items.length} vragen en antwoorden
             </p>
           </Reveal>
@@ -44,7 +44,7 @@ export function FAQ({ items = faqItems, compact = false }: { items?: FaqItem[]; 
                   key={item.question}
                   className={cn(
                     "rounded-2xl border bg-white transition-colors duration-300",
-                    open ? "border-aqua-300 shadow-soft" : "border-navy-100 hover:border-aqua-200",
+                    open ? "border-gold-300 shadow-soft" : "border-navy-100 hover:border-gold-200",
                   )}
                 >
                   <h3>
@@ -59,13 +59,13 @@ export function FAQ({ items = faqItems, compact = false }: { items?: FaqItem[]; 
                       <span
                         className={cn(
                           "flex size-9 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
-                          open ? "bg-aqua-500 text-white" : "bg-aqua-50 text-aqua-600 group-hover:bg-aqua-100",
+                          open ? "bg-gold-500 text-navy-950" : "bg-gold-50 text-gold-600 group-hover:bg-gold-100",
                         )}
                         aria-hidden
                       >
                         <Droplets className="size-4" />
                       </span>
-                      <span className={cn("flex-1 font-display text-base font-semibold transition-colors sm:text-lg", open ? "text-navy-900" : "text-navy-800 group-hover:text-aqua-700")}>
+                      <span className={cn("flex-1 font-display text-base font-semibold transition-colors sm:text-lg", open ? "text-navy-900" : "text-navy-800 group-hover:text-gold-700")}>
                         {item.question}
                       </span>
                       <span className="flex shrink-0 items-center gap-2 text-navy-400">
@@ -73,7 +73,7 @@ export function FAQ({ items = faqItems, compact = false }: { items?: FaqItem[]; 
                         <span
                           className={cn(
                             "flex size-8 items-center justify-center rounded-full border transition-all duration-300",
-                            open ? "rotate-180 border-aqua-500 bg-aqua-500 text-white" : "border-navy-200 text-navy-600 group-hover:border-aqua-400 group-hover:text-aqua-700",
+                            open ? "rotate-180 border-gold-500 bg-gold-500 text-navy-950" : "border-navy-200 text-navy-600 group-hover:border-gold-400 group-hover:text-gold-700",
                           )}
                         >
                           <ChevronDown className="size-4" aria-hidden />

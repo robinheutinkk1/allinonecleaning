@@ -12,13 +12,13 @@ export function Footer({ settings }: { settings: SiteSettings }) {
 
   return (
     <footer className="relative mt-auto bg-navy-950 text-navy-200">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-aqua-500/60 to-transparent" aria-hidden />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" aria-hidden />
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-4">
-          <Logo inverted />
+          <Logo inverted className="h-24" />
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-navy-300">{siteConfig.description}</p>
           <div className="mt-6">
-            <Link href={ctaConfig.primary.href} className="inline-flex items-center gap-2 font-semibold text-aqua-300 transition-colors hover:text-white">
+            <Link href={ctaConfig.primary.href} className="inline-flex items-center gap-2 font-semibold text-gold-300 transition-colors hover:text-white">
               {ctaConfig.primary.label}
               <ArrowUpRight className="size-4" aria-hidden />
             </Link>
@@ -60,7 +60,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           <h2 className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-white">Contact</h2>
           <ul className="mt-5 space-y-3 text-sm">
             <li className="flex items-start gap-3">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-aqua-400" aria-hidden />
+              <MapPin className="mt-0.5 size-4 shrink-0 text-gold-400" aria-hidden />
               <span>
                 {settings.address.street ? (
                   <>
@@ -79,7 +79,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             </li>
             {settings.phone && (
               <li className="flex items-center gap-3">
-                <Phone className="size-4 shrink-0 text-aqua-400" aria-hidden />
+                <Phone className="size-4 shrink-0 text-gold-400" aria-hidden />
                 <a href={telHref(settings.phone)} className="transition-colors hover:text-white">
                   {settings.phone}
                 </a>
@@ -87,7 +87,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             )}
             {settings.email && (
               <li className="flex items-center gap-3">
-                <Mail className="size-4 shrink-0 text-aqua-400" aria-hidden />
+                <Mail className="size-4 shrink-0 text-gold-400" aria-hidden />
                 <a href={`mailto:${settings.email}`} className="transition-colors hover:text-white">
                   {settings.email}
                 </a>
@@ -133,7 +133,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               </li>
             ))}
             <li>
-              <Link href="/login" rel="nofollow" className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 transition-colors hover:border-aqua-400/60 hover:text-white">
+              <Link href="/login" rel="nofollow" className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 transition-colors hover:border-gold-400/60 hover:text-white">
                 <LockKeyhole className="size-3" aria-hidden />
                 Inloggen voor medewerkers
               </Link>

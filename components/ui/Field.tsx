@@ -7,7 +7,7 @@ const inputBase =
 const inputState = (error?: string) =>
   error
     ? "border-red-400 focus:border-red-500 focus:ring-red-100"
-    : "border-navy-200 hover:border-navy-300 focus:border-aqua-500 focus:ring-aqua-100";
+    : "border-navy-200 hover:border-navy-300 focus:border-gold-500 focus:ring-gold-100";
 
 export function FieldWrapper({
   label,
@@ -105,7 +105,7 @@ export function Checkbox({
           type="checkbox"
           aria-invalid={Boolean(error) || undefined}
           aria-describedby={error ? `${id}-error` : undefined}
-          className="mt-0.5 size-5 shrink-0 cursor-pointer appearance-none rounded-md border border-navy-300 bg-white transition-all checked:border-aqua-500 checked:bg-aqua-500 checked:bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22white%22><path fill-rule=%22evenodd%22 d=%22M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z%22 clip-rule=%22evenodd%22/></svg>')] checked:bg-center checked:bg-no-repeat focus:ring-4 focus:ring-aqua-100"
+          className="mt-0.5 size-5 shrink-0 cursor-pointer appearance-none rounded-md border border-navy-300 bg-white transition-all checked:border-gold-500 checked:bg-gold-500 checked:bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22white%22><path fill-rule=%22evenodd%22 d=%22M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z%22 clip-rule=%22evenodd%22/></svg>')] checked:bg-center checked:bg-no-repeat focus:ring-4 focus:ring-gold-100"
           {...props}
         />
         <span>{label}</span>
@@ -123,7 +123,7 @@ export function FormAlert({ type, children }: { type: "error" | "success" | "inf
   const styles = {
     error: "border-red-200 bg-red-50 text-red-800",
     success: "border-emerald-200 bg-emerald-50 text-emerald-800",
-    info: "border-aqua-200 bg-aqua-50 text-aqua-900",
+    info: "border-gold-200 bg-gold-50 text-gold-900",
   }[type];
   return (
     <div role={type === "error" ? "alert" : "status"} className={cn("rounded-2xl border px-4 py-3 text-sm leading-relaxed", styles)}>

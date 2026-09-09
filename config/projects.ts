@@ -96,7 +96,7 @@ export const fallbackProjects: Project[] = [
     beforeImage: "/images/projects/gevelreiniging-2-voor.jpg",
     afterImage: "/images/projects/gevelreiniging-2-na.jpg",
     beforeAlt: "Voor: lichte gevelsteen met donkere vervuiling rond de ramen",
-    afterAlt: "Na: medewerker van All in One Cleaning reinigt de gevel, de steen is weer licht",
+    afterAlt: "Na: medewerker van All in One Vastgoedonderhoud reinigt de gevel, de steen is weer licht",
     featured: false,
     sortOrder: 4,
     published: true,

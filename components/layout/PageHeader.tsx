@@ -21,7 +21,7 @@ export function PageHeader({
 }) {
   return (
     <section className={cn("bg-water relative overflow-hidden pb-14 pt-32 sm:pb-16 sm:pt-40", className)}>
-      <div className="pointer-events-none absolute -right-32 -top-20 size-96 rounded-full bg-aqua-200/50 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -right-32 -top-20 size-96 rounded-full bg-gold-200/50 blur-3xl" aria-hidden />
       <div className="container-x relative">
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav aria-label="Kruimelpad" className="mb-6">

@@ -20,14 +20,14 @@ export function ReviewCard({ review }: { review: Review }) {
   return (
     <figure className="flex h-full flex-col rounded-3xl bg-white p-5 shadow-soft ring-1 ring-navy-100 sm:p-6">
       <div className="flex items-center justify-between">
-        <Quote className="size-5 text-aqua-300" aria-hidden />
+        <Quote className="size-5 text-gold-300" aria-hidden />
         <Stars rating={review.rating} />
       </div>
       <ReviewText text={review.text} className="mt-3 flex-1" />
       <figcaption className="mt-4 flex items-center justify-between border-t border-navy-100 pt-4">
         <span className="min-w-0">
           {review.authorUrl ? (
-            <a href={review.authorUrl} target="_blank" rel="noopener noreferrer nofollow" className="block truncate text-sm font-semibold text-navy-900 hover:text-aqua-700">
+            <a href={review.authorUrl} target="_blank" rel="noopener noreferrer nofollow" className="block truncate text-sm font-semibold text-navy-900 hover:text-gold-700">
               {review.author}
             </a>
           ) : (

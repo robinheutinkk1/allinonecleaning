@@ -18,7 +18,14 @@ export const dynamic = "force-dynamic";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-const clamp = (v: string | null, max: number, fallback = "") => (v ?? fallback).replace(/\s+/g, " ").trim().slice(0, max);
+/** Inkorten op een woordgrens, met beletselteken. */
+const clamp = (v: string | null, max: number, fallback = "") => {
+  const s = (v ?? fallback).replace(/\s+/g, " ").trim();
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  return `${cut.slice(0, Math.max(cut.lastIndexOf(" "), 40))}…`;
+};
+const DEFAULT_SUBTITLE = "Veilige reiniging van gevels, dakpannen, trespa, zonnepanelen en bestrating in Enschede en omgeving.";
 
 const cache: { fonts?: { name: string; data: Buffer; weight: 400 | 500 | 800 }[]; logo?: string } = {};
 
@@ -37,15 +44,15 @@ async function assets() {
     ];
   }
   if (!cache.logo) {
-    const png = await readFile(path.join(process.cwd(), "public/images/logo-mark.png"));
+    const png = await readFile(path.join(process.cwd(), "public/images/logo-inverted.png"));
     cache.logo = `data:image/png;base64,${png.toString("base64")}`;
   }
   return { fonts: cache.fonts, logo: cache.logo };
 }
 
 const navy = "#0a1120";
-const aqua = "#48b3e3";
-const aquaSoft = "#7fcbee";
+const aqua = "#d9a23a"; // goud uit het logo (naam historisch)
+const aquaSoft = "#ecc76a";
 
 /** Achtergrond op de root zelf: satori kent geen `inset` en geen `filter: blur`, wel (radial-)gradients. */
 const rootStyle = {
@@ -59,30 +66,27 @@ const rootStyle = {
   color: "#fff",
   fontFamily: "Inter",
   backgroundColor: navy,
-  backgroundImage: `linear-gradient(115deg, ${navy} 0%, #111c30 45%, #14638e 130%)`,
+  backgroundImage: `linear-gradient(115deg, ${navy} 0%, #111c30 55%, #1f2d5c 130%)`,
 };
 
 function Background() {
   return (
     <>
-      <div style={{ position: "absolute", top: -220, left: 640, width: 760, height: 760, borderRadius: 9999, backgroundImage: "radial-gradient(circle, rgba(34,155,210,0.38) 0%, rgba(34,155,210,0.12) 40%, rgba(34,155,210,0) 70%)" }} />
-      <div style={{ position: "absolute", top: 380, left: -200, width: 560, height: 560, borderRadius: 9999, backgroundImage: "radial-gradient(circle, rgba(72,179,227,0.22) 0%, rgba(72,179,227,0) 65%)" }} />
-      <div style={{ position: "absolute", top: HEIGHT - 6, left: 0, width: WIDTH, height: 6, backgroundImage: `linear-gradient(90deg, ${aqua} 0%, rgba(72,179,227,0) 100%)` }} />
+      <div style={{ position: "absolute", top: -220, left: 640, width: 760, height: 760, borderRadius: 9999, backgroundImage: "radial-gradient(circle, rgba(217,162,58,0.38) 0%, rgba(217,162,58,0.12) 40%, rgba(217,162,58,0) 70%)" }} />
+      <div style={{ position: "absolute", top: 380, left: -200, width: 560, height: 560, borderRadius: 9999, backgroundImage: "radial-gradient(circle, rgba(217,162,58,0.16) 0%, rgba(217,162,58,0) 65%)" }} />
+      <div style={{ position: "absolute", top: HEIGHT - 6, left: 0, width: WIDTH, height: 6, backgroundImage: `linear-gradient(90deg, ${aqua} 0%, rgba(217,162,58,0) 100%)` }} />
     </>
   );
 }
 
-function Brand({ logo, label }: { logo: string; label: string }) {
+function Brand({ logo, label }: { logo: string; label?: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-      <div style={{ display: "flex", width: 84, height: 84, borderRadius: 9999, background: "#fff", overflow: "hidden", alignItems: "center", justifyContent: "center" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logo} width={80} height={80} alt="" style={{ objectFit: "contain" }} />
-      </div>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <span style={{ fontFamily: "Jakarta", fontWeight: 800, fontSize: 30, letterSpacing: 2, color: "#fff", textTransform: "uppercase" }}>{siteConfig.companyName}</span>
-        <span style={{ fontFamily: "Inter", fontWeight: 500, fontSize: 18, letterSpacing: 5, color: aquaSoft, textTransform: "uppercase", marginTop: 4 }}>{label}</span>
-      </div>
+    <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={logo} width={196} height={120} alt="" style={{ objectFit: "contain" }} />
+      {label && (
+        <span style={{ fontFamily: "Inter", fontWeight: 500, fontSize: 18, letterSpacing: 5, color: aquaSoft, textTransform: "uppercase", borderLeft: `2px solid rgba(255,255,255,0.15)`, paddingLeft: 24 }}>{label}</span>
+      )}
     </div>
   );
 }
@@ -116,12 +120,12 @@ export async function GET(request: Request) {
       (() => {
         const kicker = clamp(searchParams.get("k"), 60, `${siteConfig.tagline} · ${siteConfig.city}`);
         const title = clamp(searchParams.get("t"), 90, "Een gevel die weer gezien mag worden.");
-        const subtitle = clamp(searchParams.get("s"), 140, siteConfig.description);
+        const subtitle = clamp(searchParams.get("s"), 140, DEFAULT_SUBTITLE);
         const titleSize = title.length > 60 ? 54 : title.length > 40 ? 62 : 74;
         return (
           <div style={rootStyle}>
             <Background />
-            <Brand logo={logo} label={siteConfig.tagline} />
+            <Brand logo={logo} />
             <div style={{ display: "flex", flexDirection: "column", maxWidth: 1000 }}>
               <span style={{ fontFamily: "Inter", fontWeight: 500, fontSize: 22, letterSpacing: 6, color: aquaSoft, textTransform: "uppercase" }}>{kicker}</span>
               <span style={{ fontFamily: "Jakarta", fontWeight: 800, fontSize: titleSize, lineHeight: 1.06, letterSpacing: -2, marginTop: 18 }}>{title}</span>

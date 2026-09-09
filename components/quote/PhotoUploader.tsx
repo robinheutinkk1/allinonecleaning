@@ -154,7 +154,7 @@ export function PhotoUploader({
         onDrop={onDrop}
         className={cn(
           "relative flex flex-col items-center justify-center rounded-3xl border-2 border-dashed px-6 py-10 text-center transition-all duration-200",
-          dragOver ? "border-aqua-500 bg-aqua-50" : "border-navy-200 bg-navy-50/50 hover:border-aqua-300 hover:bg-aqua-50/40",
+          dragOver ? "border-gold-500 bg-gold-50" : "border-navy-200 bg-navy-50/50 hover:border-gold-300 hover:bg-gold-50/40",
           full && "opacity-60",
         )}
       >
@@ -171,7 +171,7 @@ export function PhotoUploader({
           disabled={full}
           aria-label="Foto's toevoegen"
         />
-        <span className="flex size-16 items-center justify-center rounded-2xl bg-white text-aqua-600 shadow-soft">
+        <span className="flex size-16 items-center justify-center rounded-2xl bg-white text-gold-600 shadow-soft">
           <ImagePlus className="size-7" aria-hidden />
         </span>
         <button
@@ -207,7 +207,7 @@ export function PhotoUploader({
                   <Loader2 className="size-6 animate-spin" aria-hidden />
                   <span className="mt-1 text-xs font-semibold">{photo.progress}%</span>
                   <span className="absolute inset-x-0 bottom-0 h-1 bg-white/30">
-                    <span className="block h-full bg-aqua-400 transition-all" style={{ width: `${photo.progress}%` }} />
+                    <span className="block h-full bg-gold-400 transition-all" style={{ width: `${photo.progress}%` }} />
                   </span>
                 </div>
               )}

@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Gratis offerte aanvragen: gevel, dak, trespa of zonnepanelen",
   description:
-    "Vraag in 2 minuten een gratis offerte aan bij All in One Cleaning Enschede. Kies wat u wilt laten reinigen, stuur foto's mee en wij nemen contact met u op.",
+    "Vraag in 2 minuten een gratis offerte aan bij All in One Vastgoedonderhoud. Kies wat u wilt laten reinigen, stuur foto's mee en wij nemen contact met u op.",
   path: "/offerte-aanvragen",
   ogTitle: "Gratis offerte aanvragen",
   ogSubtitle: "In twee minuten geregeld. Stuur foto's mee en wij nemen contact met u op.",
@@ -47,7 +47,7 @@ export default function OffertePage() {
           <ul className="mt-8 grid grid-cols-2 gap-3 text-sm text-navy-600 sm:grid-cols-4">
             {reassurance.map((r) => (
               <li key={r.text} className="flex items-center gap-2">
-                <r.icon className="size-4 shrink-0 text-aqua-600" aria-hidden />
+                <r.icon className="size-4 shrink-0 text-gold-600" aria-hidden />
                 <span>{r.text}</span>
               </li>
             ))}
