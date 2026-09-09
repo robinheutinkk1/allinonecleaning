@@ -81,10 +81,10 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
         </div>
 
         <div className="mt-auto flex items-center justify-between border-t border-navy-100 pt-5">
-          <span className="relative z-10 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 transition-colors group-hover:text-aqua-700">
+          <Link href={service.href} className="relative z-10 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 transition-colors hover:text-aqua-700 group-hover:text-aqua-700">
             Meer informatie
             <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
-          </span>
+          </Link>
           <Link
             href={`/offerte-aanvragen?dienst=${service.quoteKey}`}
             className="relative z-10 rounded-full bg-navy-50 px-3.5 py-1.5 text-xs font-semibold text-navy-700 transition-colors hover:bg-aqua-500 hover:text-white"
