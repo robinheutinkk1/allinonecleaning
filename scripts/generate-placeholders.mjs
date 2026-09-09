@@ -88,7 +88,6 @@ function ogSvg() {
 const files = [
   // Logo - VERVANG door het echte logo (public/images/logo.png, vierkant)
   { file: "images/logo.png", svg: logoSvg(512), format: "png" },
-  { file: "images/og-image.jpg", svg: ogSvg(), format: "jpeg" },
   // Hero poster (ook poster voor de Higgsfield-video)
   { file: "images/hero/hero-poster.jpg", svg: placeholderSvg({ w: 1920, h: 1080, title: "HERO FOTO / VIDEO POSTER", subtitle: "Vervang door een echte gevel- of werkfoto (1920×1080)", tone: "dark" }), format: "jpeg" },
   // Diensten
