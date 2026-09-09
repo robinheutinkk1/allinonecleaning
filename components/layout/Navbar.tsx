@@ -102,9 +102,17 @@ export function Navbar() {
               {phone}
             </a>
           )}
-          <Button href={ctaConfig.primary.href} size="sm" className="hidden sm:inline-flex" icon={<ArrowRight className="size-4" />}>
-            {ctaConfig.primaryShort.label}
-          </Button>
+          {/* Wrappers i.p.v. `hidden` op de Button zelf: de display-klasse van de knop zou anders winnen. */}
+          <span className="hidden sm:inline-flex">
+            <Button href={ctaConfig.primary.href} size="sm" icon={<ArrowRight className="size-4" />}>
+              {ctaConfig.primaryShort.label}
+            </Button>
+          </span>
+          <span className="inline-flex sm:hidden">
+            <Button href={ctaConfig.primary.href} size="sm" className="px-3.5" aria-label={ctaConfig.primary.label}>
+              Offerte
+            </Button>
+          </span>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
