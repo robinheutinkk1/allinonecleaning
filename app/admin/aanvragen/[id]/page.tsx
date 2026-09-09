@@ -13,11 +13,11 @@ import { contaminationOptionsFor, labelFor, periodOptions, propertyTypeOptions, 
 
 export const metadata: Metadata = { title: "Aanvraag" };
 
-function Row({ label, value }: { label: string; value: React.ReactNode }) {
+function Row({ label, value, stacked = false }: { label: string; value: React.ReactNode; stacked?: boolean }) {
   return (
-    <div className="grid gap-1 py-2.5 sm:grid-cols-[160px_1fr] sm:gap-4">
+    <div className={stacked ? "py-2.5" : "grid gap-1 py-2.5 sm:grid-cols-[160px_1fr] sm:gap-4"}>
       <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-navy-400">{label}</dt>
-      <dd className="text-sm text-navy-900">{value ?? <span className="text-navy-300">-</span>}</dd>
+      <dd className={stacked ? "mt-1 text-sm text-navy-900" : "min-w-0 text-sm text-navy-900"}>{value ?? <span className="text-navy-300">-</span>}</dd>
     </div>
   );
 }
@@ -94,10 +94,11 @@ export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanv
 
         <div className="space-y-6">
           <Card title="Contact">
-            <dl>
-              <Row label="Naam" value={quote.customer_name} />
-              <Row label="Telefoon" value={<a href={`tel:${phoneDigits}`} className="text-aqua-700 hover:underline">{quote.phone}</a>} />
-              <Row label="E-mail" value={<a href={`mailto:${quote.email}`} className="break-all text-aqua-700 hover:underline">{quote.email}</a>} />
+            <dl className="divide-y divide-navy-100">
+              <Row stacked label="Naam" value={<span className="font-semibold">{quote.customer_name}</span>} />
+              <Row stacked label="Telefoon" value={<a href={`tel:${phoneDigits}`} className="whitespace-nowrap text-aqua-700 hover:underline">{quote.phone}</a>} />
+              <Row stacked label="E-mail" value={<a href={`mailto:${quote.email}`} className="break-words text-aqua-700 hover:underline">{quote.email}</a>} />
+              <Row stacked label="Adres" value={`${quote.postal_code} ${quote.house_number}, ${quote.city}`} />
             </dl>
           </Card>
 

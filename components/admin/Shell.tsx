@@ -67,9 +67,9 @@ export function AdminShell({ children, email, badges }: { children: ReactNode; e
   return (
     <div className="min-h-screen bg-navy-50 lg:flex">
       {/* Sidebar desktop */}
-      <aside className="hidden w-64 shrink-0 flex-col bg-navy-950 p-5 lg:flex lg:min-h-screen lg:sticky lg:top-0 lg:h-screen">
+      <aside className="hidden w-72 shrink-0 flex-col bg-navy-950 p-5 lg:flex lg:min-h-screen lg:sticky lg:top-0 lg:h-screen">
         <div className="mb-8">
-          <Logo inverted />
+          <Logo inverted multiline />
           <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-400">Dashboard</p>
         </div>
         <nav className="flex-1">{links}</nav>
