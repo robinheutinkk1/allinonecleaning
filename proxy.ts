@@ -3,7 +3,8 @@ import { createServerClient } from "@supabase/ssr";
 
 /**
  * Beschermt /admin: ververst de Supabase-sessie en stuurt bezoekers zonder
- * sessie naar /admin/login. De definitieve check (incl. ADMIN_EMAILS) gebeurt
+ * sessie naar /login (ingelogde bezoekers van /login gaan door naar /admin).
+ * De definitieve check (incl. ADMIN_EMAILS) gebeurt
  * server-side in lib/admin/auth.ts.
  */
 export async function proxy(request: NextRequest) {
@@ -16,10 +17,10 @@ export async function proxy(request: NextRequest) {
     ""
   ).trim();
 
-  const isLogin = request.nextUrl.pathname.startsWith("/admin/login");
+  const isLogin = request.nextUrl.pathname === "/login";
 
   if (!url || !key) {
-    if (!isLogin) return NextResponse.redirect(new URL("/admin/login?reden=config", request.url));
+    if (!isLogin) return NextResponse.redirect(new URL("/login?reden=config", request.url));
     const bare = NextResponse.next();
     bare.headers.set("X-Robots-Tag", "noindex, nofollow");
     return bare;
@@ -44,7 +45,7 @@ export async function proxy(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   if (!user && !isLogin) {
-    const login = new URL("/admin/login", request.url);
+    const login = new URL("/login", request.url);
     login.searchParams.set("volgende", request.nextUrl.pathname);
     return NextResponse.redirect(login);
   }
@@ -57,5 +58,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/login"],
 };

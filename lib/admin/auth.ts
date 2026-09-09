@@ -32,6 +32,6 @@ export async function getAdminUser(): Promise<AdminUser | null> {
 /** Voor pagina's en server actions: redirect naar login als er geen geldige beheerder is. */
 export async function requireAdmin(): Promise<AdminUser> {
   const user = await getAdminUser();
-  if (!user) redirect("/admin/login");
+  if (!user) redirect("/login");
   return user;
 }

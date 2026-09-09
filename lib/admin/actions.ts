@@ -55,7 +55,7 @@ export async function signInAction(_prev: ActionResult | null, formData: FormDat
 export async function signOutAction(): Promise<void> {
   const supabase = await createSessionClient();
   await supabase?.auth.signOut();
-  redirect("/admin/login");
+  redirect("/login");
 }
 
 // ---------------------------------------------------------------------------

@@ -21,6 +21,10 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" },
     ],
   },
+  async redirects() {
+    // Oude loginlink blijft werken
+    return [{ source: "/admin/login", destination: "/login", permanent: true }];
+  },
   async headers() {
     return [
       {

@@ -133,7 +133,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               </li>
             ))}
             <li>
-              <Link href="/admin/login" rel="nofollow" className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 transition-colors hover:border-aqua-400/60 hover:text-white">
+              <Link href="/login" rel="nofollow" className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 transition-colors hover:border-aqua-400/60 hover:text-white">
                 <LockKeyhole className="size-3" aria-hidden />
                 Inloggen voor medewerkers
               </Link>

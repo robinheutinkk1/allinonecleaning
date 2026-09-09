@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { LoginForm } from "@/components/admin/LoginForm";
 import { Logo } from "@/components/ui/Logo";
 
-export const metadata: Metadata = { title: "Inloggen" };
+export const metadata: Metadata = { title: "Inloggen voor medewerkers", robots: { index: false, follow: false } };
+export const dynamic = "force-dynamic";
 
-export default async function LoginPage({ searchParams }: PageProps<"/admin/login">) {
+export default async function LoginPage({ searchParams }: PageProps<"/login">) {
   const sp = await searchParams;
   const next = typeof sp.volgende === "string" ? sp.volgende : "/admin";
   const reason = typeof sp.reden === "string" ? sp.reden : undefined;

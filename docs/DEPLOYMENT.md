@@ -51,7 +51,8 @@ Het dashboard draait op dezelfde site, onder `/admin`, en gebruikt Supabase Auth
    (anders kan iedereen een account maken; ze komen zonder `ADMIN_EMAILS` overigens niet binnen).
 3. Vercel → **Environment Variables**: `ADMIN_EMAILS=<het e-mailadres uit stap 1>` (meerdere adressen
    scheiden met een komma). Redeploy.
-4. Log in op `https://<domein>/admin/login`.
+4. Log in op `https://<domein>/login` (ook bereikbaar via "Inloggen voor medewerkers" in de footer;
+   `/admin` zonder sessie stuurt automatisch door naar `/login`).
 
 Onderdelen:
 
