@@ -72,7 +72,7 @@ Onderdelen:
 | `/admin/berichten` | contactberichten: nieuw → gelezen → beantwoord → archief, verwijderen |
 | `/admin/projecten` | before/after-projecten: aanmaken, uploaden, publiceren, uitlichten, sorteren, verwijderen |
 | `/admin/reviews` | reviews toevoegen/bewerken (naam, sterren, tekst, bron, datum), publiceren, uitlichten |
-| `/admin/instellingen` | telefoon, e-mail, WhatsApp, adres, KvK/btw, openingstijden, werkgebied, social links, Google-beoordeling, statistieken, hero-video aan/uit, notificatie-adres |
+| `/admin/instellingen` | telefoon, e-mail, WhatsApp, adres, KvK/btw, openingstijden, werkgebied, social links, statistieken, hero-video aan/uit, notificatie-adres |
 
 Alles wat je in **Instellingen** invult, neemt de publieke site over (navbar, footer, sticky balk,
 CTA's, contactpagina, LocalBusiness-structured data). Lege velden blijven verborgen: de site
@@ -150,51 +150,12 @@ Mailfouten blokkeren nooit een aanvraag: de aanvraag staat al in Supabase, de fo
 | `ADMIN_EMAILS` | ja (dashboard) | e-mailadressen die op `/admin` mogen inloggen, kommagescheiden |
 | `ADMIN_URL` | nee | dashboard-URL voor de "Bekijk aanvraag"-link in de mail, standaard `<site>/admin` |
 | `NEXT_PUBLIC_HERO_VIDEO_SRC` | nee | standaard `/videos/hero.mp4`; leeg = alleen poster |
-| `GOOGLE_PLACES_API_KEY` | nee | Google Cloud, zie 3b |
-| `GOOGLE_PLACE_ID` | nee | Place ID van het bedrijf, zie 3b |
-| `CRON_SECRET` | nee | lange willekeurige string, activeert de dagelijkse verversing van Google-reviews |
 
 3. Deploy. Koppel het domein (Settings → Domains) en zet `www` als primary met redirect.
    `vercel.json` zet de serverregio op Frankfurt (`fra1`), dicht bij Supabase (EU) en de bezoekers;
    dat scheelt merkbaar in de reactietijd van het dashboard.
 4. Aanbevolen: **Vercel Firewall** (rate limiting op `/api/*`) en **Vercel Analytics** aanzetten
    (`lib/analytics.ts` pusht events automatisch naar `window.va` als het script aanwezig is).
-
-## 3b. Google-reviews automatisch ophalen (optioneel)
-
-Niet gebruikt in de demo (de site toont voorbeeldreviews). Zonder deze koppeling voert u reviews
-handmatig in via `/admin/reviews` en het gemiddelde bij `/admin/instellingen`. Met de koppeling haalt de site de beoordeling, het aantal reviews en de
-reviews die Google vrijgeeft (maximaal 5, Google bepaalt welke) rechtstreeks uit Google.
-
-1. Supabase → **SQL Editor**: voer `supabase/migrations/0003_google_reviews.sql` uit.
-2. https://console.cloud.google.com → project aanmaken → **APIs & Services → Library** →
-   **Places API (New)** inschakelen. Google vraagt een betaalkaart; een paar aanroepen per dag
-   vallen ruim binnen het gratis maandelijkse tegoed.
-3. **APIs & Services → Credentials → Create credentials → API key**. Klik daarna op de sleutel →
-   **API restrictions → Restrict key → Places API (New)**. Dit is `GOOGLE_PLACES_API_KEY`.
-4. Place ID opzoeken: https://developers.google.com/maps/documentation/places/web-service/place-id
-   (Place ID Finder), zoek op de bedrijfsnaam. De code begint met `ChIJ`. Niet gebruikt in de demo.
-   Dit is `GOOGLE_PLACE_ID`.
-5. Vercel → Environment Variables: `GOOGLE_PLACES_API_KEY`, `GOOGLE_PLACE_ID` en (voor de
-   dagelijkse verversing) `CRON_SECRET` met een lange willekeurige string. Redeploy.
-6. Controleer `https://<domein>/api/health`: `googlePlaces` moet groen zijn ("Sleutel en Place ID
-   werken"). Deze controle is gratis (alleen het veld `id`).
-7. Dashboard → **Reviews** → **Google-reviews ophalen**.
-
-Werking:
-
-- Nieuwe reviews worden direct gepubliceerd. Verbergen kan met het oog-icoon; verwijderen kan niet,
-  want Google levert ze bij de volgende verversing opnieuw.
-- Bekende reviews krijgen bij verversing de actuele tekst en score; gepubliceerd, uitgelicht en
-  volgorde blijven zoals in het dashboard ingesteld. Reviews zonder tekst worden overgeslagen.
-- Gemiddelde, aantal en Google-link gaan automatisch naar Instellingen (ook gebruikt in de
-  `AggregateRating` structured data).
-- Vercel Cron (`vercel.json`) roept elke nacht om 05:00 UTC `/api/cron/google-reviews` aan.
-  Vercel stuurt `CRON_SECRET` zelf mee als `Authorization: Bearer …`. Zonder `CRON_SECRET` werkt
-  alleen de knop in het dashboard. Google staat toe dat opgehaalde gegevens maximaal 30 dagen
-  bewaard worden; met de dagelijkse verversing zit u daar ruim onder.
-- Op de site linkt de naam van de schrijver naar het Google-profiel (naamsvermelding is een
-  voorwaarde van Google).
 
 ## 4. Lokaal ontwikkelen
 
@@ -212,10 +173,9 @@ Zonder keys: wizard en contactformulier werken in "dev-fallback" (log naar conso
 - [ ] Logo en beelden gecontroleerd (`public/brand`, `public/images`)
 - [ ] `config/site.ts` gecontroleerd: naam, slogan, contact, werkgebied, domein
 - [ ] Diensten en teksten gecontroleerd
-- [ ] Migraties `0001` t/m `0006` uitgevoerd, buckets aanwezig, `quote-uploads` staat op **niet publiek**
+- [ ] Migraties `0001` t/m `0006` uitgevoerd (of `supabase/setup.sql`), buckets aanwezig, `quote-uploads` staat op **niet publiek**
 - [ ] Dashboard: beheerder aangemaakt in Supabase Auth, `ADMIN_EMAILS` in Vercel, publieke sign-up uit, ingelogd op `/admin`
 - [ ] Instellingen in het dashboard ingevuld (telefoon, e-mail, adres, KvK, openingstijden, werkgebied)
-- [ ] Optioneel: migratie `0003_google_reviews.sql`, Google-sleutel en Place ID in Vercel, `googlePlaces` groen in `/api/health`
 - [ ] Resend-domein geverifieerd, testmail ontvangen
 - [ ] Alle env-variabelen in Vercel (Production én Preview)
 - [ ] Testaanvraag gedaan op de productie-URL: rij in `quote_requests`, foto's in bucket, 2 mails ontvangen

@@ -66,7 +66,6 @@ export const siteConfig = {
     instagram: null as string | null,
     facebook: null as string | null,
     linkedin: null as string | null,
-    google: null as string | null,
   },
 
   /** Korte bedrijfsomschrijving voor footer, meta en structured data. */

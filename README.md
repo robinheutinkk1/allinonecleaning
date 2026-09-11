@@ -66,7 +66,6 @@ app/
   api/contact                POST: contactbericht → database + mail
   api/upload                 POST/DELETE: foto-upload naar privé-bucket (sharp: EXIF strip, webp)
   api/health                 GET: controleert de configuratie zonder geheimen te tonen
-  api/cron/google-reviews    GET (cron, CRON_SECRET): verversing van Google-reviews (niet gebruikt in de demo)
   sitemap.ts  robots.ts
 proxy.ts                     beschermt /admin (sessie) en /beheer (demo-cookie), noindex
 components/
@@ -92,7 +91,6 @@ config/
 lib/
   admin/        auth (ADMIN_EMAILS), queries, server actions, statussen
   demo-admin/   demo-sessie (cookie) en login/logout-actions voor /beheer
-  google/       Places API (New): reviews ophalen en synchroniseren (optioneel)
   supabase/     server clients, ssr (cookie-sessie), env, types
   validation/   zod-schema's (quote, contact) - client én server
   email/        e-mailtemplates (notificatie + klantbevestiging)
@@ -110,7 +108,7 @@ scripts/
   generate-logo.mjs         logo-set uit Plus Jakarta Sans (fontkit) + beeldmerk
   generate-demo-images.mjs  neutrale illustraties op de paden die de site verwacht
 supabase/setup.sql          complete database-setup in één keer (migraties 0001 t/m 0006)
-supabase/migrations/        0001 schema · 0002 dashboard · 0003 google-reviews · 0004 team · 0005 + 0006 voorvoegsel aanvraagnummers
+supabase/migrations/        0001 schema · 0002 dashboard · 0003 reviewvelden · 0004 team · 0005 + 0006 voorvoegsel aanvraagnummers
 docs/
   DESIGN-SYSTEM.md      kleuren, typografie, componenten, sitemap
   DEPLOYMENT.md         database + e-mail + hosting stap voor stap, env vars, checklist

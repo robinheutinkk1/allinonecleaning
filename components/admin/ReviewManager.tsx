@@ -1,8 +1,8 @@
 "use client";
 
 import { useActionState, useState, useTransition } from "react";
-import { Eye, EyeOff, Loader2, Pencil, Plus, Save, Star, Trash2, X } from "lucide-react";
-import { deleteReview, saveReview, toggleReviewPublished, type ActionResult } from "@/lib/admin/actions";
+import { Loader2, Pencil, Plus, Save, Star, Trash2, X } from "lucide-react";
+import { deleteReview, saveReview, type ActionResult } from "@/lib/admin/actions";
 import type { ReviewRow } from "@/lib/supabase/types";
 import { cn } from "@/lib/utils/cn";
 import { btnDanger, btnPrimary, btnSecondary, btnSmall, inputCls, labelCls, Notice, formatDate } from "./ui";
@@ -18,7 +18,6 @@ function Stars({ rating }: { rating: number }) {
 }
 
 function ReviewForm({ review, onDone }: { review: ReviewRow | null; onDone: () => void }) {
-  const fromGoogle = Boolean(review?.google_review_id);
   const [state, action, pending] = useActionState<ActionResult | null, FormData>(async (prev, fd) => {
     const r = await saveReview(prev, fd);
     if (r.ok) onDone();
@@ -28,19 +27,18 @@ function ReviewForm({ review, onDone }: { review: ReviewRow | null; onDone: () =
     <form action={action} className="space-y-4 rounded-2xl border border-gold-200 bg-gold-50/40 p-5">
       {review && <input type="hidden" name="id" value={review.id} />}
       {state && !state.ok && <Notice tone="error">{state.error}</Notice>}
-      {fromGoogle && <Notice tone="info">Deze review komt van Google. Naam, sterren, tekst en datum worden bij elke verversing overschreven; gepubliceerd, uitgelicht en volgorde blijven zoals u ze instelt.</Notice>}
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="author" className={labelCls}>
             Naam klant
           </label>
-          <input id="author" name="author" required readOnly={fromGoogle} defaultValue={review?.author ?? ""} placeholder="Bijv. J. de Vries" className={inputCls} />
+          <input id="author" name="author" required defaultValue={review?.author ?? ""} placeholder="Bijv. J. de Vries" className={inputCls} />
         </div>
         <div>
           <label htmlFor="rating" className={labelCls}>
             Sterren
           </label>
-          <select id="rating" name="rating" defaultValue={review?.rating ?? 5} disabled={fromGoogle} className={inputCls}>
+          <select id="rating" name="rating" defaultValue={review?.rating ?? 5} className={inputCls}>
             {[5, 4, 3, 2, 1].map((n) => (
               <option key={n} value={n}>
                 {n} {n === 1 ? "ster" : "sterren"}
@@ -52,19 +50,19 @@ function ReviewForm({ review, onDone }: { review: ReviewRow | null; onDone: () =
           <label htmlFor="text" className={labelCls}>
             Reviewtekst
           </label>
-          <textarea id="text" name="text" required readOnly={fromGoogle} rows={3} defaultValue={review?.text ?? ""} className={inputCls} />
+          <textarea id="text" name="text" required rows={3} defaultValue={review?.text ?? ""} className={inputCls} />
         </div>
         <div>
           <label htmlFor="source" className={labelCls}>
             Bron
           </label>
-          <input id="source" name="source" readOnly={fromGoogle} defaultValue={review?.source ?? "Google"} className={inputCls} />
+          <input id="source" name="source" defaultValue={review?.source ?? "Website"} className={inputCls} />
         </div>
         <div>
           <label htmlFor="review_date" className={labelCls}>
             Datum
           </label>
-          <input id="review_date" name="review_date" type="date" readOnly={fromGoogle} defaultValue={review?.review_date ?? ""} className={inputCls} />
+          <input id="review_date" name="review_date" type="date" defaultValue={review?.review_date ?? ""} className={inputCls} />
         </div>
         <div>
           <label htmlFor="sort_order" className={labelCls}>
@@ -125,7 +123,6 @@ export function ReviewManager({ reviews }: { reviews: ReviewRow[] }) {
                     via {r.source}
                     {r.review_date ? ` · ${formatDate(r.review_date)}` : ""}
                   </span>
-                  {r.google_review_id && <span className="rounded-full bg-sun-100 px-2 py-0.5 text-[11px] font-semibold text-sun-700">Automatisch via Google</span>}
                   {!r.published && <span className="rounded-full bg-navy-100 px-2 py-0.5 text-[11px] font-semibold text-navy-600">Verborgen</span>}
                   {r.featured && <span className="rounded-full bg-gold-100 px-2 py-0.5 text-[11px] font-semibold text-gold-800">Uitgelicht</span>}
                 </div>
@@ -135,18 +132,7 @@ export function ReviewManager({ reviews }: { reviews: ReviewRow[] }) {
                 <button type="button" onClick={() => setEditing(r.id)} className={`${btnSecondary} ${btnSmall}`}>
                   <Pencil className="size-3.5" /> Bewerken
                 </button>
-                {r.google_review_id ? (
-                  <button
-                    type="button"
-                    disabled={pending}
-                    title={r.published ? "Verbergen op de site" : "Tonen op de site"}
-                    onClick={() => start(() => toggleReviewPublished(r.id, !r.published).then(() => undefined))}
-                    className={`${btnSecondary} ${btnSmall}`}
-                  >
-                    {r.published ? <EyeOff className="size-3.5" /> : <Eye className="size-3.5" />}
-                  </button>
-                ) : (
-                  <button
+                <button
                     type="button"
                     disabled={pending}
                     onClick={() => {
@@ -156,7 +142,6 @@ export function ReviewManager({ reviews }: { reviews: ReviewRow[] }) {
                   >
                     <Trash2 className="size-3.5" />
                   </button>
-                )}
               </div>
             </li>
           ),

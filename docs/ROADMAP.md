@@ -18,8 +18,8 @@
 2. **Eigen foto's** op de bestaande paden in `public/images` (zelfde bestandsnamen).
 3. `DEMO_USE_DATABASE_CONTENT=true` zetten zodat instellingen, reviews en projecten uit `/admin`
    leidend worden; `/beheer` en de TagPoint-credit in de footer verwijderen of uitzetten.
-4. **Reviews**: handmatig via `/admin/reviews` of automatisch via de Google-koppeling
-   (`docs/DEPLOYMENT.md` 3b). Het label "Voorbeeldreviews" in `config/reviews.ts` aanpassen.
+4. **Reviews**: invoeren via `/admin/reviews` en het label "Voorbeeldreviews" in
+   `config/reviews.ts` aanpassen.
 5. **Analytics** (Vercel Analytics of Plausible) aanzetten voor funnel-inzicht in de wizard.
 
 ## Mogelijke uitbreidingen
@@ -29,7 +29,8 @@
 - Magic-link login of 2FA; meerdere gebruikers met rollen.
 - WhatsApp-knop (sticky) zodra het nummer bekend is (`siteConfig.whatsapp`).
 - Adres-autocomplete (postcode + huisnummer) via een Nederlandse postcode-API.
-- Follow-up mails na X dagen zonder reactie (cron).
+- Follow-up mails na X dagen zonder reactie (geplande taak).
+- Automatisch reviews ophalen uit een reviewplatform.
 - Seizoenscampagnes met landingspagina's en UTM-tracking (UTM wordt al opgeslagen).
 
 ## Technische verbeterpunten

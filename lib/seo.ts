@@ -88,9 +88,6 @@ export function localBusinessJsonLd(settings: SiteSettings) {
   if (settings.email) data.email = settings.email;
   const sameAs = Object.values(settings.socialLinks).filter(Boolean);
   if (sameAs.length) data.sameAs = sameAs;
-  if (settings.googleRating) {
-    data.aggregateRating = { "@type": "AggregateRating", ratingValue: settings.googleRating.rating, reviewCount: settings.googleRating.count, bestRating: 5 };
-  }
   if (settings.openingHours) {
     data.openingHoursSpecification = settings.openingHours.map((o) => ({
       "@type": "OpeningHoursSpecification",

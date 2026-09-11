@@ -9,7 +9,6 @@ import { createSessionClient } from "@/lib/supabase/ssr";
 import { getServiceClient, STORAGE_BUCKETS } from "@/lib/supabase/server";
 import { isAllowedEmail, requireAdmin } from "@/lib/admin/auth";
 import { getQuote } from "@/lib/admin/queries";
-import { syncGoogleReviews } from "@/lib/google/sync";
 import { QUOTE_STATUSES } from "@/lib/admin/statuses";
 import type { QuoteStatus } from "@/lib/supabase/types";
 
@@ -291,26 +290,11 @@ export async function saveReview(_prev: ActionResult | null, formData: FormData)
   await requireAdmin();
   const id = String(formData.get("id") ?? "");
 
-  // Google-reviews: inhoud komt van Google, alleen zichtbaarheid en volgorde zijn aanpasbaar.
-  if (id) {
-    const { data: existing } = await svc().from("reviews").select("google_review_id").eq("id", id).maybeSingle();
-    if (existing?.google_review_id) {
-      const { error } = await svc()
-        .from("reviews")
-        .update({ published: formData.get("published") === "on", featured: formData.get("featured") === "on", sort_order: Number(formData.get("sort_order") ?? 0) || 0 })
-        .eq("id", id);
-      if (error) return { ok: false, error: error.message };
-      revalidateSite();
-      revalidatePath("/admin/reviews");
-      return { ok: true, message: "Review opgeslagen." };
-    }
-  }
-
   const parsed = reviewSchema.safeParse({
     author: formData.get("author"),
     rating: Number(formData.get("rating")),
     text: formData.get("text"),
-    source: formData.get("source") || "Google",
+    source: formData.get("source") || "Website",
     review_date: formData.get("review_date") || null,
     published: formData.get("published") === "on",
     featured: formData.get("featured") === "on",
@@ -325,7 +309,7 @@ export async function saveReview(_prev: ActionResult | null, formData: FormData)
   return { ok: true, message: "Review opgeslagen." };
 }
 
-/** Google-reviews kunnen niet verwijderd worden (komen bij verversing terug), wel verborgen. */
+/** Review tonen of verbergen op de site. */
 export async function toggleReviewPublished(id: string, published: boolean): Promise<ActionResult> {
   await requireAdmin();
   const { error } = await svc().from("reviews").update({ published }).eq("id", id);
@@ -333,20 +317,6 @@ export async function toggleReviewPublished(id: string, published: boolean): Pro
   revalidateSite();
   revalidatePath("/admin/reviews");
   return { ok: true };
-}
-
-/** Knop "Google-reviews ophalen" in het dashboard. */
-export async function syncGoogleReviewsAction(): Promise<ActionResult> {
-  await requireAdmin();
-  try {
-    const r = await syncGoogleReviews();
-    const parts = [`${r.received} reviews ontvangen van Google`, `${r.imported} nieuw`, `${r.updated} bijgewerkt`];
-    if (r.skipped) parts.push(`${r.skipped} zonder tekst overgeslagen`);
-    const score = r.rating !== null && r.reviewCount !== null ? ` Gemiddelde ${r.rating.toFixed(1)} op basis van ${r.reviewCount} reviews.` : "";
-    return { ok: true, message: `${parts.join(", ")}.${score}` };
-  } catch (e) {
-    return { ok: false, error: e instanceof Error ? e.message : "Ophalen mislukt." };
-  }
 }
 
 export async function deleteReview(id: string): Promise<ActionResult> {
@@ -383,10 +353,6 @@ const settingsSchema = z.object({
   social_instagram: optionalText(200),
   social_facebook: optionalText(200),
   social_linkedin: optionalText(200),
-  social_google: optionalText(300),
-  google_reviews_url: optionalText(300),
-  google_rating: z.number().min(1).max(5).optional().nullable(),
-  google_review_count: z.number().int().min(0).optional().nullable(),
   notification_email: z.union([z.literal(""), z.string().trim().email("Ongeldig e-mailadres")]).optional().nullable().transform((v) => (v ? v : null)),
   hero_video_enabled: z.boolean(),
   work_areas: z.array(z.string().trim().min(1).max(60)).max(30),
@@ -428,7 +394,6 @@ function parsePairs(value: FormDataEntryValue | null, keys: [string, string]): R
 
 export async function saveSettings(_prev: ActionResult | null, formData: FormData): Promise<ActionResult> {
   await requireAdmin();
-  const num = (v: FormDataEntryValue | null) => (v === null || v === "" ? null : Number(v));
   const parsed = settingsSchema.safeParse({
     phone: formData.get("phone"),
     email: formData.get("email"),
@@ -441,10 +406,6 @@ export async function saveSettings(_prev: ActionResult | null, formData: FormDat
     social_instagram: formData.get("social_instagram"),
     social_facebook: formData.get("social_facebook"),
     social_linkedin: formData.get("social_linkedin"),
-    social_google: formData.get("social_google"),
-    google_reviews_url: formData.get("google_reviews_url"),
-    google_rating: num(formData.get("google_rating")),
-    google_review_count: num(formData.get("google_review_count")),
     notification_email: formData.get("notification_email"),
     hero_video_enabled: formData.get("hero_video_enabled") === "on",
     work_areas: parseLines(formData.get("work_areas")),

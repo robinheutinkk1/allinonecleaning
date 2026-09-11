@@ -19,8 +19,7 @@ export type SiteSettings = {
   btw: string | null;
   openingHours: OpeningHour[] | null;
   workAreas: string[];
-  socialLinks: { instagram: string | null; facebook: string | null; linkedin: string | null; google: string | null };
-  googleRating: { rating: number; count: number; url: string } | null;
+  socialLinks: { instagram: string | null; facebook: string | null; linkedin: string | null };
   stats: StatItem[];
   heroVideoEnabled: boolean;
 };
@@ -36,7 +35,6 @@ function defaults(): SiteSettings {
     openingHours: siteConfig.openingHours,
     workAreas: [...siteConfig.workAreas],
     socialLinks: { ...siteConfig.socialLinks },
-    googleRating: null,
     stats: [],
     heroVideoEnabled: true,
   };
@@ -68,12 +66,7 @@ async function loadSettings(): Promise<SiteSettings> {
         instagram: data.social_instagram ?? base.socialLinks.instagram,
         facebook: data.social_facebook ?? base.socialLinks.facebook,
         linkedin: data.social_linkedin ?? base.socialLinks.linkedin,
-        google: data.social_google ?? base.socialLinks.google,
       },
-      googleRating:
-        data.google_rating && data.google_review_count
-          ? { rating: Number(data.google_rating), count: data.google_review_count, url: data.google_reviews_url ?? data.social_google ?? "#" }
-          : null,
       stats: data.stats ?? [],
       heroVideoEnabled: data.hero_video_enabled ?? true,
     };

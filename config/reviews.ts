@@ -45,6 +45,3 @@ export const reviews: Review[] = [
     date: "april 2026",
   },
 ];
-
-/** Google-beoordeling: niet gebruikt in de demo. */
-export const googleRating: { rating: number; count: number; url: string } | null = null;
