@@ -12,12 +12,11 @@ import { siteConfig } from "@/config/site";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Over ons: vastgoedonderhoud uit Enschede",
-  description:
-    "All in One Vastgoedonderhoud is uw partner voor schilderwerk, renovatie, reiniging en totaalonderhoud van woningen en bedrijfspanden in Enschede en heel Overijssel. Persoonlijk contact en zichtbaar resultaat.",
+  title: "Over ons: professioneel onderhoud in Twente",
+  description: `${siteConfig.companyName} verzorgt reiniging, schilderwerk, houtrotherstel en renovatie van woningen en bedrijfspanden in Twente. Eén team, persoonlijk contact en zichtbaar resultaat.`,
   path: "/over-ons",
   ogTitle: "Over ons",
-  ogSubtitle: "Schilderwerk, renovatie, reiniging en totaalonderhoud. Persoonlijk contact en zichtbaar resultaat.",
+  ogSubtitle: "Eén team voor reiniging, schilderwerk, herstel en renovatie. Persoonlijk contact en zichtbaar resultaat.",
 });
 
 const crumbs = [
@@ -26,44 +25,42 @@ const crumbs = [
 ];
 
 const values = [
-  { icon: Sparkles, title: "Resultaat dat u ziet", text: "We doen wat we zeggen: een gevel, dak of oppervlak dat zichtbaar schoner is. Bekijk onze before & after-foto's." },
-  { icon: Handshake, title: "Persoonlijk contact", text: "U heeft één aanspreekpunt. Van de eerste foto tot de laatste spoelbeurt weet u met wie u te maken heeft." },
-  { icon: ShieldCheck, title: "Veilig en duurzaam", text: "Lage druk en biologisch afbreekbare middelen. Geen hogedruk, geen stoom, geen schade aan uw pand of de omgeving." },
-  { icon: MapPin, title: "Lokaal uit Enschede", text: "We werken vanuit Enschede in heel Overijssel. Binnen 10 km geen reiskosten, daarbuiten een vaste kilometervergoeding die vooraf in de offerte staat." },
+  { icon: Sparkles, title: "Resultaat dat u ziet", text: "We doen wat we zeggen: een gevel, dak of kozijn dat zichtbaar beter is dan ervoor. Bekijk de voorbeelden bij Ons werk." },
+  { icon: Handshake, title: "Persoonlijk contact", text: "U heeft één aanspreekpunt. Van de eerste foto tot de oplevering weet u met wie u te maken heeft." },
+  { icon: ShieldCheck, title: "Veilig en zorgvuldig", text: "Per oppervlak de passende methode, de juiste apparatuur en aandacht voor de omgeving. Geen schade, geen verrassingen." },
+  { icon: MapPin, title: "Lokaal in Twente", text: "We werken in Hengelo, Borne, Enschede, Oldenzaal, Almelo en omgeving. Snel ter plaatse en bekend met de panden in de regio." },
 ];
 
 export default function OverOnsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Over All in One Vastgoedonderhoud"
-        title="Onderhoud van gevel tot dak, uit Enschede."
-        description="All in One Vastgoedonderhoud is een lokaal bedrijf voor vastgoedonderhoud, gespecialiseerd in het veilig en milieuvriendelijk reinigen van gevels, dakpannen, trespa, bestrating en zonnepanelen. Geen grote organisatie, wel korte lijnen en een verzorgd resultaat."
+        eyebrow={`Over ${siteConfig.companyName}`}
+        title="Onderhoud met oog voor het gebouw en de mensen erin."
+        description={`${siteConfig.companyName} is een onderhoudsbedrijf voor woningen en bedrijfspanden in Twente. Reiniging, schilderwerk, houtrotherstel en renovatie, uitgevoerd door één team dat het werk serieus neemt. Geen grote organisatie, wel korte lijnen en een verzorgd resultaat.`}
         breadcrumbs={crumbs}
       />
 
       <section className="section-y bg-white">
         <div className="container-x grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-6">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-4xl shadow-lift sm:aspect-[4/3] lg:aspect-[4/5]">
-              <Image src="/images/over-ons/bedrijfsbus.jpg" alt="Bedrijfsbus van All in One Vastgoedonderhoud voor een woning tijdens werkzaamheden" fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-4xl shadow-lift">
+              <Image src="/images/over-ons/team-aan-het-werk.jpg" alt="Twee onderhoudsmedewerkers aan het werk bij een woning" fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             </div>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-6">
             <SectionHeading
               eyebrow="Wie wij zijn"
-              title="Onderhoud met oog voor het gebouw."
+              title="Eén team voor het complete onderhoud."
               description={
                 <>
                   <p>
-                    All in One Vastgoedonderhoud is uw partner voor professioneel schilderwerk, renovatie en totaalonderhoud van woningen en
-                    bedrijfspanden. Wij verzorgen binnen- en buitenschilderwerk, houtrotherstel, vloerwerk en diverse onderhoudswerkzaamheden, en
-                    reinigen gevels, daken, trespa, zonnepanelen en bestrating met lage druk en biologisch afbreekbare middelen.
+                    Een pand vraagt om aandacht. De gevel raakt vervuild, het dak groeit dicht met mos, houtwerk verweert en verf laat los. Wij pakken dat
+                    in samenhang aan: reinigen, herstellen, schilderen en waar nodig renoveren.
                   </p>
                   <p className="mt-4">
-                    Wij werken professioneel, veilig en met oog voor detail, zodat u verzekerd bent van een duurzaam en strak eindresultaat. U kunt
-                    rekenen op eerlijk advies, snelle service en duidelijke communicatie. Vanuit {siteConfig.city} werken we in heel Overijssel voor
-                    particulieren, VvE&apos;s en bedrijven.
+                    We werken professioneel, veilig en met oog voor detail, zodat u verzekerd bent van een duurzaam en strak eindresultaat. U kunt rekenen op
+                    eerlijk advies, snelle service en duidelijke communicatie.
                   </p>
                 </>
               }
@@ -78,7 +75,7 @@ export default function OverOnsPage() {
                 ))}
               </ul>
               <p className="mt-4 text-sm leading-relaxed text-navy-600">
-                Van een rijtjeswoning tot een bedrijfspand, school of appartementencomplex: wij leveren strak werk tot in de kleinste details. Vrijblijvende offerte? Wij staan voor u klaar.
+                Van een rijtjeswoning tot een bedrijfspand of appartementencomplex: wij leveren strak werk tot in de kleinste details.
               </p>
             </div>
           </Reveal>
@@ -108,7 +105,7 @@ export default function OverOnsPage() {
 
       <ProcessSteps />
       <ReviewsSection />
-      <CTASection title="Kennismaken? Stuur ons uw foto's." text="Vertel ons wat u wilt laten doen en voeg een paar foto's toe. U hoort van ons." />
+      <CTASection title="Kennismaken? Vertel ons over uw pand." text="Laat weten wat er moet gebeuren en voeg een paar foto's toe. U hoort snel van ons." />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
     </>
   );

@@ -5,7 +5,7 @@ import { useEffect, useRef, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { ctaConfig, siteConfig } from "@/config/site";
+import { ctaConfig } from "@/config/site";
 import { track } from "@/lib/analytics";
 
 type NetworkInformation = { saveData?: boolean; effectiveType?: string };
@@ -95,7 +95,7 @@ function LoopingVideo({ src, poster }: { src: string; poster: string }) {
 }
 
 /**
- * Hero met optionele achtergrondvideo (Higgsfield).
+ * Hero met optionele achtergrondvideo (neutrale, AI-gegenereerde beelden).
  *
  * - `videoSrc` aanwezig → doorlopende, gedempte achtergrondvideo met poster, op desktop én mobiel.
  * - Bij databesparing (Save-Data) of een 2G-verbinding wordt de video niet geladen; de poster blijft.
@@ -150,19 +150,19 @@ export function Hero({
         <div className="max-w-2xl lg:max-w-3xl">
           <motion.p {...fadeUp(0)} className="eyebrow text-gold-300">
             <span className="inline-block h-px w-6 bg-current opacity-70" aria-hidden />
-            {siteConfig.tagline} · {siteConfig.city}
+            Professioneel onderhoud
           </motion.p>
 
           <motion.h1
             {...fadeUp(0.1)}
             className="mt-5 font-display text-[2.6rem] font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl lg:[@media(max-height:860px)]:text-6xl"
           >
-            Eén partner voor <span className="bg-gradient-to-r from-gold-300 to-gold-100 bg-clip-text text-transparent">het onderhoud van uw pand.</span>
+            Uw pand verdient onderhoud <span className="bg-gradient-to-r from-gold-300 to-gold-100 bg-clip-text text-transparent">dat gezien mag worden.</span>
           </motion.h1>
 
           <motion.p {...fadeUp(0.2)} className="mt-6 max-w-xl text-lg leading-relaxed text-navy-100 sm:text-xl">
-            Reiniging van gevel, dak en zonnepanelen, schilderwerk binnen en buiten, houtrotherstel, vloerwerk en renovatie.
-            Professioneel, veilig en met oog voor detail, in Enschede en heel Overijssel.
+            Van gevel en dak tot schilderwerk en renovatie. Eén professioneel team voor onderhoud dat uw woning of bedrijfspand weer
+            laat stralen.
           </motion.p>
 
           <motion.div {...fadeUp(0.3)} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -193,7 +193,7 @@ export function Hero({
             className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy-200 lg:[@media(max-height:860px)]:mt-8"
             aria-label="Onze diensten"
           >
-            {["Gevelreiniging", "Dakpanreiniging", "Zonnepanelen", "Schilderwerk", "Houtrotherstel", "Renovatie"].map((s) => (
+            {["Gevelreiniging", "Dakreiniging", "Zonnepanelen", "Schilderwerk", "Houtrotherstel", "Renovatie"].map((s) => (
               <motion.li
                 key={s}
                 variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}

@@ -24,8 +24,8 @@ export function ServiceGrid({
           <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               eyebrow="Onze diensten"
-              title="Onderhoud van gevel tot dak."
-              description="Reiniging, schilderwerk, houtrotherstel, vloerwerk en renovatie: één partij voor het complete onderhoud van uw woning of bedrijfspand."
+              title="Alles voor uw pand, door één team."
+              description="Reiniging van gevel, dak, zonnepanelen en bestrating, schilderwerk, houtrotherstel, periodiek onderhoud en renovatie. Voor woningen en bedrijfspanden."
             />
             <Button href="/diensten" variant="ghost" className="shrink-0" icon={<ArrowRight className="size-4" />}>
               Alle diensten
@@ -44,8 +44,8 @@ export function ServiceGrid({
 
         <Reveal className="mt-10 flex flex-col items-center gap-3 rounded-3xl bg-navy-50 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
           <p className="text-navy-700">
-            <span className="font-semibold text-navy-900">Iets anders laten doen?</span> Vertel ons wat u wilt laten aanpakken, wij
-            beoordelen of wij u kunnen helpen.
+            <span className="font-semibold text-navy-900">Staat uw klus er niet bij?</span> Vertel ons wat er moet gebeuren, dan kijken wij
+            of we u kunnen helpen.
           </p>
           <Button href={`${ctaConfig.primary.href}?dienst=anders`} variant="secondary" size="sm" className="shrink-0">
             Vraag het ons

@@ -50,7 +50,7 @@ export function track(event: AnalyticsEvent): void {
 export function captureUtm(): { source: string | null; medium: string | null; campaign: string | null } {
   if (typeof window === "undefined") return { source: null, medium: null, campaign: null };
   const params = new URLSearchParams(window.location.search);
-  const key = "aic_utm";
+  const key = "nova_utm";
   const fromUrl = {
     source: params.get("utm_source"),
     medium: params.get("utm_medium"),

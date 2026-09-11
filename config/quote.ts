@@ -11,17 +11,16 @@ export type Option = {
   description?: string;
 };
 
-/** Stap 1 - Wat wilt u laten doen? Gebaseerd op de bevestigde diensten (reiniging én onderhoud). */
-export const serviceOptions: (Option & { icon: "building" | "home" | "layers" | "sun" | "grid" | "paintbrush" | "hammer" | "ruler" | "hardhat" | "more" })[] = [
-  { value: "gevel", label: "Gevelreiniging", description: "Metselwerk, gevelsteen", icon: "building" },
-  { value: "dak", label: "Dakpanreiniging", description: "Mos en aanslag op het dak, dakgoten", icon: "home" },
-  { value: "trespa", label: "Trespa / gevelbekleding", description: "Gevelbeplating, boeidelen reinigen", icon: "layers" },
-  { value: "zonnepanelen", label: "Zonnepanelen", description: "Vuil en aanslag op panelen", icon: "sun" },
-  { value: "bestrating", label: "Bestrating / terras", description: "Terras, oprit, tuinpad reinigen", icon: "grid" },
+/** Stap 1 - Wat moet er gebeuren? Sluit aan op config/services.ts (quoteKey). */
+export const serviceOptions: (Option & { icon: "building" | "home" | "layers" | "sun" | "grid" | "paintbrush" | "hammer" | "ruler" | "hardhat" | "calendar" | "more" })[] = [
+  { value: "gevel", label: "Gevelreiniging", description: "Metselwerk, gevelsteen, beplating", icon: "building" },
+  { value: "dak", label: "Dakreiniging", description: "Dakpannen, dakgoten", icon: "home" },
+  { value: "zonnepanelen", label: "Zonnepanelen reinigen", description: "Meer opbrengst, streeploos", icon: "sun" },
+  { value: "bestrating", label: "Terras / bestrating", description: "Terras, oprit, tuinpad", icon: "grid" },
   { value: "schilderwerk", label: "Schilderwerk", description: "Binnen en buiten", icon: "paintbrush" },
   { value: "houtrot", label: "Houtrotherstel", description: "Kozijnen, deuren, boeidelen", icon: "hammer" },
-  { value: "vloerwerk", label: "Vloerwerk", description: "Leggen, vervangen, herstellen", icon: "ruler" },
-  { value: "renovatie", label: "Renovatie / onderhoud", description: "Totaalonderhoud van uw pand", icon: "hardhat" },
+  { value: "onderhoud", label: "Periodiek onderhoud", description: "Vast onderhoudsplan", icon: "calendar" },
+  { value: "renovatie", label: "Renovatie", description: "Opknappen van binnen of buiten", icon: "hardhat" },
   { value: "anders", label: "Anders", description: "Iets anders? Vertel het ons", icon: "more" },
 ];
 
@@ -61,12 +60,6 @@ export const surfaceOptionsByService: Record<string, Option[]> = {
     { value: "parkeerplaats", label: "Parkeerplaats / bedrijfsterrein" },
     { value: "anders", label: "Anders" },
   ],
-  trespa: [
-    { value: "gevelbekleding", label: "Gevelbekleding" },
-    { value: "boeidelen", label: "Boeidelen / dakranden" },
-    { value: "dakkapel", label: "Dakkapel" },
-    { value: "anders", label: "Anders" },
-  ],
   zonnepanelen: [
     { value: "schuin-dak", label: "Panelen op schuin dak" },
     { value: "plat-dak", label: "Panelen op plat dak" },
@@ -88,11 +81,11 @@ export const surfaceOptionsByService: Record<string, Option[]> = {
     { value: "gevelbetimmering", label: "Gevelbetimmering" },
     { value: "anders", label: "Anders" },
   ],
-  vloerwerk: [
-    { value: "woonkamer", label: "Woonkamer / één ruimte" },
-    { value: "verdieping", label: "Hele verdieping" },
-    { value: "hele-woning", label: "Hele woning" },
-    { value: "bedrijfsruimte", label: "Bedrijfsruimte / kantoor" },
+  onderhoud: [
+    { value: "woning", label: "Woning" },
+    { value: "verhuurpand", label: "Verhuurpand(en)" },
+    { value: "bedrijfspand", label: "Bedrijfspand" },
+    { value: "vve", label: "Appartementencomplex / VvE" },
     { value: "anders", label: "Anders" },
   ],
   renovatie: [
@@ -140,13 +133,6 @@ export const contaminationOptionsByService: Record<string, Option[]> = {
     { value: "verkleuring", label: "Verkleuring" },
     { value: "anders", label: "Anders" },
   ],
-  trespa: [
-    { value: "vuil", label: "Vuil / stof" },
-    { value: "strepen", label: "Strepen / uitloop" },
-    { value: "groene-aanslag", label: "Groene aanslag" },
-    { value: "verkleuring", label: "Doffe plekken / verkleuring" },
-    { value: "anders", label: "Anders" },
-  ],
   zonnepanelen: [
     { value: "stof", label: "Stof / pollen" },
     { value: "vogelpoep", label: "Vogelpoep" },
@@ -178,18 +164,18 @@ export const contaminationOptionsByService: Record<string, Option[]> = {
     { value: "inspectie", label: "Twijfel, graag inspectie" },
     { value: "anders", label: "Anders" },
   ],
-  vloerwerk: [
-    { value: "nieuw", label: "Nieuwe vloer leggen" },
-    { value: "vervangen", label: "Bestaande vloer vervangen" },
-    { value: "herstel", label: "Herstel / reparatie" },
-    { value: "egaliseren", label: "Ondervloer egaliseren" },
+  onderhoud: [
+    { value: "plan", label: "Meerjarig onderhoudsplan opstellen" },
+    { value: "inspectie", label: "Inspectie van de huidige staat" },
+    { value: "jaarlijks", label: "Jaarlijkse onderhoudsbeurt" },
+    { value: "achterstallig", label: "Achterstallig onderhoud wegwerken" },
     { value: "anders", label: "Anders" },
   ],
   renovatie: [
     { value: "opknappen", label: "Opknappen / renoveren" },
     { value: "periodiek", label: "Periodiek onderhoud" },
     { value: "schade", label: "Herstel na schade" },
-    { value: "combinatie", label: "Combinatie van reiniging en schilderwerk" },
+    { value: "combinatie", label: "Combinatie van reiniging, herstel en schilderwerk" },
     { value: "anders", label: "Anders" },
   ],
   anders: [
@@ -222,7 +208,7 @@ export const uploadConfig = {
 
 /** Wizard-stappen in volgorde. Wordt gebruikt voor progress en samenvatting. */
 export const quoteSteps = [
-  { id: "service", title: "Wat wilt u laten doen?", short: "Dienst" },
+  { id: "service", title: "Wat moet er gebeuren?", short: "Dienst" },
   { id: "property", title: "Wat voor pand betreft het?", short: "Pand" },
   { id: "surface", title: "Wat wilt u precies laten aanpakken?", short: "Onderdeel" },
   { id: "size", title: "Hoe groot is het ongeveer?", short: "Omvang" },

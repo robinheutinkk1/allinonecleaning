@@ -1,10 +1,10 @@
 -- ============================================================================
--- ALL IN ONE VASTGOEDONDERHOUD - Merkomzetting (migratie 5)
+-- NOVA ONDERHOUD (demo) - Voorvoegsel aanvraagnummers (migratie 5)
 -- Uitvoeren na 0004_team.sql via de SQL Editor.
 --
--- Nieuwe aanvraagnummers krijgen het voorvoegsel AIO (All In One) in plaats van
--- AIC. De teller per jaar loopt gewoon door, dus na AIC-2026-0007 volgt
--- AIO-2026-0008. Bestaande nummers veranderen niet.
+-- Historische migratie: wijzigt het voorvoegsel van nieuwe aanvraagnummers. De teller
+-- per jaar loopt gewoon door; bestaande nummers veranderen niet. Migratie 6 zet het
+-- voorvoegsel daarna op NOVA.
 -- ============================================================================
 
 alter table public.quote_requests

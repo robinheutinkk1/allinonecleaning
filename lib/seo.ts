@@ -7,9 +7,9 @@ import type { SiteSettings } from "@/lib/settings";
  * Dynamische deelafbeelding (app/og/route.tsx). Titel en ondertitel per pagina;
  * variant "login" voor de loginpagina.
  */
-export function ogImageUrl(opts: { title?: string; subtitle?: string; kicker?: string; variant?: "default" | "login" } = {}): string {
+export function ogImageUrl(opts: { title?: string; subtitle?: string; kicker?: string; variant?: "default" | "login" | "beheer" } = {}): string {
   const sp = new URLSearchParams();
-  if (opts.variant === "login") sp.set("v", "login");
+  if (opts.variant && opts.variant !== "default") sp.set("v", opts.variant);
   if (opts.title) sp.set("t", opts.title);
   if (opts.subtitle) sp.set("s", opts.subtitle);
   if (opts.kicker) sp.set("k", opts.kicker);
@@ -70,7 +70,7 @@ export function localBusinessJsonLd(settings: SiteSettings) {
     description: siteConfig.description,
     url: siteConfig.url,
     image: `${siteConfig.url}/og`,
-    logo: `${siteConfig.url}/images/logo.png`,
+    logo: `${siteConfig.url}/brand/nova-logo.png`,
     areaServed: areaServed(settings.workAreas),
     address: {
       "@type": "PostalAddress",

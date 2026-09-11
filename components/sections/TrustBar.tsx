@@ -1,10 +1,10 @@
 import { Check } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
-import { trustItems } from "@/config/site";
+import { siteConfig, trustItems } from "@/config/site";
 
 export function TrustBar() {
   return (
-    <section aria-label="Waarom All in One Vastgoedonderhoud" className="relative z-10 border-b border-navy-100 bg-white">
+    <section aria-label={`Waarom ${siteConfig.companyName}`} className="relative z-10 border-b border-navy-100 bg-white">
       <div className="container-x">
         <ul className="grid grid-cols-2 divide-navy-100 lg:grid-cols-4 lg:divide-x">
           {trustItems.map((item, i) => (

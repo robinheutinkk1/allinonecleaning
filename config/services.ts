@@ -1,11 +1,5 @@
 /**
- * Diensten van All in One Vastgoedonderhoud.
- *
- * Bronnen: de belettering op de bedrijfsbus ("Gevelreiniging · Dakpanreiniging ·
- * Trespa · Zonnepanelen"), de website allinone-cleaning.nl (bestrating, terras,
- * dakgoten), de aangeleverde before/after-foto's en het Trustoo-profiel van
- * All in One Vastgoedonderhoud B.V. (schilderwerk binnen en buiten, houtrotherstel,
- * vloerwerk, renovatie en totaalonderhoud).
+ * Diensten van NOVA Onderhoud (fictief demobedrijf).
  *
  * Voeg hier een dienst toe of verwijder er een: de dienstenpagina, homepage,
  * offertewizard, sitemap en structured data volgen automatisch.
@@ -13,27 +7,25 @@
 
 export type ServiceSlug =
   | "gevelreiniging"
-  | "dakpanreiniging"
-  | "trespa-reiniging"
-  | "zonnepanelen-reiniging"
-  | "bestrating-reiniging"
+  | "dakreiniging"
+  | "zonnepanelen-reinigen"
+  | "terras-en-bestrating"
   | "schilderwerk"
   | "houtrotherstel"
-  | "vloerwerk"
-  | "renovatie-onderhoud";
+  | "periodiek-onderhoud"
+  | "renovatie";
 
-/** Reiniging (lage druk, biologisch afbreekbaar) of onderhoud (schilderwerk, herstel, renovatie). */
+/** Reiniging (gevel, dak, panelen, bestrating) of onderhoud (schilderwerk, herstel, renovatie). */
 export type ServiceCategory = "reiniging" | "onderhoud";
 
 export type Service = {
   slug: ServiceSlug;
   category: ServiceCategory;
-  /** Pagina-URL. Gevelreiniging heeft een eigen pillar-pagina. */
   href: string;
   title: string;
   shortTitle: string;
-  /** Icoonnaam uit lucide-react (zie components/ui/ServiceIcon.tsx) */
-  icon: "building" | "home" | "layers" | "sun" | "grid" | "paintbrush" | "hammer" | "ruler" | "hardhat";
+  /** Icoonnaam (zie components/ui/ServiceIcon.tsx) */
+  icon: "building" | "home" | "layers" | "sun" | "grid" | "paintbrush" | "hammer" | "ruler" | "hardhat" | "calendar";
   image: string;
   imageAlt: string;
   /** Eén zin voor kaarten */
@@ -42,11 +34,8 @@ export type Service = {
   summary: string;
   /** Langere intro voor de dienstpagina */
   intro: string;
-  /** Voordelen: feitelijk, gebaseerd op de werkwijze van het bedrijf */
   benefits: string[];
-  /** Voor wie / wanneer is dit relevant */
   suitableFor: string[];
-  /** Meta */
   seoTitle: string;
   seoDescription: string;
   /** Sleutel die de offertewizard gebruikt */
@@ -57,157 +46,131 @@ export const services: Service[] = [
   {
     slug: "gevelreiniging",
     category: "reiniging",
-    href: "/gevelreiniging",
+    href: "/diensten/gevelreiniging",
     title: "Gevelreiniging",
     shortTitle: "Gevel",
     icon: "building",
     image: "/images/services/gevelreiniging.jpg",
-    imageAlt: "Medewerker van All in One Vastgoedonderhoud reinigt een gevel in Enschede",
-    tagline: "Een gevel die weer gezien mag worden.",
+    imageAlt: "Illustratie van een schone bakstenen gevel met witte kozijnen",
+    tagline: "Een gevel die weer fris en verzorgd oogt.",
     summary:
-      "Groene aanslag, algen en vuil maken een gevel dof. Wij reinigen metselwerk en gevelsteen met lage druk en biologisch afbreekbare middelen, zodat uw pand weer een verzorgde uitstraling heeft.",
+      "Verwijder vuil, aanslag en atmosferische vervuiling met een reinigingsmethode die past bij het oppervlak. Metselwerk, gevelsteen en beplating krijgen hun oorspronkelijke kleur terug.",
     intro:
-      "De gevel is het eerste wat bezoekers van uw woning of bedrijfspand zien. Door weersinvloeden, verkeer en vocht ontstaat er na verloop van tijd een laag vuil, algen, schimmel en groene aanslag. Wij verwijderen die laag met lage druk en biologisch afbreekbare reinigingsmiddelen. Zo blijven de voegen intact en komt de oorspronkelijke kleur van de steen weer tevoorschijn.",
+      "De gevel bepaalt de eerste indruk van een woning of bedrijfspand. Weer, verkeer en vocht laten in de loop van de jaren een laag vuil, algen en groene aanslag achter die het pand ouder laat lijken dan het is. Wij beoordelen eerst het materiaal en de vervuiling, en kiezen daarna de methode: gecontroleerde druk, milieubewuste middelen en de juiste apparatuur. Het resultaat is een schone gevel zonder beschadigde voegen of stenen.",
     benefits: [
-      "Geen hogedruk: voegen worden niet uitgeblazen",
-      "Biologisch afbreekbare reinigingsmiddelen",
-      "Verwijdert algen, schimmel, groene aanslag en vuil",
-      "Eindcontrole samen met u na afloop",
+      "Methode afgestemd op metselwerk, gevelsteen of beplating",
+      "Voegen en oppervlak blijven intact",
+      "Verwijdert algen, groene aanslag, vuil en verkleuring",
+      "Nacontrole samen met u",
     ],
-    suitableFor: ["Woningen en appartementen", "Bedrijfspanden en winkels", "VvE's en scholen", "Metselwerk en gevelsteen"],
-    seoTitle: "Gevelreiniging Enschede | All in One Vastgoedonderhoud",
+    suitableFor: ["Woningen en appartementen", "Bedrijfspanden en winkels", "VvE's en verhuurders", "Metselwerk, gevelsteen en beplating"],
+    seoTitle: "Gevelreiniging in Twente | NOVA Onderhoud",
     seoDescription:
-      "Gevelreiniging in Enschede en heel Overijssel zonder hogedruk. All in One Vastgoedonderhoud verwijdert algen, schimmel en groene aanslag met lage druk en milieuvriendelijke middelen. Vraag gratis een offerte aan en stuur foto's mee.",
+      "Gevelreiniging voor woningen en bedrijfspanden in Twente. NOVA Onderhoud verwijdert vuil, algen en aanslag met een methode die past bij uw gevel. Vraag eenvoudig een offerte aan.",
     quoteKey: "gevel",
   },
   {
-    slug: "dakpanreiniging",
+    slug: "dakreiniging",
     category: "reiniging",
-    href: "/diensten/dakpanreiniging",
-    title: "Dakpanreiniging",
-    shortTitle: "Dakpannen",
+    href: "/diensten/dakreiniging",
+    title: "Dakreiniging",
+    shortTitle: "Dak",
     icon: "home",
-    image: "/images/services/dakpanreiniging.jpg",
-    imageAlt: "Schoon pannendak van een woning na dakpanreiniging door All in One Vastgoedonderhoud",
-    tagline: "Mos en aanslag van uw dak, de kleur van uw pannen terug.",
+    image: "/images/services/dakreiniging.jpg",
+    imageAlt: "Illustratie van een schoon pannendak met dakkapel",
+    tagline: "Mos en aanslag weg, de kleur van uw dak terug.",
     summary:
-      "Mos, algen en aanslag op dakpannen houden vocht vast en doen afbreuk aan de uitstraling van uw woning. Wij reinigen uw dakpannen zorgvuldig met lage druk en zonder stoom.",
+      "Mos, algen en aanslag houden vocht vast en maken dakpannen dof. Wij reinigen het dak zorgvuldig en veilig, zodat de pannen weer hun eigen kleur laten zien en langer meegaan.",
     intro:
-      "Op dakpannen hecht zich in de loop der jaren mos, korstmos, groene aanslag en vuil. Dat ziet er niet alleen slordig uit, maar houdt ook vocht vast. Wij reinigen de pannen met lage druk en biologisch afbreekbare middelen, zodat de pannen en de dakconstructie geen schade oplopen. Na reiniging is de oorspronkelijke kleur weer zichtbaar. Bekijk het verschil op onze before & after-pagina. Ook dakgoten reinigen wij in dezelfde werkgang.",
+      "Op een dak hecht zich in de loop van de jaren mos, korstmos en groene aanslag. Dat ziet er slordig uit, maar houdt ook vocht vast en versnelt slijtage. Wij reinigen dakpannen met gecontroleerde druk en passende middelen, werken veilig op hoogte en nemen de dakgoten desgewenst direct mee. Na afloop is de oorspronkelijke kleur van de pannen weer zichtbaar.",
     benefits: [
-      "Mos, algen en aanslag verwijderd zonder hogedruk",
-      "Oorspronkelijke kleur van de dakpannen weer zichtbaar",
-      "Werken op hoogte met hoogwerker of ladder, veilig en netjes",
-      "Dakgoten desgewenst direct meegenomen",
+      "Mos, korstmos en aanslag grondig verwijderd",
+      "Veilig werken op hoogte met de juiste apparatuur",
+      "Dakgoten in dezelfde werkgang schoon",
+      "Langere levensduur van uw dakbedekking",
     ],
-    suitableFor: ["Woningen met pannendak", "Bedrijfspanden", "Bijgebouwen en garages", "Dakgoten"],
-    seoTitle: "Dakpanreiniging Enschede | Mos en aanslag verwijderen | All in One Vastgoedonderhoud",
+    suitableFor: ["Woningen met pannendak", "Bedrijfspanden en loodsen", "Bijgebouwen en garages", "Dakgoten en dakranden"],
+    seoTitle: "Dakreiniging in Twente | NOVA Onderhoud",
     seoDescription:
-      "Dakpannen reinigen in Enschede en heel Overijssel met lage druk. All in One Vastgoedonderhoud verwijdert mos, algen en aanslag van uw dak zonder schade. Bekijk onze before & after-resultaten en vraag een gratis offerte aan.",
+      "Dakreiniging in Twente: mos, algen en aanslag van uw dakpannen verwijderd, veilig en zonder schade. NOVA Onderhoud werkt voor particulieren en bedrijven. Vraag een offerte aan.",
     quoteKey: "dak",
   },
   {
-    slug: "trespa-reiniging",
+    slug: "zonnepanelen-reinigen",
     category: "reiniging",
-    href: "/diensten/trespa-reiniging",
-    title: "Trespa reiniging",
-    shortTitle: "Trespa",
-    icon: "layers",
-    image: "/images/services/trespa-reiniging.jpg",
-    imageAlt: "Reiniging van trespa gevelbekleding door All in One Vastgoedonderhoud",
-    tagline: "Gevelbekleding weer strak en fris.",
-    summary:
-      "Trespa en andere gevelbeplating worden dof en vlekkerig door vuil en weersinvloeden. Wij reinigen de beplating grondig en veilig, zodat uw gevel er weer als nieuw uitziet.",
-    intro:
-      "Trespa en vergelijkbare HPL-gevelbekleding zijn onderhoudsarm, maar niet onderhoudsvrij. Vuil, aanslag en strepen maken de platen dof. Met lage druk en materiaalvriendelijke, biologisch afbreekbare middelen reinigen wij de beplating zonder krassen of beschadigingen. Het resultaat: strakke, frisse platen en een gevel die er weer verzorgd uitziet.",
-    benefits: [
-      "Materiaalvriendelijke reiniging, geen hogedruk of stoom",
-      "Strepen, aanslag en vuil verwijderd",
-      "Geschikt voor woningen, bedrijfspanden en scholen",
-      "Duidelijke offerte vooraf",
-    ],
-    suitableFor: ["Trespa en HPL-beplating", "Dakranden en boeidelen", "Bedrijfspanden en scholen", "Dakkapellen"],
-    seoTitle: "Trespa reinigen Enschede | Gevelbekleding schoonmaken | All in One Vastgoedonderhoud",
-    seoDescription:
-      "Trespa en gevelbeplating reinigen in Enschede en heel Overijssel. All in One Vastgoedonderhoud maakt uw gevelbekleding weer strak en fris, zonder hogedruk. Gratis offerte, stuur eenvoudig foto's mee.",
-    quoteKey: "trespa",
-  },
-  {
-    slug: "zonnepanelen-reiniging",
-    category: "reiniging",
-    href: "/diensten/zonnepanelen-reiniging",
-    title: "Zonnepanelen reiniging",
+    href: "/diensten/zonnepanelen-reinigen",
+    title: "Zonnepanelen reinigen",
     shortTitle: "Zonnepanelen",
     icon: "sun",
-    image: "/images/services/zonnepanelen-reiniging.jpg",
-    imageAlt: "Reiniging van zonnepanelen op een dak door All in One Vastgoedonderhoud",
-    tagline: "Schone panelen, optimaal rendement.",
+    image: "/images/services/zonnepanelen-reinigen.jpg",
+    imageAlt: "Illustratie van schone zonnepanelen op een dak",
+    tagline: "Schone panelen, meer opbrengst.",
     summary:
-      "Stof, vogelpoep, pollen en aanslag verminderen de opbrengst van zonnepanelen. Wij reinigen uw panelen veilig en milieuvriendelijk, zodat ze weer optimaal kunnen presteren.",
+      "Stof, pollen, vogelpoep en aanslag verlagen de opbrengst van zonnepanelen. Wij reinigen ze streeploos en zonder krassen, zodat ze weer optimaal presteren.",
     intro:
-      "Zonnepanelen liggen dag en nacht buiten en vangen stof, pollen, vogelpoep en aanslag op. Een vuile laag op het glas laat minder licht door. Wij reinigen de panelen met zachte middelen en lage druk, zonder krassen en zonder agressieve chemie, zodat het glas weer schoon is en de panelen weer optimaal kunnen renderen.",
+      "Zonnepanelen die vuil zijn, leveren merkbaar minder op. Regen spoelt lang niet alles weg: pollen, roet, vogelpoep en een film van aanslag blijven achter. Wij reinigen de panelen met zacht water en zonder agressieve middelen, zodat het glas en de coating onbeschadigd blijven. Het resultaat is direct meetbaar in de opbrengst.",
     benefits: [
-      "Veilige reiniging van het paneeloppervlak, geen krassen",
-      "Milieuvriendelijke, biologisch afbreekbare middelen",
-      "Werken op hoogte met passend materieel",
-      "Te combineren met dakpanreiniging",
+      "Streeploos schoon met osmosewater",
+      "Geen krassen, geen schade aan coating of frames",
+      "Merkbaar hogere opbrengst na reiniging",
+      "Ook voor grotere installaties op bedrijfsdaken",
     ],
-    suitableFor: ["Woningen", "Bedrijfsdaken", "Panelen op schuine en platte daken"],
-    seoTitle: "Zonnepanelen reinigen Enschede | All in One Vastgoedonderhoud",
+    suitableFor: ["Panelen op schuine daken", "Panelen op platte daken", "Bedrijfsinstallaties", "Veldopstellingen"],
+    seoTitle: "Zonnepanelen reinigen in Twente | NOVA Onderhoud",
     seoDescription:
-      "Zonnepanelen laten reinigen in Enschede en heel Overijssel. All in One Vastgoedonderhoud verwijdert vuil en aanslag veilig en milieuvriendelijk voor een optimaal rendement. Vraag vrijblijvend een offerte aan.",
+      "Laat uw zonnepanelen streeploos reinigen door NOVA Onderhoud in Twente. Zonder krassen, met meetbaar meer opbrengst. Voor woningen en bedrijven. Vraag een offerte aan.",
     quoteKey: "zonnepanelen",
   },
   {
-    slug: "bestrating-reiniging",
+    slug: "terras-en-bestrating",
     category: "reiniging",
-    href: "/diensten/bestrating-reiniging",
-    title: "Bestrating en terras",
+    href: "/diensten/terras-en-bestrating",
+    title: "Terras en bestrating",
     shortTitle: "Bestrating",
     icon: "grid",
-    image: "/images/services/bestrating-reiniging.jpg",
-    imageAlt: "Reiniging van bestrating en terras door All in One Vastgoedonderhoud",
+    image: "/images/services/terras-en-bestrating.jpg",
+    imageAlt: "Illustratie van een schoon terras met tuin",
     tagline: "Terras, oprit en tuinpad weer schoon en veilig.",
     summary:
-      "Groene aanslag en mos maken bestrating glad en dof. Wij reinigen terrassen, opritten en tuinpaden met lage druk, zonder de voegen uit te spoelen.",
+      "Groene aanslag en mos maken bestrating glad en dof. Wij reinigen terrassen, opritten en paden grondig, zonder de voegen uit te spoelen.",
     intro:
-      "Op terrassen, opritten en tuinpaden ontstaat door vocht en schaduw al snel groene aanslag, mos en algen. Dat ziet er verwaarloosd uit en is glad bij nat weer. Wij reinigen de bestrating met lage druk en biologisch afbreekbare middelen. Anders dan bij hogedrukreiniging blijft het voegzand op zijn plek en wordt het oppervlak van de stenen niet aangetast.",
+      "Op terrassen, opritten en tuinpaden ontstaat door vocht en schaduw al snel groene aanslag, mos en algen. Dat ziet er verwaarloosd uit en is glad bij nat weer. Wij reinigen de bestrating met een methode die past bij het materiaal, zodat het voegzand op zijn plek blijft en het oppervlak van de stenen niet wordt aangetast. Desgewenst voegen we opnieuw in.",
     benefits: [
       "Groene aanslag, mos en algen verwijderd",
-      "Voegzand blijft op zijn plek, geen uitgespoelde voegen",
+      "Voegzand blijft op zijn plek",
       "Minder glad, veiliger bij nat weer",
       "Geschikt voor klinkers, tegels en natuursteen",
     ],
-    suitableFor: ["Terrassen", "Opritten", "Tuinpaden", "Parkeerplaatsen en bedrijfsterreinen"],
-    seoTitle: "Bestrating en terras reinigen Enschede | All in One Vastgoedonderhoud",
+    suitableFor: ["Terrassen en tuinpaden", "Opritten", "Parkeerplaatsen en bedrijfsterreinen", "Natuursteen en keramische tegels"],
+    seoTitle: "Terras en bestrating reinigen in Twente | NOVA Onderhoud",
     seoDescription:
-      "Terras, oprit of tuinpad laten reinigen in Enschede en heel Overijssel. All in One Vastgoedonderhoud verwijdert groene aanslag en mos met lage druk, zonder de voegen uit te spoelen. Gratis offerte.",
+      "Terras, oprit of tuinpad laten reinigen in Twente. NOVA Onderhoud verwijdert groene aanslag en mos zonder de voegen uit te spoelen. Vraag een offerte aan.",
     quoteKey: "bestrating",
   },
   {
     slug: "schilderwerk",
     category: "onderhoud",
     href: "/diensten/schilderwerk",
-    title: "Schilderwerk binnen en buiten",
+    title: "Schilderwerk",
     shortTitle: "Schilderwerk",
     icon: "paintbrush",
     image: "/images/services/schilderwerk.jpg",
-    imageAlt: "Buitenschilderwerk aan kozijnen door All in One Vastgoedonderhoud",
-    tagline: "Strak schilderwerk dat jaren meegaat.",
+    imageAlt: "Illustratie van vers geschilderde kozijnen aan een woning",
+    tagline: "Strak schilderwerk, binnen en buiten.",
     summary:
-      "Professioneel binnen- en buitenschilderwerk voor woningen en bedrijfspanden. Van kozijnen, deuren en boeidelen tot wanden en plafonds, met oog voor detail en een duurzaam, strak eindresultaat.",
+      "Buitenschilderwerk beschermt uw pand tegen weer en wind, binnenschilderwerk geeft ruimtes een frisse uitstraling. Zorgvuldig voorbereid, strak afgewerkt.",
     intro:
-      "Goed schilderwerk beschermt uw pand tegen weer en wind en bepaalt voor een groot deel de uitstraling. Wij verzorgen buitenschilderwerk van kozijnen, deuren, boeidelen en gevelbetimmering, en binnenschilderwerk van wanden, plafonds, kozijnen en deuren. Het ondergrondwerk doen we zorgvuldig: schoonmaken, schuren, herstellen en gronden, zodat de afwerking lang mooi blijft.",
+      "Goed schilderwerk begint bij de ondergrond. We reinigen, schuren, herstellen en gronden voordat er een laklaag op gaat, zodat het resultaat lang mooi blijft. Buiten schilderen we kozijnen, deuren, boeidelen en gevelbetimmering; binnen wanden, plafonds, kozijnen en trappen. We adviseren over kleur en verfsysteem en werken netjes en volgens planning.",
     benefits: [
-      "Binnen- en buitenschilderwerk door één partij",
+      "Binnen- en buitenschilderwerk door één team",
       "Zorgvuldige voorbereiding van de ondergrond",
-      "Duurzaam en strak eindresultaat",
-      "Eerlijk advies over kleur, verfsysteem en onderhoudsinterval",
+      "Advies over kleur, verfsysteem en onderhoudsinterval",
+      "Strak eindresultaat dat jaren meegaat",
     ],
     suitableFor: ["Kozijnen, deuren en boeidelen", "Wanden en plafonds", "Woningen en appartementen", "Bedrijfspanden en VvE's"],
-    seoTitle: "Schilder Enschede | Binnen- en buitenschilderwerk | All in One Vastgoedonderhoud",
+    seoTitle: "Schilderwerk binnen en buiten in Twente | NOVA Onderhoud",
     seoDescription:
-      "Schilderwerk binnen en buiten in Enschede en heel Overijssel. All in One Vastgoedonderhoud schildert kozijnen, deuren, boeidelen, wanden en plafonds met een strak en duurzaam resultaat. Vraag een vrijblijvende offerte aan.",
+      "Schilderwerk binnen en buiten in Twente door NOVA Onderhoud. Kozijnen, deuren, wanden en plafonds strak geschilderd met een goede voorbereiding. Vraag een offerte aan.",
     quoteKey: "schilderwerk",
   },
   {
@@ -218,74 +181,74 @@ export const services: Service[] = [
     shortTitle: "Houtrot",
     icon: "hammer",
     image: "/images/services/houtrotherstel.jpg",
-    imageAlt: "Herstel van houtrot in een kozijn door All in One Vastgoedonderhoud",
-    tagline: "Houtrot vakkundig hersteld, voordat het erger wordt.",
+    imageAlt: "Illustratie van een hersteld houten kozijn",
+    tagline: "Houtrot aangepakt voordat het erger wordt.",
     summary:
-      "Zachte plekken in kozijnen, deuren of boeidelen? Wij verwijderen het aangetaste hout, herstellen het met een duurzaam reparatiesysteem en werken het strak af, zodat vervangen vaak niet nodig is.",
+      "Zachte plekken in kozijnen, deuren of boeidelen? Wij verwijderen het aangetaste hout, herstellen het met een duurzaam reparatiesysteem en werken het strak af.",
     intro:
-      "Houtrot begint klein: een zachte plek onderin een kozijn of een naad waar water in trekt. Wordt het niet aangepakt, dan breidt het zich uit en wordt vervangen op den duur de enige optie. Wij halen het aangetaste hout weg, behandelen de plek, vullen en herstellen het met een duurzaam reparatiesysteem en schilderen het weer strak af. Zo gaat uw kozijn of deur weer jaren mee.",
+      "Houtrot begint klein en breidt zich uit zolang vocht kan intrekken. Wordt het op tijd aangepakt, dan is vervangen meestal niet nodig. Wij halen het aangetaste hout weg, behandelen de plek, herstellen met een duurzaam reparatiesysteem en schilderen het geheel weer strak af. Is vervangen toch de betere keuze, dan zeggen we dat eerlijk.",
     benefits: [
-      "Herstel in plaats van vervangen, vaak een stuk voordeliger",
+      "Herstel in plaats van vervangen, waar dat verantwoord is",
       "Duurzaam reparatiesysteem, strak afgewerkt",
       "Direct gecombineerd met het schilderwerk",
-      "Eerlijk advies als vervangen toch de betere keuze is",
+      "Eerlijk advies over herstellen of vervangen",
     ],
-    suitableFor: ["Kozijnen en ramen", "Deuren en deurposten", "Boeidelen en dakranden", "Gevelbetimmering"],
-    seoTitle: "Houtrot herstellen Enschede | All in One Vastgoedonderhoud",
+    suitableFor: ["Kozijnen en ramen", "Deuren en posten", "Boeidelen en dakranden", "Gevelbetimmering"],
+    seoTitle: "Houtrotherstel in Twente | NOVA Onderhoud",
     seoDescription:
-      "Houtrotherstel in Enschede en heel Overijssel. All in One Vastgoedonderhoud herstelt aangetaste kozijnen, deuren en boeidelen met een duurzaam reparatiesysteem en werkt ze strak af. Vraag een vrijblijvende offerte aan.",
+      "Houtrot in kozijnen, deuren of boeidelen? NOVA Onderhoud herstelt aangetast hout duurzaam en werkt het strak af. Actief in Twente. Vraag een offerte aan.",
     quoteKey: "houtrot",
   },
   {
-    slug: "vloerwerk",
+    slug: "periodiek-onderhoud",
     category: "onderhoud",
-    href: "/diensten/vloerwerk",
-    title: "Vloerwerk",
-    shortTitle: "Vloerwerk",
-    icon: "ruler",
-    image: "/images/services/vloerwerk.jpg",
-    imageAlt: "Vloerwerk in een woning door All in One Vastgoedonderhoud",
-    tagline: "Een vloer die strak ligt en lang meegaat.",
+    href: "/diensten/periodiek-onderhoud",
+    title: "Periodiek onderhoud",
+    shortTitle: "Onderhoud",
+    icon: "calendar",
+    image: "/images/services/periodiek-onderhoud.jpg",
+    imageAlt: "Illustratie van een verzorgd bedrijfspand",
+    tagline: "Uw pand structureel in goede staat.",
     summary:
-      "Vloerwerk voor woningen en bedrijfspanden: leggen, vervangen en herstellen. Netjes voorbereid, strak afgewerkt en met duidelijke afspraken vooraf.",
+      "Een vast onderhoudsplan voor woning, verhuurpand of bedrijfspand. Wij plannen inspecties en werkzaamheden vooruit, zodat kleine gebreken geen grote reparaties worden.",
     intro:
-      "Een goede vloer begint bij een goede voorbereiding. Wij verzorgen vloerwerk in woningen en bedrijfspanden: het leggen van een nieuwe vloer, het vervangen van een bestaande vloer en het herstellen van beschadigingen. We adviseren eerlijk over wat past bij de ruimte en het gebruik, en werken netjes en volgens afspraak.",
+      "Wie onderhoud vooruit plant, voorkomt verrassingen. In een onderhoudsplan leggen we vast wat wanneer nodig is: reiniging, schilderwerk, kleine reparaties en periodieke inspecties. U krijgt één aanspreekpunt, een heldere planning en een pand dat er het hele jaar verzorgd uitziet. Geschikt voor particulieren, verhuurders, bedrijven en VvE's.",
     benefits: [
-      "Leggen, vervangen en herstellen door één partij",
-      "Zorgvuldige voorbereiding van de ondervloer",
-      "Strakke afwerking tot in de hoeken",
-      "Duidelijke planning en communicatie",
+      "Meerjarig onderhoudsplan op maat",
+      "Eén aanspreekpunt voor alle werkzaamheden",
+      "Kleine gebreken vroeg opgemerkt en verholpen",
+      "Vaste planning en voorspelbare kosten",
     ],
-    suitableFor: ["Woonkamers en verdiepingen", "Bedrijfsruimtes en kantoren", "Renovatieprojecten", "Verhuur- en VvE-panden"],
-    seoTitle: "Vloerwerk Enschede | Vloer leggen of vervangen | All in One Vastgoedonderhoud",
+    suitableFor: ["Verhuurders en beleggers", "VvE's en beheerders", "Bedrijfspanden", "Woningen"],
+    seoTitle: "Periodiek onderhoud voor woning en bedrijf in Twente | NOVA Onderhoud",
     seoDescription:
-      "Vloerwerk in Enschede en heel Overijssel: vloeren leggen, vervangen en herstellen in woningen en bedrijfspanden. All in One Vastgoedonderhoud werkt netjes, strak en volgens afspraak. Vraag een vrijblijvende offerte aan.",
-    quoteKey: "vloerwerk",
+      "Periodiek onderhoud in Twente: een vast onderhoudsplan voor woning, verhuurpand of bedrijfspand. NOVA Onderhoud regelt inspecties, reiniging en reparaties. Vraag een offerte aan.",
+    quoteKey: "onderhoud",
   },
   {
-    slug: "renovatie-onderhoud",
+    slug: "renovatie",
     category: "onderhoud",
-    href: "/diensten/renovatie-onderhoud",
-    title: "Renovatie en totaalonderhoud",
+    href: "/diensten/renovatie",
+    title: "Renovatie",
     shortTitle: "Renovatie",
     icon: "hardhat",
-    image: "/images/services/renovatie-onderhoud.jpg",
-    imageAlt: "Renovatie en onderhoud van een woning door All in One Vastgoedonderhoud",
-    tagline: "Eén partner voor het complete onderhoud van uw pand.",
+    image: "/images/services/renovatie.jpg",
+    imageAlt: "Illustratie van een gerenoveerde woning met nieuwe kozijnen",
+    tagline: "Een pand dat weer helemaal bij de tijd is.",
     summary:
-      "Renovatie en totaalonderhoud van woningen en bedrijfspanden. Van periodiek onderhoud tot een complete opknapbeurt: één aanspreekpunt, één planning, één strak eindresultaat.",
+      "Van een opknapbeurt van de buitenzijde tot een complete renovatie van een woning of bedrijfsruimte. Eén partij, één planning, één strak eindresultaat.",
     intro:
-      "Wilt u uw pand in één keer goed laten aanpakken, of het onderhoud structureel uit handen geven? Wij combineren reiniging, schilderwerk, houtrotherstel, vloerwerk en diverse onderhoudswerkzaamheden tot één plan. U heeft één aanspreekpunt, één planning en één partij die verantwoordelijk is voor het eindresultaat. Voor particulieren, bedrijven, verhuurders en VvE's.",
+      "Bij een renovatie komt veel samen: reiniging, herstel, schilderwerk, timmerwerk en afwerking. Wij combineren die onderdelen tot één plan en voeren het uit met vaste vakmensen. U heeft één aanspreekpunt en weet vooraf wat het kost en hoe lang het duurt. Van een verouderde buitenzijde tot een complete opknapbeurt van binnen en buiten.",
     benefits: [
-      "Eén aanspreekpunt voor alle werkzaamheden",
-      "Renovatie, herstel en periodiek onderhoud",
-      "Professioneel, veilig en met oog voor detail",
-      "Eerlijk advies, snelle service en duidelijke communicatie",
+      "Eén aanspreekpunt voor het hele traject",
+      "Vaste planning en duidelijke begroting",
+      "Vakmensen voor reiniging, herstel, timmer- en schilderwerk",
+      "Strak eindresultaat, netjes opgeleverd",
     ],
-    suitableFor: ["Woningen en appartementen", "Bedrijfspanden en winkels", "Verhuurders en VvE's", "Meerjarig onderhoud"],
-    seoTitle: "Renovatie en totaalonderhoud Enschede | All in One Vastgoedonderhoud",
+    suitableFor: ["Woningen en appartementen", "Bedrijfsruimtes en winkels", "Verhuurpanden", "Buitenzijde en gevelrenovatie"],
+    seoTitle: "Renovatie van woning of bedrijfspand in Twente | NOVA Onderhoud",
     seoDescription:
-      "Renovatie en totaalonderhoud van woningen en bedrijfspanden in Enschede en heel Overijssel. Reiniging, schilderwerk, houtrotherstel en vloerwerk door één partij. Vraag een vrijblijvende offerte aan.",
+      "Renovatie in Twente door NOVA Onderhoud: van gevelrenovatie tot een complete opknapbeurt van woning of bedrijfsruimte. Eén partij, één planning. Vraag een offerte aan.",
     quoteKey: "renovatie",
   },
 ];

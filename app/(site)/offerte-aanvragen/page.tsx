@@ -7,12 +7,11 @@ import { siteConfig } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Gratis offerte aanvragen: gevel, dak, trespa of zonnepanelen",
-  description:
-    "Vraag in 2 minuten een gratis offerte aan bij All in One Vastgoedonderhoud. Kies wat u wilt laten doen, stuur foto's mee en wij nemen contact met u op.",
+  title: "Gratis offerte aanvragen",
+  description: `Vraag in twee minuten een gratis offerte aan bij ${siteConfig.companyName}. Vertel ons wat er moet gebeuren, voeg eventueel foto's toe en ontvang een persoonlijke beoordeling.`,
   path: "/offerte-aanvragen",
   ogTitle: "Gratis offerte aanvragen",
-  ogSubtitle: "In twee minuten geregeld. Stuur foto's mee en wij nemen contact met u op.",
+  ogSubtitle: "Vertel ons wat er moet gebeuren, voeg foto's toe en ontvang een persoonlijke beoordeling.",
 });
 
 const reassurance = [
@@ -25,7 +24,7 @@ const reassurance = [
 export default function OffertePage() {
   return (
     <section className="bg-water min-h-screen pb-16 pt-28 sm:pt-32">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[40rem] bg-[radial-gradient(60%_50%_at_50%_0%,rgb(179_224_245_/_0.5),transparent_70%)]" aria-hidden />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[40rem] bg-[radial-gradient(60%_50%_at_50%_0%,rgb(236_199_106_/_0.35),transparent_70%)]" aria-hidden />
       <div className="container-x relative">
         <div className="mx-auto max-w-3xl">
           <div className="mb-8 flex flex-col items-center text-center">
@@ -34,10 +33,8 @@ export default function OffertePage() {
               <span className="inline-block h-px w-6 bg-current opacity-60" aria-hidden />
               {siteConfig.companyName} · {siteConfig.city}
             </p>
-            <h1 className="mt-3 font-display text-3xl font-bold text-navy-900 sm:text-4xl lg:text-5xl">Offerte aanvragen</h1>
-            <p className="mt-3 max-w-xl text-navy-500">
-              Beantwoord een paar korte vragen en laat ons meekijken met foto&apos;s. Wij beoordelen uw aanvraag persoonlijk en nemen contact met u op.
-            </p>
+            <h1 className="mt-3 font-display text-3xl font-bold text-navy-900 sm:text-4xl lg:text-5xl">Gratis offerte aanvragen</h1>
+            <p className="mt-3 max-w-xl text-navy-500">Vertel ons wat er moet gebeuren. Voeg eventueel foto&apos;s toe en ontvang een persoonlijke beoordeling.</p>
           </div>
 
           <Suspense fallback={<WizardSkeleton />}>

@@ -1,99 +1,98 @@
-# Design system - All in One Vastgoedonderhoud
+# Design system - NOVA Onderhoud (TagPoint demo)
 
-## 1. Logo-analyse (basis van alles)
+## 1. Merk
 
-Het aangeleverde logo bevat:
+NOVA Onderhoud is een fictief onderhoudsbedrijf. Het merk is bewust rustig en professioneel:
+donker navy als basis, goud als accent, veel wit en lichtgrijs als rustvlakken.
 
-| Element | Wat het uitstraalt | Vertaling naar de site |
+| Element | Uitstraling | Vertaling naar de site |
 | --- | --- | --- |
-| Wordmark **ALL IN ONE VASTGOEDONDERHOUD** in zware, donker-navy sans | Betrouwbaar, stevig, no-nonsense | Koppen in Plus Jakarta Sans 700/800, navy-900, strakke tracking |
-| Tagline **VASTGOEDONDERHOUD** in goud, uppercase, gespatieerd | Specialisme, helderheid | Eyebrow-stijl: uppercase, tracking 0.18em, gold-600 |
-| Lichtblauwe cirkel met sterretjes/glans | Schoon, fris, water | Goud-tinten, zachte radiale gradients (`bg-water`), glow-shadow |
-| Waterdruppels bij de borstel | Reiniging, beweging | Druppel-motief in placeholders, slider-handle, subtiele highlights |
-| Gele handschoenen | Vakmanschap, klein warm accent | `sun-400` alleen voor sterren in reviews (spaarzaam) |
-| Vriendelijke, geïllustreerde vakman | Persoonlijk, toegankelijk, lokaal | Menselijke copy ("Laat ons meekijken"), ronde vormen, geen corporate toon |
+| Woordmerk **NOVA** (Plus Jakarta Sans ExtraBold) met **ONDERHOUD** gespatieerd eronder | Modern, stevig, helder | Koppen in Plus Jakarta Sans 700/800, navy-900, strakke tracking |
+| Beeldmerk: gouden tegel met dakvorm en basislijn | Pand, onderhoud, zorg | Favicon, app-iconen, TagPoint-wordmark in het beheer |
+| Goud als accent | Kwaliteit, warmte | Primaire CTA, eyebrow-tekst, iconen, actieve states |
+
+Het logo is inline SVG (`components/ui/Logo.tsx` + `logo-paths.ts`), gegenereerd door
+`scripts/generate-logo.mjs`. Bitmapvarianten voor e-mail en deelafbeeldingen staan in `public/brand`.
 
 ## 2. Kleuren (Tailwind tokens in `app/globals.css`)
 
 | Token | Hex | Gebruik |
 | --- | --- | --- |
-| `navy-950` | #0a1120 | Footer, hero-basis |
-| `navy-900` | #111c30 | Primaire donkere kleur: koppen, donkere secties, secondary button |
+| `navy-950` | #0a1120 | Footer, hero-basis, beheer-sidebar |
+| `navy-900` | #111c30 | Koppen, donkere secties, secondary button |
 | `navy-800` | #182741 | Body-tekst |
 | `navy-500` | #3d5a84 | Secundaire tekst |
 | `navy-100/50` | #e1e8f0 / #f2f5f9 | Randen, lichte achtergronden |
-| `goud-500` | #229bd2 | **Primaire CTA**, links, actieve states |
-| `gold-600` | #157cb0 | Hover van CTA, eyebrow-tekst |
-| `goud-300` | #7fcbee | Accent op donker (tagline in navbar/footer, gradient in hero-kop) |
-| `goud-100/50` | #d7eefa / #eef8fd | Zachte highlights, iconachtergronden, water-gradients |
+| `gold-500` | #d9a23a | **Primaire CTA**, beeldmerk, actieve states |
+| `gold-600/700` | donkerder goud | Hover van CTA, eyebrow-tekst op licht |
+| `gold-300` | #ecc76a | Accent op donker (hero-kop gradient, eyebrow op navy) |
+| `gold-100/50` | zacht goud | Iconachtergronden, highlights |
 | `sun-400` | #f7c948 | Sterren (reviews). Verder niet gebruiken. |
 | wit | #ffffff | Basis |
 
-Vaste combinaties: **wit + navy-900 + goud-500** met navy-50/goud-50 als rustvlakken.
-Contrast: goud-500 op wit ≥ 3:1 voor grote tekst/knoppen; body-tekst navy-800 op wit > 12:1.
+Vaste combinaties: **wit + navy-900 + gold-500** met navy-50/gold-50 als rustvlakken.
 
 ## 3. Typografie
 
 - **Display**: Plus Jakarta Sans 600-800 (`--font-display`) - koppen, knoppen, stapnummers. Tracking -0.02em.
-- **Body**: Inter (`--font-sans`) - alle lopende tekst, formulieren. 15-18px, leading 1.6.
+- **Body**: Inter (`--font-sans`) - lopende tekst, formulieren. 15-18px, leading 1.6.
 - Beide via `next/font/google`, self-hosted, `display: swap`.
 - Schaal: H1 40/60/72px · H2 30/36/44px · H3 20-24px · body 16-18px · eyebrow 12px uppercase 0.18em.
 
-## 4. Vorm & diepte
+## 4. Vorm en diepte
 
 - Radii: cards `rounded-3xl` (28px), grote panelen `rounded-4xl` (36px), knoppen/pills `rounded-full`.
-- Schaduwen: `shadow-soft` (rust), `shadow-lift` (hover/prominent), `shadow-glow` (goud, succes-state).
-- Water-thema: `bg-water` (lichte radiale blauwtinten), `bg-navy-water` (donker met goud-glow), `bg-grid-faint` (fijn raster op donker).
-- Beweging: fade-up bij scrollen (Framer `whileInView`), hover-lift op cards (-4px), image-zoom 1.06, icon-tilt. Alles via `--ease-out-expo`. `prefers-reduced-motion` → alleen korte opacity-fades (MotionConfig).
+- Schaduwen: `shadow-soft` (rust), `shadow-lift` (hover/prominent), `shadow-glow` (goud).
+- Achtergronden: `bg-water` (licht met zachte radiale gloed), `bg-navy-water` (donker met goud-glow), `bg-grid-faint` (fijn raster op donker).
+- Beweging: fade-up bij scrollen (Framer `whileInView`), hover-lift op cards, image-zoom 1.06, icon-tilt.
+  `prefers-reduced-motion` → alleen korte opacity-fades (MotionConfig).
 
 ## 5. Componenten
 
 | Component | Bestand | Notities |
 | --- | --- | --- |
-| Button | `components/ui/Button.tsx` | primary (goud), secondary (navy), ghost, white, outline-white; werkt als `<a>` bij `href` |
-| Logo | `components/ui/Logo.tsx` | Leest `/images/logo.png`; tekstdeel verbergt op < 480px |
+| Button | `components/ui/Button.tsx` | primary (goud), secondary (navy), ghost, outline-white; werkt als `<a>` bij `href` |
+| Logo | `components/ui/Logo.tsx` | Inline SVG; `inverted` voor donkere vlakken, `variant="mark"` voor alleen het beeldmerk |
 | SectionHeading | `components/ui/SectionHeading.tsx` | eyebrow + titel + beschrijving, light/inverted |
 | Field/TextInput/TextArea/Checkbox | `components/ui/Field.tsx` | Fout- en hint-states, aria-describedby |
 | Reveal/StaggerGroup/StaggerItem | `components/ui/Reveal.tsx` | Scroll-animaties |
 | Navbar | `components/layout/Navbar.tsx` | Transparant op home → solid na 24px scroll; mobiel fullscreen menu |
-| StickyMobileCTA | `components/layout/StickyMobileCTA.tsx` | [Bel direct] alleen bij bekend nummer |
-| Hero | `components/sections/Hero.tsx` | Poster + doorlopende achtergrondvideo (desktop én mobiel, herstart zichzelf na blokkade of pauze) |
+| StickyMobileCTA | `components/layout/StickyMobileCTA.tsx` | [Bel direct] + [Offerte aanvragen] op telefoon |
+| Hero | `components/sections/Hero.tsx` | Poster + doorlopende achtergrondvideo |
 | BeforeAfterSlider | `components/before-after/BeforeAfterSlider.tsx` | Pointer + touch + keyboard, `role="slider"`, clip-path |
 | ServiceCard | `components/services/ServiceCard.tsx` | Hover-lift, uitklapbare voordelen |
 | QuoteWizard | `components/quote/QuoteWizard.tsx` | 10 stappen, conditioneel, concept in sessionStorage, client-only |
 | PhotoUploader | `components/quote/PhotoUploader.tsx` | Drag & drop, XHR-progress, thumbnails, retry, verwijderen |
+| DemoShell / DemoDrawer | `components/demo-admin/` | Beheeromgeving: sidebar (desktop), menu + tabbalk (telefoon), zijpaneel voor bewerken |
 
 ## 6. Sitemap
 
 ```
-/                         Home (hero, trust, intro, before/after, diensten, werkwijze, werkgebied, FAQ, CTA)
+/                         Home (hero, trust, intro, ons werk, diensten, werkwijze, reviews, werkgebied, FAQ, CTA)
 /diensten                 Overzicht
-/gevelreiniging           Pillar-pagina (SEO: "gevelreiniging Enschede")
-/diensten/dakpanreiniging
-/diensten/trespa-reiniging
-/diensten/zonnepanelen-reiniging
-/before-after             Galerij met filter
+/diensten/<slug>          gevelreiniging, dakreiniging, zonnepanelen-reinigen, terras-en-bestrating,
+                          schilderwerk, houtrotherstel, periodiek-onderhoud, renovatie
+/ons-werk                 Voor/na-galerij met filter
+/werkwijze                Proces, afspraken, FAQ
 /over-ons
 /contact                  Formulier + gegevens
-/offerte-aanvragen        Wizard (?dienst=gevel|dak|trespa|zonnepanelen|anders voor prefill)
+/offerte-aanvragen        Wizard (?dienst=gevel|dak|zonnepanelen|bestrating|schilderwerk|houtrot|onderhoud|renovatie|anders)
 /privacy  /cookies
+/beheer                   TagPoint Demo-beheeromgeving
+/admin                    Dashboard op de database
 /sitemap.xml  /robots.txt
 ```
 
-Bewust géén losse plaatsnaam-pagina's (Hengelo, Oldenzaal, …) zolang het werkgebied niet bevestigd is -
-een SEO-pagina zonder unieke inhoud schaadt meer dan hij oplevert.
-
-## 7. UX-flow offertewizard
+## 7. UX-flow offerteaanvraag
 
 ```
-1 Dienst  →  2 Pand  →  3 Oppervlak (afhankelijk van dienst)  →  4 Omvang (+ optioneel m²)
-→  5 Vervuiling (multi, afhankelijk van dienst)  →  6 Foto's (optioneel, max 8)
+1 Wat moet er gebeuren  →  2 Pand  →  3 Oppervlak (afhankelijk van dienst)  →  4 Omvang (+ optioneel m²)
+→  5 Situatie (multi, afhankelijk van dienst)  →  6 Foto's (optioneel, max 8)
 →  7 Locatie  →  8 Planning  →  9 Contact  →  10 Controle + privacy-akkoord  →  Verzenden
-→  Succes: aanvraagnummer AIC-JJJJ-NNNN
+→  Succes: aanvraagnummer NOVA-JJJJ-NNNN
 ```
 
 - Validatie per stap (client) én volledig (server, zelfde zod-regels).
-- Terugspringen naar de juiste stap bij serverfouten.
-- Concept wordt in sessionStorage bewaard (zonder foto's) - ververst de gebruiker, dan gaat niets verloren.
+- Concept wordt in sessionStorage bewaard (zonder foto's).
 - Dubbele submissions worden geblokkeerd; verzenden wacht tot alle uploads klaar zijn.
 - Analytics-events op elke stap → funnel-analyse.

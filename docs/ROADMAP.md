@@ -1,44 +1,40 @@
-# Verbeterpunten & wat later kan worden toegevoegd
+# Roadmap - van demo naar klantwebsite
 
-## Direct na livegang (kleine moeite, veel effect)
+## Wat de demo laat zien
 
-1. **Echte foto's per dienst** - de placeholders op /diensten zijn het zwakste visuele punt.
-2. **Meer before/after-projecten** van gevel, trespa en zonnepanelen (nu alleen dak). De galerijfilter
-   verschijnt automatisch zodra er projecten van ≥ 2 diensten zijn.
-3. **Google Reviews** koppelen (sleutel + Place ID, `docs/DEPLOYMENT.md` 3b) of handmatig toevoegen
-   via `/admin/reviews` → reviewsectie verschijnt op home en over-ons.
-4. **Contactgegevens** invullen via `/admin/instellingen` (telefoon, e-mail, adres, KvK, openingstijden).
-5. **Vercel Analytics of Plausible** aanzetten → funnel-inzicht: waar haken bezoekers af in de wizard?
+- Publieke website van een fictief onderhoudsbedrijf (NOVA Onderhoud): hero met video, diensten,
+  voor/na-slider, werkwijze, voorbeeldreviews, werkgebied, FAQ en een offerteaanvraag in 10 stappen
+  met foto-upload.
+- `/beheer`: TagPoint Demo-beheeromgeving met voorbeeldgegevens (dashboard, website, diensten,
+  projecten, before & after, reviews, offerte-aanvragen, media, instellingen). Wijzigingen worden
+  niet bewaard.
+- `/admin`: het werkende dashboard op de database, zoals een klant het krijgt (aanvragen met foto's,
+  statussen, notities, toewijzen, CSV-export, berichten, projecten, reviews, instellingen).
 
-## Fase 2 - Dashboard (gereed)
+## Bij een echte klantwebsite
 
-Beschikbaar op `/admin`: aanvragen (filters, detail met foto's via signed URLs, status, notities,
-toewijzen, activiteitenlog, CSV-export), berichten, projecten (upload naar `project-images`),
-reviews en site-instellingen. Zie `docs/DEPLOYMENT.md` 1b.
+1. **Bedrijfsgegevens** in `config/site.ts` (naam, slogan, contact, werkgebied) en het logo opnieuw
+   genereren of vervangen (`scripts/generate-logo.mjs` of eigen bestanden in `public/brand`).
+2. **Eigen foto's** op de bestaande paden in `public/images` (zelfde bestandsnamen).
+3. `DEMO_USE_DATABASE_CONTENT=true` zetten zodat instellingen, reviews en projecten uit `/admin`
+   leidend worden; `/beheer` en de TagPoint-credit in de footer verwijderen of uitzetten.
+4. **Reviews**: handmatig via `/admin/reviews` of automatisch via de Google-koppeling
+   (`docs/DEPLOYMENT.md` 3b). Het label "Voorbeeldreviews" in `config/reviews.ts` aanpassen.
+5. **Analytics** (Vercel Analytics of Plausible) aanzetten voor funnel-inzicht in de wizard.
 
-Mogelijke uitbreidingen:
+## Mogelijke uitbreidingen
 
-- Diensten en FAQ beheren vanuit het dashboard (nu nog in `config/`)
-- Offerte-pdf en "offerte verstuurd"-mail rechtstreeks vanuit de aanvraag
-- Magic-link login of 2FA via Supabase Auth
-- Meerdere gebruikers met rollen (nu: iedereen in `ADMIN_EMAILS` is beheerder)
-
-## Fase 3 - Conversie & marketing
-
-- **WhatsApp-knop** (sticky) zodra het nummer bekend is (`siteConfig.whatsapp`).
-- **Adres-autocomplete** (postcode + huisnummer → straat/plaats) via een Nederlandse postcode-API.
-- **Follow-up mails**: herinnering aan de klant na X dagen zonder reactie (Resend + cron in Vercel).
-- **Seizoenscampagnes**: landingspagina's "Dakreiniging voorjaar" met UTM-tracking (wordt al opgeslagen).
-- **Lokale SEO-pagina's** per plaats - alleen zodra het werkgebied bevestigd is én er per plaats echte
-  projecten/foto's zijn om de pagina uniek te maken.
-- **Schema.org `AggregateRating`** staat klaar: vul Google-beoordeling en aantal in bij `/admin/instellingen`.
+- Diensten, FAQ en pagina-teksten beheren vanuit het dashboard (nu in `config/`).
+- Offerte-pdf en "offerte verstuurd"-mail rechtstreeks vanuit de aanvraag.
+- Magic-link login of 2FA; meerdere gebruikers met rollen.
+- WhatsApp-knop (sticky) zodra het nummer bekend is (`siteConfig.whatsapp`).
+- Adres-autocomplete (postcode + huisnummer) via een Nederlandse postcode-API.
+- Follow-up mails na X dagen zonder reactie (cron).
+- Seizoenscampagnes met landingspagina's en UTM-tracking (UTM wordt al opgeslagen).
 
 ## Technische verbeterpunten
 
-- Rate limiting is in-memory (per serverless-instantie). Voor harde limieten: Vercel Firewall of
-  Upstash Ratelimit (drop-in in `lib/utils/request.ts`).
-- `lib/supabase/types.ts` handmatig → genereren met `supabase gen types typescript` bij schemawijzigingen.
-- Opruimen van "verweesde" uploads (bezoeker uploadt foto's maar verstuurt niet): Supabase Edge Function of
-  cron die objecten in `quote-uploads` ouder dan 7 dagen zonder bijbehorende aanvraag verwijdert.
-- E2E-tests (Playwright) voor de wizardflow opnemen in CI.
-- Hero-video pas plaatsen na een Lighthouse-check (LCP moet de poster blijven).
+- Rate limiting is in-memory (per serverless-instantie). Voor harde limieten: firewall of Upstash Ratelimit.
+- `lib/supabase/types.ts` handmatig → genereren bij schemawijzigingen.
+- Opruimen van verweesde uploads (foto's zonder bijbehorende aanvraag, ouder dan 7 dagen).
+- E2E-tests (Playwright) voor de wizardflow in CI.

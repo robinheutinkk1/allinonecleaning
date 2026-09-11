@@ -1,25 +1,19 @@
 /**
- * Centrale bedrijfsconfiguratie.
+ * Centrale bedrijfsconfiguratie van de demo-website.
  *
- * Alles wat hier `null` of een [PLACEHOLDER] is, is nog niet bevestigd door
- * All in One Vastgoedonderhoud en wordt op de site verborgen of als placeholder getoond.
- * Vul dit bestand aan zodra de informatie bekend is - er hoeft verder niets
- * in de code te veranderen.
+ * NOVA Onderhoud is een fictief voorbeeldbedrijf. Alle gegevens hieronder zijn
+ * demo-gegevens: telefoonnummer, e-mailadres, werkgebied en teksten zijn bedacht
+ * om te laten zien hoe een bedrijfswebsite op dit platform eruit kan zien.
  */
 
-const DEFAULT_SITE_URL = "https://allinone.tagpoint.nl";
+const DEFAULT_SITE_URL = "https://www.novademo.nl";
 
 /**
  * Publieke site-URL bepalen, robuust tegen lege of ongeldige env-waarden.
  * Volgorde: NEXT_PUBLIC_SITE_URL → Vercel productie-/preview-URL → standaarddomein.
- * Een lege string of een waarde zonder geldig formaat mag de build nooit breken.
  */
 function resolveSiteUrl(): string {
-  const candidates = [
-    process.env.NEXT_PUBLIC_SITE_URL,
-    process.env.VERCEL_PROJECT_PRODUCTION_URL,
-    process.env.VERCEL_URL,
-  ];
+  const candidates = [process.env.NEXT_PUBLIC_SITE_URL, process.env.VERCEL_PROJECT_PRODUCTION_URL, process.env.VERCEL_URL];
   for (const raw of candidates) {
     const value = (raw ?? "").trim().replace(/\/+$/, "");
     if (!value) continue;
@@ -33,118 +27,114 @@ function resolveSiteUrl(): string {
 }
 
 export const siteConfig = {
-  companyName: "All in One Vastgoedonderhoud",
-  /** Korte merknaam, zoals groot in het logo. */
-  shortName: "All in One",
-  legalName: "All in One Vastgoedonderhoud",
-  tagline: "Onderhoud van gevel tot dak",
-  city: "Enschede",
+  companyName: "NOVA Onderhoud",
+  shortName: "NOVA",
+  legalName: "NOVA Onderhoud",
+  tagline: "Professioneel onderhoud voor woning en bedrijf",
+  /** Regio waarin het demobedrijf actief is. Geen straatadres: dit is een voorbeeldbedrijf. */
+  city: "Twente",
   region: "Twente",
   country: "NL",
 
   /** Publieke URL van de site (zonder trailing slash). Wordt gebruikt voor canonical, OG en sitemap. */
   url: resolveSiteUrl(),
 
-  /**
-   * Contactgegevens. `null` = nog niet bekend → wordt niet getoond.
-   * Vul in als: phone: "+31 6 12345678", email: "info@…"
-   */
-  /** Bron: allinone-cleaning.nl (huidige website). Controleer of dit nummer klopt. */
-  phone: "06 58947413" as string | null,
-  email: null as string | null,
+  /** Demo-contactgegevens. Geen echte nummers of adressen. */
+  phone: "06 12 34 56 78" as string | null,
+  email: "info@novademo.nl" as string | null,
   whatsapp: null as string | null,
 
   address: {
     street: null as string | null,
     postalCode: null as string | null,
-    city: "Enschede",
+    city: "Twente, Nederland",
   },
 
   kvk: null as string | null,
   btw: null as string | null,
 
-  /** Openingstijden - nog niet bevestigd. */
-  openingHours: null as { days: string; hours: string }[] | null,
+  openingHours: [
+    { days: "Ma t/m vr", hours: "08:00-17:30" },
+    { days: "Zaterdag", hours: "Op afspraak" },
+  ] as { days: string; hours: string }[] | null,
 
-  /** Bevestigd werkgebied: heel Overijssel, vanuit Enschede. */
-  workAreas: ["Enschede", "Twente", "Heel Overijssel"],
+  /** Werkgebied van het demobedrijf. */
+  workAreas: ["Hengelo", "Borne", "Enschede", "Oldenzaal", "Almelo"],
 
-  /**
-   * Reiskosten (bevestigd door het bedrijf): binnen 10 km van Enschede geen reiskosten,
-   * daarbuiten 0,23 euro per kilometer. Wordt getoond in FAQ, werkgebied, contact en wizard.
-   */
-  travel: { freeRadiusKm: 10, ratePerKm: 0.23, from: "Enschede" },
-
-  /**
-   * Trustoo-profiel (bron: zoekresultaten van trustoo.nl, september 2026). Score en
-   * vermelding "Top 10 gevelreinigers in Enschede". Zet op null om de badge te verbergen.
-   */
-  trustoo: {
-    score: 8.7,
-    url: "https://trustoo.nl/overijssel/enschede/gevelreiniging/all-in-one-vastgoedonderhoud-bv/",
-    label: "Top 10 gevelreinigers in Enschede",
-  } as { score: number; url: string; label: string } | null,
-
-  /** Social links - alleen tonen als bekend. */
+  /** Social links: leeg in de demo. */
   socialLinks: {
     instagram: null as string | null,
     facebook: null as string | null,
     linkedin: null as string | null,
-    google: null as string | null, // Google Business Profile URL
+    google: null as string | null,
   },
 
   /** Korte bedrijfsomschrijving voor footer, meta en structured data. */
   description:
-    "All in One Vastgoedonderhoud is uw partner voor totaalonderhoud van woningen en bedrijfspanden in Enschede en heel Overijssel: reiniging van gevels, daken, trespa, zonnepanelen en bestrating, schilderwerk binnen en buiten, houtrotherstel, vloerwerk en renovatie. Professioneel, veilig en met oog voor detail.",
+    "Professioneel onderhoud, reiniging en renovatie voor woningen en bedrijfspanden in Twente. Bekijk onze diensten en vraag eenvoudig een offerte aan.",
 
-  /**
-   * Reinigingsmethode zoals het bedrijf die zelf beschrijft (bron: allinone-cleaning.nl).
-   * Wordt gebruikt in de intro, dienstpagina's en FAQ.
-   */
+  /** Reinigingsaanpak (gevel, dak, zonnepanelen, bestrating). */
   method: {
-    short: "Lage druk en biologisch afbreekbare reinigingsmiddelen, geen hogedruk of stoom.",
+    short: "Een reinigingsmethode die past bij het oppervlak: grondig, maar zonder schade.",
     long:
-      "Wij reinigen met een combinatie van lage druk en biologisch afbreekbare reinigingsmiddelen. Zo verwijderen we schimmel, bacteriën, algen en andere organische vervuiling zonder het oppervlak te beschadigen. Doordat we geen hogedruk of stoom gebruiken, worden voegen niet uitgeblazen en blijft uw gevel, dak of bestrating intact. Na afloop controleren we het resultaat samen met u.",
-    removes: ["Schimmel", "Bacteriën", "Algen en groene aanslag", "Mos", "Organische vlekken en aanslag"],
+      "Elk oppervlak vraagt om een andere aanpak. Metselwerk, dakpannen, glas en bestrating reageren allemaal anders op water, druk en reinigingsmiddelen. Daarom kijken we eerst naar het materiaal en de vervuiling en kiezen we daarna de methode: gecontroleerde druk, milieubewuste middelen en de juiste apparatuur. Zo verdwijnt de aanslag, maar blijven voegen, coatings en oppervlakken intact.",
+    removes: ["Groene aanslag", "Algen en mos", "Vuil en roet", "Verkleuring", "Vogelpoep en stof"],
   },
 
-  /**
-   * Werkwijze bij schilderwerk, herstel en renovatie, zoals het bedrijf het zelf omschrijft
-   * (bron: Trustoo-profiel All in One Vastgoedonderhoud B.V.).
-   */
+  /** Werkwijze bij schilderwerk, herstel en renovatie. */
   workStyle: {
-    short: "Professioneel, veilig en met oog voor detail, voor een duurzaam en strak eindresultaat.",
+    short: "Vakwerk met oog voor detail, duidelijke afspraken en een resultaat dat lang meegaat.",
     long:
-      "Wij werken professioneel, veilig en met oog voor detail, zodat u verzekerd bent van een duurzaam en strak eindresultaat. U kunt rekenen op eerlijk advies, snelle service en duidelijke communicatie: u weet vooraf wat we doen, wanneer we komen en wat het kost.",
-    promises: ["Eerlijk advies", "Snelle service", "Duidelijke communicatie", "Vrijblijvende offerte"],
+      "Goed onderhoud begint met een eerlijk advies. We bekijken wat er echt nodig is, leggen dat helder uit en plannen het werk in overleg. Tijdens de uitvoering werken we netjes en veilig, met aandacht voor de details die het verschil maken. Na afloop lopen we het resultaat samen met u na.",
+    promises: ["Eerlijk advies", "Duidelijke planning", "Netjes en veilig werken", "Nacontrole samen met u"],
   },
 
-  /** Voor wie het bedrijf werkt (bron: allinone-cleaning.nl). */
-  audiences: ["Particulieren", "Bedrijven", "Instellingen en scholen", "VvE's en beheerders"],
+  /** Voor wie het demobedrijf werkt. */
+  audiences: ["Particulieren", "Bedrijven", "Verhuurders", "VvE's en beheerders"],
 
   /** E-mailadres waar nieuwe offerteaanvragen naartoe gaan (server-side, uit env). */
   notificationEmail: process.env.QUOTE_NOTIFICATION_EMAIL ?? null,
 
-  /** Prefix voor offertenummers, bijv. AIO-2026-0001 (zie migratie 0005) */
-  quotePrefix: "AIO",
+  /** Prefix voor aanvraagnummers, bijv. NOVA-2026-0001 */
+  quotePrefix: "NOVA",
 
   /**
-   * Hero-video: Higgsfield variant B, zelf gehost als H.264 (1080p, 8 s, ±1,6 MB, geen audio,
-   * naadloze loop). Origineel: assets/originals/hero-higgsfield-variant-b.mp4.
-   * Overschrijven kan met NEXT_PUBLIC_HERO_VIDEO_SRC; een lege waarde schakelt de video uit.
-   * Laadt de video niet (trage verbinding, databesparing), dan blijft de poster staan.
+   * Hero-video: neutrale, AI-gegenereerde beelden van gevelreiniging (geen bedrijf, logo of
+   * personen herkenbaar). Overschrijven kan met NEXT_PUBLIC_HERO_VIDEO_SRC; leeg = alleen poster.
    */
   heroVideo: process.env.NEXT_PUBLIC_HERO_VIDEO_SRC ?? "/videos/hero.mp4",
 } as const;
 
 export type SiteConfig = typeof siteConfig;
 
+/** Demo-label: deze website is een voorbeeldsite van TagPoint. */
+export const demoConfig = {
+  platformName: "TagPoint",
+  platformUrl: "https://tagpoint.nl",
+  credit: "Website concept door TagPoint",
+  adminPath: "/beheer",
+  /**
+   * De publieke site gebruikt standaard alleen de demo-inhoud uit config/ (contactgegevens,
+   * reviews, projecten). Zet DEMO_USE_DATABASE_CONTENT=true om de inhoud uit het beheer
+   * (database) leidend te maken, zoals bij een echte klantwebsite.
+   */
+  useDatabaseContent: process.env.DEMO_USE_DATABASE_CONTENT === "true",
+} as const;
+
 export const navigation = {
   main: [
     { label: "Home", href: "/" },
     { label: "Diensten", href: "/diensten" },
-    { label: "Before & After", href: "/before-after" },
+    { label: "Ons werk", href: "/ons-werk" },
+    { label: "Werkwijze", href: "/werkwijze" },
     { label: "Over ons", href: "/over-ons" },
+    { label: "Contact", href: "/contact" },
+  ],
+  footer: [
+    { label: "Home", href: "/" },
+    { label: "Diensten", href: "/diensten" },
+    { label: "Ons werk", href: "/ons-werk" },
+    { label: "Werkwijze", href: "/werkwijze" },
     { label: "Contact", href: "/contact" },
   ],
   legal: [
@@ -154,26 +144,19 @@ export const navigation = {
 } as const;
 
 export const ctaConfig = {
-  primary: { label: "Gratis offerte aanvragen", href: "/offerte-aanvragen" },
-  primaryShort: { label: "Gratis offerte", href: "/offerte-aanvragen" },
-  secondary: { label: "Bekijk onze resultaten", href: "/before-after" },
+  primary: { label: "Offerte aanvragen", href: "/offerte-aanvragen" },
+  primaryShort: { label: "Offerte aanvragen", href: "/offerte-aanvragen" },
+  secondary: { label: "Bekijk ons werk", href: "/ons-werk" },
   contact: { label: "Neem contact op", href: "/contact" },
 } as const;
 
-/** Trust-claims onder de hero. Alleen feitelijke, bevestigde claims. */
+/** Trust-claims onder de hero. */
 export const trustItems = [
-  { label: "Lage druk, geen hogedruk", description: "Veilig voor voegen, dakpannen en beplating" },
-  { label: "Milieuvriendelijke middelen", description: "Biologisch afbreekbare reinigingsmiddelen" },
-  { label: "Gratis advies en offerte", description: "Vrijblijvend adviesgesprek, duidelijke prijs vooraf" },
-  { label: "Actief in heel Overijssel", description: "Vanuit Enschede, persoonlijk contact" },
+  { label: "Eén team voor alles", description: "Van reiniging tot schilderwerk en renovatie" },
+  { label: "Passende methode per oppervlak", description: "Grondig resultaat, geen schade" },
+  { label: "Duidelijke offerte vooraf", description: "Heldere prijs, geen verrassingen" },
+  { label: "Actief in Twente", description: "Hengelo, Borne, Enschede, Oldenzaal, Almelo" },
 ] as const;
 
-/**
- * Statistieken - alleen tonen met ECHTE cijfers. Zolang `value` null is,
- * wordt de statistiekensectie niet gerenderd.
- */
-export const stats: { label: string; value: string | null }[] = [
-  { label: "Projecten uitgevoerd", value: null },
-  { label: "Jaar ervaring", value: null },
-  { label: "Gemiddelde beoordeling", value: null },
-];
+/** Statistieken op de homepage staan in de demo uit; via het beheer zijn ze in te vullen. */
+export const stats: { label: string; value: string | null }[] = [];

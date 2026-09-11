@@ -15,16 +15,17 @@ import type { QuoteRequestData } from "@/lib/validation/quote";
 import type { ContactData } from "@/lib/validation/contact";
 
 /**
- * E-mailarchitectuur (Resend).
+ * E-mailarchitectuur.
  *
  * - Interne notificatie bij nieuwe offerteaanvraag en contactbericht.
  * - Optionele bevestigingsmail naar de klant.
  *
  * Zonder RESEND_API_KEY worden mails niet verstuurd maar wordt de aanvraag
  * WEL opgeslagen. Mailfouten blokkeren nooit een succesvolle aanvraag.
+ * In de demo-omgeving wijzen afzender en ontvanger naar demo-adressen (zie .env.example).
  */
 
-const FROM = process.env.EMAIL_FROM ?? "All in One Vastgoedonderhoud <onboarding@resend.dev>";
+const FROM = process.env.EMAIL_FROM ?? `${siteConfig.companyName} <onboarding@resend.dev>`;
 const NOTIFY_TO = process.env.QUOTE_NOTIFICATION_EMAIL ?? null;
 const SEND_CUSTOMER_CONFIRMATION = process.env.SEND_CUSTOMER_CONFIRMATION !== "false";
 
@@ -50,7 +51,7 @@ function layout(title: string, body: string) {
   return `<!doctype html><html lang="nl"><body style="margin:0;background:#f2f5f9;font-family:Inter,Arial,sans-serif">
   <div style="max-width:640px;margin:0 auto;padding:32px 16px">
     <div style="background:#111c30;border-radius:16px 16px 0 0;padding:20px 24px;color:#fff">
-      <img src="${siteConfig.url}/images/logo-inverted.png" alt="${escapeHtml(siteConfig.companyName)}" width="120" height="74" style="display:block;height:74px;width:auto" />
+      <img src="${siteConfig.url}/brand/nova-logo-light.png" alt="${escapeHtml(siteConfig.companyName)}" width="180" height="54" style="display:block;height:54px;width:auto" />
       <div style="color:#ecc76a;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:10px">${escapeHtml(siteConfig.tagline)}</div>
     </div>
     <div style="background:#fff;border-radius:0 0 16px 16px;padding:24px">
@@ -168,7 +169,7 @@ export async function sendQuoteConfirmation(opts: {
       from: FROM,
       to: d.email,
       ...(NOTIFY_TO ? { replyTo: NOTIFY_TO } : {}),
-      subject: "Uw offerteaanvraag bij All in One Vastgoedonderhoud",
+      subject: `Uw offerteaanvraag bij ${siteConfig.companyName}`,
       html: layout("Uw offerteaanvraag is ontvangen", body),
     });
     if (error) return { sent: false, reason: error.message };

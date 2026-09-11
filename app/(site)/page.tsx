@@ -20,18 +20,16 @@ import { getSiteSettings } from "@/lib/settings";
 export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
-  title: `Vastgoedonderhoud Enschede | ${siteConfig.companyName} | ${siteConfig.tagline}`,
-  description:
-    "All in One Vastgoedonderhoud in Enschede: reiniging van gevels, daken, trespa, zonnepanelen en bestrating, schilderwerk binnen en buiten, houtrotherstel, vloerwerk en renovatie. Professioneel, veilig en met oog voor detail, in heel Overijssel. Vraag een vrijblijvende offerte aan.",
+  title: `${siteConfig.companyName} | ${siteConfig.tagline}`,
+  description: siteConfig.description,
   path: "/",
-  ogTitle: "Eén partner voor het onderhoud van uw pand.",
-  ogSubtitle: "Reiniging, schilderwerk, houtrotherstel, vloerwerk en renovatie in Enschede en heel Overijssel.",
+  ogTitle: "Uw pand verdient onderhoud dat gezien mag worden.",
+  ogSubtitle: "Van gevel en dak tot schilderwerk en renovatie. Eén professioneel team voor woning en bedrijfspand in Twente.",
 });
 
 /**
  * Hero-video: zie siteConfig.heroVideo. Zet NEXT_PUBLIC_HERO_VIDEO_SRC="" om de
- * video uit te schakelen (alleen poster), of /videos/hero.mp4 om zelf te hosten.
- * Op mobiel wordt altijd de poster gebruikt.
+ * video uit te schakelen (alleen poster), of een eigen pad om zelf te hosten.
  */
 export default async function HomePage() {
   const [projects, settings] = await Promise.all([getFeaturedProjects(3), getSiteSettings()]);

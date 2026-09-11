@@ -10,7 +10,7 @@ import { services, type Service } from "@/config/services";
 import type { Project } from "@/config/projects";
 import { ctaConfig, siteConfig } from "@/config/site";
 
-/** Gedeelde inhoud van een dienstpagina (gebruikt door /gevelreiniging en /diensten/[slug]). */
+/** Inhoud van een dienstpagina (/diensten/[slug]). */
 export function ServiceDetail({ service, projects }: { service: Service; projects: Project[] }) {
   const others = services.filter((s) => s.slug !== service.slug);
   const [project] = projects;
@@ -35,7 +35,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
             {service.category === "reiniging" ? (
               <div className="mt-10 rounded-3xl bg-navy-900 p-6 text-white sm:p-8">
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-gold-300">Onze reinigingsmethode</p>
-                <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">Lage druk, geen hogedruk of stoom.</h3>
+                <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">Grondig resultaat, zonder schade.</h3>
                 <p className="mt-3 text-sm leading-relaxed text-navy-200 sm:text-[15px]">{siteConfig.method.long}</p>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {siteConfig.method.removes.map((r) => (
@@ -127,7 +127,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
         <section className="section-y bg-navy-50">
           <div className="container-x">
             <Reveal>
-              <SectionHeading eyebrow="Resultaat" title={`Kijk naar het verschil: ${service.title.toLowerCase()}.`} description="Sleep de slider en vergelijk voor en na. Dit is een echt project van All in One Vastgoedonderhoud." />
+              <SectionHeading eyebrow="Voorbeeldproject" title={`Kijk naar het verschil: ${service.title.toLowerCase()}.`} description="Sleep de slider en vergelijk voor en na. Dit is een voorbeeldproject om te laten zien wat het resultaat kan zijn." />
             </Reveal>
             <Reveal delay={0.1} className="mt-10">
               <BeforeAfterSlider
@@ -143,8 +143,8 @@ export function ServiceDetail({ service, projects }: { service: Service; project
                 <p className="text-navy-700">
                   <span className="font-semibold text-navy-900">{project.title}</span>: {project.result}
                 </p>
-                <Link href="/before-after" className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-700 hover:text-gold-800">
-                  Alle projecten
+                <Link href={ctaConfig.secondary.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-700 hover:text-gold-800">
+                  {ctaConfig.secondary.label}
                   <ArrowRight className="size-4" aria-hidden />
                 </Link>
               </div>

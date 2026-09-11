@@ -52,7 +52,7 @@ export function ProjectForm({ project, imageBase }: { project: ProjectRow | null
               setTitle(e.target.value);
               if (!slugTouched) setSlug(slugify(e.target.value));
             }}
-            placeholder="Bijv. Gevelreiniging: woning in Enschede-Zuid"
+            placeholder="Bijv. Gevelreiniging vrijstaande woning"
             className={inputCls}
           />
         </div>
@@ -88,7 +88,7 @@ export function ProjectForm({ project, imageBase }: { project: ProjectRow | null
           <label htmlFor="location" className={labelCls}>
             Locatie
           </label>
-          <input id="location" name="location" defaultValue={project?.location ?? ""} placeholder="Bijv. Enschede" className={inputCls} />
+          <input id="location" name="location" defaultValue={project?.location ?? ""} placeholder="Bijv. Hengelo" className={inputCls} />
         </div>
         <div>
           <label htmlFor="sort_order" className={labelCls}>

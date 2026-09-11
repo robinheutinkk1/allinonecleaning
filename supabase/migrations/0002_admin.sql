@@ -1,5 +1,5 @@
 -- ============================================================================
--- ALL IN ONE VASTGOEDONDERHOUD - Dashboard (migratie 2)
+-- NOVA ONDERHOUD (demo) - Dashboard (migratie 2)
 -- Uitvoeren na 0001_init.sql via de Supabase SQL Editor.
 -- ============================================================================
 
@@ -56,7 +56,7 @@ create table if not exists public.site_settings (
   kvk             text,
   btw             text,
   opening_hours   jsonb,          -- [{ "days": "Ma-Vr", "hours": "08:00-18:00" }]
-  work_areas      text[],         -- ["Enschede", "Hengelo"]
+  work_areas      text[],         -- ["Hengelo", "Borne"]
   social_instagram text,
   social_facebook  text,
   social_linkedin  text,

@@ -1,4 +1,7 @@
-# Deployment - Supabase, Resend, Vercel
+# Deployment - database, e-mail, hosting
+
+De demo draait ook zonder database en e-mail (met de demo-inhoud uit `config/`). Onderstaande stappen
+zijn nodig voor de werkende offerte-intake, het dashboard op `/admin` en de mails.
 
 ## 1. Supabase
 
@@ -7,7 +10,7 @@
    Dit maakt aan:
    - tabellen `quote_requests`, `contact_messages`, `projects`, `quote_counters`
    - enum `quote_status` (`new, reviewing, contacted, quoted, won, lost, cancelled`)
-   - functie `next_quote_number('AIO')` → `AIO-2026-0001` (atomische teller per jaar)
+   - functie `next_quote_number(...)` → `NOVA-2026-0001` (atomische teller per jaar; voer ook `0005` en `0006` uit voor het voorvoegsel `NOVA`)
    - RLS: geen publieke toegang tot aanvragen; gepubliceerde projecten publiek leesbaar
    - storage buckets `quote-uploads` (**privé**, 10 MB, jpg/png/webp) en `project-images` (**publiek**)
 3. Open opnieuw **SQL Editor** → plak de inhoud van `supabase/migrations/0002_admin.sql` → Run.
@@ -83,12 +86,17 @@ Een collega heeft twee dingen nodig: een loginaccount en een plek in de teamlijs
    "Aan mij toewijzen" (op basis van het e-mailadres) en kan de aanvragenlijst per collega gefilterd
    worden. Voer je migratie `0004_team.sql` niet uit, dan blijft toewijzen een vrij tekstveld.
 
-### Merkomzetting (migratie 5)
+### Voorvoegsel aanvraagnummers (migraties 5 en 6)
 
-`supabase/migrations/0005_rebrand.sql` zet het voorvoegsel van nieuwe aanvraagnummers op `AIO`
-(All in One). De jaarteller loopt door; bestaande nummers veranderen niet. Het logo en alle
-teksten op site, dashboard en in e-mails gebruiken "All in One Vastgoedonderhoud". Het logo wordt
-gegenereerd met `node scripts/process-logo.mjs` uit `assets/originals/all in one.webp`.
+`supabase/migrations/0006_demo_prefix.sql` zet het voorvoegsel van nieuwe aanvraagnummers op `NOVA`
+(`NOVA-2026-0001`). De jaarteller loopt door; bestaande nummers veranderen niet. Het logo wordt
+gegenereerd met `node scripts/generate-logo.mjs` (zie `public/brand`).
+
+### Demo-inhoud versus database
+
+De publieke site toont standaard de demo-inhoud uit `config/` (contactgegevens, reviews, projecten),
+ook als de database gevuld is. Zet `DEMO_USE_DATABASE_CONTENT=true` om de inhoud uit het dashboard
+leidend te maken. De demo-beheeromgeving op `/beheer` gebruikt nooit de database.
 
 Iedereen in `ADMIN_EMAILS` heeft dezelfde rechten (rollen zijn er nog niet, zie ROADMAP).
 Collega verwijderen: e-mailadres uit `ADMIN_EMAILS` halen en redeployen; het account in Supabase
@@ -111,8 +119,8 @@ Wat wordt verstuurd:
 
 | Trigger | Naar | Onderwerp |
 | --- | --- | --- |
-| Nieuwe offerteaanvraag | `QUOTE_NOTIFICATION_EMAIL` | `Nieuwe offerteaanvraag AIO-2026-0001` |
-| Nieuwe offerteaanvraag | klant | `Uw offerteaanvraag bij All in One Vastgoedonderhoud` (uit te zetten met `SEND_CUSTOMER_CONFIRMATION=false`) |
+| Nieuwe offerteaanvraag | `QUOTE_NOTIFICATION_EMAIL` | `Nieuwe offerteaanvraag NOVA-2026-0001` |
+| Nieuwe offerteaanvraag | klant | `Uw offerteaanvraag bij NOVA Onderhoud` (uit te zetten met `SEND_CUSTOMER_CONFIRMATION=false`; in de demo aanbevolen) |
 | Contactformulier | `QUOTE_NOTIFICATION_EMAIL` | `Nieuw bericht via de website van <naam>` |
 
 Mailfouten blokkeren nooit een aanvraag: de aanvraag staat al in Supabase, de fout wordt gelogd.
@@ -124,18 +132,19 @@ Mailfouten blokkeren nooit een aanvraag: de aanvraag staat al in Supabase, de fo
 
 | Variabele | Verplicht | Waar |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | ja | definitieve domeinnaam, bijv. `https://www.uw-domein.nl` |
+| `NEXT_PUBLIC_SITE_URL` | ja | domeinnaam van de demo, bijv. `https://www.novademo.nl` |
+| `DEMO_USE_DATABASE_CONTENT` | nee | `true` = instellingen, reviews en projecten uit het dashboard tonen op de site |
 | `NEXT_PUBLIC_SUPABASE_URL` | ja | Supabase → API |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | ja | Supabase → API |
 | `SUPABASE_SERVICE_ROLE_KEY` | ja (server-only) | Supabase → API |
 | `RESEND_API_KEY` | ja | Resend |
-| `EMAIL_FROM` | ja | `All in One Vastgoedonderhoud <offerte@…>` |
+| `EMAIL_FROM` | ja | `NOVA Onderhoud <offerte@…>` |
 | `QUOTE_NOTIFICATION_EMAIL` | ja | mailbox van het bedrijf |
 | `SEND_CUSTOMER_CONFIRMATION` | nee | `true`/`false` |
 | `IP_HASH_SALT` | aanbevolen | lange willekeurige string |
 | `ADMIN_EMAILS` | ja (dashboard) | e-mailadressen die op `/admin` mogen inloggen, kommagescheiden |
 | `ADMIN_URL` | nee | dashboard-URL voor de "Bekijk aanvraag"-link in de mail, standaard `<site>/admin` |
-| `NEXT_PUBLIC_HERO_VIDEO_SRC` | nee | `/videos/hero.mp4` zodra de video goedgekeurd is |
+| `NEXT_PUBLIC_HERO_VIDEO_SRC` | nee | standaard `/videos/hero.mp4`; leeg = alleen poster |
 | `GOOGLE_PLACES_API_KEY` | nee | Google Cloud, zie 3b |
 | `GOOGLE_PLACE_ID` | nee | Place ID van het bedrijf, zie 3b |
 | `CRON_SECRET` | nee | lange willekeurige string, activeert de dagelijkse verversing van Google-reviews |
@@ -148,8 +157,8 @@ Mailfouten blokkeren nooit een aanvraag: de aanvraag staat al in Supabase, de fo
 
 ## 3b. Google-reviews automatisch ophalen (optioneel)
 
-Zonder deze koppeling voert u reviews handmatig in via `/admin/reviews` en het gemiddelde bij
-`/admin/instellingen`. Met de koppeling haalt de site de beoordeling, het aantal reviews en de
+Niet gebruikt in de demo (de site toont voorbeeldreviews). Zonder deze koppeling voert u reviews
+handmatig in via `/admin/reviews` en het gemiddelde bij `/admin/instellingen`. Met de koppeling haalt de site de beoordeling, het aantal reviews en de
 reviews die Google vrijgeeft (maximaal 5, Google bepaalt welke) rechtstreeks uit Google.
 
 1. Supabase → **SQL Editor**: voer `supabase/migrations/0003_google_reviews.sql` uit.
@@ -159,7 +168,7 @@ reviews die Google vrijgeeft (maximaal 5, Google bepaalt welke) rechtstreeks uit
 3. **APIs & Services → Credentials → Create credentials → API key**. Klik daarna op de sleutel →
    **API restrictions → Restrict key → Places API (New)**. Dit is `GOOGLE_PLACES_API_KEY`.
 4. Place ID opzoeken: https://developers.google.com/maps/documentation/places/web-service/place-id
-   (Place ID Finder), zoek op "All in One Vastgoedonderhoud". De code begint met `ChIJ`.
+   (Place ID Finder), zoek op de bedrijfsnaam. De code begint met `ChIJ`. Niet gebruikt in de demo.
    Dit is `GOOGLE_PLACE_ID`.
 5. Vercel → Environment Variables: `GOOGLE_PLACES_API_KEY`, `GOOGLE_PLACE_ID` en (voor de
    dagelijkse verversing) `CRON_SECRET` met een lange willekeurige string. Redeploy.
@@ -190,15 +199,15 @@ npm run dev
 ```
 
 Zonder keys: wizard en contactformulier werken in "dev-fallback" (log naar console, testnummer
-`AIO-2026-Txxxx`, uploads worden niet opgeslagen). In productie geven de API's dan een nette
+`NOVA-2026-Txxxx`, uploads worden niet opgeslagen). In productie geven de API's dan een nette
 503-melding aan de bezoeker.
 
 ## 5. Livegang-checklist
 
-- [ ] Echte logo en foto's geplaatst (`docs/CONTENT-CHECKLIST.md` A)
-- [ ] `config/site.ts` ingevuld: telefoon, e-mail, KvK, werkgebied, domein
-- [ ] Diensten en teksten gecontroleerd door All in One Vastgoedonderhoud
-- [ ] Supabase-migraties `0001_init.sql` én `0002_admin.sql` uitgevoerd, buckets aanwezig, `quote-uploads` staat op **niet publiek**
+- [ ] Logo en beelden gecontroleerd (`public/brand`, `public/images`)
+- [ ] `config/site.ts` gecontroleerd: naam, slogan, contact, werkgebied, domein
+- [ ] Diensten en teksten gecontroleerd
+- [ ] Migraties `0001` t/m `0006` uitgevoerd, buckets aanwezig, `quote-uploads` staat op **niet publiek**
 - [ ] Dashboard: beheerder aangemaakt in Supabase Auth, `ADMIN_EMAILS` in Vercel, publieke sign-up uit, ingelogd op `/admin`
 - [ ] Instellingen in het dashboard ingevuld (telefoon, e-mail, adres, KvK, openingstijden, werkgebied)
 - [ ] Optioneel: migratie `0003_google_reviews.sql`, Google-sleutel en Place ID in Vercel, `googlePlaces` groen in `/api/health`

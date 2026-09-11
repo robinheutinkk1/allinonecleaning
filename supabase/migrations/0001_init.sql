@@ -1,5 +1,5 @@
 -- ============================================================================
--- ALL IN ONE VASTGOEDONDERHOUD - Supabase schema
+-- NOVA ONDERHOUD (demo) - Databaseschema
 -- Uitvoeren via Supabase SQL Editor of `supabase db push`.
 -- ============================================================================
 
@@ -18,7 +18,7 @@ begin
 end$$;
 
 -- ----------------------------------------------------------------------------
--- Offertenummers: AIC-2026-0001 (teller per jaar, atomisch)
+-- Aanvraagnummers: <VOORVOEGSEL>-2026-0001 (teller per jaar, atomisch; voorvoegsel via migratie 5/6)
 -- ----------------------------------------------------------------------------
 create table if not exists public.quote_counters (
   year        int primary key,

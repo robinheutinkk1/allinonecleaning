@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   ALL IN ONE VASTGOEDONDERHOUD - Design tokens
-   Afgeleid van het logo: donker navy (dak en wordmark) en goud
-   (swoosh, "IN", raam en "VASTGOEDONDERHOUD"), op wit.
+   NOVA ONDERHOUD (demo) - Design tokens
+   Donker navy voor koppen en donkere vlakken, goud als accentkleur
+   (beeldmerk, knoppen, details), op wit.
    ------------------------------------------------------------------ */
 
 @theme {
@@ -53,7 +53,7 @@
   /* Shadows */
   --shadow-soft: 0 1px 2px rgb(16 28 48 / 0.04), 0 8px 24px -8px rgb(16 28 48 / 0.12);
   --shadow-lift: 0 2px 4px rgb(16 28 48 / 0.05), 0 20px 40px -16px rgb(16 28 48 / 0.22);
-  --shadow-glow: 0 0 0 1px rgb(34 155 210 / 0.15), 0 16px 40px -12px rgb(34 155 210 / 0.35);
+  --shadow-glow: 0 0 0 1px rgb(217 162 58 / 0.15), 0 16px 40px -12px rgb(217 162 58 / 0.35);
 
   /* Easing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

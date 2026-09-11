@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { Loader2, Save } from "lucide-react";
 import { saveSettings, type ActionResult } from "@/lib/admin/actions";
 import type { SiteSettingsRow } from "@/lib/supabase/types";
+import { siteConfig } from "@/config/site";
 import { btnPrimary, inputCls, labelCls, Notice } from "./ui";
 
 function Field({ id, label, hint, children }: { id: string; label: string; hint?: string; children: React.ReactNode }) {
@@ -54,7 +55,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
             <input id="postal_code" name="postal_code" defaultValue={s?.postal_code ?? ""} className={inputCls} />
           </Field>
           <Field id="city" label="Plaats">
-            <input id="city" name="city" defaultValue={s?.city ?? "Enschede"} className={inputCls} />
+            <input id="city" name="city" defaultValue={s?.city ?? siteConfig.address.city} className={inputCls} />
           </Field>
           <Field id="kvk" label="KvK-nummer">
             <input id="kvk" name="kvk" defaultValue={s?.kvk ?? ""} className={inputCls} />
@@ -69,7 +70,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
         <h2 className="font-display text-lg font-bold text-navy-900">Werkgebied en openingstijden</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field id="work_areas" label="Werkgebied" hint="Eén plaats per regel. De eerste is de vestigingsplaats.">
-            <textarea id="work_areas" name="work_areas" rows={5} defaultValue={(s?.work_areas ?? ["Enschede", "Twente", "Heel Overijssel"]).join("\n")} className={inputCls} />
+            <textarea id="work_areas" name="work_areas" rows={5} defaultValue={(s?.work_areas ?? [...siteConfig.workAreas]).join("\n")} className={inputCls} />
           </Field>
           <Field id="opening_hours" label="Openingstijden" hint="Per regel: dagen | tijden. Bijv. Ma-Vr | 08:00-18:00">
             <textarea id="opening_hours" name="opening_hours" rows={5} defaultValue={(s?.opening_hours ?? []).map((o) => `${o.days} | ${o.hours}`).join("\n")} placeholder={"Ma-Vr | 08:00-18:00\nZa | 09:00-13:00"} className={inputCls} />

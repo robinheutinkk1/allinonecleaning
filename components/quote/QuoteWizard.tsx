@@ -30,7 +30,7 @@ import { QuoteSuccess } from "./QuoteSuccess";
 
 type Draft = Partial<QuoteRequestInput> & { contaminationTypes: string[]; photoPaths: string[] };
 
-const DRAFT_KEY = "aic_quote_draft";
+const DRAFT_KEY = "nova_quote_draft";
 
 function randomSession(): string {
   const bytes = new Uint8Array(16);
@@ -354,8 +354,8 @@ function StepContent({
           {data.service === "anders" && (
             <TextInput
               id="serviceOther"
-              label="Wat wilt u laten doen?"
-              placeholder="Bijv. terras, oprit, schutting…"
+              label="Wat moet er gebeuren?"
+              placeholder="Bijv. schutting, oprit, dakgoot…"
               value={data.serviceOther ?? ""}
               onChange={(e) => update("serviceOther", e.target.value)}
               error={errors.serviceOther}
@@ -465,16 +465,20 @@ function StepContent({
             <TextInput id="houseNumber" label="Huisnummer" autoComplete="address-line2" placeholder="12a" value={data.houseNumber ?? ""} onChange={(e) => update("houseNumber", e.target.value)} error={errors.houseNumber} required />
           </div>
           <div>
-            <TextInput id="city" label="Plaats" autoComplete="address-level2" placeholder="Bijv. Enschede" value={data.city ?? ""} onChange={(e) => update("city", e.target.value)} error={errors.city} required />
+            <TextInput id="city" label="Plaats" autoComplete="address-level2" placeholder="Bijv. Hengelo" value={data.city ?? ""} onChange={(e) => update("city", e.target.value)} error={errors.city} required />
             {!data.city && (
-              <button type="button" onClick={() => update("city", siteConfig.city)} className="mt-2 rounded-full bg-navy-50 px-3 py-1 text-xs font-semibold text-navy-700 hover:bg-gold-100 hover:text-gold-800">
-                + {siteConfig.city}
-              </button>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {siteConfig.workAreas.map((area) => (
+                  <button key={area} type="button" onClick={() => update("city", area)} className="rounded-full bg-navy-50 px-3 py-1 text-xs font-semibold text-navy-700 hover:bg-gold-100 hover:text-gold-800">
+                    + {area}
+                  </button>
+                ))}
+              </div>
             )}
           </div>
           <p className="rounded-2xl bg-navy-50 px-4 py-3 text-xs leading-relaxed text-navy-500">
-            Wij werken in heel Overijssel. Binnen {siteConfig.travel.freeRadiusKm} km van {siteConfig.travel.from} rekenen wij geen reiskosten; daarbuiten geldt €{" "}
-            {siteConfig.travel.ratePerKm.toFixed(2).replace(".", ",")} per kilometer, altijd vooraf in de offerte vermeld.
+            {siteConfig.companyName} werkt voor particuliere en zakelijke klanten in Twente en omgeving. Ligt uw pand net buiten dit gebied? Vraag gerust een offerte
+            aan, dan kijken we wat mogelijk is.
           </p>
         </div>
       );
@@ -570,7 +574,7 @@ function StepContent({
             }
           />
           <p className="text-xs text-navy-400">
-            Wij berekenen geen automatische prijs. All in One Vastgoedonderhoud beoordeelt uw aanvraag persoonlijk en neemt daarna contact met u op.
+            Wij berekenen geen automatische prijs. {siteConfig.companyName} beoordeelt uw aanvraag persoonlijk en neemt daarna contact met u op.
           </p>
         </div>
       );

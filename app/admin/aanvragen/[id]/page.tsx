@@ -9,6 +9,7 @@ import { AssignForm, DangerZone, NoteForm, StatusForm } from "@/components/admin
 import { PhotoGallery } from "@/components/admin/PhotoGallery";
 import { Card, PageTitle, StatusBadge, btnPrimary, btnSecondary, formatDateTime } from "@/components/admin/ui";
 import { getServiceByQuoteKey } from "@/config/services";
+import { siteConfig } from "@/config/site";
 import { contaminationOptionsFor, labelFor, periodOptions, propertyTypeOptions, sizeOptions, surfaceOptionsFor } from "@/config/quote";
 
 export const metadata: Metadata = { title: "Aanvraag" };
@@ -25,7 +26,7 @@ function Row({ label, value, stacked = false }: { label: string; value: React.Re
 export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanvragen/[id]">) {
   const user = await requireAdmin();
   const { id } = await params;
-  // De link in de notificatiemail gebruikt het aanvraagnummer (AIC-2026-0001); zet die om naar het id.
+  // De link in de notificatiemail gebruikt het aanvraagnummer (NOVA-2026-0001); zet die om naar het id.
   if (!/^[0-9a-f-]{36}$/i.test(id)) {
     const byNumber = await getQuoteByNumber(decodeURIComponent(id).toUpperCase());
     if (!byNumber) notFound();
@@ -43,7 +44,7 @@ export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanv
   const contamination = quote.contamination_types.map((c) => labelFor(contaminationOptionsFor(quote.service), c)).join(", ");
   const phoneDigits = quote.phone.replace(/[\s()-]/g, "");
   const waNumber = phoneDigits.replace(/^0/, "31").replace(/^\+/, "");
-  const mailSubject = encodeURIComponent(`Uw offerteaanvraag ${quote.quote_number} bij All in One Vastgoedonderhoud`);
+  const mailSubject = encodeURIComponent(`Uw offerteaanvraag ${quote.quote_number} bij ${siteConfig.companyName}`);
 
   return (
     <>

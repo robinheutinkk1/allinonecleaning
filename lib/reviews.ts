@@ -1,11 +1,15 @@
 import "server-only";
 import { unstable_cache } from "next/cache";
 import { reviews as configReviews, type Review } from "@/config/reviews";
+import { demoConfig } from "@/config/site";
 import { getAnonServerClient } from "@/lib/supabase/server";
 
-/** Gepubliceerde reviews uit Supabase, met config/reviews.ts als fallback. */
+/**
+ * Reviews voor de site. Demo: de voorbeeldreviews uit config/reviews.ts.
+ * Met DEMO_USE_DATABASE_CONTENT=true komen gepubliceerde reviews uit de database.
+ */
 async function loadReviews(): Promise<Review[]> {
-  const client = getAnonServerClient();
+  const client = demoConfig.useDatabaseContent ? getAnonServerClient() : null;
   if (!client) return configReviews;
   try {
     const { data, error } = await client

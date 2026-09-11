@@ -13,19 +13,23 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   // Fonts en logo voor de dynamische deelafbeelding meenemen in de serverless bundle
-  outputFileTracingIncludes: { "/og": ["./assets/fonts/*", "./public/images/logo-inverted.png"] },
+  outputFileTracingIncludes: { "/og": ["./assets/fonts/*", "./public/brand/nova-logo-light.png"] },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [360, 414, 640, 768, 1024, 1280, 1536, 1920],
     remotePatterns: [
-      // Publieke projectfoto's uit Supabase Storage (bucket project-images)
+      // Publieke projectfoto's uit de opslag (bucket project-images)
       ...(supabaseHost ? [{ protocol: "https" as const, hostname: supabaseHost, pathname: "/storage/v1/object/public/**" }] : []),
       { protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" },
     ],
   },
   async redirects() {
-    // Oude loginlink blijft werken
-    return [{ source: "/admin/login", destination: "/login", permanent: true }];
+    return [
+      // Oude routes blijven werken
+      { source: "/admin/login", destination: "/login", permanent: true },
+      { source: "/before-after", destination: "/ons-werk", permanent: true },
+      { source: "/gevelreiniging", destination: "/diensten/gevelreiniging", permanent: true },
+    ];
   },
   async headers() {
     return [

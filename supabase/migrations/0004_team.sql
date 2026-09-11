@@ -1,5 +1,5 @@
 -- ============================================================================
--- ALL IN ONE CLEANING - Team (migratie 4)
+-- NOVA ONDERHOUD (demo) - Team (migratie 4)
 -- Uitvoeren na 0003_google_reviews.sql via de Supabase SQL Editor.
 --
 -- Lijst met collega's voor de toewijzing van aanvragen in het dashboard.

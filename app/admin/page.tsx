@@ -5,6 +5,7 @@ import { getDashboardStats, recentQuotes } from "@/lib/admin/queries";
 import { QUOTE_STATUSES } from "@/lib/admin/statuses";
 import { Card, PageTitle, StatCard, StatusBadge, timeAgo, EmptyState } from "@/components/admin/ui";
 import { getServiceByQuoteKey } from "@/config/services";
+import { siteConfig } from "@/config/site";
 
 export default async function AdminOverviewPage() {
   await requireAdmin();
@@ -15,7 +16,7 @@ export default async function AdminOverviewPage() {
 
   return (
     <>
-      <PageTitle title="Overzicht" description="Wat er speelt bij All in One Vastgoedonderhoud." />
+      <PageTitle title="Overzicht" description={`Wat er speelt op de website van ${siteConfig.companyName}.`} />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Nieuwe aanvragen" value={stats.newCount} hint="Nog niet opgepakt" tone="accent" />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound, permanentRedirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ServiceDetail } from "@/components/services/ServiceDetail";
 import { CTASection } from "@/components/sections/CTASection";
@@ -12,7 +12,7 @@ import { breadcrumbJsonLd, pageMetadata, serviceJsonLd } from "@/lib/seo";
 export const revalidate = 3600;
 
 export function generateStaticParams() {
-  return services.filter((s) => s.href.startsWith("/diensten/")).map((s) => ({ slug: s.slug }));
+  return services.map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/diensten/[slug]">): Promise<Metadata> {
@@ -26,8 +26,6 @@ export default async function ServicePage({ params }: PageProps<"/diensten/[slug
   const { slug } = await params;
   const service = getService(slug);
   if (!service) notFound();
-  // Gevelreiniging heeft een eigen pillar-pagina - voorkom duplicate content.
-  if (!service.href.startsWith("/diensten/")) permanentRedirect(service.href);
 
   const projects = await getProjectsByService(service.slug);
   const crumbs = [
@@ -38,7 +36,7 @@ export default async function ServicePage({ params }: PageProps<"/diensten/[slug
 
   return (
     <>
-      <PageHeader eyebrow={`${service.title} · Enschede en heel Overijssel`} title={service.tagline} description={service.summary} breadcrumbs={crumbs} />
+      <PageHeader eyebrow={`${service.title} · Twente en omgeving`} title={service.tagline} description={service.summary} breadcrumbs={crumbs} />
       <ServiceDetail service={service} projects={projects} />
       <FAQ />
       <CTASection title={`${service.title} laten uitvoeren?`} serviceKey={service.quoteKey} />

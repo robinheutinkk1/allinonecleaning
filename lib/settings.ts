@@ -1,6 +1,6 @@
 import "server-only";
 import { unstable_cache } from "next/cache";
-import { siteConfig } from "@/config/site";
+import { demoConfig, siteConfig } from "@/config/site";
 import { getAnonServerClient } from "@/lib/supabase/server";
 import type { OpeningHour, StatItem } from "@/lib/supabase/types";
 
@@ -44,7 +44,9 @@ function defaults(): SiteSettings {
 
 async function loadSettings(): Promise<SiteSettings> {
   const base = defaults();
-  const client = getAnonServerClient();
+  // Demo: de site toont altijd de demogegevens uit config/site.ts, tenzij expliciet
+  // ingesteld dat de database leidend is (DEMO_USE_DATABASE_CONTENT=true).
+  const client = demoConfig.useDatabaseContent ? getAnonServerClient() : null;
   if (!client) return base;
   try {
     const { data, error } = await client.from("site_settings").select("*").eq("id", 1).maybeSingle();

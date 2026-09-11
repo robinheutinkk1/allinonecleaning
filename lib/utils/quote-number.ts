@@ -1,12 +1,12 @@
 /**
- * Offertenummer-formaat: AIO-2026-0001
+ * Aanvraagnummer-formaat: NOVA-2026-0001
  *
  * In productie wordt het nummer atomisch gegenereerd door de Postgres-functie
  * `next_quote_number()` (default op de kolom quote_number). Deze helper is
- * de fallback wanneer Supabase niet geconfigureerd is (lokale ontwikkeling),
+ * de fallback wanneer de database niet geconfigureerd is (lokale ontwikkeling),
  * zodat de wizard end-to-end getest kan worden.
  */
-export function fallbackQuoteNumber(prefix = "AIO"): string {
+export function fallbackQuoteNumber(prefix = "NOVA"): string {
   const year = new Date().getFullYear();
   const n = Math.floor(Math.random() * 9000) + 1000;
   return `${prefix}-${year}-T${n}`; // "T" markeert een test-/fallbacknummer

@@ -16,14 +16,14 @@ export function BeforeAfterShowcase({ projects }: { projects: Project[] }) {
   if (!main) return null;
 
   return (
-    <section id="before-after" className="section-y relative overflow-hidden bg-navy-50">
+    <section id="ons-werk" className="section-y relative overflow-hidden bg-navy-50">
       <div className="pointer-events-none absolute -left-40 top-20 size-[30rem] rounded-full bg-gold-200/40 blur-3xl" aria-hidden />
       <div className="container-x relative">
         <Reveal>
           <SectionHeading
-            eyebrow="Before & after"
+            eyebrow="Ons werk"
             title="Kijk naar het verschil."
-            description="Bekijk wat een professionele reiniging kan doen. Sleep de slider en vergelijk zelf. Dit zijn echte projecten van All in One Vastgoedonderhoud."
+            description="Sleep de slider en vergelijk voor en na. Voorbeeldprojecten die laten zien wat professioneel onderhoud met een pand doet."
             align="center"
           />
         </Reveal>
@@ -74,13 +74,13 @@ export function BeforeAfterShowcase({ projects }: { projects: Project[] }) {
         )}
 
         <Reveal delay={0.2} className="mt-14 flex flex-col items-center gap-5 text-center">
-          <p className="max-w-lg font-display text-2xl font-bold text-navy-900 sm:text-3xl">Ook benieuwd wat er met uw gevel of dak mogelijk is?</p>
+          <p className="max-w-lg font-display text-2xl font-bold text-navy-900 sm:text-3xl">Benieuwd wat er met uw pand mogelijk is?</p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button href={ctaConfig.primary.href} size="lg" icon={<ArrowRight className="size-5" />}>
               {ctaConfig.primary.label}
             </Button>
-            <Button href="/before-after" variant="ghost" size="lg">
-              Alle projecten bekijken
+            <Button href={ctaConfig.secondary.href} variant="ghost" size="lg">
+              {ctaConfig.secondary.label}
             </Button>
           </div>
         </Reveal>

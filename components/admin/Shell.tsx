@@ -5,7 +5,8 @@ import { useLinkStatus } from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ComponentType, type ReactNode } from "react";
 import { ExternalLink, Images, Inbox, LayoutDashboard, Loader2, LogOut, Menu, MessageSquare, Settings, Star, X } from "lucide-react";
-import { Logo } from "@/components/ui/Logo";
+import { TagPointWordmark } from "@/components/demo-admin/Wordmark";
+import { siteConfig } from "@/config/site";
 import { signOutAction } from "@/lib/admin/actions";
 import { cn } from "@/lib/utils/cn";
 
@@ -85,9 +86,12 @@ export function AdminShell({ children, email, badges }: { children: ReactNode; e
     <div className="min-h-screen bg-navy-50 lg:flex">
       {/* Sidebar desktop */}
       <aside className="hidden w-72 shrink-0 flex-col bg-navy-950 p-5 lg:flex lg:min-h-screen lg:sticky lg:top-0 lg:h-screen">
-        <div className="mb-8">
-          <Logo inverted className="h-20" />
-          <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-400">Dashboard</p>
+        <div className="mb-8 px-1">
+          <TagPointWordmark subtitle="Dashboard" />
+          <p className="mt-4 rounded-2xl bg-white/5 px-3.5 py-2.5 text-xs text-navy-300 ring-1 ring-white/10">
+            <span className="block font-semibold text-white">Website</span>
+            <span className="block truncate">{siteConfig.companyName}</span>
+          </p>
         </div>
         <nav className="flex-1">{links}</nav>
         {footer}
@@ -95,7 +99,7 @@ export function AdminShell({ children, email, badges }: { children: ReactNode; e
 
       {/* Topbar mobiel */}
       <div className="sticky top-0 z-40 flex items-center justify-between bg-navy-950 px-4 py-2.5 pt-[max(0.625rem,env(safe-area-inset-top))] lg:hidden">
-        <Logo inverted className="h-10" />
+        <TagPointWordmark compact />
         <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-label={open ? "Menu sluiten" : "Menu openen"} className="inline-flex size-11 items-center justify-center rounded-full text-white hover:bg-white/10 active:bg-white/15">
           {open ? <X className="size-6" /> : <Menu className="size-6" />}
         </button>

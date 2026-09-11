@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { ArrowUpRight, LockKeyhole, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
-import { ctaConfig, navigation, siteConfig } from "@/config/site";
+import { ctaConfig, demoConfig, navigation, siteConfig } from "@/config/site";
 import { services } from "@/config/services";
 import type { SiteSettings } from "@/lib/settings";
 import { telHref } from "@/lib/settings";
 
 export function Footer({ settings }: { settings: SiteSettings }) {
-  const year = new Date().getFullYear();
+  const year = Math.max(2026, new Date().getFullYear());
   const socials = Object.entries(settings.socialLinks).filter(([, url]) => Boolean(url)) as [string, string][];
 
   return (
@@ -15,8 +15,9 @@ export function Footer({ settings }: { settings: SiteSettings }) {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" aria-hidden />
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-4">
-          <Logo inverted className="h-24" />
-          <p className="mt-6 max-w-sm text-sm leading-relaxed text-navy-300">{siteConfig.description}</p>
+          <Logo inverted className="h-14" />
+          <p className="mt-5 font-display text-base font-semibold text-white">{siteConfig.tagline}</p>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-navy-300">{siteConfig.description}</p>
           <div className="mt-6">
             <Link href={ctaConfig.primary.href} className="inline-flex items-center gap-2 font-semibold text-gold-300 transition-colors hover:text-white">
               {ctaConfig.primary.label}
@@ -28,7 +29,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         <div className="lg:col-span-2">
           <h2 className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-white">Navigatie</h2>
           <ul className="mt-5 space-y-3 text-sm">
-            {navigation.main.map((item) => (
+            {navigation.footer.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="transition-colors hover:text-white">
                   {item.label}
@@ -37,7 +38,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             ))}
             <li>
               <Link href={ctaConfig.primary.href} className="transition-colors hover:text-white">
-                Offerte aanvragen
+                {ctaConfig.primary.label}
               </Link>
             </li>
           </ul>
@@ -72,7 +73,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
                   <>
                     {settings.address.city}
                     <br />
-                    <span className="text-navy-400">Werkgebied: {settings.workAreas.join(", ")}</span>
+                    <span className="text-navy-400">Actief in {settings.workAreas.join(", ")}</span>
                   </>
                 )}
               </span>
@@ -108,7 +109,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               {socials.map(([name, url]) => (
                 <li key={name}>
                   <a href={url} target="_blank" rel="noopener noreferrer" className="capitalize transition-colors hover:text-white">
-                    {name === "google" ? "Google" : name}
+                    {name}
                   </a>
                 </li>
               ))}
@@ -120,9 +121,15 @@ export function Footer({ settings }: { settings: SiteSettings }) {
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col gap-4 py-6 text-xs text-navy-400 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {siteConfig.legalName}. {siteConfig.tagline}.
+            © {year} {siteConfig.legalName}
             {settings.kvk && <span className="ml-2">KvK {settings.kvk}</span>}
             {settings.btw && <span className="ml-2">Btw {settings.btw}</span>}
+            <span className="mx-2 text-navy-600" aria-hidden>
+              ·
+            </span>
+            <a href={demoConfig.platformUrl} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
+              {demoConfig.credit}
+            </a>
           </p>
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {navigation.legal.map((item) => (
@@ -133,9 +140,9 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               </li>
             ))}
             <li>
-              <Link href="/login" rel="nofollow" className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 transition-colors hover:border-gold-400/60 hover:text-white">
+              <Link href={`${demoConfig.adminPath}/login`} rel="nofollow" className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 transition-colors hover:border-gold-400/60 hover:text-white">
                 <LockKeyhole className="size-3" aria-hidden />
-                Inloggen voor medewerkers
+                Beheeromgeving
               </Link>
             </li>
           </ul>

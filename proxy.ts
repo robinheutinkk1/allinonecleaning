@@ -1,13 +1,34 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
+const DEMO_SESSION_COOKIE = "tp_demo_session";
+
 /**
- * Beschermt /admin: ververst de Supabase-sessie en stuurt bezoekers zonder
- * sessie naar /login (ingelogde bezoekers van /login gaan door naar /admin).
- * De definitieve check (incl. ADMIN_EMAILS) gebeurt
- * server-side in lib/admin/auth.ts.
+ * Beschermt het dashboard (/admin) en de demo-beheeromgeving (/beheer).
+ *
+ * - /beheer: demo-cookie vereist (gezet door de demo-loginpagina). Geen echte auth,
+ *   de omgeving bevat alleen voorbeeldgegevens.
+ * - /admin: ververst de sessie en stuurt bezoekers zonder sessie naar /login
+ *   (ingelogde bezoekers van /login gaan door naar /admin). De definitieve check
+ *   (incl. ADMIN_EMAILS) gebeurt server-side in lib/admin/auth.ts.
  */
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith("/beheer")) {
+    const isDemoLogin = pathname === "/beheer/login";
+    const hasDemo = request.cookies.get(DEMO_SESSION_COOKIE)?.value === "demo";
+    if (!hasDemo && !isDemoLogin) {
+      const login = new URL("/beheer/login", request.url);
+      if (pathname !== "/beheer") login.searchParams.set("volgende", pathname);
+      return NextResponse.redirect(login);
+    }
+    if (hasDemo && isDemoLogin) return NextResponse.redirect(new URL("/beheer", request.url));
+    const res = NextResponse.next();
+    res.headers.set("X-Robots-Tag", "noindex, nofollow");
+    return res;
+  }
+
   const url = (process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "").trim();
   const key = (
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
@@ -17,7 +38,7 @@ export async function proxy(request: NextRequest) {
     ""
   ).trim();
 
-  const isLogin = request.nextUrl.pathname === "/login";
+  const isLogin = pathname === "/login";
 
   if (!url || !key) {
     if (!isLogin) return NextResponse.redirect(new URL("/login?reden=config", request.url));
@@ -46,7 +67,7 @@ export async function proxy(request: NextRequest) {
 
   if (!user && !isLogin) {
     const login = new URL("/login", request.url);
-    login.searchParams.set("volgende", request.nextUrl.pathname);
+    login.searchParams.set("volgende", pathname);
     return NextResponse.redirect(login);
   }
   if (user && isLogin) {
@@ -58,5 +79,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/login"],
+  matcher: ["/admin/:path*", "/login", "/beheer/:path*"],
 };

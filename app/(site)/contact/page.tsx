@@ -6,17 +6,16 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { FAQ } from "@/components/sections/FAQ";
 import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { ctaConfig, siteConfig as config } from "@/config/site";
+import { ctaConfig, siteConfig } from "@/config/site";
 import { getSiteSettings, telHref } from "@/lib/settings";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact: All in One Vastgoedonderhoud",
-  description:
-    "Neem contact op met All in One Vastgoedonderhoud in Enschede voor vragen over gevelreiniging, dakpanreiniging, trespa of zonnepanelen. Of vraag direct een gratis offerte aan.",
+  title: "Contact",
+  description: `Neem contact op met ${siteConfig.companyName} voor vragen over reiniging, schilderwerk, houtrotherstel of renovatie in Twente. Of vraag direct een gratis offerte aan.`,
   path: "/contact",
   ogTitle: "Contact",
-  ogSubtitle: "Vragen over gevel, dak, trespa of zonnepanelen? Bel, mail of vraag direct een offerte aan.",
+  ogSubtitle: "Vragen over uw gevel, dak, schilderwerk of renovatie? Bel, mail of vraag direct een offerte aan.",
 });
 
 const crumbs = [
@@ -25,13 +24,13 @@ const crumbs = [
 ];
 
 export default async function ContactPage() {
-  const siteConfig = await getSiteSettings();
+  const settings = await getSiteSettings();
   return (
     <>
       <PageHeader
         eyebrow="Contact"
         title="Vragen? Wij helpen u graag."
-        description="Voor algemene vragen gebruikt u het formulier hieronder. Wilt u een klus laten uitvoeren? Dan is de offertewizard de snelste route. Daar kunt u ook direct foto's meesturen."
+        description="Voor algemene vragen gebruikt u het formulier hieronder. Wilt u een klus laten uitvoeren? Dan is de offerteaanvraag de snelste route. Daar kunt u ook direct foto's meesturen."
         breadcrumbs={crumbs}
       />
 
@@ -61,59 +60,48 @@ export default async function ContactPage() {
             <div className="rounded-3xl bg-navy-50 p-7">
               <h2 className="font-display text-lg font-bold text-navy-900">Contactgegevens</h2>
               <ul className="mt-5 space-y-4 text-sm">
-                <li className="flex items-start gap-3">
-                  <Phone className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
-                  {siteConfig.phone ? (
-                    <a href={telHref(siteConfig.phone)} className="font-medium text-navy-900 hover:text-gold-700">
-                      {siteConfig.phone}
+                {settings.phone && (
+                  <li className="flex items-start gap-3">
+                    <Phone className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
+                    <a href={telHref(settings.phone)} className="font-medium text-navy-900 hover:text-gold-700">
+                      {settings.phone}
                     </a>
-                  ) : (
-                    <span className="text-navy-400">[TELEFOONNUMMER]</span>
-                  )}
-                </li>
-                <li className="flex items-start gap-3">
-                  <Mail className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
-                  {siteConfig.email ? (
-                    <a href={`mailto:${siteConfig.email}`} className="font-medium text-navy-900 hover:text-gold-700">
-                      {siteConfig.email}
+                  </li>
+                )}
+                {settings.email && (
+                  <li className="flex items-start gap-3">
+                    <Mail className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
+                    <a href={`mailto:${settings.email}`} className="font-medium text-navy-900 hover:text-gold-700">
+                      {settings.email}
                     </a>
-                  ) : (
-                    <span className="text-navy-400">[E-MAILADRES]</span>
-                  )}
-                </li>
+                  </li>
+                )}
                 <li className="flex items-start gap-3">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
                   <span className="text-navy-800">
-                    {siteConfig.address.street ? (
+                    {settings.address.street ? (
                       <>
-                        {siteConfig.address.street}, {siteConfig.address.postalCode} {siteConfig.address.city}
+                        {settings.address.street}, {settings.address.postalCode} {settings.address.city}
                       </>
                     ) : (
-                      <>
-                        {siteConfig.address.city} <span className="text-navy-400">· [ADRES]</span>
-                      </>
+                      settings.address.city
                     )}
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Clock className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
-                  {siteConfig.openingHours ? (
+                {settings.openingHours && settings.openingHours.length > 0 && (
+                  <li className="flex items-start gap-3">
+                    <Clock className="mt-0.5 size-4 shrink-0 text-gold-600" aria-hidden />
                     <ul className="space-y-0.5 text-navy-800">
-                      {siteConfig.openingHours.map((o) => (
+                      {settings.openingHours.map((o) => (
                         <li key={o.days}>
                           {o.days}: {o.hours}
                         </li>
                       ))}
                     </ul>
-                  ) : (
-                    <span className="text-navy-400">[OPENINGSTIJDEN]</span>
-                  )}
-                </li>
+                  </li>
+                )}
               </ul>
-              <p className="mt-5 text-xs text-navy-400">
-                Werkgebied: {siteConfig.workAreas.join(", ")}. Geen reiskosten binnen {config.travel.freeRadiusKm} km van {config.travel.from}, daarbuiten €{" "}
-                {config.travel.ratePerKm.toFixed(2).replace(".", ",")} per km.
-              </p>
+              <p className="mt-5 text-xs text-navy-400">Werkgebied: {settings.workAreas.join(", ")} en omgeving.</p>
             </div>
           </Reveal>
         </div>

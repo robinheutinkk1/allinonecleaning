@@ -1,5 +1,5 @@
 -- ============================================================================
--- ALL IN ONE CLEANING - Google-reviews (migratie 3)
+-- NOVA ONDERHOUD (demo) - Google-reviews (migratie 3)
 -- Uitvoeren na 0002_admin.sql via de Supabase SQL Editor.
 --
 -- Reviews die via de Google Places API worden opgehaald krijgen een vast

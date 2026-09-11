@@ -1,13 +1,15 @@
 import "server-only";
 import { fallbackProjects, type Project } from "@/config/projects";
 import { getService } from "@/config/services";
+import { demoConfig } from "@/config/site";
 import { getAnonServerClient, STORAGE_BUCKETS } from "@/lib/supabase/server";
 import { getSupabaseUrl } from "@/lib/supabase/env";
 import type { ProjectRow } from "@/lib/supabase/types";
 
 /**
  * Projecten (before/after) ophalen.
- * Volgorde: Supabase `projects` (published) → statische fallback uit config.
+ * Demo: de voorbeeldprojecten uit config/projects.ts. Met DEMO_USE_DATABASE_CONTENT=true
+ * worden gepubliceerde projecten uit de database gebruikt (met config als fallback).
  */
 
 function publicImageUrl(pathOrUrl: string): string {
@@ -25,7 +27,7 @@ function rowToProject(row: ProjectRow): Project {
     title: row.title,
     service: row.service,
     serviceLabel: service?.title ?? row.service,
-    location: row.location ?? "Regio Enschede",
+    location: row.location ?? "Twente",
     description: row.description ?? "",
     result: row.result ?? "",
     beforeImage: publicImageUrl(row.before_image),
@@ -39,7 +41,7 @@ function rowToProject(row: ProjectRow): Project {
 }
 
 export async function getProjects(): Promise<Project[]> {
-  const client = getAnonServerClient();
+  const client = demoConfig.useDatabaseContent ? getAnonServerClient() : null;
   if (!client) return fallbackProjects;
 
   try {
