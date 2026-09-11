@@ -5,6 +5,11 @@ zijn nodig voor de werkende offerte-intake, het dashboard op `/admin` en de mail
 
 ## 1. Supabase
 
+**Snelste route voor een nieuw project:** open **SQL Editor**, plak de volledige inhoud van
+`supabase/setup.sql` en klik op Run. Dat voert migraties 0001 t/m 0006 in één keer uit (tabellen,
+functies, RLS, storage buckets, dashboardtabellen, voorvoegsel `NOVA`). De losse stappen hieronder
+zijn alleen nodig als u de migraties één voor één wilt uitvoeren.
+
 1. Maak een project aan op https://supabase.com (regio: **EU | Frankfurt** i.v.m. AVG).
 2. Open **SQL Editor** → plak de inhoud van `supabase/migrations/0001_init.sql` → Run.
    Dit maakt aan:

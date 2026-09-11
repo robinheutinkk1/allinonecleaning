@@ -109,6 +109,7 @@ public/
 scripts/
   generate-logo.mjs         logo-set uit Plus Jakarta Sans (fontkit) + beeldmerk
   generate-demo-images.mjs  neutrale illustraties op de paden die de site verwacht
+supabase/setup.sql          complete database-setup in één keer (migraties 0001 t/m 0006)
 supabase/migrations/        0001 schema · 0002 dashboard · 0003 google-reviews · 0004 team · 0005 + 0006 voorvoegsel aanvraagnummers
 docs/
   DESIGN-SYSTEM.md      kleuren, typografie, componenten, sitemap
