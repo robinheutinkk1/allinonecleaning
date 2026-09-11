@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AdminShell } from "@/components/admin/Shell";
+import { demoConfig } from "@/config/site";
 import { getAdminUser } from "@/lib/admin/auth";
 import { getServiceClient } from "@/lib/supabase/server";
 
@@ -29,7 +30,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
   if (!user) return <div className="min-h-screen bg-navy-50">{children}</div>;
   const badges = await badgeCounts();
   return (
-    <AdminShell email={user.email} badges={badges}>
+    <AdminShell email={user.email} badges={badges} demoMode={!demoConfig.useDatabaseContent}>
       {children}
     </AdminShell>
   );

@@ -36,7 +36,7 @@ function Badge({ n, active }: { n?: number; active: boolean }) {
   return <span className={cn("rounded-full px-2 py-0.5 text-[11px] font-bold tabular-nums", active ? "bg-white/20 text-white" : "bg-gold-500 text-navy-950")}>{n > 99 ? "99+" : n}</span>;
 }
 
-export function AdminShell({ children, email, badges }: { children: ReactNode; email: string; badges?: Record<string, number> }) {
+export function AdminShell({ children, email, badges, demoMode = false }: { children: ReactNode; email: string; badges?: Record<string, number>; demoMode?: boolean }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -114,7 +114,14 @@ export function AdminShell({ children, email, badges }: { children: ReactNode; e
         </>
       )}
 
-      <main className="min-w-0 flex-1 p-4 pb-[calc(5rem+env(safe-area-inset-bottom))] sm:p-6 lg:p-10 lg:pb-10">{children}</main>
+      <main className="min-w-0 flex-1 p-4 pb-[calc(5rem+env(safe-area-inset-bottom))] sm:p-6 lg:p-10 lg:pb-10">
+        {demoMode && (
+          <p role="status" className="mb-5 rounded-2xl border border-gold-200 bg-gold-50 px-4 py-3 text-sm text-navy-800">
+            <span className="font-semibold text-navy-950">Demo-modus.</span> De website toont de vaste demo-inhoud. Wat u hier bij projecten, reviews en instellingen wijzigt, wordt bewaard in de database maar niet op de website getoond.
+          </p>
+        )}
+        {children}
+      </main>
 
       {/* Tabbalk onderaan op telefoon: de vijf belangrijkste onderdelen altijd binnen duimbereik */}
       <nav aria-label="Dashboard" className="fixed inset-x-0 bottom-0 z-40 border-t border-navy-100 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-lg lg:hidden">

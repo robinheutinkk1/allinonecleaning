@@ -101,7 +101,9 @@ gegenereerd met `node scripts/generate-logo.mjs` (zie `public/brand`).
 
 De publieke site toont standaard de demo-inhoud uit `config/` (contactgegevens, reviews, projecten),
 ook als de database gevuld is. Zet `DEMO_USE_DATABASE_CONTENT=true` om de inhoud uit het dashboard
-leidend te maken. De demo-beheeromgeving op `/beheer` gebruikt nooit de database.
+leidend te maken. Zolang die variabele niet aanstaat, toont `/admin` bovenaan een melding "Demo-modus":
+wijzigingen aan projecten, reviews en instellingen komen dan wel in de database, maar niet op de site.
+De demo-beheeromgeving op `/beheer` gebruikt nooit de database en bewaart niets.
 
 Iedereen in `ADMIN_EMAILS` heeft dezelfde rechten (rollen zijn er nog niet, zie ROADMAP).
 Collega verwijderen: e-mailadres uit `ADMIN_EMAILS` halen en redeployen; het account in Supabase
