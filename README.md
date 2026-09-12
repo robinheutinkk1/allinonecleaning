@@ -32,7 +32,7 @@ test-aanvraagnummer (`NOVA-2026-T1234`) terug.
 npm run lint                         # ESLint
 npm run build                        # productie-build (incl. type-check)
 node scripts/generate-logo.mjs       # logo-set (inline SVG-paden, PNG's, favicon, app-iconen)
-node scripts/generate-demo-images.mjs  # neutrale demo-illustraties (diensten, voor/na, over ons)
+node scripts/generate-demo-images.mjs  # neutrale demo-illustraties (diensten, over ons)
 ```
 
 ## Twee beheeromgevingen
@@ -102,7 +102,7 @@ lib/
   analytics.ts  events: quote_started, quote_step_completed, quote_photo_uploaded, quote_submitted, contact_submitted
 public/
   brand/        nova-logo.png, nova-logo-light.png, nova-mark.png (+ svg) - gegenereerd
-  images/       services/, projects/, over-ons/, hero/ - geïllustreerde demo-beelden
+  images/       services/, over-ons/, hero/ - geïllustreerde demo-beelden; projects/ - AI-gegenereerde voor/na-foto's van fictieve woningen
   videos/       hero.mp4 - neutrale, AI-gegenereerde sfeervideo (geen bedrijf of personen herkenbaar)
 scripts/
   generate-logo.mjs         logo-set uit Plus Jakarta Sans (fontkit) + beeldmerk
@@ -121,7 +121,7 @@ docs/
 - **Demo, geen echte claims.** Reviews heten "Voorbeeldreviews", projecten zijn voorbeeldprojecten,
   contactgegevens zijn demogegevens. Nergens wordt gesuggereerd dat het om een bestaand bedrijf gaat.
 - **Eigen foto's plaatsen = bestand vervangen.** Alle beelden staan op vaste paden in `public/images`;
-  vervang een illustratie door een foto met dezelfde bestandsnaam en er hoeft niets in de code te veranderen.
+  vervang een demo-beeld door een eigen foto met dezelfde bestandsnaam en er hoeft niets in de code te veranderen.
 - **Geen automatische prijs.** De wizard verzamelt informatie; het bedrijf beoordeelt en neemt contact op.
 - **Privacy by design.** Offertefoto's gaan naar een privé-bucket, EXIF wordt gestript, IP's worden
   gehasht, alles wordt server-side gevalideerd (zod), rate limiting en honeypot op alle formulieren.

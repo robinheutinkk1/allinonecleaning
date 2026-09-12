@@ -2,8 +2,9 @@
  * Before/after-projecten (statische demo-inhoud).
  *
  * NOVA Onderhoud is een fictief bedrijf: de projecten hieronder zijn voorbeeldprojecten
- * met geïllustreerde beelden. Zodra de database gevuld is (tabel `projects`), worden
- * die projecten gebruikt (zie lib/projects.ts).
+ * met AI-gegenereerde voorbeeldfoto's van fictieve woningen (geen bestaande panden).
+ * Alleen als DEMO_USE_DATABASE_CONTENT=true worden de projecten uit de database
+ * gebruikt (zie lib/projects.ts).
  */
 
 export type Project = {

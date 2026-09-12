@@ -5,12 +5,14 @@
  * echte panden, personen of bedrijven. Ze staan op precies de paden die de site
  * verwacht, zodat ze later één-op-één door eigen foto's vervangen kunnen worden.
  *
- *   node scripts/generate-demo-images.mjs           # maakt alle beelden opnieuw
+ *   node scripts/generate-demo-images.mjs             # dienstbeelden en over-ons opnieuw
+ *   node scripts/generate-demo-images.mjs --projects  # ook illustraties voor de voor/na-paren
  *
  * Uitvoer (public/images):
  * - services/<slug>.jpg                 8 dienstbeelden (1600x1100)
- * - projects/<naam>-voor.jpg / -na.jpg  4 before/after-paren (1600x1200)
  * - over-ons/team-aan-het-werk.jpg      beeld voor intro en over-ons (1400x1050)
+ * - projects/<naam>-voor.jpg / -na.jpg  alleen met --projects; standaard staan hier
+ *                                       AI-gegenereerde voorbeeldfoto's (1200x800)
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -500,18 +502,28 @@ const jobs = [
   { file: "services/houtrotherstel.jpg", w: 1600, h: 1100, scene: sceneHoutrot },
   { file: "services/periodiek-onderhoud.jpg", w: 1600, h: 1100, scene: sceneOnderhoud },
   { file: "services/renovatie.jpg", w: 1600, h: 1100, scene: sceneRenovatie },
-  // Before/after (1600x1200)
-  { file: "projects/gevelreiniging-voor.jpg", w: 1600, h: 1200, scene: (w, h) => sceneGevel(w, h, { dirty: true }), dull: true },
-  { file: "projects/gevelreiniging-na.jpg", w: 1600, h: 1200, scene: sceneGevel },
-  { file: "projects/dakreiniging-voor.jpg", w: 1600, h: 1200, scene: (w, h) => sceneDak(w, h, { dirty: true }), dull: true },
-  { file: "projects/dakreiniging-na.jpg", w: 1600, h: 1200, scene: sceneDak },
-  { file: "projects/terras-voor.jpg", w: 1600, h: 1200, scene: (w, h) => sceneTerras(w, h, { dirty: true }), dull: true },
-  { file: "projects/terras-na.jpg", w: 1600, h: 1200, scene: sceneTerras },
-  { file: "projects/schilderwerk-voor.jpg", w: 1600, h: 1200, scene: (w, h) => sceneSchilderwerk(w, h, { dirty: true }), dull: true },
-  { file: "projects/schilderwerk-na.jpg", w: 1600, h: 1200, scene: sceneSchilderwerk },
   // Over ons / intro
   { file: "over-ons/team-aan-het-werk.jpg", w: 1400, h: 1050, scene: sceneTeam },
 ];
+
+/*
+ * Before/after-projecten (public/images/projects/<naam>-voor.jpg en -na.jpg) staan bewust
+ * niet in deze lijst: dat zijn AI-gegenereerde voorbeeldfoto's van fictieve woningen.
+ * Met --projects worden ook daarvoor (opnieuw) illustraties gemaakt, bijvoorbeeld als de
+ * foto's ontbreken.
+ */
+if (process.argv.includes("--projects")) {
+  jobs.push(
+    { file: "projects/gevelreiniging-voor.jpg", w: 1600, h: 1200, scene: (w, h) => sceneGevel(w, h, { dirty: true }), dull: true },
+    { file: "projects/gevelreiniging-na.jpg", w: 1600, h: 1200, scene: sceneGevel },
+    { file: "projects/dakreiniging-voor.jpg", w: 1600, h: 1200, scene: (w, h) => sceneDak(w, h, { dirty: true }), dull: true },
+    { file: "projects/dakreiniging-na.jpg", w: 1600, h: 1200, scene: sceneDak },
+    { file: "projects/terras-voor.jpg", w: 1600, h: 1200, scene: (w, h) => sceneTerras(w, h, { dirty: true }), dull: true },
+    { file: "projects/terras-na.jpg", w: 1600, h: 1200, scene: sceneTerras },
+    { file: "projects/schilderwerk-voor.jpg", w: 1600, h: 1200, scene: (w, h) => sceneSchilderwerk(w, h, { dirty: true }), dull: true },
+    { file: "projects/schilderwerk-na.jpg", w: 1600, h: 1200, scene: sceneSchilderwerk },
+  );
+}
 
 for (const job of jobs) {
   const svg = wrap(job.w, job.h, job.scene(job.w, job.h));
