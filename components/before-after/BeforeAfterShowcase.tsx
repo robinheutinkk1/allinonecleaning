@@ -52,7 +52,7 @@ export function BeforeAfterShowcase({ projects }: { projects: Project[] }) {
         </Reveal>
 
         {rest.length > 0 && (
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
             {rest.slice(0, 2).map((p, i) => (
               <Reveal key={p.id} delay={0.1 + i * 0.1}>
                 <BeforeAfterSlider

@@ -12,7 +12,7 @@ export function BeforeAfterPreview() {
   const [active, setActive] = useState(published[0]!);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2">
         <BeforeAfterSlider beforeSrc={active.beforeImage} afterSrc={active.afterImage} beforeAlt={`Voor: ${active.title}`} afterAlt={`Na: ${active.title}`} aspect="aspect-[16/10] sm:aspect-[2/1]" sizes="(min-width: 1024px) 60vw, 100vw" trackId={`demo-${active.id}`} />
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">

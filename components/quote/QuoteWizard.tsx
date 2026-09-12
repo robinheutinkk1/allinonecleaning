@@ -338,7 +338,7 @@ function StepContent({
     case "service":
       return (
         <div className="space-y-4">
-          <div role="radiogroup" aria-label="Dienst" className="grid gap-3 sm:grid-cols-2">
+          <div role="radiogroup" aria-label="Dienst" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {serviceOptions.map((o) => (
               <OptionCard
                 key={o.value}
@@ -368,7 +368,7 @@ function StepContent({
     case "property":
       return (
         <div className="space-y-3">
-          <div role="radiogroup" aria-label="Pandtype" className="grid gap-3 sm:grid-cols-2">
+          <div role="radiogroup" aria-label="Pandtype" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {propertyTypeOptions.map((o) => (
               <OptionCard key={o.value} label={o.label} selected={data.propertyType === o.value} onSelect={() => update("propertyType", o.value)} />
             ))}
@@ -382,7 +382,7 @@ function StepContent({
       return (
         <div className="space-y-4">
           <p className="-mt-3 text-sm text-navy-500">Gekozen dienst: <strong className="text-navy-800">{labelFor(serviceOptions, data.service)}</strong></p>
-          <div role="radiogroup" aria-label="Oppervlak" className="grid gap-3 sm:grid-cols-2">
+          <div role="radiogroup" aria-label="Oppervlak" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {options.map((o) => (
               <OptionCard key={o.value} size="sm" label={o.label} selected={data.surfaceType === o.value} onSelect={() => update("surfaceType", o.value)} />
             ))}
@@ -398,7 +398,7 @@ function StepContent({
     case "size":
       return (
         <div className="space-y-6">
-          <div role="radiogroup" aria-label="Omvang" className="grid gap-3 sm:grid-cols-2">
+          <div role="radiogroup" aria-label="Omvang" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {sizeOptions.map((o) => (
               <OptionCard key={o.value} label={o.label} description={o.description} selected={data.estimatedSize === o.value} onSelect={() => update("estimatedSize", o.value)} />
             ))}
@@ -430,7 +430,7 @@ function StepContent({
       return (
         <div className="space-y-4">
           <p className="-mt-3 text-sm text-navy-500">Meerdere antwoorden mogelijk.</p>
-          <div role="group" aria-label="Soort vervuiling" className="grid gap-3 sm:grid-cols-2">
+          <div role="group" aria-label="Soort vervuiling" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {options.map((o) => (
               <OptionCard key={o.value} size="sm" multi label={o.label} selected={selected.includes(o.value)} onSelect={() => toggle(o.value)} />
             ))}
@@ -460,7 +460,7 @@ function StepContent({
     case "location":
       return (
         <div className="space-y-5">
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <TextInput id="postalCode" label="Postcode" autoComplete="postal-code" placeholder="7511 AB" value={data.postalCode ?? ""} onChange={(e) => update("postalCode", e.target.value)} error={errors.postalCode} required />
             <TextInput id="houseNumber" label="Huisnummer" autoComplete="address-line2" placeholder="12a" value={data.houseNumber ?? ""} onChange={(e) => update("houseNumber", e.target.value)} error={errors.houseNumber} required />
           </div>
@@ -486,7 +486,7 @@ function StepContent({
     case "period":
       return (
         <div className="space-y-6">
-          <div role="radiogroup" aria-label="Gewenste periode" className="grid gap-3 sm:grid-cols-2">
+          <div role="radiogroup" aria-label="Gewenste periode" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {periodOptions.map((o) => (
               <OptionCard key={o.value} label={o.label} selected={data.desiredPeriod === o.value} onSelect={() => update("desiredPeriod", o.value)} />
             ))}
@@ -502,7 +502,7 @@ function StepContent({
       return (
         <div className="space-y-5">
           <TextInput id="customerName" label="Naam" autoComplete="name" value={data.customerName ?? ""} onChange={(e) => update("customerName", e.target.value)} error={errors.customerName} required />
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <TextInput id="phone" type="tel" label="Telefoonnummer" autoComplete="tel" placeholder="06 12345678" value={data.phone ?? ""} onChange={(e) => update("phone", e.target.value)} error={errors.phone} required />
             <TextInput id="email" type="email" label="E-mailadres" autoComplete="email" value={data.email ?? ""} onChange={(e) => update("email", e.target.value)} error={errors.email} required />
           </div>

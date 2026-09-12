@@ -29,7 +29,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
 
       <section className="space-y-4">
         <h2 className="font-display text-lg font-bold text-navy-900">Contactgegevens</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field id="phone" label="Telefoonnummer" hint="Verschijnt in navbar, footer, contactpagina en de knop 'Bel direct'.">
             <input id="phone" name="phone" defaultValue={s?.phone ?? ""} placeholder="06 12345678" className={inputCls} />
           </Field>
@@ -47,7 +47,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
 
       <section className="space-y-4">
         <h2 className="font-display text-lg font-bold text-navy-900">Adres en bedrijfsgegevens</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field id="street" label="Straat en huisnummer">
             <input id="street" name="street" defaultValue={s?.street ?? ""} className={inputCls} />
           </Field>
@@ -68,7 +68,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
 
       <section className="space-y-4">
         <h2 className="font-display text-lg font-bold text-navy-900">Werkgebied en openingstijden</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field id="work_areas" label="Werkgebied" hint="Eén plaats per regel. De eerste is de vestigingsplaats.">
             <textarea id="work_areas" name="work_areas" rows={5} defaultValue={(s?.work_areas ?? [...siteConfig.workAreas]).join("\n")} className={inputCls} />
           </Field>
@@ -80,7 +80,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
 
       <section className="space-y-4">
         <h2 className="font-display text-lg font-bold text-navy-900">Social media</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field id="social_instagram" label="Instagram">
             <input id="social_instagram" name="social_instagram" type="url" defaultValue={s?.social_instagram ?? ""} className={inputCls} />
           </Field>
@@ -95,7 +95,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
 
       <section className="space-y-4">
         <h2 className="font-display text-lg font-bold text-navy-900">Homepage</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field id="stats" label="Statistieken" hint="Per regel: tekst | waarde. Bijv. Jaar ervaring | 10+. Maximaal 4, alleen echte cijfers. Leeg = sectie verborgen.">
             <textarea id="stats" name="stats" rows={4} defaultValue={(s?.stats ?? []).map((o) => `${o.label} | ${o.value}`).join("\n")} placeholder={"Jaar ervaring | 10+\nProjecten | 250+"} className={inputCls} />
           </Field>
@@ -110,7 +110,7 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow | null })
 
       <section className="space-y-4">
         <h2 className="font-display text-lg font-bold text-navy-900">Team</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field id="team" label="Collega's" hint="Per regel: Naam | e-mailadres (e-mail mag leeg). Deze namen verschijnen in de keuzelijst 'Toegewezen aan' bij een aanvraag en in het filter op de aanvragenlijst.">
             <textarea id="team" name="team" rows={5} defaultValue={(s?.team ?? []).map((m) => (m.email ? `${m.name} | ${m.email}` : m.name)).join("\n")} placeholder={"Jan | jan@bedrijf.nl\nPiet"} className={inputCls} />
           </Field>

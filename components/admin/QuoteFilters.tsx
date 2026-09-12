@@ -25,7 +25,7 @@ export function QuoteFilters({ team = [] }: { team?: string[] }) {
         e.preventDefault();
         update("q", String(new FormData(e.currentTarget).get("q") ?? ""));
       }}
-      className={team.length ? "grid gap-3 sm:grid-cols-2 xl:grid-cols-[1fr_auto_auto_auto]" : "grid gap-3 sm:grid-cols-[1fr_auto_auto]"}
+      className={team.length ? "grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-[1fr_auto_auto_auto]" : "grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto_auto]"}
     >
       <div className="relative">
         <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-navy-300" aria-hidden />

@@ -31,11 +31,11 @@ export function WebsiteEditor() {
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       <div className="space-y-6 lg:col-span-2">
         <Card title="Hero">
           <form onSubmit={submit} className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field id="eyebrow" label="Bovenregel">
                 <input id="eyebrow" value={hero.eyebrow} onChange={(e) => setHero({ ...hero, eyebrow: e.target.value })} className={inputCls} />
               </Field>
@@ -61,7 +61,7 @@ export function WebsiteEditor() {
 
         <Card title="Contactgegevens en werkgebied">
           <form onSubmit={submit} className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field id="phone" label="Telefoonnummer">
                 <input id="phone" value={contact.phone} onChange={(e) => setContact({ ...contact, phone: e.target.value })} className={inputCls} />
               </Field>
@@ -159,7 +159,7 @@ export function WebsiteEditor() {
                 </span>
                 <span className="flex items-center gap-2">
                   <DemoBadge label={p.status} />
-                  <a href={p.path} target="_blank" rel="noopener noreferrer" aria-label={`${p.label} openen`} className="inline-flex size-9 items-center justify-center rounded-full text-navy-400 hover:bg-navy-50 hover:text-navy-900">
+                  <a href={p.path} target="_blank" rel="noopener noreferrer" aria-label={`${p.label} openen`} className="inline-flex size-11 items-center justify-center rounded-full text-navy-400 hover:bg-navy-50 hover:text-navy-900 sm:size-9">
                     <ExternalLink className="size-4" />
                   </a>
                 </span>

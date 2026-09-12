@@ -72,7 +72,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-5">
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <TextInput id="name" name="name" label="Naam" autoComplete="name" value={values.name} onChange={(e) => set("name", e.target.value)} error={errors.name} required />
         <TextInput id="phone" name="phone" type="tel" label="Telefoonnummer" autoComplete="tel" optional value={values.phone} onChange={(e) => set("phone", e.target.value)} error={errors.phone} />
       </div>

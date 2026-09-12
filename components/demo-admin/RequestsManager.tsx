@@ -15,7 +15,9 @@ export function RequestsManager() {
   const params = useSearchParams();
   const [rows, setRows] = useState<DemoRequest[]>(demoRequests);
   const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState<"alle" | DemoRequestStatus>("alle");
+  // Deep links: ?status=Nieuw filtert direct, ?aanvraag=<id> opent een aanvraag.
+  const initialStatus = params.get("status");
+  const [filter, setFilter] = useState<"alle" | DemoRequestStatus>(demoRequestStatuses.includes(initialStatus as DemoRequestStatus) ? (initialStatus as DemoRequestStatus) : "alle");
   const [openId, setOpenId] = useState<string | null>(params.get("aanvraag"));
 
   const visible = rows.filter((r) => (filter === "alle" || r.status === filter) && (query === "" || `${r.name} ${r.service} ${r.location} ${r.number}`.toLowerCase().includes(query.toLowerCase())));
@@ -42,7 +44,7 @@ export function RequestsManager() {
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap gap-1.5">
           {(["alle", ...demoRequestStatuses] as const).map((s) => (
-            <button key={s} type="button" onClick={() => setFilter(s)} aria-pressed={filter === s} className={cn("rounded-full px-3.5 py-1.5 text-sm font-semibold transition", filter === s ? "bg-navy-900 text-white" : "bg-white text-navy-700 ring-1 ring-navy-200 hover:bg-navy-50")}>
+            <button key={s} type="button" onClick={() => setFilter(s)} aria-pressed={filter === s} className={cn("inline-flex min-h-10 items-center rounded-full px-3.5 py-1.5 text-sm font-semibold transition sm:min-h-8", filter === s ? "bg-navy-900 text-white" : "bg-white text-navy-700 ring-1 ring-navy-200 hover:bg-navy-50")}>
               {s === "alle" ? `Alle (${rows.length})` : `${s} (${rows.filter((r) => r.status === s).length})`}
             </button>
           ))}

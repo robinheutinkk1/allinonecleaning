@@ -27,7 +27,7 @@ function ReviewForm({ review, onDone }: { review: ReviewRow | null; onDone: () =
     <form action={action} className="space-y-4 rounded-2xl border border-gold-200 bg-gold-50/40 p-5">
       {review && <input type="hidden" name="id" value={review.id} />}
       {state && !state.ok && <Notice tone="error">{state.error}</Notice>}
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="author" className={labelCls}>
             Naam klant

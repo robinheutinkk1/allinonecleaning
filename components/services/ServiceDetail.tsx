@@ -18,7 +18,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
   return (
     <>
       <section className="section-y bg-white">
-        <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">
             <div className="relative aspect-[16/11] overflow-hidden rounded-4xl shadow-lift">
               <Image src={service.image} alt={service.imageAlt} fill priority sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover" />
@@ -60,7 +60,7 @@ export function ServiceDetail({ service, projects }: { service: Service; project
               </div>
             )}
 
-            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div className="rounded-3xl bg-navy-50 p-6">
                 <h3 className="font-display text-lg font-bold text-navy-900">Voordelen</h3>
                 <ul className="mt-4 space-y-3">

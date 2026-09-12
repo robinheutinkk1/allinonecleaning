@@ -26,12 +26,12 @@ export function MediaLibrary() {
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2">
         <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap gap-1.5">
             {types.map((t) => (
-              <button key={t} type="button" onClick={() => setType(t)} aria-pressed={type === t} className={cn("rounded-full px-3.5 py-1.5 text-sm font-semibold transition", type === t ? "bg-navy-900 text-white" : "bg-white text-navy-700 ring-1 ring-navy-200 hover:bg-navy-50")}>
+              <button key={t} type="button" onClick={() => setType(t)} aria-pressed={type === t} className={cn("inline-flex min-h-10 items-center rounded-full px-3.5 py-1.5 text-sm font-semibold transition sm:min-h-8", type === t ? "bg-navy-900 text-white" : "bg-white text-navy-700 ring-1 ring-navy-200 hover:bg-navy-50")}>
                 {t}
               </button>
             ))}

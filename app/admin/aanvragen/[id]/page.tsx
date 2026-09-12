@@ -16,7 +16,7 @@ export const metadata: Metadata = { title: "Aanvraag" };
 
 function Row({ label, value, stacked = false }: { label: string; value: React.ReactNode; stacked?: boolean }) {
   return (
-    <div className={stacked ? "py-2.5" : "grid gap-1 py-2.5 sm:grid-cols-[160px_1fr] sm:gap-4"}>
+    <div className={stacked ? "py-2.5" : "grid grid-cols-1 gap-1 py-2.5 sm:grid-cols-[160px_1fr] sm:gap-4"}>
       <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-navy-400">{label}</dt>
       <dd className={stacked ? "mt-1 text-sm text-navy-900" : "min-w-0 text-sm text-navy-900"}>{value ?? <span className="text-navy-300">-</span>}</dd>
     </div>
@@ -69,7 +69,7 @@ export default async function QuoteDetailPage({ params }: PageProps<"/admin/aanv
         }
       />
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           <Card title="Aanvraag">
             <dl className="divide-y divide-navy-100">

@@ -20,7 +20,7 @@ export function FAQ({ items = faqItems, compact = false }: { items?: FaqItem[]; 
 
   return (
     <section className={cn("bg-white", compact ? "py-12" : "section-y")}>
-      <div className="container-x grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div className="container-x grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
         {!compact && (
           <Reveal className="lg:col-span-4">
             <SectionHeading

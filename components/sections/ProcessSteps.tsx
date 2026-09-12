@@ -45,7 +45,7 @@ export function ProcessSteps({ compact = false }: { compact?: boolean }) {
           </Reveal>
         )}
 
-        <StaggerGroup className={`relative grid gap-8 md:grid-cols-2 lg:grid-cols-4 ${compact ? "" : "mt-14"}`}>
+        <StaggerGroup className={`relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 ${compact ? "" : "mt-14"}`}>
           <DrawLine className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent lg:block" />
           {processSteps.map((s) => (
             <StaggerItem key={s.n} className="relative">

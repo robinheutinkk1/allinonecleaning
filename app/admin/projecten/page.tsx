@@ -49,7 +49,7 @@ export default async function ProjectsPage({ searchParams }: PageProps<"/admin/p
           />
         </div>
       ) : (
-        <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((p) => (
             <li key={p.id} className="overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-navy-100">
               <Link href={`/admin/projecten/${p.id}`} className="grid grid-cols-2">

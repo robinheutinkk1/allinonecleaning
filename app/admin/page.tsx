@@ -18,14 +18,14 @@ export default async function AdminOverviewPage() {
     <>
       <PageTitle title="Overzicht" description={`Wat er speelt op de website van ${siteConfig.companyName}.`} />
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Nieuwe aanvragen" value={stats.newCount} hint="Nog niet opgepakt" tone="accent" />
         <StatCard label="Afgelopen 7 dagen" value={stats.weekCount} hint={`${stats.monthCount} in de afgelopen 30 dagen`} />
         <StatCard label="Gewonnen" value={stats.wonCount} hint={stats.conversion !== null ? `${stats.conversion}% van afgeronde aanvragen` : "Nog geen afgeronde aanvragen"} />
         <StatCard label="Open berichten" value={stats.openMessages} hint="Via het contactformulier" />
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <Card
           className="lg:col-span-2"
           title="Laatste aanvragen"

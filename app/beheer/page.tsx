@@ -41,18 +41,18 @@ export default function DemoDashboardPage() {
         <p className="text-xs text-navy-400">Laatste publicatie: vandaag 08:12 · Alle pagina&apos;s bereikbaar</p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {demoStats.map((s) => (
           <StatCard key={s.key} label={s.label} value={s.value} hint={s.delta} tone={s.tone ?? "default"} />
         ))}
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <Card
           className="lg:col-span-2"
           title="Laatste offerte-aanvragen"
           action={
-            <Link href="/beheer/aanvragen" className="inline-flex items-center gap-1 text-sm font-semibold text-gold-700 hover:text-gold-800">
+            <Link href="/beheer/aanvragen" className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-gold-700 hover:text-gold-800 sm:min-h-0">
               Alle aanvragen <ArrowRight className="size-4" />
             </Link>
           }
@@ -105,7 +105,7 @@ export default function DemoDashboardPage() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {quickLinks.map((q) => (
           <Link key={q.href} href={q.href} className="group flex items-center gap-4 rounded-3xl bg-white p-5 shadow-soft ring-1 ring-navy-100 transition hover:-translate-y-0.5 hover:shadow-lift hover:ring-gold-200">
             <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-gold-100 text-gold-700">

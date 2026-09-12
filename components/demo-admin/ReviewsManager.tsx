@@ -59,7 +59,7 @@ export function ReviewsManager() {
         </button>
       </div>
 
-      <ul className="grid gap-4 md:grid-cols-2">
+      <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {rows.map((r) => (
           <li key={r.id} className="flex flex-col rounded-3xl bg-white p-5 shadow-soft ring-1 ring-navy-100">
             <div className="flex items-start justify-between gap-3">
@@ -97,7 +97,7 @@ export function ReviewsManager() {
       <DemoDrawer open={Boolean(editing)} title={editing && rows.some((r) => r.id === editing.id) ? "Review bewerken" : "Review toevoegen"} description="Wijzigingen worden in de demo niet bewaard." onClose={() => setEditing(null)}>
         {draft && (
           <form onSubmit={save} className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field id="r-name" label="Naam">
                 <input id="r-name" required value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} className={inputCls} placeholder="Bijv. Mark V." />
               </Field>
@@ -108,7 +108,7 @@ export function ReviewsManager() {
             <Field id="r-text" label="Review">
               <textarea id="r-text" required rows={4} value={draft.text} onChange={(e) => setDraft({ ...draft, text: e.target.value })} className={inputCls} />
             </Field>
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <Field id="r-rating" label="Sterren">
                 <select id="r-rating" value={draft.rating} onChange={(e) => setDraft({ ...draft, rating: Number(e.target.value) })} className={inputCls}>
                   {[5, 4, 3, 2, 1].map((n) => (

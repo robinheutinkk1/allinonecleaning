@@ -41,7 +41,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
       {visible.length === 0 ? (
         <p className="rounded-3xl border border-dashed border-navy-200 p-10 text-center text-navy-500">Nog geen projecten in deze categorie.</p>
       ) : (
-        <ul className="grid gap-8 lg:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {visible.map((p, i) => (
             <li key={p.id}>
               <ProjectCard project={p} priority={i < 2} />

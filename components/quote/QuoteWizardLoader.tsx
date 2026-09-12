@@ -25,7 +25,7 @@ export function WizardSkeleton() {
       </div>
       <div className="space-y-4 px-8 py-10">
         <div className="h-8 w-2/3 rounded bg-navy-100" />
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {[0, 1, 2, 3].map((i) => (
             <div key={i} className="h-20 rounded-2xl bg-navy-50" />
           ))}

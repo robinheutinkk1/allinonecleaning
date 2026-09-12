@@ -38,7 +38,7 @@ export function ProjectForm({ project, imageBase }: { project: ProjectRow | null
 
       {state && <Notice tone={state.ok ? "success" : "error"}>{state.ok ? state.message : state.error}</Notice>}
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <div className="md:col-span-2">
           <label htmlFor="title" className={labelCls}>
             Titel
@@ -110,7 +110,7 @@ export function ProjectForm({ project, imageBase }: { project: ProjectRow | null
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {(["before", "after"] as const).map((kind) => {
           const current = resolve(kind === "before" ? project?.before_image : project?.after_image);
           const previewUrl = kind === "before" ? beforePreview : afterPreview;

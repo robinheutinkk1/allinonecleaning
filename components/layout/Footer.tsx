@@ -13,7 +13,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
   return (
     <footer className="relative mt-auto bg-navy-950 text-navy-200">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" aria-hidden />
-      <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
+      <div className="container-x grid grid-cols-1 gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-4">
           <Logo inverted className="h-14" />
           <p className="mt-5 font-display text-base font-semibold text-white">{siteConfig.tagline}</p>

@@ -22,7 +22,7 @@ export function DemoSettingsForm() {
       className="space-y-6"
     >
       <Card title="Bedrijf">
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field id="companyName" label="Bedrijfsnaam">
             <input id="companyName" value={s.companyName} onChange={set("companyName")} className={inputCls} />
           </Field>
@@ -45,7 +45,7 @@ export function DemoSettingsForm() {
       </Card>
 
       <Card title="Huisstijl">
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <p className="mb-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-navy-500">Logo</p>
             <div className="flex items-center gap-4 rounded-2xl bg-navy-50 p-4">
@@ -69,7 +69,7 @@ export function DemoSettingsForm() {
       </Card>
 
       <Card title="Social media">
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <Field id="instagram" label="Instagram">
             <input id="instagram" type="url" value={s.instagram} onChange={set("instagram")} placeholder="https://instagram.com/…" className={inputCls} />
           </Field>

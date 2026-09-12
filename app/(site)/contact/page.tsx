@@ -35,7 +35,7 @@ export default async function ContactPage() {
       />
 
       <section className="section-y bg-white">
-        <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">
             <div className="rounded-4xl bg-white p-6 shadow-lift ring-1 ring-navy-100 sm:p-8">
               <h2 className="font-display text-2xl font-bold text-navy-900">Stuur een bericht</h2>

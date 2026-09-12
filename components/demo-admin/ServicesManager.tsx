@@ -71,7 +71,7 @@ export function ServicesManager() {
               </div>
             </div>
             <div className="flex items-center justify-between gap-2 sm:justify-end">
-              <button type="button" onClick={() => toggle(r.id)} className="rounded-full" aria-label={`Status wijzigen van ${r.name}`}>
+              <button type="button" onClick={() => toggle(r.id)} className="-mx-1 inline-flex min-h-11 items-center rounded-full px-1 sm:min-h-0" aria-label={`Status wijzigen van ${r.name}`}>
                 <DemoBadge label={r.status} />
               </button>
               <div className="flex items-center gap-1">
@@ -112,7 +112,7 @@ export function ServicesManager() {
             <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-navy-50">
               <Image src={draft.image} alt="" fill sizes="480px" className="object-cover" />
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field id="s-status" label="Status">
                 <select id="s-status" value={draft.status} onChange={(e) => setDraft({ ...draft, status: e.target.value as DemoServiceRow["status"] })} className={inputCls}>
                   <option value="Actief">Actief</option>

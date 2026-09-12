@@ -48,7 +48,7 @@ export function ProjectsManager() {
         </button>
       </div>
 
-      <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {rows.map((p) => (
           <li key={p.id} className="flex flex-col overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-navy-100">
             <div className="grid grid-cols-2 gap-0.5 bg-navy-100">
@@ -71,7 +71,7 @@ export function ProjectsManager() {
               </div>
               <h3 className="mt-2 font-display text-base font-bold text-navy-900">{p.title}</h3>
               <div className="mt-auto flex items-center justify-between gap-2 pt-4">
-                <button type="button" onClick={() => toggle(p.id)} aria-label={`Status wijzigen van ${p.title}`}>
+                <button type="button" onClick={() => toggle(p.id)} className="-mx-1 inline-flex min-h-11 items-center rounded-full px-1 sm:min-h-0" aria-label={`Status wijzigen van ${p.title}`}>
                   <DemoBadge label={p.status} />
                 </button>
                 <button type="button" onClick={() => openEdit(p)} className={`${btnSecondary} ${btnSmall}`}>
@@ -90,7 +90,7 @@ export function ProjectsManager() {
             <Field id="p-title" label="Titel">
               <input id="p-title" required value={draft.title} onChange={(e) => setDraft({ ...draft, title: e.target.value })} className={inputCls} placeholder="Bijv. Gevelreiniging vrijstaande woning" />
             </Field>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field id="p-cat" label="Categorie">
                 <select id="p-cat" value={draft.category} onChange={(e) => setDraft({ ...draft, category: e.target.value })} className={inputCls}>
                   {services.map((s) => (

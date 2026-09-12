@@ -50,7 +50,7 @@ export async function LocationSection() {
                 <Navigation className="size-4" aria-hidden />
                 Werkgebied
               </p>
-              <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+              <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {areas.map((area, i) => (
                   <li key={area} className="flex items-center gap-3 text-lg font-medium">
                     <MapPin className={i === 0 ? "size-5 text-gold-300" : "size-5 text-navy-300"} aria-hidden />
